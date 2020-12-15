@@ -1,0 +1,50 @@
+window#login {
+    font-family: "Consolas";
+    background-color: #252526;
+    font-weight: 400;
+}
+
+label {
+    color: #88c5ce;
+    font-size: 14px;
+}
+
+label#logo {
+    font-size: 36px;
+}
+
+label#text {
+    color: #fff;
+}
+
+entry#login,
+entry#password {
+    color: #fff;
+    border: none;
+    border-bottom: 2px solid #b787ff;
+    background-color: #252526;
+}
+
+entry#password {
+    color: #88c5ce;
+}
+
+button#btn {
+    color: #fff;
+    background: #b787ff;
+    border: 1px solid #b787ff;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: none;
+}
+
+button#signIn,
+button#create {
+    color: #88c5ce;
+    background: none;
+    font-size: 12px;
+    font-style: italic;
+    border: 1px solid #252526;
+    outline: none;
+    box-shadow: none;
+}
