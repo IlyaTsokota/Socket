@@ -26,5 +26,9 @@ void open_reg(GtkWidget *button, GtkWidget *widget);
 void open_login_form(GtkWidget *button, GtkWidget *widget);
 void open_login(GtkWidget *window);
 void create_new_main_window(GtkWidget **restrict window, char *window_id, char *path_to_window);
+void open_register_third_form(GtkWidget *button, GtkWidget *widget);
+void open_register_third(GtkWidget *window);
+void open_register_second(GtkWidget *window);
+void open_register_second_form(GtkWidget *button, GtkWidget *widget);
 
 #endif

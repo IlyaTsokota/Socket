@@ -2,7 +2,6 @@
 void open_login(GtkWidget *window){
     GtkBuilder *builder = glade_file_to_interface("share/login.glade");
     GtkWidget *loginForm = GTK_WIDGET(gtk_builder_get_object(builder, "loginForm"));
-  
     GtkWidget *labelLogo = GTK_WIDGET(gtk_builder_get_object(builder, "loginTitle"));
     GtkWidget *labelText = GTK_WIDGET(gtk_builder_get_object(builder, "loginText"));
     GtkWidget *labelCreate = GTK_WIDGET(gtk_builder_get_object(builder, "createLabel"));
