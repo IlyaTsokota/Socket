@@ -1,16 +1,5 @@
 #include "chat.h"
 
-// int main(int argc, char *argv[])
-// {
-//     gtk_init(&argc, &argv);
-    // GtkWidget *authWindow;
-    // create_new_main_window(&authWindow, "windowAuth", "share/window_auth.glade");
-    // open_login(authWindow);
-//     gtk_widget_show(authWindow);
-//     gtk_main();
-//     return 0;
-// }
-
 void application_activate(GtkApplication *application, gpointer user_data)
 {
     GtkBuilder *builder = glade_file_to_interface("share/window_auth.glade");

@@ -8,11 +8,11 @@ void open_register(GtkWidget *window)
     GtkWidget *labelLogo = GTK_WIDGET(gtk_builder_get_object(builder, "loginTitle"));
     GtkWidget *labelText = GTK_WIDGET(gtk_builder_get_object(builder, "loginText"));
     GtkWidget *loginLable = GTK_WIDGET(gtk_builder_get_object(builder, "loginLable"));
-    GtkWidget *loginInput = create_input(builder, "loginInput", 16);
+    GtkWidget *loginInput = create_input(builder, "loginInput", 16, 4);
     GtkWidget *nameLable = GTK_WIDGET(gtk_builder_get_object(builder, "nameLable"));
-    GtkWidget *nameInput = create_input(builder, "nameInput", 16);
+    GtkWidget *nameInput = create_input(builder, "nameInput", 16, 4);
     GtkWidget *surnameLable = GTK_WIDGET(gtk_builder_get_object(builder, "surnameLable"));
-    GtkWidget *surnameInput = create_input(builder, "surnameInput", 16);
+    GtkWidget *surnameInput = create_input(builder, "surnameInput", 16, 4);
     GtkWidget *signInLabel = GTK_WIDGET(gtk_builder_get_object(builder, "signInLabel"));
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));
     GtkWidget *arr[] = {regOne, labelLogo, labelText, loginLable, loginInput, nameLable, nameInput, surnameLable, surnameInput, signInLabel, btnNext};

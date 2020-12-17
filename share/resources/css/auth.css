@@ -29,6 +29,14 @@ entry#password {
     color: #88c5ce;
 }
 
+.succes-value {
+    border-bottom: 2px solid green;
+}
+
+.bad-value {
+    border-bottom: 2px solid tomato;
+}
+
 button#btn {
     color: #fff;
     background: #b787ff;

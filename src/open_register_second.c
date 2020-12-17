@@ -7,9 +7,9 @@ void open_register_second(GtkWidget *window)
     GtkWidget *labelLogo = GTK_WIDGET(gtk_builder_get_object(builder, "loginTitle"));
     GtkWidget *labelText = GTK_WIDGET(gtk_builder_get_object(builder, "loginText"));
     GtkWidget *passwordLable = GTK_WIDGET(gtk_builder_get_object(builder, "passwordLable"));
-    GtkWidget *passwordInput = create_input(builder, "passwordInput", 14);
+    GtkWidget *passwordInput = create_input(builder, "passwordInput", 14, 4);
     GtkWidget *pinLable = GTK_WIDGET(gtk_builder_get_object(builder, "pinLable"));
-    GtkWidget *pinInput = create_input(builder, "pinInput", 4);
+    GtkWidget *pinInput = create_input(builder, "pinInput", 4, 4);
     GtkWidget *signInLabel = GTK_WIDGET(gtk_builder_get_object(builder, "signInLabel"));
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));
     GtkWidget *arr[] = {grid, labelLogo, labelText, passwordLable, passwordInput, pinLable, pinInput, signInLabel, btnNext};
