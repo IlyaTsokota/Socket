@@ -45,6 +45,7 @@ void application_shutdown(GtkApplication *application, gpointer user_data)
 
 int main(int argc, char *argv[])
 {
+    setlocale(LC_ALL, "");
     gtk_init(&argc, &argv);
     gint res;
     data.app = gtk_application_new("gtk.org", G_APPLICATION_FLAGS_NONE);

@@ -13,6 +13,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <ctype.h>
+#include <locale.h>
 #include <wctype.h>
 
 typedef struct {
