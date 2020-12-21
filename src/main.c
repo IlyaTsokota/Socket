@@ -1,5 +1,35 @@
 #include "chat.h"
 
+
+void server_set_connection()
+{
+	int  val;
+    struct sockaddr_in client_addr;
+    data.socket_desc = socket(AF_INET, SOCK_STREAM, 0);
+    int port = 1234;
+    client_addr.sin_family = AF_INET;
+    client_addr.sin_addr.s_addr = INADDR_ANY;//inet_addr("178.165.30.151");
+    client_addr.sin_port = htons(port);
+
+    if (connect(data.socket_desc, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
+        printf("Connected to server, port is %d\n", port);
+    else
+    {
+        printf("Something wrong!\n");
+        exit(1);
+    }
+}
+
+// char* server_request(char* request) 
+// {
+// 	char *buffer = request;
+//  	write(data.socket_desc, buffer, strlen(buffer));
+//     bzero(buffer, 256);
+//     read(data.socket_desc, buffer, 255);
+//     return buffer;
+// }
+
+
 void application_activate(GtkApplication *application, gpointer user_data)
 {
     GtkBuilder *builder = glade_file_to_interface("share/window_auth.glade");
@@ -8,10 +38,13 @@ void application_activate(GtkApplication *application, gpointer user_data)
     open_login(data.win);
     gtk_application_add_window(data.app,GTK_WINDOW(data.win));
 	gtk_widget_show_all(data.win);
+	server_set_connection();
+	
 }
 void application_shutdown(GtkApplication *application, gpointer user_data)
 {
-	 g_application_quit(G_APPLICATION(data.app));
+	close(data.socket_desc);
+	g_application_quit(G_APPLICATION(data.app));
 }
 
 int main (int argc, char *argv[])

@@ -86,8 +86,8 @@
                 <property name="name">login</property>
                 <property name="width_request">100</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="has_focus">True</property>
+               <property name="can_focus">True</property>
+                <property name="has_focus">True</property> 
                 <property name="halign">start</property>
                 <property name="valign">start</property>
                 <property name="margin_right">55</property>

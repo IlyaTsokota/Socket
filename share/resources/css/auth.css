@@ -23,17 +23,23 @@ entry#password {
     border: none;
     border-bottom: 2px solid #b787ff;
     background-color: #252526;
+    box-shadow: none;
+}
+
+entry#login:focus,
+entry#password:focus {
+    outline: none;
 }
 
 entry#password {
     color: #88c5ce;
 }
 
-.succes-value {
+entry.success-value {
     border-bottom: 2px solid green;
 }
 
-.bad-value {
+entry.bad-value {
     border-bottom: 2px solid tomato;
 }
 

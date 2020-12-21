@@ -2,14 +2,18 @@
 
 void open_register_second(GtkWidget *window)
 {
+     int* minSize = (int*)malloc(sizeof(int));
+    *minSize = 4;
+    int* maxSize = (int*)malloc(sizeof(int));
+    *maxSize = 16;
     GtkBuilder *builder = glade_file_to_interface("share/register_two.glade");
     GtkWidget *grid = GTK_WIDGET(gtk_builder_get_object(builder, "registrationTwo"));
     GtkWidget *labelLogo = GTK_WIDGET(gtk_builder_get_object(builder, "loginTitle"));
     GtkWidget *labelText = GTK_WIDGET(gtk_builder_get_object(builder, "loginText"));
     GtkWidget *passwordLable = GTK_WIDGET(gtk_builder_get_object(builder, "passwordLable"));
-    GtkWidget *passwordInput = create_input(builder, "passwordInput", 14, 4);
+    GtkWidget *passwordInput = create_input(builder, "passwordInput", maxSize, minSize);
     GtkWidget *pinLable = GTK_WIDGET(gtk_builder_get_object(builder, "pinLable"));
-    GtkWidget *pinInput = create_input(builder, "pinInput", 4, 4);
+    GtkWidget *pinInput = create_input(builder, "pinInput", minSize, minSize);
     GtkWidget *signInLabel = GTK_WIDGET(gtk_builder_get_object(builder, "signInLabel"));
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));
     GtkWidget *arr[] = {grid, labelLogo, labelText, passwordLable, passwordInput, pinLable, pinInput, signInLabel, btnNext};
