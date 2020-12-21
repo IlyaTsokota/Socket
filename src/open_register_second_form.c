@@ -9,7 +9,6 @@ void open_register_second_form(GtkWidget *button, GtkWidget *widget)
     
     if (strlen(login) < 4) {
         // label все хуево давай по новой
-    
     } else {++flag;}
     
     if(strlen(name) < 4 || !is_alpha_string(name)){

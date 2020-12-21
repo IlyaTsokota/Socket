@@ -1,10 +1,10 @@
 #include "chat.h"
 
-void input_entry_event(GtkWidget *entry, int *min)
+void is_input_success(bool (*is_success)(int, int*, char*), GtkWidget **entry, int *min)
 {
-    int length = strlen(gtk_entry_get_text(GTK_ENTRY(entry)));
+    char *entry_text = (char*)gtk_entry_get_text(GTK_ENTRY(*entry));
     GtkCssProvider *css_provider = gtk_css_provider_new();
-    if (length < *min)
+    if (!is_success(strlen(entry_text), min, entry_text))
     {
         gtk_css_provider_load_from_data(css_provider, "* {   border-bottom: 2px solid tomato;}", -1, NULL);
     }
@@ -12,6 +12,6 @@ void input_entry_event(GtkWidget *entry, int *min)
     {
         gtk_css_provider_load_from_data(css_provider, "* {   border-bottom: 2px solid green;}", -1, NULL);
     }
-    GtkStyleContext *context = gtk_widget_get_style_context(entry);
+    GtkStyleContext *context = gtk_widget_get_style_context(*entry);
     gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(css_provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
 }

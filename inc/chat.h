@@ -13,6 +13,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <ctype.h>
+#include <wctype.h>
 
 typedef struct {
 	GtkWidget *login;
@@ -33,10 +34,9 @@ appdata data;
 
 void application_activate(GtkApplication *application, gpointer user_data);
 void application_shutdown(GtkApplication *application, gpointer user_data);
-void input_entry_event(GtkWidget *entry, int *min);
 void css_set(GtkWidget *widgets[], char *path_to_css, int size);
 void css_set_for_one(GtkWidget *widget, char *path_to_css);
-GtkWidget *create_input(GtkBuilder *builder, char *name_elem, int *maxSize, int *minSize);
+GtkWidget *create_input(GtkBuilder *builder, char *name_elem, int *maxSize);
 void validation_login(GtkWidget *button, GtkWidget *widgets[]);
 void login();
 GtkBuilder *glade_file_to_interface(char *path_to_glade_file);
@@ -49,6 +49,17 @@ void open_register_third_form(GtkWidget *button, GtkWidget *widget);
 void open_register_third(GtkWidget *window);
 void open_register_second(GtkWidget *window);
 void open_register_second_form(GtkWidget *button, GtkWidget *widget);
+
 bool is_alpha_string(char *str);
+bool is_digit_or_alpha_in_str(char *str);
+bool is_login_or_password(int length, int*minSize, char *text);
+bool is_only_alpha(int length, int*minSize, char *text);
+bool is_digits(char *str);
+bool is_pin(int length, int*minSize, char *text);
+
+void is_input_success( bool (*is_success)(int, int*, char*), GtkWidget **entry, int *min);
+void change_event_login_or_password(GtkWidget *entry, int *min);
+void change_event_entry_only_aplha(GtkWidget *entry, int *min);
+void change_event_pin(GtkWidget *entry, int *min);
 
 #endif

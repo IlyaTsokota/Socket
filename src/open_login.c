@@ -11,8 +11,10 @@ void open_login(GtkWidget *window){
     GtkWidget *labelCreate = GTK_WIDGET(gtk_builder_get_object(builder, "createLabel"));
     GtkWidget *labelLogin = GTK_WIDGET(gtk_builder_get_object(builder, "loginLable"));
     GtkWidget *labelPassword = GTK_WIDGET(gtk_builder_get_object(builder, "passwordLable"));
-    GtkWidget *inputLogin = create_input(builder, "loginInput", maxSize, minSize);
-    GtkWidget *inputPassword = create_input(builder, "passwordInput", maxSize, minSize);
+    GtkWidget *inputLogin = create_input(builder, "loginInput", maxSize);
+    g_signal_connect(G_OBJECT(inputLogin), "changed", G_CALLBACK(change_event_login_or_password), minSize);
+    GtkWidget *inputPassword = create_input(builder, "passwordInput", maxSize);
+    g_signal_connect(G_OBJECT(inputPassword ), "changed", G_CALLBACK(change_event_login_or_password), minSize);
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));
     GtkWidget *arrWidgetForStyled[] = {labelLogo, labelText, labelCreate, labelLogin, labelPassword, inputPassword, inputLogin, btnNext, loginForm, window};
     css_set(arrWidgetForStyled, "share/resources/css/auth.css", 9);

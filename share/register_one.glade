@@ -134,7 +134,7 @@
                 <property name="has_focus">True</property>
                 <property name="halign">start</property>
                 <property name="valign">start</property>
-                <property name="margin_right">50</property>
+                <property name="margin_right">55</property>
                 <property name="hexpand">True</property>
                 <property name="input_purpose">name</property>
               </object>

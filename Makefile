@@ -4,7 +4,8 @@ SRC_DIR = src
 
 INC_DIR = inc
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
-CC = clang
+# CC = clang
+CC = gcc
 NCURSESLIB = -lncurses
 
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
