@@ -7,6 +7,7 @@ void open_register_third(GtkWidget *window)
     GtkWidget *labelLogo = GTK_WIDGET(gtk_builder_get_object(builder, "loginTitle"));
     GtkWidget *labelText = GTK_WIDGET(gtk_builder_get_object(builder, "loginText"));
     GtkWidget *loginLable = GTK_WIDGET(gtk_builder_get_object(builder, "loginLable"));
+    gtk_label_set_text(GTK_LABEL(loginLable), registration.login_text);
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));
     GtkWidget *arr[] = {grid, labelLogo, labelText, loginLable, btnNext};
     g_signal_connect(G_OBJECT(btnNext), "clicked", G_CALLBACK(open_register_second_form), grid);

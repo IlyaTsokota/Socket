@@ -20,9 +20,14 @@ typedef struct {
 	GtkWidget *login;
 	GtkWidget *name;
 	GtkWidget *surname;
-}register_w;
+	GtkWidget *password;
+	GtkWidget *pin;
+	char *login_text;
+	char *name_text;
+	char *surname_text;
+} register_w;
 
-register_w reg_one;
+register_w registration;
 
 typedef struct{
 	GtkApplication *restrict app;
