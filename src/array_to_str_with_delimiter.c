@@ -21,5 +21,6 @@ char *array_to_str_with_delimiter(char **arr, int length)
         }
         str[k++] = '~';
     }
+    string_array_clear(arr, length);
     return str;
 }

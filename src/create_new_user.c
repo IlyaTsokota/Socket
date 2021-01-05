@@ -10,9 +10,5 @@ void create_new_user(char *login, char *name, char *surname, char *password, cha
         strcpy(new_arr[i], arr[i]);
     }
     char *request = array_to_str_with_delimiter(new_arr, 6);
-    int a = write(data.socket_desc, request, strlen(request));
-    free(request);
-    char answer[1024];
-    read(data.socket_desc, answer, 1024);
-    g_print("Сообщение от сервера: %s\n", answer);
+    bool b = request_to_server(request);
 }

@@ -37,7 +37,9 @@ typedef struct{
 
 appdata data;
 
-
+bool request_to_server(char *request);
+bool find_user_by_login(char *login);
+void string_array_clear(char **arr, int size);
 void application_activate(GtkApplication *application, gpointer user_data);
 void application_shutdown(GtkApplication *application, gpointer user_data);
 void css_set(GtkWidget *widgets[], char *path_to_css, int size);

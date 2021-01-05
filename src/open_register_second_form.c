@@ -37,11 +37,18 @@ void open_register_second_form(GtkWidget *button, GtkWidget *widget)
 
     if (flag == 3)
     {
-        //добавляем в бд
-        registration.login_text = g_convert(login, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
-        registration.name_text = g_convert(name, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
-        registration.surname_text = g_convert(surname, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
-        gtk_widget_destroy(widget);
-        open_register_second(data.win);
+        if (find_user_by_login(login))
+        {
+            registration.login_text = g_convert(login, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
+            registration.name_text = g_convert(name, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
+            registration.surname_text = g_convert(surname, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
+            gtk_widget_destroy(widget);
+            open_register_second(data.win);
+        }
+        else
+        {
+            //выдать сообщение что чел додик
+            g_print("You are stupid boy!!!\n");
+        }
     }
 }
