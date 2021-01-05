@@ -55,17 +55,17 @@ void open_register_third_form(GtkWidget *button, GtkWidget *widget);
 void open_register_third(GtkWidget *window);
 void open_register_second(GtkWidget *window);
 void open_register_second_form(GtkWidget *button, GtkWidget *widget);
-
+void create_new_user(char *login, char *name, char *surname, char *password, char *pin);
 bool is_alpha_string(char *str);
 bool is_digit_or_alpha_in_str(char *str);
 bool is_login_or_password(int length, int*minSize, char *text);
 bool is_only_alpha(int length, int*minSize, char *text);
 bool is_digits(char *str);
 bool is_pin(int length, int*minSize, char *text);
-
+char *mx_strnew(const int size );
 void is_input_success( bool (*is_success)(int, int*, char*), GtkWidget **entry, int *min);
 void change_event_login_or_password(GtkWidget *entry, int *min);
 void change_event_entry_only_aplha(GtkWidget *entry, int *min);
 void change_event_pin(GtkWidget *entry, int *min);
-
+char *array_to_str_with_delimiter(char **arr, int length);
 #endif

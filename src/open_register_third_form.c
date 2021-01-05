@@ -27,6 +27,7 @@ void open_register_third_form(GtkWidget *button, GtkWidget *widget)
 
     if (flag == 2)
     {
+        create_new_user(registration.login_text, registration.name_text, registration.surname_text, password, pin);
         gtk_widget_destroy(widget);
         open_register_third(data.win);
     }

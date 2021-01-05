@@ -5,7 +5,7 @@ void server_set_connection()
     int val;
     struct sockaddr_in client_addr;
     data.socket_desc = socket(AF_INET, SOCK_STREAM, 0);
-    int port = 1234;
+    int port = 3762;
     client_addr.sin_family = AF_INET;
     client_addr.sin_addr.s_addr = INADDR_ANY; //inet_addr("178.165.30.151");
     client_addr.sin_port = htons(port);
@@ -35,7 +35,7 @@ void application_activate(GtkApplication *application, gpointer user_data)
     open_login(data.win);
     gtk_application_add_window(data.app, GTK_WINDOW(data.win));
     gtk_widget_show_all(data.win);
-    // server_set_connection();
+    server_set_connection();
 }
 void application_shutdown(GtkApplication *application, gpointer user_data)
 {
