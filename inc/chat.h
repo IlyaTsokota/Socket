@@ -22,6 +22,11 @@ typedef struct {
 	GtkWidget *surname;
 	GtkWidget *password;
 	GtkWidget *pin;
+	GtkWidget *fail_login;
+	GtkWidget *fail_name;
+	GtkWidget *fail_surname;
+	GtkWidget *fail_password;
+	GtkWidget *fail_pin;
 	char *login_text;
 	char *name_text;
 	char *surname_text;
@@ -36,7 +41,8 @@ typedef struct{
 } appdata;
 
 appdata data;
-
+void is_valid_message_to_entry(char *value, int *minSize, GtkWidget **label_fail, GtkWidget **entry, char *message, int *flag);
+void valid_entry_border_color(GtkWidget **entry);
 bool request_to_server(char *request);
 bool find_user_by_login(char *login);
 void string_array_clear(char **arr, int size);

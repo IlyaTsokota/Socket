@@ -6,7 +6,7 @@ void is_input_success(bool (*is_success)(int, int*, char*), GtkWidget **entry, i
     GtkCssProvider *css_provider = gtk_css_provider_new();
     if (!is_success(strlen(entry_text), min, entry_text))
     {
-        gtk_css_provider_load_from_data(css_provider, "* {   border-bottom: 2px solid tomato;}", -1, NULL);
+        gtk_css_provider_load_from_data(css_provider, "* {   border-bottom: 2px solid rgb(180, 6, 6);}", -1, NULL);
     }
     else
     {

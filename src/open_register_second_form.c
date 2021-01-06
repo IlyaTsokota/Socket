@@ -8,47 +8,25 @@ void open_register_second_form(GtkWidget *button, GtkWidget *widget)
     int flag = 0;
     int *minSize = (int *)malloc(sizeof(int));
     *minSize = 4;
-    if (!is_login_or_password(strlen(login), minSize, login))
-    {
-        // label все хуево давай по новой
-    }
-    else
-    {
-        ++flag;
-    }
 
-    if (!is_only_alpha(strlen(name), minSize, name))
+    is_valid_message_to_entry(login, minSize, &registration.fail_login, &registration.login ,"The field may containt only latin", &flag);
+    
+    if (flag == 1 && !find_user_by_login(login))
     {
-        // label все хуево давай по новой
+        valid_entry_border_color(&registration.login);
+        gtk_label_set_text(GTK_LABEL(registration.fail_login), "This login already exists");
+        --flag;
     }
-    else
-    {
-        ++flag;
-    }
-
-    if (!is_only_alpha(strlen(surname), minSize, surname))
-    {
-        // label все хуево давай по новой
-    }
-    else
-    {
-        ++flag;
-    }
-
+    
+    is_valid_message_to_entry(name, minSize, &registration.fail_name, &registration.name ,"The field may containt only latin", &flag);
+    is_valid_message_to_entry(surname, minSize, &registration.fail_surname, &registration.surname ,"The field may containt only latin", &flag);
+    
     if (flag == 3)
     {
-        if (find_user_by_login(login))
-        {
             registration.login_text = g_convert(login, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
             registration.name_text = g_convert(name, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
             registration.surname_text = g_convert(surname, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
             gtk_widget_destroy(widget);
             open_register_second(data.win);
-        }
-        else
-        {
-            //выдать сообщение что чел додик
-            g_print("You are stupid boy!!!\n");
-        }
     }
 }
