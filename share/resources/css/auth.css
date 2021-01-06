@@ -62,3 +62,7 @@ button#create {
     outline: none;
     box-shadow: none;
 }
+
+label#danger_lable{
+    color: rgb(180, 6, 6);
+}

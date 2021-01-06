@@ -62,19 +62,46 @@
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">82</property>
-            <property name="hexpand">True</property>
             <child>
-              <object class="GtkLabel" id="loginLable">
-                <property name="name">log</property>
-                <property name="width_request">50</property>
+              <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="valign">center</property>
-                <property name="margin_right">15</property>
+                <property name="margin_top">82</property>
                 <property name="hexpand">True</property>
-                <property name="label" translatable="yes">login</property>
+                <child>
+                  <object class="GtkLabel" id="loginLable">
+                    <property name="name">log</property>
+                    <property name="width_request">50</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                    <property name="margin_right">15</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">login</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="loginInput">
+                    <property name="name">login</property>
+                    <property name="width_request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="has_focus">True</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="margin_right">55</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -82,20 +109,15 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="loginInput">
-                <property name="name">login</property>
-                <property name="width_request">100</property>
+              <object class="GtkLabel" id="fail_login">
+                <property name="name">danger_lable</property>
                 <property name="visible">True</property>
-               <property name="can_focus">True</property>
-                <property name="has_focus">True</property> 
-                <property name="halign">start</property>
-                <property name="valign">start</property>
-                <property name="margin_right">55</property>
-                <property name="hexpand">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">10</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
               </packing>
             </child>
           </object>
@@ -104,22 +126,51 @@
             <property name="top_attach">3</property>
           </packing>
         </child>
-        <child>
+         <child>
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">20</property>
-            <property name="hexpand">True</property>
             <child>
-              <object class="GtkLabel" id="passwordLable">
-                <property name="name">pas</property>
-                <property name="width_request">50</property>
+              <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="margin_right">19</property>
                 <property name="hexpand">True</property>
-                <property name="label" translatable="yes">password</property>
+                <child>
+                  <object class="GtkLabel" id="passwordLable">
+                    <property name="name">pas</property>
+                    <property name="width_request">50</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <property name="margin_right">20</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">password</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="passwordInput">
+                    <property name="name">password</property>
+                    <property name="width_request">100</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="has_focus">True</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="margin_right">73</property>
+                    <property name="hexpand">True</property>
+                    <property name="visibility">False</property>
+                    <property name="invisible_char">•</property>
+                    <property name="input_purpose">password</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -127,23 +178,15 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="passwordInput">
-                <property name="name">password</property>
-                <property name="width_request">100</property>
+              <object class="GtkLabel" id="fail_password">
+                <property name="name">danger_lable</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="has_focus">True</property>
-                <property name="halign">start</property>
-                <property name="valign">start</property>
-                <property name="margin_right">74</property>
-                <property name="hexpand">True</property>
-                <property name="visibility">False</property>
-                <property name="invisible_char">•</property>
-                <property name="input_purpose">password</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">10</property>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
               </packing>
             </child>
           </object>
@@ -161,7 +204,7 @@
             <property name="receives_default">True</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="margin_top">65</property>
+            <property name="margin_top">50</property>
             <property name="relief">none</property>
           </object>
           <packing>
