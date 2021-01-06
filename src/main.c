@@ -18,15 +18,6 @@ void server_set_connection()
     }
 }
 
-// char* server_request(char* request)
-// {
-// 	char *buffer = request;
-//  	write(data.socket_desc, buffer, strlen(buffer));
-//     bzero(buffer, 256);
-//     read(data.socket_desc, buffer, 255);
-//     return buffer;
-// }
-
 void application_activate(GtkApplication *application, gpointer user_data)
 {
     GtkBuilder *builder = glade_file_to_interface("share/window_auth.glade");

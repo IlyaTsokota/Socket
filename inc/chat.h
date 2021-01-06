@@ -34,6 +34,15 @@ typedef struct {
 
 register_w registration;
 
+typedef struct {
+	GtkWidget *login;
+	GtkWidget *password;
+	GtkWidget *fail_login;
+	GtkWidget *fail_password;
+} autorization_w;
+
+autorization_w autorization;
+
 typedef struct{
 	GtkApplication *restrict app;
 	GtkWidget *restrict win;
@@ -41,7 +50,10 @@ typedef struct{
 } appdata;
 
 appdata data;
-void is_valid_message_to_entry(char *value, int *minSize, GtkWidget **label_fail, GtkWidget **entry, char *message, int *flag);
+
+bool is_autorization_user(char *login, char *password);
+void autorization_in_app(GtkWidget *button, GtkWidget *widget);
+void is_valid_message_to_entry(bool (*is_success)(int, int*, char*), char *value, int *minSize, GtkWidget **label_fail, GtkWidget **entry, char *message, int *flag);
 void valid_entry_border_color(GtkWidget **entry);
 bool request_to_server(char *request);
 bool find_user_by_login(char *login);

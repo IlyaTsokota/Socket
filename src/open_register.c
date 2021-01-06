@@ -24,7 +24,7 @@ void open_register(GtkWidget *window)
     GtkWidget *surnameLable = GTK_WIDGET(gtk_builder_get_object(builder, "surnameLable"));
     registration.surname = create_input(builder, "surnameInput", maxSize);
     g_signal_connect(G_OBJECT(registration.surname), "changed", G_CALLBACK(change_event_entry_only_aplha), minSize);
-
+    
     GtkWidget *signInLabel = GTK_WIDGET(gtk_builder_get_object(builder, "signInLabel"));
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));
 
@@ -33,7 +33,7 @@ void open_register(GtkWidget *window)
     registration.fail_name = GTK_WIDGET(gtk_builder_get_object(builder, "fail_name"));
     registration.fail_surname = GTK_WIDGET(gtk_builder_get_object(builder, "fail_surname"));
 
-    GtkWidget *arr[] = {regOne, labelLogo, labelText, loginLable, registration.login, nameLable, registration.name, surnameLable, registration.surname, signInLabel, btnNext, registration.fail_name,registration.fail_login, registration.fail_surname};
+    GtkWidget *arr[] = {regOne, labelLogo, labelText, loginLable, registration.login, nameLable, registration.name, surnameLable, registration.surname, signInLabel, btnNext, registration.fail_name, registration.fail_login, registration.fail_surname};
     g_signal_connect(G_OBJECT(signInLabel), "clicked", G_CALLBACK(open_login_form), regOne);
     g_signal_connect(G_OBJECT(btnNext), "clicked", G_CALLBACK(open_register_second_form), regOne);
 

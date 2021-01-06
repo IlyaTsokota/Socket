@@ -9,18 +9,18 @@ void open_register_second_form(GtkWidget *button, GtkWidget *widget)
     int *minSize = (int *)malloc(sizeof(int));
     *minSize = 4;
 
-    is_valid_message_to_entry(login, minSize, &registration.fail_login, &registration.login ,"The field may containt only latin", &flag);
+    is_valid_message_to_entry(is_login_or_password,login, minSize, &registration.fail_login, &registration.login ,"The field may containt only latin or numerals", &flag);
     
-    if (flag == 1 && !find_user_by_login(login))
+    if (flag == 1 && find_user_by_login(login))
     {
         valid_entry_border_color(&registration.login);
         gtk_label_set_text(GTK_LABEL(registration.fail_login), "This login already exists");
         --flag;
     }
     
-    is_valid_message_to_entry(name, minSize, &registration.fail_name, &registration.name ,"The field may containt only latin", &flag);
-    is_valid_message_to_entry(surname, minSize, &registration.fail_surname, &registration.surname ,"The field may containt only latin", &flag);
-    
+    is_valid_message_to_entry(is_only_alpha,name, minSize, &registration.fail_name, &registration.name ,"The field may containt only latin", &flag);
+    is_valid_message_to_entry(is_only_alpha,surname, minSize, &registration.fail_surname, &registration.surname ,"The field may containt only latin", &flag);
+    free(minSize);
     if (flag == 3)
     {
             registration.login_text = g_convert(login, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
