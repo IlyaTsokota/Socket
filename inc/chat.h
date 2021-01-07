@@ -27,6 +27,7 @@ typedef struct {
 	GtkWidget *fail_surname;
 	GtkWidget *fail_password;
 	GtkWidget *fail_pin;
+	
 	char *login_text;
 	char *name_text;
 	char *surname_text;
@@ -39,6 +40,7 @@ typedef struct {
 	GtkWidget *password;
 	GtkWidget *fail_login;
 	GtkWidget *fail_password;
+	GtkWidget *fail_auth;
 } autorization_w;
 
 autorization_w autorization;

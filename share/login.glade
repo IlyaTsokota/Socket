@@ -50,6 +50,7 @@
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="margin_top">20</property>
+              <property name="margin_bottom">40</property>
             <property name="label" translatable="yes">Welcome to macOS application</property>
             <property name="justify">center</property>
           </object>
@@ -59,6 +60,17 @@
           </packing>
         </child>
         <child>
+            <object class="GtkLabel" id="fail_auth">
+              <property name="name">danger_lable</property>
+              <property name="visible">True</property>
+              <property name="can_focus">False</property>
+            </object>
+            <packing>
+              <property name="left_attach">0</property>
+              <property name="top_attach">3</property>
+            </packing>
+        </child>
+        <child>
           <object class="GtkGrid">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -66,7 +78,7 @@
               <object class="GtkGrid">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_top">82</property>
+                <property name="margin_top">25</property>
                 <property name="hexpand">True</property>
                 <child>
                   <object class="GtkLabel" id="loginLable">
@@ -123,7 +135,7 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">3</property>
+            <property name="top_attach">4</property>
           </packing>
         </child>
          <child>
@@ -192,7 +204,7 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">4</property>
+            <property name="top_attach">5</property>
           </packing>
         </child>
         <child>
@@ -209,7 +221,7 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">5</property>
+            <property name="top_attach">6</property>
           </packing>
         </child>
         <child>
@@ -228,7 +240,7 @@
           </object>
           <packing>
             <property name="left_attach">0</property>
-            <property name="top_attach">6</property>
+            <property name="top_attach">7</property>
           </packing>
         </child>
       </object>

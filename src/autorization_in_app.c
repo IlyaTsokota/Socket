@@ -18,10 +18,9 @@ void autorization_in_app(GtkWidget *button, GtkWidget *widget)
         }
         else
         {
-            // label вы додик  
+            gtk_label_set_text(GTK_LABEL(autorization.fail_auth), "Invalid login or password!");
             valid_entry_border_color(&autorization.login);
             valid_entry_border_color(&autorization.password);
-            g_print("вы fail!");
         }
     }
 }
