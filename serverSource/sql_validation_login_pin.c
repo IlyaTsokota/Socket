@@ -3,10 +3,12 @@
 char *pin_check(MYSQL *con, char *login, char *pin)
 {
     char *answer;
-    char *bdrequest = strjoins("SELECT COUNT(user.u_id) FROM user Join credentials on credentials.u_id = user.u_id WHERE credentials.cr_pincode = \"", pin);
+    char *encrypted_pin= crypt(pin, "1337_1488");
+    char *bdrequest = strjoins("SELECT COUNT(user.u_id) FROM user Join credentials on credentials.u_id = user.u_id WHERE credentials.cr_pincode = \"", encrypted_pin);
     bdrequest = strjoins(bdrequest, "\" AND user.u_login = \"");
     bdrequest = strjoins(bdrequest, login);
     bdrequest = strjoins(bdrequest, "\";");
+
     //puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))

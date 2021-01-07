@@ -6,6 +6,8 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     char *answer;
     char *status = "Status is empty ;c";
     char *isonline = "1";
+    char *encrypted_password = crypt(password, "1337_1488");
+    char *encrypted_pin= crypt(pin, "1337_1488");
     // char *date = set_date();
 
     char *bdrequest = strjoins("SELECT count(u_login) from user where u_login = \"", login);
@@ -93,9 +95,9 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     //Добавить юзеру пароль и пин в креденшлс
     bdrequest = strjoins("INSERT INTO credentials (u_id, cr_password, cr_pincode) VALUES (\"", answer);
     bdrequest = strjoins(bdrequest, "\",\"");
-    bdrequest = strjoins(bdrequest, password);
+    bdrequest = strjoins(bdrequest, encrypted_password);
     bdrequest = strjoins(bdrequest, "\",\"");
-    bdrequest = strjoins(bdrequest, pin);
+    bdrequest = strjoins(bdrequest, encrypted_pin);
     bdrequest = strjoins(bdrequest, "\");");
     puts(bdrequest);
      if (mysql_query(con, bdrequest))
