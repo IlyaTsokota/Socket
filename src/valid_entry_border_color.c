@@ -7,3 +7,11 @@ void valid_entry_border_color(GtkWidget **entry)
     GtkStyleContext *context = gtk_widget_get_style_context(*entry);
     gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(css_provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
 }
+
+void valid_entry_border_pin(GtkWidget *entry)
+{
+    GtkCssProvider *css_provider = gtk_css_provider_new();
+    gtk_css_provider_load_from_data(css_provider, "* {border: 2px solid rgb(180, 6, 6); border-left: none; border-right: none;}", -1, NULL);
+    GtkStyleContext *context = gtk_widget_get_style_context(entry);
+    gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(css_provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
+}

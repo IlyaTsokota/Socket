@@ -8,9 +8,7 @@ void open_register_second_form(GtkWidget *button, GtkWidget *widget)
     int flag = 0;
     int *minSize = (int *)malloc(sizeof(int));
     *minSize = 4;
-
     is_valid_message_to_entry(is_login_or_password, login, minSize, &registration.fail_login, &registration.login, "The field may containt only latin or numerals", &flag);
-
     is_valid_message_to_entry(is_only_alpha, name, minSize, &registration.fail_name, &registration.name, "The field may containt only latin", &flag);
     is_valid_message_to_entry(is_only_alpha, surname, minSize, &registration.fail_surname, &registration.surname, "The field may containt only latin", &flag);
     free(minSize);

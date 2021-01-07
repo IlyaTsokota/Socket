@@ -35,12 +35,19 @@ typedef struct {
 
 register_w registration;
 
+typedef struct pin_f{
+	GtkWidget *pin_form;
+	GtkWidget *pin;
+	GtkWidget *fail_pin;
+} pin_t;
+
 typedef struct {
 	GtkWidget *login;
 	GtkWidget *password;
 	GtkWidget *fail_login;
 	GtkWidget *fail_password;
 	GtkWidget *fail_auth;
+	char *login_text;
 } autorization_w;
 
 autorization_w autorization;
@@ -53,6 +60,11 @@ typedef struct{
 
 appdata data;
 
+bool is_pin_user(char *pin);
+void valid_entry_border_pin(GtkWidget *entry);
+void change_event_pin_on_pin_form(GtkWidget *entry, int *min);
+void autorization_click_pin(GtkWidget *button, struct pin_f *pin_struct);
+void open_form_pin(GtkWidget *window);
 bool is_autorization_user(char *login, char *password);
 void autorization_in_app(GtkWidget *button, GtkWidget *widget);
 void is_valid_message_to_entry(bool (*is_success)(int, int*, char*), char *value, int *minSize, GtkWidget **label_fail, GtkWidget **entry, char *message, int *flag);

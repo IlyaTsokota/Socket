@@ -18,7 +18,8 @@ label#text {
 }
 
 entry#login,
-entry#password {
+entry#password,
+entry#pin {
     color: #fff;
     border: none;
     border-bottom: 2px solid #b787ff;
@@ -26,21 +27,14 @@ entry#password {
     box-shadow: none;
 }
 
-entry#login:focus,
-entry#password:focus {
-    outline: none;
+entry#pin {
+    color: #88C5CE;
+    border-top: 2px solid #B787FF;
+    border-radius: 0px;
 }
 
 entry#password {
     color: #88c5ce;
-}
-
-entry.success-value {
-    border-bottom: 2px solid green;
-}
-
-entry.bad-value {
-    border-bottom: 2px solid tomato;
 }
 
 button#btn {
@@ -63,6 +57,6 @@ button#create {
     box-shadow: none;
 }
 
-label#danger_lable{
+label#danger_lable {
     color: rgb(180, 6, 6);
 }

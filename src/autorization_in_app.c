@@ -13,12 +13,12 @@ void autorization_in_app(GtkWidget *button, GtkWidget *widget)
     {
         if (is_autorization_user(login, password))
         {
-            // открывать окно с pincode
-            g_print("вы авторизованы!\n");
+            autorization.login_text = g_locale_to_utf8(login, strlen(login), NULL, NULL, NULL);
+            gtk_widget_destroy(widget);
+            open_form_pin(data.win);
         }
         else
         {
-            g_print("Нахуй съебал!\n");
             gtk_label_set_text(GTK_LABEL(autorization.fail_auth), "Invalid login or password!");
             valid_entry_border_color(&autorization.login);
             valid_entry_border_color(&autorization.password);
