@@ -3,3 +3,8 @@
 *.o
 *.out
 uchat
+client
+/clientSource
+server
+server.h.gch
+/inc/client.h
