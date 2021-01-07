@@ -2,7 +2,7 @@
 
 bool is_autorization_user(char *login, char *password){
     char *arr[] = {"01", login, password};
-    char **new_arr = (char**)malloc(sizeof(char*));
+    char **new_arr = (char**)malloc(sizeof(char*) * 3);
     for (int i = 0; i < 3; i++)
     {
         new_arr[i] = (char*)malloc(strlen(arr[i]));

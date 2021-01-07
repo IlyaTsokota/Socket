@@ -65,7 +65,6 @@ void application_shutdown(GtkApplication *application, gpointer user_data);
 void css_set(GtkWidget *widgets[], char *path_to_css, int size);
 void css_set_for_one(GtkWidget *widget, char *path_to_css);
 GtkWidget *create_input(GtkBuilder *builder, char *name_elem, int *maxSize);
-void validation_login(GtkWidget *button, GtkWidget *widgets[]);
 void login();
 GtkBuilder *glade_file_to_interface(char *path_to_glade_file);
 void open_register(GtkWidget *window);

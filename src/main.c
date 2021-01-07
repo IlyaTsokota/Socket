@@ -2,7 +2,6 @@
 
 void server_set_connection()
 {
-    int val;
     struct sockaddr_in client_addr;
     data.socket_desc = socket(AF_INET, SOCK_STREAM, 0);
     int port = 3762;

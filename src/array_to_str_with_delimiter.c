@@ -5,7 +5,7 @@ char *array_to_str_with_delimiter(char **arr, int length)
     int new_str_length = 0;
     for (int i = 0; i < length; i++)
     {
-        for (int j = 0; j < strlen(arr[i]); j++)
+        for (int j = 0; j < (int)strlen(arr[i]); j++)
         {
             new_str_length++;
         }
@@ -15,7 +15,7 @@ char *array_to_str_with_delimiter(char **arr, int length)
     int k = 0;
     for (int i = 0; i < length; i++)
     {
-        for (int j = 0; j < strlen(arr[i]); j++)
+        for (int j = 0; j < (int)strlen(arr[i]); j++)
         {
             str[k++] = arr[i][j];
         }

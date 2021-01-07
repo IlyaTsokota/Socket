@@ -23,9 +23,9 @@ void open_register_second_form(GtkWidget *button, GtkWidget *widget)
         }
         else
         {
-            registration.login_text = g_convert(login, -1, "CP1251", "UTF-8", NULL, NULL, NULL);
-            registration.name_text = name;
-            registration.surname_text = surname;
+            registration.login_text = g_locale_to_utf8(login, strlen(login), NULL, NULL, NULL);
+            registration.name_text = g_locale_to_utf8(name, strlen(name), NULL, NULL, NULL);
+            registration.surname_text = g_locale_to_utf8(surname, strlen(surname), NULL, NULL, NULL);
             gtk_widget_destroy(widget);
             open_register_second(data.win);
         }
