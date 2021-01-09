@@ -6,7 +6,12 @@ INC_DIR = inc
 
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
 CC = clang
-NCURSESLIB = -lncurses
+
+LIBSDIR = libs
+
+LIBS = -ljson-c -lmysqlclient
+
+LIBS_PATH = -L$(LIBSDIR)/json-c/ -L$(LIBSDIR)/mysql/
 
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 
@@ -21,7 +26,7 @@ client:
 	@printf "\r\33[2K$@\t \033[32;1mcreated\033[0m\n"
 
 server:
-	@clang -o server -I/Users/vdovgotko/.brew/Cellar/mysql/8.0.22_1/include -I $(INC_DIR) -W -lmysqlclient -L/Users/vdovgotko/.brew/Cellar/mysql/8.0.22_1/lib serverSource/*.c
+	@clang -o server -I $(INC_DIR) -W $(LIBS_PATH) $(LIBS) serverSource/*.c
 	@printf "\r\33[2K$@\t \033[32;1mcreated\033[0m\n"
 
 clean:

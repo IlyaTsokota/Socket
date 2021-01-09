@@ -1,7 +1,7 @@
 #ifndef CHAT_H
 #define CHAT_H
 
-#include "/Users/vdovgotko/.brew/Cellar/mysql/8.0.22_1/include/mysql/mysql.h"
+#include "mysql/mysql.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
