@@ -1,3 +1,7 @@
+* {
+    caret-color: #fff;
+}
+
 window#login {
     font-family: "Consolas";
     background-color: #252526;

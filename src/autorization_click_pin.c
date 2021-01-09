@@ -19,7 +19,7 @@ void autorization_click_pin(GtkWidget *button, pin_t *pin_struct)
         if (is_pin_user(pin))
         {
             gtk_widget_destroy(pin_struct->pin_form);
-            open_login(data.win);
+            open_main_form(data.win);
         }
         else
         {

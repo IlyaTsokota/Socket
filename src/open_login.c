@@ -21,8 +21,8 @@ void open_login(GtkWidget *window)
     autorization.fail_login = GTK_WIDGET(gtk_builder_get_object(builder, "fail_login"));
     autorization.fail_password = GTK_WIDGET(gtk_builder_get_object(builder, "fail_password"));
     autorization.fail_auth = GTK_WIDGET(gtk_builder_get_object(builder, "fail_auth"));
-    GtkWidget *arrWidgetForStyled[] = {labelLogo, labelText, labelCreate, labelLogin, labelPassword, autorization.password, autorization.login, btnNext, loginForm, autorization.fail_login, autorization.fail_password,autorization.fail_auth };
-    css_set(arrWidgetForStyled, "share/resources/css/auth.css", 12);
+    GtkWidget *arrWidgetForStyled[] = {labelLogo, labelText, labelCreate, labelLogin, labelPassword, autorization.password, autorization.login, btnNext, loginForm, autorization.fail_login, autorization.fail_password,autorization.fail_auth, NULL };
+    css_set(arrWidgetForStyled, "share/resources/css/auth.css");
     g_signal_connect(G_OBJECT(btnNext), "clicked", G_CALLBACK(autorization_in_app), loginForm);
     g_signal_connect(G_OBJECT(labelCreate), "clicked", G_CALLBACK(open_reg), loginForm);
     gtk_container_add(GTK_CONTAINER(window), loginForm);

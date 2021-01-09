@@ -33,11 +33,11 @@ void open_register(GtkWidget *window)
     registration.fail_name = GTK_WIDGET(gtk_builder_get_object(builder, "fail_name"));
     registration.fail_surname = GTK_WIDGET(gtk_builder_get_object(builder, "fail_surname"));
 
-    GtkWidget *arr[] = {regOne, labelLogo, labelText, loginLable, registration.login, nameLable, registration.name, surnameLable, registration.surname, signInLabel, btnNext, registration.fail_name, registration.fail_login, registration.fail_surname};
+    GtkWidget *arr[] = {regOne, labelLogo, labelText, loginLable, registration.login, nameLable, registration.name, surnameLable, registration.surname, signInLabel, btnNext, registration.fail_name, registration.fail_login, registration.fail_surname, NULL};
     g_signal_connect(G_OBJECT(signInLabel), "clicked", G_CALLBACK(open_login_form), regOne);
     g_signal_connect(G_OBJECT(btnNext), "clicked", G_CALLBACK(open_register_second_form), regOne);
 
-    css_set(arr, "share/resources/css/auth.css", 14);
+    css_set(arr, "share/resources/css/auth.css");
 
     gtk_container_add(GTK_CONTAINER(window), regOne);
     g_object_unref(builder);

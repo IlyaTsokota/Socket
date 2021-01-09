@@ -60,6 +60,7 @@ typedef struct{
 
 appdata data;
 
+void open_main_form(GtkWidget *window);
 bool is_pin_user(char *pin);
 void valid_entry_border_pin(GtkWidget *entry);
 void change_event_pin_on_pin_form(GtkWidget *entry, int *min);
@@ -74,7 +75,7 @@ bool find_user_by_login(char *login);
 void string_array_clear(char **arr, int size);
 void application_activate(GtkApplication *application, gpointer user_data);
 void application_shutdown(GtkApplication *application, gpointer user_data);
-void css_set(GtkWidget *widgets[], char *path_to_css, int size);
+void css_set(GtkWidget **widgets, char *path_to_css);
 void css_set_for_one(GtkWidget *widget, char *path_to_css);
 GtkWidget *create_input(GtkBuilder *builder, char *name_elem, int *maxSize);
 void login();

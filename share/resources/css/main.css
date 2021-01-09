@@ -1,0 +1,146 @@
+* {
+    caret-color: #fff;
+}
+
+grid#connection {
+    background: green;
+}
+
+grid#left-panel,
+grid#top-panel {
+    background-color: #333333;
+}
+
+.contacts-panel {
+    background-color: #252526;
+}
+
+.message-panel {
+    background-color: #1e1e1e;
+}
+
+.bg-pupure {
+    background-color: #b787ff;
+}
+
+.message-container {
+    background-color: #1e1e1e;
+}
+
+.message-input text {
+    background-color: #3c3c3c;
+    border: none;
+    border-radius: 0;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.message-input {
+    padding: 12px 0;
+}
+
+.msg-input {
+    background: #3c3c3c;
+    border: none;
+    border-radius: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.search-entry {
+    background-color: #3c3c3c;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.name-chat {
+    font-size: 24px;
+    font-weight: 700;
+    color: #b787ff;
+}
+
+.status {
+    font-size: 14px;
+    font-weight: 400;
+    color: #c5c5c5;
+}
+
+.contact-login {
+    font-size: 16px;
+    font-weight: 700;
+    color: #b787ff;
+}
+
+.contact-time,
+.contact-lastmessage {
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.contact-time {
+    margin-top: 10px;
+}
+
+.is-online {
+    border-radius: 50%;
+    background-color: #196148;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.message-body {
+    margin: 10px;
+    background-color: #323232;
+    border-radius: 10px;
+}
+
+.message-time {
+    margin: 0 10px 10px 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: #878787;
+}
+
+.message-text {
+    margin: 10px;
+}
+
+.contact-body {
+    margin: 10px;
+}
+
+.contact-time {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.contact-img {
+    margin-left: 10px;
+}
+
+.contact-lastmsg {
+    margin-left: 10px;
+}
+
+.bg-gray {
+    background-color: #343434;
+}
+
+.border-none,
+.border_none {
+    border: none;
+}
+
+.contact-icon {
+    border-radius: 50%;
+}
+
+.message-from {
+    margin-top: 10px;
+    margin-left: 10px;
+}
