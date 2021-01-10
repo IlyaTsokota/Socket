@@ -1,7 +1,14 @@
 #include "chat.h"
 //char *user_add(MYSQL *con, char *login, char *name, char *surname, char *password, char *pin)
-char *array_to_str_with_delimiter(char **arr, int length)
+char *array_to_str_with_delimiter(char **arr)
 {
+    int length =0;
+    char **arr_temp = arr;
+    while(*arr){
+        ++length;
+        ++arr;
+    }
+    arr = arr_temp;
     int new_str_length = 0;
     for (int i = 0; i < length; i++)
     {

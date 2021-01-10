@@ -59,7 +59,7 @@ typedef struct{
 } appdata;
 
 appdata data;
-
+char **array_to_request(char **arr);
 void open_main_form(GtkWidget *window);
 bool is_pin_user(char *pin);
 void valid_entry_border_pin(GtkWidget *entry);
@@ -101,5 +101,5 @@ void is_input_success( bool (*is_success)(int, int*, char*), GtkWidget **entry, 
 void change_event_login_or_password(GtkWidget *entry, int *min);
 void change_event_entry_only_aplha(GtkWidget *entry, int *min);
 void change_event_pin(GtkWidget *entry, int *min);
-char *array_to_str_with_delimiter(char **arr, int length);
+char *array_to_str_with_delimiter(char **arr);
 #endif
