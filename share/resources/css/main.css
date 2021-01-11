@@ -36,11 +36,11 @@ grid#top-panel {
 }
 
 .message-input {
-    padding: 12px 0;
+    padding: 16px 15px 0 0 ;
 }
 
 .p-msg{
-    padding: 0 15px;
+    padding-left: 15px;
 }
 
 .msg-input {
@@ -132,7 +132,7 @@ grid#top-panel {
 }
 
 .bg-gray {
-    background-color: #3c3c3c;
+    background-color: rgb(60, 60, 60);
 }
 
 .border-none,

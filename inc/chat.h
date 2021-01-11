@@ -16,7 +16,8 @@
 #include <locale.h>
 #include <wctype.h>
 
-typedef struct {
+typedef struct
+{
 	GtkWidget *login;
 	GtkWidget *name;
 	GtkWidget *surname;
@@ -27,7 +28,7 @@ typedef struct {
 	GtkWidget *fail_surname;
 	GtkWidget *fail_password;
 	GtkWidget *fail_pin;
-	
+
 	char *login_text;
 	char *name_text;
 	char *surname_text;
@@ -35,13 +36,22 @@ typedef struct {
 
 register_w registration;
 
-typedef struct pin_f{
+typedef struct pin_f
+{
 	GtkWidget *pin_form;
 	GtkWidget *pin;
 	GtkWidget *fail_pin;
 } pin_t;
 
-typedef struct {
+typedef struct msg_i
+{
+	GtkWidget *text_view;
+	GtkWidget *container;
+	GtkTextBuffer *buffer;
+} msg_t;
+
+typedef struct
+{
 	GtkWidget *login;
 	GtkWidget *password;
 	GtkWidget *fail_login;
@@ -52,13 +62,16 @@ typedef struct {
 
 autorization_w autorization;
 
-typedef struct{
+typedef struct
+{
 	GtkApplication *restrict app;
 	GtkWidget *restrict win;
 	int socket_desc;
 } appdata;
 
 appdata data;
+
+gboolean change_insert_to_message(gpointer widget);
 char **array_to_request(char **arr);
 void open_main_form(GtkWidget *window);
 bool is_pin_user(char *pin);
@@ -68,7 +81,7 @@ void autorization_click_pin(GtkWidget *button, struct pin_f *pin_struct);
 void open_form_pin(GtkWidget *window);
 bool is_autorization_user(char *login, char *password);
 void autorization_in_app(GtkWidget *button, GtkWidget *widget);
-void is_valid_message_to_entry(bool (*is_success)(int, int*, char*), char *value, int *minSize, GtkWidget **label_fail, GtkWidget **entry, char *message, int *flag);
+void is_valid_message_to_entry(bool (*is_success)(int, int *, char *), char *value, int *minSize, GtkWidget **label_fail, GtkWidget **entry, char *message, int *flag);
 void valid_entry_border_color(GtkWidget **entry);
 bool request_to_server(char *request);
 bool find_user_by_login(char *login);
@@ -92,17 +105,17 @@ void open_register_second_form(GtkWidget *button, GtkWidget *widget);
 void create_new_user(char *login, char *name, char *surname, char *password, char *pin);
 bool is_alpha_string(char *str);
 bool is_digit_or_alpha_in_str(char *str);
-bool is_login_or_password(int length, int*minSize, char *text);
-bool is_only_alpha(int length, int*minSize, char *text);
+bool is_login_or_password(int length, int *minSize, char *text);
+bool is_only_alpha(int length, int *minSize, char *text);
 bool is_digits(char *str);
-bool is_pin(int length, int*minSize, char *text);
-char *mx_strnew(const int size );
-void is_input_success( bool (*is_success)(int, int*, char*), GtkWidget **entry, int *min);
+bool is_pin(int length, int *minSize, char *text);
+char *mx_strnew(const int size);
+void is_input_success(bool (*is_success)(int, int *, char *), GtkWidget **entry, int *min);
 void change_event_login_or_password(GtkWidget *entry, int *min);
 void change_event_entry_only_aplha(GtkWidget *entry, int *min);
 void change_event_pin(GtkWidget *entry, int *min);
 char *array_to_str_with_delimiter(char **arr);
 void open_main_form_after_register(GtkWidget *button, GtkWidget *widget);
-void change_size_message_input(GtkTextBuffer *buffer, GtkWidget *container);
+void change_size_message_input(GtkWidget *widget, msg_t *msg_entry);
 bool mx_isspace(char c);
 #endif

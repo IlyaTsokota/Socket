@@ -2,7 +2,7 @@
 void open_main_form(GtkWidget *window)
 {
     gtk_window_resize(GTK_WINDOW(window), 1300, 740);
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER_ALWAYS);
+    // gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER_ALWAYS);
     
     GtkBuilder *builder = glade_file_to_interface("share/main.glade");
     GtkWidget *main_form = GTK_WIDGET(gtk_builder_get_object(builder, "main_form"));
@@ -54,13 +54,17 @@ void open_main_form(GtkWidget *window)
     GtkWidget *message_login = GTK_WIDGET(gtk_builder_get_object(builder, "message_login"));
     GtkWidget *message_scroll = GTK_WIDGET(gtk_builder_get_object(builder, "message_scroll"));
 
-
+    msg_t *msg_entry = (msg_t*)malloc(sizeof(msg_t));
     GtkWidget *message_size_body = GTK_WIDGET(gtk_builder_get_object(builder, "message_size_body"));
     GtkWidget *message_input = GTK_WIDGET(gtk_builder_get_object(builder, "message_input"));
     GtkTextBuffer *buffer_message_input = gtk_text_view_get_buffer (GTK_TEXT_VIEW(message_input));
     GtkWidget *message_input_scroll = GTK_WIDGET(gtk_builder_get_object(builder, "message_input_scroll"));
-    
-    g_signal_connect(G_OBJECT(buffer_message_input), "changed", G_CALLBACK(change_size_message_input), message_input_scroll);
+    msg_entry->text_view = message_input;
+    msg_entry->container = message_input_scroll;
+    msg_entry->buffer = buffer_message_input;
+    // g_signal_connect(G_OBJECT(message_input_scroll), "scroll-event", G_CALLBACK(change_insert_to_message), NULL); 
+    g_signal_connect(G_OBJECT(buffer_message_input), "changed", G_CALLBACK(change_size_message_input), msg_entry);
+    //g_signal_connect(G_OBJECT(buffer_message_input), "end-user-action", G_CALLBACK(change_size_message_input), msg_entry);
 
     GtkWidget *pin_container = GTK_WIDGET(gtk_builder_get_object(builder, "pin_container"));
     GtkWidget *event_box_pin = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_pin"));

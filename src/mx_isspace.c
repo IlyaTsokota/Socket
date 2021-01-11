@@ -1,6 +1,9 @@
 #include "chat.h"
 
-bool mx_isspace(char c){
-	if(c == 32 || (c >= 9 && c <= 13)) return 1;
-	else return 0;
+bool mx_isspace(char c) {
+    if (c == ' ' || c == '\t' || c == '\n'
+        || c == '\v' || c == '\f' || c == '\r') {
+        return true;
+    }
+    return false;
 }
