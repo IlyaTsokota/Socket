@@ -15,7 +15,9 @@ void open_login(GtkWidget *window)
     GtkWidget *labelPassword = GTK_WIDGET(gtk_builder_get_object(builder, "passwordLable"));
     autorization.login = create_input(builder, "loginInput", maxSize);
     g_signal_connect(G_OBJECT(autorization.login), "changed", G_CALLBACK(change_event_login_or_password), minSize);
+    g_signal_connect(G_OBJECT(autorization.login), "activate", G_CALLBACK(autorization_in_app), loginForm);
     autorization.password = create_input(builder, "passwordInput", maxSize);
+    g_signal_connect(G_OBJECT(autorization.password), "activate", G_CALLBACK(autorization_in_app), loginForm);
     g_signal_connect(G_OBJECT(autorization.password), "changed", G_CALLBACK(change_event_login_or_password), minSize);
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));
     autorization.fail_login = GTK_WIDGET(gtk_builder_get_object(builder, "fail_login"));

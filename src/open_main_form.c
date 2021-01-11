@@ -54,7 +54,14 @@ void open_main_form(GtkWidget *window)
     GtkWidget *message_login = GTK_WIDGET(gtk_builder_get_object(builder, "message_login"));
     GtkWidget *message_scroll = GTK_WIDGET(gtk_builder_get_object(builder, "message_scroll"));
 
+
     GtkWidget *message_size_body = GTK_WIDGET(gtk_builder_get_object(builder, "message_size_body"));
+    GtkWidget *message_input = GTK_WIDGET(gtk_builder_get_object(builder, "message_input"));
+    GtkTextBuffer *buffer_message_input = gtk_text_view_get_buffer (GTK_TEXT_VIEW(message_input));
+    GtkWidget *message_input_scroll = GTK_WIDGET(gtk_builder_get_object(builder, "message_input_scroll"));
+    
+    g_signal_connect(G_OBJECT(buffer_message_input), "changed", G_CALLBACK(change_size_message_input), message_input_scroll);
+
     GtkWidget *pin_container = GTK_WIDGET(gtk_builder_get_object(builder, "pin_container"));
     GtkWidget *event_box_pin = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_pin"));
     GtkWidget *pin_img = GTK_WIDGET(gtk_builder_get_object(builder, "pin_img"));
@@ -62,8 +69,7 @@ void open_main_form(GtkWidget *window)
     GtkWidget *event_box_send = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_send"));
     GtkWidget *send_img = GTK_WIDGET(gtk_builder_get_object(builder, "send_img"));
 
-    GtkWidget *message_input_scroll = GTK_WIDGET(gtk_builder_get_object(builder, "message_input_scroll"));
-    GtkWidget *message_input = GTK_WIDGET(gtk_builder_get_object(builder, "message_input"));
+   
 
     GtkWidget *arr[] = {message_info, message_input_scroll, contact_img_container, message_input, box_contacts, message_scroll, img_contact, contact_last_msg, contact_info,
                         grid_contacts, main_form, left_panel, event_box_lock, lock_img,

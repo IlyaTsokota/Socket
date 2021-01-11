@@ -16,14 +16,18 @@ void open_register(GtkWidget *window)
     GtkWidget *loginLable = GTK_WIDGET(gtk_builder_get_object(builder, "loginLable"));
     registration.login = create_input(builder, "loginInput", maxSize);
     g_signal_connect(G_OBJECT(registration.login), "changed", G_CALLBACK(change_event_login_or_password), minSize);
+    g_signal_connect(G_OBJECT(registration.login), "activate", G_CALLBACK(open_register_second_form), regOne);
 
     GtkWidget *nameLable = GTK_WIDGET(gtk_builder_get_object(builder, "nameLable"));
     registration.name = create_input(builder, "nameInput", maxSize);
     g_signal_connect(G_OBJECT(registration.name), "changed", G_CALLBACK(change_event_entry_only_aplha), minSize);
+    g_signal_connect(G_OBJECT(registration.name), "activate", G_CALLBACK(open_register_second_form), regOne);
 
     GtkWidget *surnameLable = GTK_WIDGET(gtk_builder_get_object(builder, "surnameLable"));
     registration.surname = create_input(builder, "surnameInput", maxSize);
     g_signal_connect(G_OBJECT(registration.surname), "changed", G_CALLBACK(change_event_entry_only_aplha), minSize);
+    g_signal_connect(G_OBJECT(registration.surname), "activate", G_CALLBACK(open_register_second_form), regOne);
+
     
     GtkWidget *signInLabel = GTK_WIDGET(gtk_builder_get_object(builder, "signInLabel"));
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));

@@ -11,9 +11,7 @@ void open_form_pin(GtkWidget *window)
     GtkWidget *labelText = GTK_WIDGET(gtk_builder_get_object(builder, "loginText"));
     GtkWidget *pinLable = GTK_WIDGET(gtk_builder_get_object(builder, "pinLable"));
     pin_struct->pin = create_input(builder, "pinInput", maxSize);
-    if (pin_struct->pin == NULL) {
-        g_print("Fuck up!");
-    }
+    g_signal_connect(G_OBJECT( pin_struct->pin), "activate", G_CALLBACK(autorization_click_pin),  pin_struct->pin_form);
     g_signal_connect(G_OBJECT(pin_struct->pin), "changed", G_CALLBACK(change_event_pin_on_pin_form), maxSize);
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));
     GtkWidget *logoutnBtn = GTK_WIDGET(gtk_builder_get_object(builder, "logout"));

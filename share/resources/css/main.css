@@ -39,6 +39,10 @@ grid#top-panel {
     padding: 12px 0;
 }
 
+.p-msg{
+    padding: 0 15px;
+}
+
 .msg-input {
     background: #3c3c3c;
     border: none;
@@ -128,7 +132,7 @@ grid#top-panel {
 }
 
 .bg-gray {
-    background-color: #343434;
+    background-color: #3c3c3c;
 }
 
 .border-none,

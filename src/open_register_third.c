@@ -10,7 +10,7 @@ void open_register_third(GtkWidget *window)
     gtk_label_set_text(GTK_LABEL(loginLable), registration.login_text);
     GtkWidget *btnNext = GTK_WIDGET(gtk_builder_get_object(builder, "nextBtn"));
     GtkWidget *arr[] = {grid, labelLogo, labelText, loginLable, btnNext, NULL};
-    g_signal_connect(G_OBJECT(btnNext), "clicked", G_CALLBACK(open_register_second_form), grid);
+    g_signal_connect(G_OBJECT(btnNext), "clicked", G_CALLBACK(open_main_form_after_register), grid);
     css_set(arr, "share/resources/css/auth.css");
     gtk_container_add(GTK_CONTAINER(window), grid);
     g_object_unref(builder);

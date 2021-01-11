@@ -1,8 +1,6 @@
 #include "chat.h"
 
 bool request_to_server(char *request){
-    g_print("Start\n");
-    g_print("%s -- request\n", request);
     int a = write(data.socket_desc, request, strlen(request));
     if (a == (int)strlen(request)) {
         free(request);

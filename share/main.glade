@@ -752,6 +752,7 @@
                                 <property name="valign">end</property>
                                 <property name="hexpand">True</property>
                                 <property name="vexpand">False</property>
+                                <property name="height_request">47</property>
                                 <child>
                                   <object class="GtkGrid" id="pin_container">
                                     <property name="width_request">49</property>
@@ -838,10 +839,13 @@
                                 <child>
                                   <object class="GtkScrolledWindow" id="message_input_scroll">
                                     <property name="visible">True</property>
+                                    <property name="height_request">47</property>
                                     <property name="can_focus">True</property>
+                                     <!-- <property name="valign">end</property> -->
                                     <property name="hexpand">True</property>
                                     <property name="vexpand">True</property>
                                     <property name="shadow_type">in</property>
+                                    <property name="hscrollbar_policy">never</property>
                                     <child>
                                           <object class="GtkTextView" id="message_input">
                                             <property name="visible">True</property>
@@ -849,7 +853,7 @@
                                             <property name="hexpand">True</property>
                                             <property name="vexpand">True</property>
                                             <property name="vscroll_policy">natural</property>
-                                            <property name="wrap_mode">word-char</property>
+                                            <property name="wrap_mode">none</property>
                                             <property name="indent">5</property>
                                             <style>
                                               <class name="message-input"/>
@@ -858,7 +862,8 @@
                                     </child>
                                     <style>
                                       <class name="border-none"/>
-                                      <class name="msg-input"/>
+                                      <class name="bg-gray"/>
+                                     <class name="p-msg"/>
                                     </style>
                                   </object>
                                   <packing>

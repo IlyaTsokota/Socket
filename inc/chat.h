@@ -102,4 +102,7 @@ void change_event_login_or_password(GtkWidget *entry, int *min);
 void change_event_entry_only_aplha(GtkWidget *entry, int *min);
 void change_event_pin(GtkWidget *entry, int *min);
 char *array_to_str_with_delimiter(char **arr);
+void open_main_form_after_register(GtkWidget *button, GtkWidget *widget);
+void change_size_message_input(GtkTextBuffer *buffer, GtkWidget *container);
+bool mx_isspace(char c);
 #endif
