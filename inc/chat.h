@@ -71,6 +71,9 @@ typedef struct
 
 appdata data;
 
+char *buffer_get_text(GtkTextBuffer *buffer);
+gboolean change_placeholder_msg_out_focus(GtkTextView *text_view, GdkEvent *event, char *placeholder);
+gboolean change_placeholder_msg_in_focus(GtkTextView *text_view, GdkEvent *event, char *placeholder);
 gboolean change_insert_to_message(gpointer widget);
 char **array_to_request(char **arr);
 void open_main_form(GtkWidget *window);

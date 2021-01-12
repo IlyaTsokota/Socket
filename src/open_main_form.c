@@ -1,15 +1,27 @@
 #include "chat.h"
 void open_main_form(GtkWidget *window)
 {
-    gtk_window_resize(GTK_WINDOW(window), 1300, 740);
-    // gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER_ALWAYS);
-    
+    int new_width = 1300;
+    int new_height = 740;
+    int height = 0;
+    int width = 0;
+    gtk_window_get_size(GTK_WINDOW(window), &width, &height);
+    if (width < new_width && height < new_height)
+    {
+        gtk_window_resize(GTK_WINDOW(window), new_width, new_height);
+    }
+    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+
     GtkBuilder *builder = glade_file_to_interface("share/main.glade");
     GtkWidget *main_form = GTK_WIDGET(gtk_builder_get_object(builder, "main_form"));
+
     GtkWidget *left_panel = GTK_WIDGET(gtk_builder_get_object(builder, "left_panel"));
 
     GtkWidget *event_box_lock = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_lock"));
     GtkWidget *lock_img = GTK_WIDGET(gtk_builder_get_object(builder, "lock_img"));
+
+    GtkWidget *event_box_contact_view = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_contact_view"));
+    GtkWidget *contacts_view_img = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_view_img"));
 
     GtkWidget *event_box_setting = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_setting"));
     GtkWidget *setting_img = GTK_WIDGET(gtk_builder_get_object(builder, "setting_img"));
@@ -25,6 +37,11 @@ void open_main_form(GtkWidget *window)
     GtkWidget *chat_name_lable = GTK_WIDGET(gtk_builder_get_object(builder, "chat_name_lable"));
     GtkWidget *user_is_online_in_chat = GTK_WIDGET(gtk_builder_get_object(builder, "user_is_online_in_chat"));
 
+
+
+    GtkWidget *main_grid = GTK_WIDGET(gtk_builder_get_object(builder, "main_grid"));
+
+    // написать отдельную функцию для этого дерьма
     GtkWidget *box_contacts = GTK_WIDGET(gtk_builder_get_object(builder, "box_contacts"));
     GtkWidget *grid_contacts = GTK_WIDGET(gtk_builder_get_object(builder, "grid_contacts"));
     GtkWidget *contacts_panel = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_panel"));
@@ -41,7 +58,8 @@ void open_main_form(GtkWidget *window)
     GtkWidget *contact_name_container = GTK_WIDGET(gtk_builder_get_object(builder, "contact_name_container"));
     GtkWidget *img_contact = GTK_WIDGET(gtk_builder_get_object(builder, "img_contact"));
     GtkWidget *contact_img_container = GTK_WIDGET(gtk_builder_get_object(builder, "contact_img_container"));
-
+// end
+  // и этого дерьма
     GtkWidget *message_panel = GTK_WIDGET(gtk_builder_get_object(builder, "message_panel"));
     GtkWidget *messages_container = GTK_WIDGET(gtk_builder_get_object(builder, "messages_container"));
     GtkWidget *message_line = GTK_WIDGET(gtk_builder_get_object(builder, "message_line"));
@@ -53,32 +71,33 @@ void open_main_form(GtkWidget *window)
     GtkWidget *message_text = GTK_WIDGET(gtk_builder_get_object(builder, "message_text"));
     GtkWidget *message_login = GTK_WIDGET(gtk_builder_get_object(builder, "message_login"));
     GtkWidget *message_scroll = GTK_WIDGET(gtk_builder_get_object(builder, "message_scroll"));
-
-    msg_t *msg_entry = (msg_t*)malloc(sizeof(msg_t));
+    msg_t *msg_entry = (msg_t *)malloc(sizeof(msg_t));
     GtkWidget *message_size_body = GTK_WIDGET(gtk_builder_get_object(builder, "message_size_body"));
     GtkWidget *message_input = GTK_WIDGET(gtk_builder_get_object(builder, "message_input"));
-    GtkTextBuffer *buffer_message_input = gtk_text_view_get_buffer (GTK_TEXT_VIEW(message_input));
+    GtkTextBuffer *buffer_message_input = gtk_text_view_get_buffer(GTK_TEXT_VIEW(message_input));
     GtkWidget *message_input_scroll = GTK_WIDGET(gtk_builder_get_object(builder, "message_input_scroll"));
     msg_entry->text_view = message_input;
     msg_entry->container = message_input_scroll;
     msg_entry->buffer = buffer_message_input;
-    // g_signal_connect(G_OBJECT(message_input_scroll), "scroll-event", G_CALLBACK(change_insert_to_message), NULL); 
+    // char *placeholder_msg = "Write a message...";
     g_signal_connect(G_OBJECT(buffer_message_input), "changed", G_CALLBACK(change_size_message_input), msg_entry);
-    //g_signal_connect(G_OBJECT(buffer_message_input), "end-user-action", G_CALLBACK(change_size_message_input), msg_entry);
+    // g_signal_connect(G_OBJECT(message_input), "focus-in-event", G_CALLBACK(change_placeholder_msg_in_focus), placeholder_msg);
+    // g_signal_connect(G_OBJECT(message_input), "focus-out-event", G_CALLBACK(change_placeholder_msg_out_focus), placeholder_msg);
 
+    GtkWidget *emoji_container = GTK_WIDGET(gtk_builder_get_object(builder, "emoji_container"));
+    GtkWidget *event_box_emoji = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_emoji"));
+    GtkWidget *emoji_img = GTK_WIDGET(gtk_builder_get_object(builder, "emoji_img"));
     GtkWidget *pin_container = GTK_WIDGET(gtk_builder_get_object(builder, "pin_container"));
     GtkWidget *event_box_pin = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_pin"));
     GtkWidget *pin_img = GTK_WIDGET(gtk_builder_get_object(builder, "pin_img"));
     GtkWidget *send_container = GTK_WIDGET(gtk_builder_get_object(builder, "send_container"));
     GtkWidget *event_box_send = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_send"));
     GtkWidget *send_img = GTK_WIDGET(gtk_builder_get_object(builder, "send_img"));
-
-   
-
-    GtkWidget *arr[] = {message_info, message_input_scroll, contact_img_container, message_input, box_contacts, message_scroll, img_contact, contact_last_msg, contact_info,
-                        grid_contacts, main_form, left_panel, event_box_lock, lock_img,
-                        event_box_setting, setting_img, is_connection, con_img, event_box_profile,
-                        profile_img, top_panel, search_entry, chat_name_lable, user_is_online_in_chat,
+// end
+    GtkWidget *arr[] = {message_info, message_input_scroll, contact_img_container, message_input, box_contacts,
+                        message_scroll, img_contact, contact_last_msg, contact_info,
+                        grid_contacts, main_form, left_panel, is_connection, con_img,
+                        top_panel, search_entry, chat_name_lable, user_is_online_in_chat,
                         contacts_panel, contacts_container, event_box_contact, contact_container,
                         time_last_message, login_last_message, text_last_message, contact_name_lable, user_is_online, img_contact,
                         message_panel, contact_name_container, messages_container, message_line, event_box_message, message, message_time, message_text,

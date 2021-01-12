@@ -148,3 +148,46 @@ grid#top-panel {
     margin-top: 10px;
     margin-left: 10px;
 }
+.my-status{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #88c5ce;
+}
+.my_login{
+    margin: 10px 0 0 10px;
+}
+.my-block{
+    border-bottom: 5px solid #333;
+}
+
+.settings-item_text{
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #c5c5c5;
+}
+
+.settings-item_img{
+    margin-left: 35px;
+
+}
+
+.socket_platform, .socket_version{
+    font-size: 14px;
+    font-weight: 700;
+    color: #333333;
+    margin-left: 10px;
+}
+.socket_version{
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.setting-back{
+    color: rgb(180, 6, 6);
+    font-size: 16px;
+    font-weight: 700;
+    
+}
