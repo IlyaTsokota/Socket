@@ -15,7 +15,7 @@ char *password_check(MYSQL *con, char *login, char *password)
     {
         finish_with_error(con);
     }
-
+    
     MYSQL_RES *result = mysql_store_result(con);
 
     if (result == NULL)

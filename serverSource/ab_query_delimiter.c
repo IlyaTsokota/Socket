@@ -53,10 +53,9 @@ void array_strtok(array_t *a, char *s, const char *delim)
 /* удаление массива */
 void array_clear(array_t *a)
 {
-    size_t i;
     if (a->arr != NULL)
     {
-        for (i = 0; i < a->cnt; ++i)
+        for (size_t i = 0; i < a->cnt; ++i)
             free(a->arr[i]);
         free(a->arr);
         a->arr = NULL;

@@ -11,6 +11,7 @@
 #include <pthread.h>
 #include <locale.h>
 #include <time.h>
+#include "json-c/json.h"
 
 typedef struct
 {
@@ -31,6 +32,11 @@ char **init_array();
 array_t query_delimiter(char *str);
 int get_query_number(char *line);
 char *queries_handler(MYSQL *con, char **array);
+
+//json
+char *write_to_json(char **arr_new);
+
+array_t json_to_data(char* json_str);
 
 //sql errors
 void finish_with_error(MYSQL *con);
@@ -55,6 +61,7 @@ char *contact_remove(MYSQL *con, char *my_id, char *contact_id); //05
 char *contact_block(MYSQL *con, char *my_id, char *contact_id); //09 
 char *contact_unblock(MYSQL *con, char *my_id, char *contact_id); //14 
 
+char *mx_strnew(const int size );
 void mx_printint(int n);
 void mx_printchar(char c);
 char *itobase10(char *buf, int value);

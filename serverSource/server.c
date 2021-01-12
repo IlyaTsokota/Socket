@@ -43,7 +43,7 @@ void *connection_handler(void *socket_desc)
 
         // server_answer_message= password_check(handler_con, "1111", "itsokota");
 
-        array_t query = query_delimiter(client_message);
+        array_t query = json_to_data(client_message);
         puts("<-------------[Processing the request]------------->");
         server_answer_message = queries_handler(handler_con, query.arr);
         puts("<-------------[Waiting for next query]------------->");
