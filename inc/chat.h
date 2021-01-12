@@ -15,6 +15,7 @@
 #include <ctype.h>
 #include <locale.h>
 #include <wctype.h>
+#include "json-c/json.h"
 
 typedef struct
 {
@@ -79,6 +80,8 @@ typedef struct {
 
 main_form_t main_form;
 
+char *write_to_json(char* num_f,char **arr_new);
+char **json_to_data(char* json_str);
 void show_setting(GtkWidget *main_grid);
 void show_opened_chat(GtkWidget *main_grid, char *id);
 void show_chats(GtkWidget *main_grid);
@@ -129,7 +132,6 @@ void is_input_success(bool (*is_success)(int, int *, char *), GtkWidget **entry,
 void change_event_login_or_password(GtkWidget *entry, int *min);
 void change_event_entry_only_aplha(GtkWidget *entry, int *min);
 void change_event_pin(GtkWidget *entry, int *min);
-char *array_to_str_with_delimiter(char **arr);
 void open_main_form_after_register(GtkWidget *button, GtkWidget *widget);
 void change_size_message_input(GtkWidget *widget, msg_t *msg_entry);
 bool mx_isspace(char c);

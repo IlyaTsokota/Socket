@@ -39,10 +39,8 @@ void open_main_form(GtkWidget *window)
     GtkWidget *chat_name_lable = GTK_WIDGET(gtk_builder_get_object(builder, "chat_name_lable"));
     GtkWidget *user_is_online_in_chat = GTK_WIDGET(gtk_builder_get_object(builder, "user_is_online_in_chat"));
     GtkWidget *box_contacts = GTK_WIDGET(gtk_builder_get_object(builder, "box_contacts"));
- 
     show_chats(main_form.main_grid);
     show_opened_chat(main_form.main_grid, "1");
-    
     GtkWidget *arr[] = {box_contacts, main_forma, left_panel, is_connection, con_img, top_panel, search_entry, chat_name_lable, user_is_online_in_chat, NULL};
     css_set(arr, "share/resources/css/main.css");
     gtk_container_add(GTK_CONTAINER(window), main_forma);

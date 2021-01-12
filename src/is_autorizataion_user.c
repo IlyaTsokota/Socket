@@ -1,8 +1,11 @@
 #include "chat.h"
 
 bool is_autorization_user(char *login, char *password){
-    char *arr[] = {"01", login, password, NULL};
-    char **new_arr = array_to_request(arr);
-    char *request = array_to_str_with_delimiter(new_arr);
+    char *num_f = mx_strnew(strlen("01"));
+    num_f ="01";
+    char *arr[] = { login, password, NULL};
+    char *json = write_to_json(num_f, arr);
+    char *request = g_locale_to_utf8(json, strlen(json), NULL, NULL, NULL);
+    free(num_f);
     return request_to_server(request);
 }
