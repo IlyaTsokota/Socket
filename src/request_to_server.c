@@ -13,8 +13,7 @@ bool request_to_server(char *request){
     else {
         free(request);
         g_print("Request to server error!\n");
-        return true;
+        return false;
     }
-    return true;
 }
 

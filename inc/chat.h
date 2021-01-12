@@ -71,7 +71,19 @@ typedef struct
 
 appdata data;
 
+typedef struct {
+	GtkWidget *left_content;
+	GtkWidget *right_content;
+	GtkWidget *main_grid;
+} main_form_t;
+
+main_form_t main_form;
+
+void show_setting(GtkWidget *main_grid);
+void show_opened_chat(GtkWidget *main_grid, char *id);
+void show_chats(GtkWidget *main_grid);
 char *buffer_get_text(GtkTextBuffer *buffer);
+gboolean open_setting(GtkWidget *widget, GdkEventButton *event);
 gboolean change_placeholder_msg_out_focus(GtkTextView *text_view, GdkEvent *event, char *placeholder);
 gboolean change_placeholder_msg_in_focus(GtkTextView *text_view, GdkEvent *event, char *placeholder);
 gboolean change_insert_to_message(gpointer widget);

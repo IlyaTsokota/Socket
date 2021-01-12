@@ -1,7 +1,5 @@
 #include "chat.h"
 
- static int timeout = 0;
-
 void change_size_message_input(GtkWidget *widget, msg_t *msg_entry)
 {
     GtkTextIter iter;
@@ -12,10 +10,11 @@ void change_size_message_input(GtkWidget *widget, msg_t *msg_entry)
         n_display_lines++;
     }
     int index = 0;
-    int add_h = n_display_lines > 0 ? n_display_lines * 18 : 0;
+    int height_line = 12;
+    int add_h = n_display_lines > 0 ? n_display_lines * 12 : 0;
     int height = 0;
     int default_size = 47;
-    int max_height = 270;
+    int max_height = height_line * 10;
     height = default_size + add_h;
     height = height > max_height ? max_height : height;
     gtk_widget_set_size_request(msg_entry->container, -1, height);
@@ -27,5 +26,5 @@ void change_size_message_input(GtkWidget *widget, msg_t *msg_entry)
     {
         gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(msg_entry->container), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
     }
-    timeout = g_timeout_add(50, change_insert_to_message, msg_entry->container);
+    g_timeout_add(50, change_insert_to_message, msg_entry->container);
 }
