@@ -6,7 +6,7 @@ void open_main_form(GtkWidget *window)
     int height = 0;
     int width = 0;
     gtk_window_get_size(GTK_WINDOW(window), &width, &height);
-    if (width < new_width && height < new_height)
+    if (width < new_width)
     {
         gtk_window_resize(GTK_WINDOW(window), new_width, new_height);
     }

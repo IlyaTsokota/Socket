@@ -26,8 +26,8 @@ void application_activate(GtkApplication *application, gpointer user_data)
     css_set_for_one(data.win, "share/resources/css/auth.css");
     g_object_unref(builder);
     // в будущем проверка из файла на то какое окно открыть
-    // open_login(data.win);
-    open_main_form(data.win);
+    open_login(data.win);
+    // open_main_form(data.win);
     /////////////////////////////////////
     gtk_application_add_window(application, GTK_WINDOW(data.win));
     gtk_widget_show_all(data.win);
