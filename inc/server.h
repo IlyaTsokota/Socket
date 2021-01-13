@@ -45,7 +45,7 @@ void finish_with_error(MYSQL *con);
 char *user_add(MYSQL *con, char *login, char *name, char *surname, char *password, char *pin); //03
 char *is_login_exist(MYSQL *con, char *login); //07
 //sql-chats
-char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply); //13
+char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data); //13
 char *make_message_seen(MYSQL *con, char *ms_id); //15
 char *chat_create(MYSQL *con, char *my_id, char *contact_id); //08 
 char *group_chat_create(MYSQL *con, char *my_id, char *chat_name); //06

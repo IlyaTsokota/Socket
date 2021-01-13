@@ -8,7 +8,7 @@ char *password_check(MYSQL *con, char *login, char *password)
     bdrequest = strjoins(bdrequest, "\" AND user.u_login = \"");
     bdrequest = strjoins(bdrequest, login);
     bdrequest = strjoins(bdrequest, "\";");
-    free(encrypted_password);
+    //free(encrypted_password);
     //puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))

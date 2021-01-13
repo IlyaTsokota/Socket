@@ -1,0 +1,73 @@
+2021-01-13 14:53:13.344 1584  -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: OS version: Darwin 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019; root:xnu-4903.271.2~2/RELEASE_X86_64
+2021-01-13 14:53:13.346 1584  -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Host application: Visual Studio Code(1.47.1)
+2021-01-13 14:53:13.347 1584  -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Initializing addin: ApexSQL Database Power Tools for VS Code 2020.7.51.0
+2021-01-13 14:54:02.785 1584  -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.LogTargetSystem(String systemType, String systemName, String version, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 173
+
+2021-01-13 15:03:03.154 1584  -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+User F7PtEuRzNu already has more than 'max_user_connections' active connections
+Type: MySqlConnector.MySqlException
+	Stack trace
+	   at MySqlConnector.Core.ServerSession.SwitchAuthenticationAsync(ConnectionSettings cs, PayloadData payload, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 567
+	   at MySqlConnector.Core.ServerSession.TryResetConnectionAsync(ConnectionSettings cs, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 532
+	   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, Int32 startTickCount, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 71
+	   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, Int32 startTickCount, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 140
+	   at MySqlConnector.MySqlConnection.CreateSessionAsync(ConnectionPool pool, Int32 startTickCount, Nullable`1 ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 821
+	   at MySqlConnector.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 399
+	   at MySqlConnector.MySqlConnection.Open() in /_/src/MySqlConnector/MySqlConnection.cs:line 365
+	   at ApexSQL.VSC.Core.MySqlServerConnection.Open() in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 210
+	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 136
+
+2021-01-13 15:33:11.690 1584  -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Database name is not valid. (Parameter 'databaseName')
+Type: System.ArgumentException
+	Stack trace
+	   at MySqlConnector.MySqlConnection.ChangeDatabaseAsync(IOBehavior ioBehavior, String databaseName, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 333
+	   at MySqlConnector.MySqlConnection.ChangeDatabase(String databaseName) in /_/src/MySqlConnector/MySqlConnection.cs:line 322
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ChangeDatabase(String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 562
+	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 141
+
+2021-01-13 15:45:57.843 1584  -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Database name is not valid. (Parameter 'databaseName')
+Type: System.ArgumentException
+	Stack trace
+	   at MySqlConnector.MySqlConnection.ChangeDatabaseAsync(IOBehavior ioBehavior, String databaseName, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 333
+	   at MySqlConnector.MySqlConnection.ChangeDatabase(String databaseName) in /_/src/MySqlConnector/MySqlConnection.cs:line 322
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ChangeDatabase(String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 562
+	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 141
+
+2021-01-13 16:28:56.408 1584  -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.Config(String configName, String value, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 48
+
+2021-01-13 16:28:57.412 1584  -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.Config(String configName, String value, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 48
+
+2021-01-13 16:48:49.146 15326 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: OS version: Darwin 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019; root:xnu-4903.271.2~2/RELEASE_X86_64
+2021-01-13 16:48:49.183 15326 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Host application: Visual Studio Code(1.47.1)
+2021-01-13 16:48:49.220 15326 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Initializing addin: ApexSQL Database Power Tools for VS Code 2020.7.51.0
+2021-01-13 16:48:49.466 15326 -1     ERROR : An exception occurred
+String reference not set to an instance of a String. (Parameter 's')
+Type: System.ArgumentNullException
+	Stack trace
+	   at System.Text.Encoding.GetBytes(String s)
+	   at Quest.Reactive.ReactiveTelemetry.SHA1(String value)
+	   at Quest.Reactive.ReactiveTelemetry.GetUserHash()
+	   at Quest.Reactive.ReactiveTelemetry..ctor(Guid productToken)
+	   at Quest.Reactive.ReactiveTelemetry.Get(Guid aProduct)
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.Start(Boolean isCli, String addinHost, String addinVersion, Dictionary`2 additionalStartData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 223
+
+2021-01-13 17:01:26.104 15326 -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.LogTargetSystem(String systemType, String systemName, String version, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 173
+
