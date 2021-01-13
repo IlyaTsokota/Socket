@@ -71,3 +71,17 @@ Type: System.NullReferenceException
 	Stack trace
 	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.LogTargetSystem(String systemType, String systemName, String version, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 173
 
+2021-01-13 17:03:49.101 15326 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+User F7PtEuRzNu already has more than 'max_user_connections' active connections
+Type: MySqlConnector.MySqlException
+	Stack trace
+	   at MySqlConnector.Core.ServerSession.SwitchAuthenticationAsync(ConnectionSettings cs, PayloadData payload, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 567
+	   at MySqlConnector.Core.ServerSession.TryResetConnectionAsync(ConnectionSettings cs, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ServerSession.cs:line 532
+	   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, Int32 startTickCount, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 71
+	   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, Int32 startTickCount, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/ConnectionPool.cs:line 140
+	   at MySqlConnector.MySqlConnection.CreateSessionAsync(ConnectionPool pool, Int32 startTickCount, Nullable`1 ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 821
+	   at MySqlConnector.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 399
+	   at MySqlConnector.MySqlConnection.Open() in /_/src/MySqlConnector/MySqlConnection.cs:line 365
+	   at ApexSQL.VSC.Core.MySqlServerConnection.Open() in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 210
+	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 136
+
