@@ -7,5 +7,5 @@ client
 /clientSource
 server
 server.h.gch
-ApexSQL
+/ApexSQL
 /inc/client.h
