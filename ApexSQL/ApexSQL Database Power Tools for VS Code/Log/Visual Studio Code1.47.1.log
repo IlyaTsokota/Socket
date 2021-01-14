@@ -85,3 +85,720 @@ Type: MySqlConnector.MySqlException
 	   at ApexSQL.VSC.Core.MySqlServerConnection.Open() in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 210
 	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 136
 
+2021-01-13 17:30:14.180 15326 -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.Config(String configName, String value, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 48
+
+2021-01-14 12:30:08.991 60280 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: OS version: Darwin 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019; root:xnu-4903.271.2~2/RELEASE_X86_64
+2021-01-14 12:30:08.993 60280 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Host application: Visual Studio Code(1.47.1)
+2021-01-14 12:30:08.994 60280 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Initializing addin: ApexSQL Database Power Tools for VS Code 2020.7.51.0
+2021-01-14 12:31:26.402 60280 -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.LogTargetSystem(String systemType, String systemName, String version, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 173
+
+2021-01-14 12:46:51.061 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 63
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 12:51:17.159 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 63
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 12:54:31.438 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 63
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 12:59:22.174 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:03:00.859 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:03:44.805 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+A column named 'ms_isedited' already belongs to this DataTable.
+Type: System.Data.DuplicateNameException
+	Stack trace
+	   at System.Data.DataColumnCollection.RegisterColumnName(String name, DataColumn column)
+	   at System.Data.DataColumnCollection.BaseAdd(DataColumn column)
+	   at System.Data.DataColumnCollection.AddAt(Int32 index, DataColumn column)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 65
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+
+2021-01-14 13:08:31.256 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:17:36.072 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:21:34.436 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:24:43.165 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:25:35.173 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:28:58.780 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:31:57.785 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:34:34.175 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:38:48.064 60280 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 13:55:41.878 60280 -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.Config(String configName, String value, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 48
+
+2021-01-14 14:22:24.005 70619 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: OS version: Darwin 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019; root:xnu-4903.271.2~2/RELEASE_X86_64
+2021-01-14 14:22:24.008 70619 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Host application: Visual Studio Code(1.47.1)
+2021-01-14 14:22:24.009 70619 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Initializing addin: ApexSQL Database Power Tools for VS Code 2020.7.51.0
+2021-01-14 14:22:48.570 70619 -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.LogTargetSystem(String systemType, String systemName, String version, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 173
+
+2021-01-14 14:42:48.974 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 63
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 14:43:59.646 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 14:46:59.926 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 14:50:00.212 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 14:59:30.432 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 15:02:26.638 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 15:04:59.189 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 15:06:18.772 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 15:08:59.139 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 15:12:09.539 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 15:15:52.441 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 15:32:07.892 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 15:37:31.296 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Operation canceled.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Operation canceled
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 16:01:30.316 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Unable to write data to the transport connection: Socket operation on non-socket.
+Type: System.IO.IOException
+	Stack trace
+	   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+	   at System.Net.Security.SslStream.WriteSingleChunk[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.WriteAsyncInternal[TWriteAdapter](TWriteAdapter writeAdapter, ReadOnlyMemory`1 buffer)
+	   at System.Net.Security.SslStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+	   at System.IO.Stream.Write(ReadOnlySpan`1 buffer)
+	   at MySqlConnector.Protocol.Serialization.StreamByteHandler.WriteBytesAsync(ReadOnlyMemory`1 data, IOBehavior ioBehavior) in /_/src/MySqlConnector/Protocol/Serialization/StreamByteHandler.cs:line 112
+	--- End of stack trace from previous location where exception was thrown ---
+	   at MySqlConnector.Protocol.Serialization.ProtocolUtility.<WritePacketAsync>g__WritePacketAsyncAwaited|8_0(ValueTask`1 task_, Byte[] buffer_) in /_/src/MySqlConnector/Protocol/Serialization/ProtocolUtility.cs:line 547
+	   at MySqlConnector.Core.ServerSession.SendReplyAsyncAwaited(ValueTask`1 task) in /_/src/MySqlConnector/Core/ServerSession.cs:line 834
+	   at MySqlConnector.Core.CommandExecutor.ExecuteReaderAsync(IReadOnlyList`1 commands, ICommandPayloadCreator payloadCreator, CommandBehavior behavior, IOBehavior ioBehavior, CancellationToken cancellationToken) in /_/src/MySqlConnector/Core/CommandExecutor.cs:line 60
+	   at MySqlConnector.MySqlCommand.ExecuteReader() in /_/src/MySqlConnector/MySqlCommand.cs:line 105
+	   at ApexSQL.VSC.Core.MySqlServerConnection.<>c__DisplayClass9_0.<ExecuteQuery>b__0(String statement) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 69
+	   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+	   at ApexSQL.VSC.Core.MySqlServerConnection.ExecuteQuery(String query) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Common\Classes\MySqlServerConnection.cs:line 144
+	Inner exception: Socket operation on non-socket
+	Type: System.Net.Sockets.SocketException
+		Stack trace
+		   at System.Net.Sockets.NetworkStream.Write(Byte[] buffer, Int32 offset, Int32 size)
+
+2021-01-14 16:01:47.737 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Database name is not valid. (Parameter 'databaseName')
+Type: System.ArgumentException
+	Stack trace
+	   at MySqlConnector.MySqlConnection.ChangeDatabaseAsync(IOBehavior ioBehavior, String databaseName, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 341
+	   at MySqlConnector.MySqlConnection.ChangeDatabase(String databaseName) in /_/src/MySqlConnector/MySqlConnection.cs:line 322
+	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 141
+
+2021-01-14 16:02:33.511 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Database name is not valid. (Parameter 'databaseName')
+Type: System.ArgumentException
+	Stack trace
+	   at MySqlConnector.MySqlConnection.ChangeDatabaseAsync(IOBehavior ioBehavior, String databaseName, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 341
+	   at MySqlConnector.MySqlConnection.ChangeDatabase(String databaseName) in /_/src/MySqlConnector/MySqlConnection.cs:line 322
+	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 141
+
+2021-01-14 16:02:48.642 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Database name is not valid. (Parameter 'databaseName')
+Type: System.ArgumentException
+	Stack trace
+	   at MySqlConnector.MySqlConnection.ChangeDatabaseAsync(IOBehavior ioBehavior, String databaseName, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 341
+	   at MySqlConnector.MySqlConnection.ChangeDatabase(String databaseName) in /_/src/MySqlConnector/MySqlConnection.cs:line 322
+	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 141
+
+2021-01-14 16:11:48.275 70619 -1     ERROR [VSCPWRTOOLS: 2020.7.51.0]: An exception occurred
+Database name is not valid. (Parameter 'databaseName')
+Type: System.ArgumentException
+	Stack trace
+	   at MySqlConnector.MySqlConnection.ChangeDatabaseAsync(IOBehavior ioBehavior, String databaseName, CancellationToken cancellationToken) in /_/src/MySqlConnector/MySqlConnection.cs:line 341
+	   at MySqlConnector.MySqlConnection.ChangeDatabase(String databaseName) in /_/src/MySqlConnector/MySqlConnection.cs:line 322
+	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 141
+
