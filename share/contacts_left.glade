@@ -173,7 +173,7 @@
                                         <property name="can_focus">False</property>
                                         <property name="hexpand">True</property>
                                         <property name="vexpand">True</property>
-                                        <property name="pixbuf">aa.png</property>
+                                        <property name="pixbuf">resources/img/aa.png</property>
                                         <style>
                                         <class name="contact-icon"/>
                                         </style>

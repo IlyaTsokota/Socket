@@ -80,6 +80,7 @@ typedef struct {
 
 main_form_t main_form;
 
+void show_open_contact(GtkWidget *main_grid, char *id);
 void show_right_panel_is_clear(GtkWidget *main_grid);
 void show_contacts(GtkWidget *main_grid);
 gboolean open_contacts(GtkWidget *widget, GdkEventButton *event);

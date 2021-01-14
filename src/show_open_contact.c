@@ -1,6 +1,6 @@
 #include "chat.h"
 
-void show_opened_chat(GtkWidget *main_grid, char *id)
+void show_open_contact(GtkWidget *main_grid, char *id)
 {
     GtkBuilder *builder = glade_file_to_interface("share/contacts_right.glade");
 

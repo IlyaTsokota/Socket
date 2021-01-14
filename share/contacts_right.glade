@@ -97,7 +97,7 @@
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
                 <property name="hexpand">True</property>
-                <property name="pixbuf">../settings/round.png</property>
+                <property name="pixbuf">resources/img/round.png</property>
                 <style>
                     <class name="img_info_user"/>
                 </style>
@@ -272,7 +272,7 @@
                     <object class="GtkImage">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="pixbuf">../settings/admin.png</property>
+                    <property name="pixbuf">resources/img/admin.png</property>
                     </object>
                     <packing>
                     <property name="left_attach">0</property>
