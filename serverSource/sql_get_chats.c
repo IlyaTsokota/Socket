@@ -38,12 +38,13 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     // while ((row = mysql_fetch_row(result))){
     //     length++;
     // }
-    // //write(sock, int_to_str(length), strlen(int_to_str(length)));
+    // 
     //  puts("gg1");
     // puts(int_to_str(length));
+    int length =0;
     while ((row = mysql_fetch_row(result)))
     {
-        puts("gg");
+        length++;
         chat = (chat_t *)malloc(sizeof(chat_t));
         chat->ch_id = mx_strnew(strlen(row[0]));
         strcpy(chat->ch_id, row[0]);
@@ -57,9 +58,13 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
         strcpy(chat->u_lastSeen, row[4]);
         chat->u_avatar = mx_strnew(strlen(row[5]));
         strcpy(chat->u_avatar, row[5]);
-      //write(sock, write_chat_to_json(chat), strlen(write_chat_to_json(chat)));
        puts(write_chat_to_json(chat));
         free_chat_s(chat);
+    }
+    //write(sock, int_to_str(length), strlen(int_to_str(length)));
+    for(int i=0; i<length; i++)
+    {
+        //write(sock, write_chat_to_json(chat), strlen(write_chat_to_json(chat)));
     }
 
     mysql_free_result(result);
