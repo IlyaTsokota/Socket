@@ -80,6 +80,8 @@ typedef struct {
 
 main_form_t main_form;
 
+char *mx_file_to_str(const char *filename);
+void is_fullscreen(GtkWidget *window);
 void show_open_contact(GtkWidget *main_grid, char *id);
 void show_right_panel_is_clear(GtkWidget *main_grid);
 void show_contacts(GtkWidget *main_grid);

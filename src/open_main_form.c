@@ -1,17 +1,7 @@
 #include "chat.h"
 void open_main_form(GtkWidget *window)
 {
-    int new_width = 1300;
-    int new_height = 740;
-    int height = 0;
-    int width = 0;
-    gtk_window_get_size(GTK_WINDOW(window), &width, &height);
-    if (width < new_width)
-    {
-        gtk_window_resize(GTK_WINDOW(window), new_width, new_height);
-    }
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-
+    is_fullscreen(window);
     GtkBuilder *builder = glade_file_to_interface("share/main.glade");
     GtkWidget *main_forma = GTK_WIDGET(gtk_builder_get_object(builder, "main_form"));
 
