@@ -17,7 +17,6 @@ char *write_to_json(char* num_f,char **arr_new)
 	for (int i = 0; i < size; i++)
 	{
 		arr[i] = mx_strnew(strlen(arr_new[i]));
-		// strcpy(arr[i], g_locale_to_utf8(arr_new[i], strlen(arr_new[i]), NULL, NULL, NULL));
 		strcpy(arr[i], arr_new[i]);
 
 	}

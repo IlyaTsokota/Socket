@@ -188,3 +188,69 @@ grid#top-panel {
     margin-bottom: 20px;
     font-size: 12px;
 }
+
+.contact_button {
+    background-color: #3c3c3c;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #c5c5c5;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.name_center {
+    margin-top: 20px;
+}
+
+.login_info {
+    font-size: 25px;
+}
+
+.is_admin {
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #b787ff;
+    margin-bottom: 10px;
+}
+
+.img_info_user {
+    margin: 15px 0;
+}
+
+.italic_info {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: #c5c5c5;
+}
+
+.fullname_info {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #88c5ce;
+}
+
+.quote_info {
+    color: #fff;
+    margin-bottom: 35px;
+}
+
+.button_info {
+    margin: 10px 15px 0;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #c5c5c5;
+}
+
+.button_block {
+    color: #b21408;
+    margin-bottom: 10px;
+}

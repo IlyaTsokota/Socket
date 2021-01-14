@@ -22,6 +22,7 @@ void open_main_form(GtkWidget *window)
     GtkWidget *lock_img = GTK_WIDGET(gtk_builder_get_object(builder, "lock_img"));
 
     GtkWidget *event_box_contact_view = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_contact_view"));
+    g_signal_connect(G_OBJECT(event_box_contact_view), "button-press-event", G_CALLBACK(open_contacts), NULL);
     GtkWidget *contacts_view_img = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_view_img"));
 
     GtkWidget *event_box_setting = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_setting"));

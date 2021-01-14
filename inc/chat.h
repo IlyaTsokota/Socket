@@ -80,6 +80,9 @@ typedef struct {
 
 main_form_t main_form;
 
+void show_right_panel_is_clear(GtkWidget *main_grid);
+void show_contacts(GtkWidget *main_grid);
+gboolean open_contacts(GtkWidget *widget, GdkEventButton *event);
 char *write_to_json(char* num_f,char **arr_new);
 char **json_to_data(char* json_str);
 void show_setting(GtkWidget *main_grid);
