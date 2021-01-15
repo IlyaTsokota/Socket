@@ -16,8 +16,7 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     bdrequest = strjoins(bdrequest, user_id);
     bdrequest = strjoins(bdrequest, "\" ;");
 
-   // puts(bdrequest); //Вывод запроса в консоль
-
+    //puts(bdrequest); //Вывод запроса в консоль
     if (mysql_query(con, bdrequest))
     {
         finish_with_error(con);
@@ -33,36 +32,44 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     int num_fields = mysql_num_fields(result);
 
     MYSQL_ROW row;
+
     chat_t *chat = NULL;
-    // int length = 0;
-    // while ((row = mysql_fetch_row(result))){
-    //     length++;
-    // }
-    // 
-    //  puts("gg1");
-    // puts(int_to_str(length));
-    int length =0;
+    json_t *query = (json_t *)malloc(sizeof(json_t));
+    size_t  query_arr_length = 1024;
+    query->arr = (char**)malloc(sizeof(char*) * query_arr_length);
+    size_t length = 0;
+
+    const char* tmp_str;
     while ((row = mysql_fetch_row(result)))
     {
-        length++;
         chat = (chat_t *)malloc(sizeof(chat_t));
-        chat->ch_id = mx_strnew(strlen(row[0]));
-        strcpy(chat->ch_id, row[0]);
-        chat->ch_name = mx_strnew(strlen(row[1]));
-        strcpy(chat->ch_name, row[1]);
-        chat->ch_avatar = mx_strnew(strlen(row[2]));
-        strcpy(chat->ch_avatar, row[2]);
-        chat->u_login = mx_strnew(strlen(row[3]));
-        strcpy(chat->u_login, row[3]);
-        chat->u_lastSeen = mx_strnew(strlen(row[4]));
-        strcpy(chat->u_lastSeen, row[4]);
-        chat->u_avatar = mx_strnew(strlen(row[5]));
-        strcpy(chat->u_avatar, row[5]);
-       puts(write_chat_to_json(chat));
+        chat->ch_id = strdup(row[0]); //mx_strnew(strlen(row[0]));
+        chat->ch_name = strdup(row[1]);//mx_strnew(strlen(row[1]));
+        chat->ch_avatar = strdup(row[2]);//mx_strnew(strlen(row[2]));
+        chat->u_login = strdup(row[3]);//mx_strnew(strlen(row[3]));
+        chat->u_lastSeen = strdup(row[4]);//mx_strnew(strlen(row[4]));
+        chat->u_avatar = strdup(row[5]);//mx_strnew(strlen(row[5]));
+        tmp_str = write_chat_to_json(chat);
+        //puts(strdup(tmp_str));
+        query->arr[length] = strdup(tmp_str);
+        
+        free((void*)tmp_str);\
         free_chat_s(chat);
+        length++;
+        if  (length == query_arr_length) {
+            query_arr_length *= 2;
+            query->arr = (char**)realloc(query->arr, sizeof(char*) * query_arr_length);
+        }
+    }
+    query->arr[length] = NULL;
+   
+    while (*query->arr)
+    {
+        puts(*query->arr);
+        query->arr++;
     }
     //write(sock, int_to_str(length), strlen(int_to_str(length)));
-    for(int i=0; i<length; i++)
+    for (size_t i = 0; i < length; i++)
     {
         //write(sock, write_chat_to_json(chat), strlen(write_chat_to_json(chat)));
     }

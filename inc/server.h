@@ -21,6 +21,11 @@ typedef struct
 
 typedef struct
 {
+    char **arr;
+} json_t;
+
+typedef struct
+{
     char *ch_id;
     char *ch_name;
     char *ch_avatar;
@@ -45,7 +50,7 @@ int get_query_number(char *line);
 char *queries_handler(MYSQL *con, char **array, int sock);
 
 //json
-char *write_chat_to_json(chat_t *chat);
+const char *write_chat_to_json(chat_t *chat);
 
 array_t json_to_data(char *json_str);
 

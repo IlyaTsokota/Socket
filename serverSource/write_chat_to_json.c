@@ -1,6 +1,6 @@
 #include "server.h"
 
-char *write_chat_to_json(chat_t *chat)
+const char *write_chat_to_json(chat_t *chat)
 {
 	struct json_object *array;
 	struct json_object *object;
@@ -19,8 +19,7 @@ char *write_chat_to_json(chat_t *chat)
 	json_object_object_add(object, "u_last_seen", tmp);
 	tmp = json_object_new_string(chat->u_avatar);
 	json_object_object_add(object, "u_avatar", tmp);
-	array = tmp = NULL;
-	char *answer = (char *)json_object_to_json_string(object);
+	const char *answer = json_object_to_json_string(object);
 	return answer;
 }
 

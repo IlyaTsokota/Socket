@@ -802,3 +802,18 @@ Type: System.ArgumentException
 	   at MySqlConnector.MySqlConnection.ChangeDatabase(String databaseName) in /_/src/MySqlConnector/MySqlConnection.cs:line 322
 	   at ApexSQL.VSC.Complete.Cache.HintCache.LoadHints(Guid connectionId, String database) in E:\Agent\_work\331\s\Projects\ApexSQL.VSC.Complete\Cache\HintCache.cs:line 141
 
+2021-01-14 17:12:34.253 70619 -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.Config(String configName, String value, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 48
+
+2021-01-15 14:29:02.577 34076 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: OS version: Darwin 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019; root:xnu-4903.271.2~2/RELEASE_X86_64
+2021-01-15 14:29:02.579 34076 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Host application: Visual Studio Code(1.47.1)
+2021-01-15 14:29:02.581 34076 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Initializing addin: ApexSQL Database Power Tools for VS Code 2020.7.51.0
+2021-01-15 14:29:41.593 34076 -1     ERROR : An exception occurred
+Object reference not set to an instance of an object.
+Type: System.NullReferenceException
+	Stack trace
+	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.LogTargetSystem(String systemType, String systemName, String version, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 173
+
