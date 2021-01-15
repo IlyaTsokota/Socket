@@ -12,6 +12,9 @@
 #include <locale.h>
 #include <time.h>
 #include "json-c/json.h"
+#include <stdint.h>
+#include <math.h>
+
 
 struct public_key_class
 {
