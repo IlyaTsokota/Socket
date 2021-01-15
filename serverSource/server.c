@@ -1,7 +1,5 @@
 #include "server.h"
 
-//3762
-
 MYSQL *connection_try()
 {
     MYSQL *con = mysql_init(NULL);
@@ -45,6 +43,7 @@ void *connection_handler(void *socket_desc)
 
         array_t query = json_to_data(client_message);
         puts("<-------------[Processing the request]------------->");
+        
         server_answer_message = queries_handler(handler_con, query.arr, sock);
         puts("<-------------[Waiting for next query]------------->");
         array_clear(&query);

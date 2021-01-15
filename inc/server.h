@@ -13,6 +13,18 @@
 #include <time.h>
 #include "json-c/json.h"
 
+struct public_key_class
+{
+  long long modulus;
+  long long exponent;
+};
+
+struct private_key_class
+{
+  long long modulus;
+  long long exponent;
+};
+
 typedef struct
 {
     char **arr;
@@ -35,6 +47,10 @@ typedef struct
 } chat_t;
 
 #define array_init(a) (a).arr = NULL, (a).cnt = 0
+
+void send_image(int socket);
+int receive_image(int socket);
+
 void array_clear(array_t *a);
 int array_resize(array_t *a, size_t n);
 void array_strtok(array_t *a, char *s, const char *delim);
