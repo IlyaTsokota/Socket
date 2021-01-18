@@ -15,6 +15,7 @@
 #include <ctype.h>
 #include <locale.h>
 #include <wctype.h>
+#include <time.h>
 #include "json-c/json.h"
 #include <fcntl.h>
 #include <gio/gio.h>
@@ -44,6 +45,7 @@ typedef struct
 	GtkWidget *text_last_message;
 	GtkWidget *contact_name_lable;
 	GtkWidget *user_is_online;
+	GtkWidget *user_is_online_round;
 	GtkWidget *contact_info;
 	GtkWidget *contact_last_msg;
 	GtkWidget *contact_name_container;
@@ -134,7 +136,7 @@ typedef struct
 } chat_t;
 
 main_form_t main_form;
-
+void set_style_context(GtkWidget *widget, char *class_name);
 void get_chats_from_db();
 chat_t **request_get_chats(char *request);
 void *auth_check_f(void *auth_s);

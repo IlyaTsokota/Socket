@@ -24,3 +24,8 @@ void edit_styles_for_widget(GtkWidget *widget, char *styles)
     GtkStyleContext *context = gtk_widget_get_style_context(widget);
     gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(css_provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
 }
+
+void set_style_context(GtkWidget *widget, char *class_name){
+ GtkStyleContext *context = gtk_widget_get_style_context(widget);
+ gtk_style_context_add_class(context, class_name);
+}

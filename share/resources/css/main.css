@@ -74,6 +74,7 @@ grid#top-panel {
 }
 
 .contact-login {
+    margin-top: -5px;
     font-size: 16px;
     font-weight: 700;
     color: #b787ff;
@@ -84,10 +85,6 @@ grid#top-panel {
     font-size: 12px;
     font-weight: 400;
     color: #ffffff;
-}
-
-.contact-time {
-    margin-top: 10px;
 }
 
 .is-online {
