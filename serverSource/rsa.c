@@ -166,8 +166,7 @@ long long *rsa_encrypt(const char *client_one_message, const unsigned long clien
             "Error: Heap allocation failed.\n");
     return NULL;
   }
-  long long i = 0;
-  for (i = 0; i < client_one_message_size; i++)
+  for ( unsigned long i = 0; i < client_one_message_size; i++)
   {
     encrypted[i] = rsa_modExp(client_one_message[i], pub->exponent, pub->modulus);
   }
@@ -195,8 +194,8 @@ char *rsa_decrypt(const long long *client_one_message,
     return NULL;
   }
   // Now we go through each 8-byte chunk and decrypt it.
-  long long i = 0;
-  for (i = 0; i < client_one_message_size / 8; i++)
+
+  for (unsigned long i = 0; i < client_one_message_size / 8; i++)
   {
     temp[i] = rsa_modExp(client_one_message[i], priv->exponent, priv->modulus);
   }

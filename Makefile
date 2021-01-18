@@ -9,22 +9,24 @@ CC = clang
 
 LIBSDIR = libs
 
-LIBS = -L$(LIBSDIR)/json-c/ -ljson-c -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lpthread -lz -lm -ldl -lpthread -lz -lm -ldl -lcrypt
+LIBS = -ljson-c -lmysqlclient
+
+LIBS_PATH = -L$(LIBSDIR)/json-c/ -L$(LIBSDIR)/mysql/
 
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 
 RM = rm -rf
 
-all: $(NAME) clean server
+all: $(NAME) clean client server
 
-$(NAME):  server
+$(NAME): client server
 
 client:
 	@clang -o client clientSource/*.c -I $(INC_DIR)
 	@printf "\r\33[2K$@\t \033[32;1mcreated\033[0m\n"
 
 server:
-	@clang -o server -I$(INC_DIR) serverSource/*.c $(LIBS)
+	@clang -o server -I $(INC_DIR) -W $(LIBS_PATH) $(LIBS) serverSource/*.c
 	@printf "\r\33[2K$@\t \033[32;1mcreated\033[0m\n"
 
 clean:
