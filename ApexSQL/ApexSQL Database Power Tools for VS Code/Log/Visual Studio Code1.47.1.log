@@ -823,3 +823,6 @@ Type: System.NullReferenceException
 	Stack trace
 	   at ApexSQL.Common.ReactiveTelemetry.Telemetry.Config(String configName, String value, Dictionary`2 additionalData) in E:\Agent\_work\331\s\Projects\ApexSQL.Common\ReactiveTelemetry\Telemetry.cs:line 48
 
+2021-01-18 11:20:17.135 49935 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: OS version: Darwin 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019; root:xnu-4903.271.2~2/RELEASE_X86_64
+2021-01-18 11:20:17.139 49935 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Host application: Visual Studio Code(1.47.1)
+2021-01-18 11:20:17.145 49935 -1     INFO  [VSCPWRTOOLS: 2020.7.51.0]: Initializing addin: ApexSQL Database Power Tools for VS Code 2020.7.51.0

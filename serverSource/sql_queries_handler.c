@@ -57,11 +57,10 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return make_message_seen(con, array[1]);
     case 16:
         puts("Query 16 -> get_messages");
-        return get_messages(con, array[1], array[2]);
- case 17:
+        return get_messages(con, array[1], array[2], sock);
+    case 17:
         puts("Query 17 -> get_chats");
         return get_chats(con, array[1], sock);
-
 
     // operator doesn't match any case
     default:
