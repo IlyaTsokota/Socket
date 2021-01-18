@@ -9,7 +9,7 @@ CC = clang
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 LIBSPATH = libs
 
-LIB_NAMES = json-c
+LIB_NAMES = json-c -pthread
 
 LIB_PATH = $(LIBSPATH)/json-c/
 RM = rm -rf

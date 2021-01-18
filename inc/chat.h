@@ -16,6 +16,23 @@
 #include <locale.h>
 #include <wctype.h>
 #include "json-c/json.h"
+#include <fcntl.h>
+#include <gio/gio.h>
+#include <pthread.h> 
+
+typedef struct {
+	GtkWidget *grid;
+	GtkWidget *btn_container;
+	GtkWidget *btn;
+	GtkWidget *spinner;
+} cur_grid_t;
+
+
+typedef struct {
+	cur_grid_t *current_grid;
+	char *login;
+	char *password;
+} auth_check_t;
 
 typedef struct
 {
@@ -78,8 +95,23 @@ typedef struct {
 	GtkWidget *main_grid;
 } main_form_t;
 
+typedef struct
+{
+    char *ch_id;
+    char *ch_name;
+    char *ch_avatar;
+    char *u_login;
+    char *u_lastSeen;
+    char *u_avatar;
+} chat_t;
+
+
 main_form_t main_form;
 
+void get_chats_from_db();
+chat_t **request_get_chats(char *request);
+void* auth_check_f(void *auth_s);
+void* start_spinner(void* cur_grid);
 char *mx_file_to_str(const char *filename);
 void is_fullscreen(GtkWidget *window);
 void show_open_contact(GtkWidget *main_grid, char *id);
@@ -104,7 +136,8 @@ void change_event_pin_on_pin_form(GtkWidget *entry, int *min);
 void autorization_click_pin(GtkWidget *button, struct pin_f *pin_struct);
 void open_form_pin(GtkWidget *window);
 bool is_autorization_user(char *login, char *password);
-void autorization_in_app(GtkWidget *button, GtkWidget *widget);
+void autorization_in_app(GtkWidget *button,  cur_grid_t *cur_grid);
+
 void is_valid_message_to_entry(bool (*is_success)(int, int *, char *), char *value, int *minSize, GtkWidget **label_fail, GtkWidget **entry, char *message, int *flag);
 void valid_entry_border_color(GtkWidget **entry);
 bool request_to_server(char *request);

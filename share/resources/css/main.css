@@ -254,3 +254,8 @@ grid#top-panel {
     color: #b21408;
     margin-bottom: 10px;
 }
+
+.bg-circle{
+    background: #b787ff;
+    border-radius: 50%;
+}

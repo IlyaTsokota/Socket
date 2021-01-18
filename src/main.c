@@ -21,17 +21,18 @@ void server_set_connection()
 
 void application_activate(GtkApplication *application, gpointer user_data)
 {
+    server_set_connection();
     GtkBuilder *builder = glade_file_to_interface("share/window_auth.glade");
     data.win = GTK_WIDGET(gtk_builder_get_object(builder, "windowAuth"));
     css_set_for_one(data.win, "share/resources/css/auth.css");
     g_object_unref(builder);
     // в будущем проверка из файла на то какое окно открыть
-    open_login(data.win);
-    // open_main_form(data.win);
+    // open_login(data.win);
+    open_main_form(data.win);
     /////////////////////////////////////
     gtk_application_add_window(application, GTK_WINDOW(data.win));
     gtk_widget_show_all(data.win);
-    server_set_connection();
+   
 }
 
 void application_shutdown(GtkApplication *application, gpointer user_data)
