@@ -50,11 +50,15 @@
                                 <property name="height_request">33</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="halign">center</property>
                                 <property name="valign">start</property>
                                 <property name="margin_top">10</property>
                                 <property name="margin_bottom">10</property>
                                 <property name="hexpand">True</property>
-                                <property name="pixbuf">resources/img/unlock.png</property>
+                                <property name="pixbuf">resources/img/lock.png</property>
+                                <style>
+                                  <class name="bg-circle"/>
+                                </style>
                               </object>
                             </child>
                           </object>
@@ -66,7 +70,48 @@
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
-                        <property name="top_attach">2</property>
+                        <property name="top_attach">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkGrid">
+                        <property name="height_request">33</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
+                        <child>
+                          <object class="GtkEventBox" id="event_box_chats">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                            <child>
+                              <object class="GtkImage" id="chats_img">
+                                <property name="width_request">33</property>
+                                <property name="height_request">33</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="halign">center</property>
+                                <property name="valign">start</property>
+                                <property name="margin_top">10</property>
+                                <property name="margin_bottom">10</property>
+                                <property name="hexpand">True</property>
+                                <property name="pixbuf">resources/img/chats.png</property>
+                                <style>
+                                  <class name="bg-circle"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">1</property>
                       </packing>
                     </child>
                     <child>
@@ -87,11 +132,15 @@
                                 <property name="height_request">33</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="halign">center</property>
                                 <property name="valign">start</property>
                                 <property name="margin_top">10</property>
                                 <property name="margin_bottom">10</property>
                                 <property name="hexpand">True</property>
                                 <property name="pixbuf">resources/img/setting.png</property>
+                                <style>
+                                  <class name="bg-circle"/>
+                                </style>
                               </object>
                             </child>
                           </object>
@@ -119,16 +168,20 @@
                             <property name="hexpand">True</property>
                             <property name="vexpand">True</property>
                             <child>
-                              <object class="GtkImage" id="contacts_view_img">
+                              <object class="GtkImage" id="contact_view_img">
                                 <property name="width_request">33</property>
                                 <property name="height_request">33</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
+                                <property name="halign">center</property>
                                 <property name="valign">start</property>
                                 <property name="margin_top">10</property>
                                 <property name="margin_bottom">10</property>
                                 <property name="hexpand">True</property>
-                                <property name="pixbuf">resources/img/users.png</property>
+                                <property name="pixbuf">resources/img/user.png</property>
+                                <style>
+                                  <class name="bg-circle"/>
+                                </style>
                               </object>
                             </child>
                           </object>
@@ -140,7 +193,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
+                        <property name="top_attach">2</property>
                       </packing>
                     </child>
                   </object>
