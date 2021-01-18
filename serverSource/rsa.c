@@ -10,7 +10,7 @@ struct private_key_class
 
 char buffer[1024];
 const int MAX_DIGITS = 50;
-int i, j = 0;
+
 
 // This should totally be in the math library.
 long long gcd(long long a, long long b)
@@ -83,7 +83,7 @@ void rsa_gen_keys(struct public_key_class *pub, struct private_key_class *priv, 
   {
     int bytes_read = fread(buffer, 1, sizeof(buffer) - 1, primes_list);
     buffer[bytes_read] = '\0';
-    for (i = 0; buffer[i]; i++)
+    for (int i = 0; buffer[i]; i++)
     {
       if (buffer[i] == '\n')
       {
@@ -113,7 +113,7 @@ void rsa_gen_keys(struct public_key_class *pub, struct private_key_class *priv, 
 
     // here we find the prime at position a, store it as p
     rewind(primes_list);
-    for (i = 0; i < a + 1; i++)
+    for (int i = 0; i < a + 1; i++)
     {
       //  for(j=0; j < MAX_DIGITS; j++){
       //	prime_buffer[j] = 0;
@@ -124,9 +124,9 @@ void rsa_gen_keys(struct public_key_class *pub, struct private_key_class *priv, 
 
     // here we find the prime at position b, store it as q
     rewind(primes_list);
-    for (i = 0; i < b + 1; i++)
+    for (int i = 0; i < b + 1; i++)
     {
-      for (j = 0; j < MAX_DIGITS; j++)
+      for (int j = 0; j < MAX_DIGITS; j++)
       {
         prime_buffer[j] = 0;
       }
@@ -201,7 +201,7 @@ char *rsa_decrypt(const long long *client_one_message,
   }
   // The result should be a number in the char range, which gives back the original byte.
   // We put that into server_message_from_client_one, then return.
-  for (i = 0; i < client_one_message_size / 8; i++)
+  for (unsigned long i = 0; i < client_one_message_size / 8; i++)
   {
     server_message_from_client_one[i] = temp[i];
   }
