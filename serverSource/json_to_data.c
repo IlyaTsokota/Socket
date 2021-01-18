@@ -20,7 +20,6 @@ array_t json_to_data(char *json_str)
 	strcpy(arr[0], func_num_val);
 	for (int i = 0; i < n_data; i++)
 	{
-
 		data_item = json_object_array_get_idx(data, i);
 		char *val = mx_strnew(strlen((char *)json_object_get_string(data_item)));
 		val = (char *)json_object_get_string(data_item);

@@ -64,7 +64,9 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     query->arr[length] = NULL;
     
     char plug[3];
-    write(sock, int_to_str(length), strlen(int_to_str(length)));
+    char *num = int_to_str(length);
+    write(sock, num, strlen(num));
+    free(num);
     read(sock, plug, 2);
    
     for (size_t i = 0; i < length; i++)
