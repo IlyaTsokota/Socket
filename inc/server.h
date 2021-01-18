@@ -22,12 +22,6 @@ struct public_key_class
   long long exponent;
 };
 
-struct private_key_class
-{
-  long long modulus;
-  long long exponent;
-};
-
 typedef struct
 {
     char **arr;

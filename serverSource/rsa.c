@@ -2,12 +2,6 @@
 
 char *PRIME_SOURCE_FILE = "primes.txt";
 
-struct public_key_class
-{
-  long long modulus;
-  long long exponent;
-};
-
 struct private_key_class
 {
   long long modulus;

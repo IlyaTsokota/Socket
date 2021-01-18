@@ -53,7 +53,7 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
         //puts(strdup(tmp_str));
         query->arr[length] = strdup(tmp_str);
         
-        free((void*)tmp_str);\
+        free((void*)tmp_str);
         free_chat_s(chat);
         length++;
         if  (length == query_arr_length) {
@@ -62,16 +62,16 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
         }
     }
     query->arr[length] = NULL;
+    
+    char pzdc[3];
+    write(sock, int_to_str(length), strlen(int_to_str(length)));
+    read(sock, pzdc, 2);
    
-    while (*query->arr)
-    {
-        puts(*query->arr);
-        query->arr++;
-    }
-    //write(sock, int_to_str(length), strlen(int_to_str(length)));
     for (size_t i = 0; i < length; i++)
     {
-        //write(sock, write_chat_to_json(chat), strlen(write_chat_to_json(chat)));
+        puts(query->arr[i]);
+        write(sock, query->arr[i], strlen(query->arr[i]));
+        read(sock, pzdc, 2);
     }
 
     mysql_free_result(result);
