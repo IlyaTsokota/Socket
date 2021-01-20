@@ -7,7 +7,10 @@ void get_chats_from_db(GtkWidget *container_chats)
     char *json = write_to_json(num_f, arr);
     free(num_f);
     chat_t **chats = request_get_chats(json);
-    free(json);
+    puts("MGSTPP");
+
+
+    // free(json); // PZDC SEGMENT NAH NADO
     // if (chats != NULL)
     // {
     //    puts("GG");
