@@ -38,11 +38,13 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     chat_t *chat = NULL;
 
     const char *tmp_str;
-    char *file_name = strjoins(user_id, "_chats.json");
-    FILE *json = fopen(file_name, "a");
     int size, read_size, stat, packet_index;
-    char send_buffer[10240], read_buffer[256];
-    fputs("{\"chats\": [", json);
+    char  read_buffer[256];
+    puts("PZDC");
+    char *str = mx_strnew(0);
+    str = strjoins(str,"{\"chats\": [" );
+        puts("PZDC1");
+
     while ((row = mysql_fetch_row(result)))
     {
         chat = (chat_t *)malloc(sizeof(chat_t));
@@ -54,42 +56,27 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
         chat->u_avatar = strdup(row[5]);
         tmp_str = write_chat_to_json(chat);
         //write to file
-        if (json != NULL)
-        {
-            fputs(tmp_str, json);
-            fputs(",", json);
-        }
+        str = strjoins(str,tmp_str);
+        str = strjoins(str,",");
         free((void *)tmp_str);
         free_chat_s(chat);
+        puts(str);
     }
-    fputs("]}", json);
-    
+    str[strlen(str) - 1] = '\0';
+    str = strjoins(str,"]}");
+    puts(str);
     puts("GG1");
-    // find size file
-    fseek(json, 0, SEEK_END);
-    size = ftell(json);
-    fseek(json, 0, SEEK_SET);
-   
+    size = strlen(str);
     puts("GG2");
-    //send size
     puts(int_to_str(size));
     write(sock, (void *)&size, sizeof(int));
     puts("GG3");
-    do
-    {
-        stat = read(sock, &read_buffer, 255);
+    ssize_t packet_size = 1024;
+    ssize_t packet_count = 0;
+    do {
+            stat = write(sock, str, ((packet_count + 1) * packet_size));
+            packet_count++;
     } while (stat < 0);
-    puts("GG4");
-    while (!feof(json))
-    {
-        read_size = fread(send_buffer, 1, sizeof(send_buffer) - 1, json);
-        do
-        {
-            stat = write(sock, send_buffer, read_size);
-        } while (stat < 0);
-        // packet_index++;
-        // bzero(send_buffer, sizeof(send_buffer));
-    }
     puts("GG5");
     // char plug[3];
     // char *num = int_to_str(length);
@@ -104,8 +91,6 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     //     read(sock, plug, 2);
     // }
      // fclose(json);
-    remove(file_name);
-    free(file_name);
     mysql_free_result(result);
     mysql_close(con);
     return "0"; //0 or >0

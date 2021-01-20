@@ -2,7 +2,7 @@
 
 char *strjoins(const char *s1, const char *s2)
 {
-    char *result = malloc(strlen(s1) + strlen(s2) + 1);
+    char *result = mx_strnew(strlen(s1) + strlen(s2));
 
     if (result) 
     {
