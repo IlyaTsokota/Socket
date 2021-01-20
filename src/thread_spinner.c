@@ -20,7 +20,7 @@ void *auth_check_f(void *auth_s)
         gtk_widget_destroy(auth->current_grid->spinner);
         autorization.login_text = g_locale_to_utf8(auth->login, strlen(auth->login), NULL, NULL, NULL);
         gtk_widget_destroy(auth->current_grid->grid);
-        open_form_pin(data.win);
+        open_form_pin(data.win, false);
     }
     else
     {

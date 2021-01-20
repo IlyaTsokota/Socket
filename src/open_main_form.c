@@ -7,6 +7,8 @@ void open_main_form(GtkWidget *window)
 
     main_form.main_grid = GTK_WIDGET(gtk_builder_get_object(builder, "main_grid"));
     GtkWidget *left_panel = GTK_WIDGET(gtk_builder_get_object(builder, "left_panel"));
+
+    //memory leak
     left_panel_img_t *left_panel_img =  malloc(sizeof(left_panel_img_t));
     GtkWidget *event_box_lock = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_lock"));
     left_panel_img->lock = GTK_WIDGET(gtk_builder_get_object(builder, "lock_img"));

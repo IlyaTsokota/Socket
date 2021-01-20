@@ -16,7 +16,7 @@ char **json_to_data(char* json_str){
 	arr[0] = (char*)malloc(sizeof(char) * strlen(func_num_val));
 	arr[0] = func_num_val;
 	char *val;
-	for(int i=0;i<n_data;i++) {
+	for (int i=0; i<n_data; i++) {
 		data_item = json_object_array_get_idx(data, i);
 		val = (char *)json_object_get_string(data_item);
 		arr[i+1] = (char*)malloc(sizeof(char) * strlen(val));

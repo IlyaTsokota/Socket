@@ -135,9 +135,23 @@ typedef struct
 	char *u_avatar;
 } chat_t;
 
+typedef struct
+{
+	char *login;
+	char *theme;
+	char *language;
+	char *is_in;
+} settings_t;
+
+
 main_form_t main_form;
+
+void free_settings(settings_t *settings);
+settings_t *get_settings(char *settings);
+void create_settings_json(char *login, char *theme, char *language, char *is_in);
+void free_chats(chat_t **chats);
 void set_style_context(GtkWidget *widget, char *class_name);
-void get_chats_from_db();
+void get_chats_from_db(GtkWidget *widget);
 chat_t **request_get_chats(char *request);
 void *auth_check_f(void *auth_s);
 void *start_spinner(void *cur_grid);
@@ -163,12 +177,12 @@ bool is_pin_user(char *pin);
 void valid_entry_border_pin(GtkWidget *entry);
 void change_event_pin_on_pin_form(GtkWidget *entry, int *min);
 void autorization_click_pin(GtkWidget *button, struct pin_f *pin_struct);
-void open_form_pin(GtkWidget *window);
+void open_form_pin(GtkWidget *window, bool is_start_app);
 bool is_autorization_user(char *login, char *password);
-void autorization_in_app(GtkWidget *button, cur_grid_t *cur_grid);
+void autorization_in_app(GtkWidget *button, GtkWidget *grid);
 gboolean open_chats(GtkWidget *widget, GdkEventButton *event, left_panel_img_t *left_panel_img);
 void clear_styles_from_left_panel(left_panel_img_t *left_panel_img);
-
+void str_to_file(const char *filepath, const char *data);
 void is_valid_message_to_entry(bool (*is_success)(int, int *, char *), char *value, int *minSize, GtkWidget **label_fail, GtkWidget **entry, char *message, int *flag);
 void valid_entry_border_color(GtkWidget **entry);
 bool request_to_server(char *request);

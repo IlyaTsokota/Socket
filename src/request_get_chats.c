@@ -22,16 +22,23 @@ chat_t **request_get_chats(char *request)
             jobj = json_tokener_parse(answer);
             json_object_object_get_ex(jobj, "ch_id", &tmp);
             chats[i]->ch_id = strdup((char *)json_object_get_string(tmp));
+            free(tmp);
             json_object_object_get_ex(jobj, "ch_name", &tmp);
             chats[i]->ch_name = strdup((char *)json_object_get_string(tmp));
+            free(tmp);
             json_object_object_get_ex(jobj, "ch_avatar", &tmp);
             chats[i]->ch_avatar = strdup((char *)json_object_get_string(tmp));
+            free(tmp);
             json_object_object_get_ex(jobj, "u_login", &tmp);
             chats[i]->u_login = strdup((char *)json_object_get_string(tmp));
+            free(tmp);
             json_object_object_get_ex(jobj, "u_last_seen", &tmp);
             chats[i]->u_lastSeen = strdup((char *)json_object_get_string(tmp));
+            free(tmp);
             json_object_object_get_ex(jobj, "u_avatar", &tmp);
             chats[i]->u_avatar = strdup((char *)json_object_get_string(tmp));
+            free(tmp);
+            free(jobj);
             write(data.socket_desc, "OK", 2);
         }
         jobj = tmp = NULL;

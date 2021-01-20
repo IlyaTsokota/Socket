@@ -1,7 +1,10 @@
 #include "chat.h"
 
-void open_form_pin(GtkWidget *window)
+void open_form_pin(GtkWidget *window, bool is_start_app)
 {
+    if(is_start_app){
+        is_fullscreen(window);
+    }
     int *maxSize = (int *)malloc(sizeof(int));
     *maxSize = 4;
     pin_t *pin_struct = (pin_t*)malloc(sizeof(pin_t));

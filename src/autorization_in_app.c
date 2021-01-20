@@ -1,5 +1,5 @@
 #include "chat.h"
-void autorization_in_app(GtkWidget *button,  cur_grid_t *cur_grid)
+void autorization_in_app(GtkWidget *button, GtkWidget *grid)
 {
     char *login = (char *)gtk_entry_get_text(GTK_ENTRY(autorization.login));
     char *password = (char *)gtk_entry_get_text(GTK_ENTRY(autorization.password));
@@ -19,9 +19,14 @@ void autorization_in_app(GtkWidget *button,  cur_grid_t *cur_grid)
         if (is_autorization_user(login, password))
         {
             // gtk_widget_destroy(spinner);
+
             autorization.login_text = g_locale_to_utf8(login, strlen(login), NULL, NULL, NULL);
-            gtk_widget_destroy(cur_grid->grid);
-            open_form_pin(data.win);
+            char* settings = mx_file_to_str("settings.json");
+            settings_t *settings_field = get_settings(settings);
+            create_settings_json(autorization.login_text, settings_field->theme, settings_field->language, "TRUE");
+            free_settings(settings_field); 
+            gtk_widget_destroy(grid);
+            open_form_pin(data.win, false);
         }
         else
         {

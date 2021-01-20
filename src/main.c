@@ -22,17 +22,35 @@ void server_set_connection()
 void application_activate(GtkApplication *application, gpointer user_data)
 {
     server_set_connection();
-    GtkBuilder *builder = glade_file_to_interface("share/window_auth.glade");
+    char *settings = mx_file_to_str("settings.json");
+    if (settings == NULL) {
+        create_settings_json("NULL", "Dark", "English", "FALSE");   
+    } 
+    settings = mx_file_to_str("settings.json");
+    settings_t *settings_field = get_settings(settings);
+
+    GtkBuilder *builder = strcmp(settings_field->language, "Englsih") == 0 
+            ? glade_file_to_interface("share/window_auth.glade") // английский
+            : glade_file_to_interface("share/window_auth.glade"); // русский 
     data.win = GTK_WIDGET(gtk_builder_get_object(builder, "windowAuth"));
-    css_set_for_one(data.win, "share/resources/css/auth.css");
+    if (strcmp(settings_field->theme, "Dark") == 0) {
+        css_set_for_one(data.win, "share/resources/css/auth.css"); //Dark
+    } else {
+        css_set_for_one(data.win, "share/resources/css/auth.css"); //White
+    }
     g_object_unref(builder);
-    // в будущем проверка из файла на то какое окно открыть
-    // open_login(data.win);
-    open_main_form(data.win);
-    /////////////////////////////////////
+
+    if (strcmp(settings_field->is_in, "FALSE") == 0) {
+        open_login(data.win);
+    } else {
+        autorization.login_text = strdup(settings_field->login);
+        open_form_pin(data.win, true);
+    }
+
+    free_settings(settings_field);
+    
     gtk_application_add_window(application, GTK_WINDOW(data.win));
-    gtk_widget_show_all(data.win);
-   
+    gtk_widget_show_all(data.win);   
 }
 
 void application_shutdown(GtkApplication *application, gpointer user_data)
