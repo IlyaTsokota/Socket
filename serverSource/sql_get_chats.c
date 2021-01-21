@@ -38,13 +38,8 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     chat_t *chat = NULL;
 
     const char *tmp_str;
-    int size, read_size, stat, packet_index;
-    char  read_buffer[256];
-    puts("PZDC");
     char *str = mx_strnew(0);
     str = strjoins(str,"{\"chats\": [" );
-        puts("PZDC1");
-
     while ((row = mysql_fetch_row(result)))
     {
         chat = (chat_t *)malloc(sizeof(chat_t));
@@ -55,42 +50,20 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
         chat->u_lastSeen = strdup(row[4]);
         chat->u_avatar = strdup(row[5]);
         tmp_str = write_chat_to_json(chat);
-        //write to file
         str = strjoins(str,tmp_str);
         str = strjoins(str,",");
         free((void *)tmp_str);
         free_chat_s(chat);
-        puts(str);
     }
     str[strlen(str) - 1] = '\0';
-    str = strjoins(str,"]}");
-    puts(str);
-    puts("GG1");
-    size = strlen(str);
-    puts("GG2");
-    puts(int_to_str(size));
-    write(sock, (void *)&size, sizeof(int));
-    puts("GG3");
+    str = strjoins(str,"]}\0");
+    int stat = 0;
     ssize_t packet_size = 1024;
-    ssize_t packet_count = 0;
+    ssize_t read_index = 0;
     do {
-            stat = write(sock, str, ((packet_count + 1) * packet_size));
-            packet_count++;
-    } while (stat < 0);
-    puts("GG5");
-    // char plug[3];
-    // char *num = int_to_str(length);
-    // write(sock, num, strlen(num));
-    // free(num);
-    // read(sock, plug, 2);
-
-    // for (size_t i = 0; i < length; i++)
-    // {
-    //     puts(query->arr[i]);
-    //     write(sock, query->arr[i], strlen(query->arr[i]));
-    //     read(sock, plug, 2);
-    // }
-     // fclose(json);
+            stat = write(sock, &str[read_index], packet_size);
+            read_index+=stat;
+    } while (stat >= packet_size);
     mysql_free_result(result);
     mysql_close(con);
     return "0"; //0 or >0

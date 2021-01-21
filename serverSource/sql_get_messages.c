@@ -8,8 +8,7 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
     FROM chatusers cu \
     join message ms on cu.ch_id = ms.ch_id \
     join user u on ms.u_id = u.u_id \
-    WHERE cu.u_id = \"",
-                               user_id);
+    WHERE cu.u_id = \"", user_id);
     bdrequest = strjoins(bdrequest, "\" AND ms.ms_id > \"");
     bdrequest = strjoins(bdrequest, last_message_id);
     bdrequest = strjoins(bdrequest, "\";");
@@ -33,12 +32,10 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
     MYSQL_ROW row;
 
     message_t *message = NULL;
-    json_t *query = (json_t *)malloc(sizeof(json_t));
-    size_t query_arr_length = 1024;
-    query->arr = (char **)malloc(sizeof(char *) * query_arr_length);
-    size_t length = 0;
-
+    
     const char *tmp_str;
+    char *str = mx_strnew(0);
+    str = strjoins(str,"{\"messages\": [" );
     while ((row = mysql_fetch_row(result)))
     {
         message = (message_t *)malloc(sizeof(message_t));
@@ -54,32 +51,22 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
         message->ms_ismedia = strdup(row[9]);
         message->ms_isreply = strdup(row[10]);
         message->ms_isseen = strdup(row[11]);
-
         tmp_str = write_message_to_json(message);
-        //puts(strdup(tmp_str));
-        query->arr[length] = strdup(tmp_str);
+        str = strjoins(str,tmp_str);
+        str = strjoins(str,",");
 
         free((void *)tmp_str);
         free_message_s(message);
-        length++;
-        if (length == query_arr_length)
-        {
-            query_arr_length *= 2;
-            query->arr = (char **)realloc(query->arr, sizeof(char *) * query_arr_length);
-        }
     }
-    query->arr[length] = NULL;
-
-    char plug[3];
-    write(sock, int_to_str(length), strlen(int_to_str(length)));
-    read(sock, plug, 2);
-
-    for (size_t i = 0; i < length; i++)
-    {
-        puts(query->arr[i]);
-        write(sock, query->arr[i], strlen(query->arr[i]));
-        read(sock, plug, 2);
-    }
+    str[strlen(str) - 1] = '\0';
+    str = strjoins(str,"]}\0");
+    int stat = 0;
+    ssize_t packet_size = 1024;
+    ssize_t read_index = 0;
+    do {
+            stat = write(sock, &str[read_index], packet_size);
+            read_index += stat;
+    } while (stat >= packet_size);
     mysql_free_result(result);
     mysql_close(con);
     return "0"; //0 or >0
