@@ -1,6 +1,9 @@
 #ifndef CHAT_H
 #define CHAT_H
 
+#define _XOPEN_SOURCE 700
+#include <time.h>
+
 #include <gtk/gtk.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,7 +18,7 @@
 #include <ctype.h>
 #include <locale.h>
 #include <wctype.h>
-#include <time.h>
+
 #include "json-c/json.h"
 #include <fcntl.h>
 #include <gio/gio.h>
@@ -115,6 +118,8 @@ typedef struct
 	GtkWidget *right_content;
 	GtkWidget *main_grid;
 	GtkWidget *chats_grid;
+	GtkWidget *top_panel_top_text;
+	GtkWidget *top_panel_bottom_text;
 } main_form_t;
 
 typedef struct
@@ -146,6 +151,9 @@ typedef struct
 
 main_form_t main_form;
 
+bool is_online(char *last_seen);
+char *strjoins(const char *s1, const char *s2);
+char* int_to_str(int n);
 void free_settings(settings_t *settings);
 settings_t *get_settings(char *settings);
 void create_settings_json(char *login, char *theme, char *language, char *is_in);

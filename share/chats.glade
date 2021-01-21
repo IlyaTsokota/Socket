@@ -35,9 +35,6 @@
                 <property name="can_focus">False</property>
                 <property name="valign">start</property>
                 <property name="hexpand">True</property>
-                <child>
-                
-                </child>
                 </object>
             </child>
             <style>

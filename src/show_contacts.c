@@ -22,7 +22,8 @@ void show_contacts(GtkWidget *main_grid)
     GtkWidget *arr[] = {main_form.left_content, contacts_info_panel,box_contact, event_box_contact,contact_container,contact_info,
     contact_status,contact_status_lable,contact_name_container,contact_name_lable,user_is_online,user_is_online_round,
     grid_list_contact_img,img_contact,box_add_new,add_new_contact,NULL};
-    
+    gtk_label_set_text(GTK_LABEL(main_form.top_panel_top_text), "Contacts"); 
+    gtk_label_set_text(GTK_LABEL(main_form.top_panel_bottom_text), "Some contacts can affect your life"); 
     css_set(arr, "share/resources/css/main.css");
     gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content, 0, 0, 1, 1);
     g_object_unref(builder);
