@@ -2,6 +2,7 @@
 
 gboolean open_setting(GtkWidget *widget, GdkEventButton *event, left_panel_img_t *left_panel_img)
 {
+   
     gtk_widget_destroy(main_form.right_content);
     gtk_widget_destroy(main_form.left_content);
     clear_styles_from_left_panel(left_panel_img);

@@ -2,15 +2,8 @@
 
 chat_t **request_get_chats(char *request)
 {
-
     write(data.socket_desc, request, strlen(request));
     int size = 0, read_size = 0, stat;
-    //Find the size of the image
-    //    do
-    //    {
-    //        stat = read(data.socket_desc, &size, sizeof(int));
-    //    } while (stat < 0);
-    //    g_print("%d -- Size\n", size);
 
     ssize_t packet_size = 1024;
     ssize_t packet_count = 0;
@@ -19,25 +12,21 @@ chat_t **request_get_chats(char *request)
     {
         g_print("UY\n");
     }
+
     stat = 0;
     char *tmp = str;
     do
     {
         read_size = read(data.socket_desc, &str[stat], packet_size);
         str[stat - 1] = '\0';
-        // g_print("%s -- read_str\n", &str[stat]);
         stat += read_size;
         ++packet_count;
         if (packet_count > 3)
         {
             str = realloc(str, sizeof(char) * (packet_count * packet_size * 4 + 1));
         }
-
     } while (read_size >= packet_size);
 
-    // g_print("%lu -- strlen-Size\n", strlen(str));
-    //str[size+1] = '\0';
-    // puts(str);
     int exist = 0;
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);

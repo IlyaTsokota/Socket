@@ -1,6 +1,7 @@
 #include "chat.h"
 void open_main_form(GtkWidget *window)
 {
+    get_all_messages("3", "0");
     is_fullscreen(window);
     GtkBuilder *builder = glade_file_to_interface("share/main.glade");
     GtkWidget *main_forma = GTK_WIDGET(gtk_builder_get_object(builder, "main_form"));

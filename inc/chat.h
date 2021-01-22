@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
+#include <strings.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -148,9 +149,35 @@ typedef struct
 	char *is_in;
 } settings_t;
 
+typedef struct
+{
+  char *ch_id;
+  char *ms_id;
+  char *u_id;
+  char *u_name;
+  char *u_surname;
+  char *ms_text;
+  char *ms_datetime;
+  char *ms_isedited;
+  char *ms_isforwarded;
+  char *ms_ismedia;
+  char *ms_isreply;
+  char *ms_isseen;
+} message_t;
 
+
+typedef struct
+{
+ 	 chat_item_t **chat_items;
+} chats_form;
+chats_form chats_f;
 main_form_t main_form;
 
+void get_all_messages(char *user_id, char *last_msg_id);
+message_t **get_messages_from_file(char *filename, char *chat_id);
+char *request_get_messages(char *request);
+void free_chat_items(chat_item_t **chats);
+gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event);
 bool is_online(char *last_seen);
 char *strjoins(const char *s1, const char *s2);
 char* int_to_str(int n);
