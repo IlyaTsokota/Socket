@@ -2,7 +2,6 @@
 
 char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
 {
-    char *answer;
     char *bdrequest = strjoins("\
     SELECT cu.ch_id, ms.ms_id, ms.u_id, u.u_name, u.u_surname, ms.ms_text, ms.ms_datetime, ms.ms_isedited, ms.ms_isforwarded, ms.ms_ismedia, ms.ms_isreply, ms.ms_isseen \
     FROM chatusers cu \
@@ -54,7 +53,6 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
         tmp_str = write_message_to_json(message);
         str = strjoins(str,tmp_str);
         str = strjoins(str,",");
-
         free((void *)tmp_str);
         free_message_s(message);
     }
@@ -63,10 +61,21 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
     int stat = 0;
     ssize_t packet_size = 1024;
     ssize_t read_index = 0;
-    do {
-            stat = write(sock, &str[read_index], packet_size);
-            read_index += stat;
-    } while (stat >= packet_size);
+    puts(str);
+    //while(fgets(data, SIZE, fp) != NULL) {
+    while((stat = send(sock, &str[read_index], packet_size, 0)) <= strlen(str)) {
+        if (stat == -1) {
+            perror("[-]Error in sending file.");
+            return "1";
+        }
+        read_index+=stat-1;
+    }
+    // do {
+    //         stat = write(sock, &str[read_index], packet_size);
+    //         stat--;
+    //         read_index += stat;
+    // } while (stat >= packet_size);
+  
     mysql_free_result(result);
     mysql_close(con);
     return "0"; //0 or >0
