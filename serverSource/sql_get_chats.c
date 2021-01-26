@@ -2,27 +2,22 @@
 
 char *get_chats(MYSQL *con, char *user_id, int sock)
 {
-    char *answer;
-    ///char *bdrequest = strjoins("SET @OPO = \"", user_id);
-    char *bdrequest = strjoins("SELECT ch.ch_id, ch.ch_name, ch.ch_avatar, IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_login from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"", user_id);
-    bdrequest = strjoins(bdrequest, "\"and a.ch_id = ch.ch_id)), IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_lastSeen from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"");
-    bdrequest = strjoins(bdrequest, user_id);
-    bdrequest = strjoins(bdrequest, "\"and a.ch_id = ch.ch_id)), IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_avatar from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"");
-    bdrequest = strjoins(bdrequest, user_id);
-    bdrequest = strjoins(bdrequest, "\" and a.ch_id = ch.ch_id))\
-    from chat ch\
-    join chatusers cu on ch.ch_id = cu.ch_id\
-    where cu.u_id = \"");
-    bdrequest = strjoins(bdrequest, user_id);
-    bdrequest = strjoins(bdrequest, "\" ;");
+    char *answer, *str, *tmp_str1;
+    const char *tmp_str, *coma_str = ",";
+    const char *request_parts[] = {"SELECT ch.ch_id, ch.ch_name, ch.ch_avatar, IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_login from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"", 
+        user_id, "\"and a.ch_id = ch.ch_id)), IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_lastSeen from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"", 
+        user_id, "\"and a.ch_id = ch.ch_id)), IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_avatar from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"", 
+        user_id, "\" and a.ch_id = ch.ch_id)) from chat ch join chatusers cu on ch.ch_id = cu.ch_id where cu.u_id = \"", user_id, "\" ;", NULL};
+    char *bdrequest = strjoins_arr(request_parts);
 
     //puts(bdrequest); //Вывод запроса в консоль
+
     if (mysql_query(con, bdrequest))
     {
         finish_with_error(con);
     }
 
-    // free(bdrequest);
+    free(bdrequest); //IR
 
     MYSQL_RES *result = mysql_store_result(con);
 
@@ -37,9 +32,8 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
 
     chat_t *chat = NULL;
 
-    const char *tmp_str;
-    char *str = mx_strnew(0);
-    str = strjoins(str,"{\"chats\": [" );
+    
+    str = strdup("{\"chats\": [");
     while ((row = mysql_fetch_row(result)))
     {
         chat = (chat_t *)malloc(sizeof(chat_t));
@@ -50,13 +44,22 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
         chat->u_lastSeen = strdup(row[4]);
         chat->u_avatar = strdup(row[5]);
         tmp_str = write_chat_to_json(chat);
-        str = strjoins(str,tmp_str);
-        str = strjoins(str,",");
+        //
+        tmp_str1 = strjoin(3, str, tmp_str, coma_str);
+        free(str);
+        str = tmp_str1;
+        tmp_str1 = NULL;
+        //
         free((void *)tmp_str);
         free_chat_s(chat);
     }
     str[strlen(str) - 1] = '\0';
-    str = strjoins(str,"]}\0");
+    //
+    tmp_str1 = strjoin(2, str, "]}\0");
+    free(str);
+    str = tmp_str1;
+    tmp_str1 = NULL;
+    //
     int stat = 0;
     ssize_t packet_size = 1024;
     ssize_t read_index = 0;

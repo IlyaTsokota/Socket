@@ -4,10 +4,8 @@ char *group_chat_create(MYSQL *con, char *my_id, char *chat_name)
 {
     char *answer;
 
-    char *bdrequest = strjoins("INSERT INTO chat (ch_name, ch_avatar) VALUES (\"", chat_name);
-    bdrequest = strjoins(bdrequest, "\",\"");
-    bdrequest = strjoins(bdrequest, "1234");
-    bdrequest = strjoins(bdrequest, "\");");
+    const char *request_parts[] = {"INSERT INTO chat (ch_name, ch_avatar) VALUES (\"", chat_name, "\",\"1234\");", NULL};
+    char *bdrequest = strjoins_arr(request_parts);
 
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -15,6 +13,7 @@ char *group_chat_create(MYSQL *con, char *my_id, char *chat_name)
     {
         finish_with_error(con);
     }
+    free(bdrequest); //IR
     //Узнаём айди созданного чата
     bdrequest = "SELECT max(ch_id) from chat LIMIT 1;";
     puts(bdrequest); //Вывод запроса в консоль
@@ -43,14 +42,10 @@ char *group_chat_create(MYSQL *con, char *my_id, char *chat_name)
         }
     }
     mysql_free_result(result);
+    
     //Добавить в чатюзерс юзера админа
-
-    bdrequest = strjoins("INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", answer);
-    bdrequest = strjoins(bdrequest, "\",\"");
-    bdrequest = strjoins(bdrequest, my_id);
-    bdrequest = strjoins(bdrequest, "\",\"");
-    bdrequest = strjoins(bdrequest, "1");
-    bdrequest = strjoins(bdrequest, "\");");
+    const char *request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", answer, "\",\"", my_id, "\",\"1\");", NULL};
+    bdrequest = strjoins_arr(request_parts1);
 
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -60,6 +55,6 @@ char *group_chat_create(MYSQL *con, char *my_id, char *chat_name)
     }
 
     mysql_close(con);
-
+    free(bdrequest); //IR
     return "1";
 }

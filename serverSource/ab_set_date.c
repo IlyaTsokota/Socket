@@ -4,8 +4,8 @@ char *set_date()
 {
     char *date;
     time_t t = time(NULL);
-    struct tm tm = *localtime(&t);
-    char *answer = (char *)malloc(sizeof(char) * 60);
+    struct tm tm = *localtime(&t); //*gmtime(&t);
+    //char *answer = (char *)malloc(sizeof(char) * 60);
     char *year = (char *)malloc(sizeof(char) * 4);
     char *month = (char *)malloc(sizeof(char) * 2);
     char *day = (char *)malloc(sizeof(char) * 2);
@@ -18,16 +18,14 @@ char *set_date()
     itobase10(hour, tm.tm_hour);
     itobase10(min, tm.tm_min);
     itobase10(sec, tm.tm_sec);
-    date = strjoins(year, "-");
-    date = strjoins(date, month);
-    date = strjoins(date, "-");
-    date = strjoins(date, day);
-    date = strjoins(date, " ");
-    date = strjoins(date, hour);
-    date = strjoins(date, ":");
-    date = strjoins(date, min);
-    date = strjoins(date, ":");
-    date = strjoins(date, sec);
-
+    const char *request_parts[] = {year, "-", month, "-", day, " ", hour, ":", min, ":", sec, NULL};
+    date = strjoins_arr(request_parts);
+    free(year); //IR
+    free(month); //IR
+    free(day); //IR
+    free(hour); //IR
+    free(min); //IR
+    free(sec); //IR
+    
     return date;
 }

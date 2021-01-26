@@ -37,19 +37,19 @@ static void reverse_string(char *str)
 char* int_to_str(int n) 
 {
     if (n != 0) {
-        int j=0, i=0, strlen = 0;
+        int j=0, i=0;
         long val = n;
         while (val != 0) {
-            strlen++;
+            i++;
             val /= 10;
         }
-        
         val = n;
         if (val < 0) {
             val = -val;
-            strlen++;
+            i++;
         }
-        char *str = mx_strnew(strlen);
+        char *str = mx_strnew(i);
+        i = 0;
         while (val != 0) {
             str[i++] = val % 10 + '0';
             val /= 10;

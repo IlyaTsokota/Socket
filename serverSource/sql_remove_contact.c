@@ -6,10 +6,9 @@ char *contact_remove(MYSQL *con, char *my_id, char *contact_id)
     char *status = "Status is empty ;c";
     char *isonline = "1";
 
-    char *bdrequest =  strjoins("delete from contacts where u_id=\"", my_id);
-    bdrequest = strjoins(bdrequest, "\" and c_id=\"");
-    bdrequest = strjoins(bdrequest, contact_id);
-    bdrequest = strjoins(bdrequest, "\";");
+
+    const char *request_parts[] = {"delete from contacts where u_id=\"", my_id, "\" and c_id=\"", contact_id, "\";", NULL};
+    char *bdrequest =  strjoins_arr(request_parts);
 
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -17,7 +16,9 @@ char *contact_remove(MYSQL *con, char *my_id, char *contact_id)
     {
         finish_with_error(con);
     }
-        mysql_close(con);
+    
+    free(bdrequest); //IR
 
+    mysql_close(con);
     return "1";
 }

@@ -3,16 +3,17 @@
 char *get_contacts(MYSQL *con, char *user_id, int sock)
 {
     char *answer;
-    ///char *bdrequest = strjoins("SET @OPO = \"", user_id);
-    char *bdrequest = strjoins("select c.c_id, u.u_name, u.u_surname, u.u_avatar, u.u_status, u.u_lastSeen \
+    const char *request_parts[] = {"select c.c_id, u.u_name, u.u_surname, u.u_avatar, u.u_status, u.u_lastSeen \
     from contacts c \
     join user u \
     on c.c_id = u.u_id \
     where c.u_id = \"",
-                               user_id);
-    bdrequest = strjoins(bdrequest, "\" ;");
+    user_id, "\" ;", NULL};
+
+    char *bdrequest = strjoins_arr(request_parts);
 
     //puts(bdrequest); //Вывод запроса в консоль
+
     if (mysql_query(con, bdrequest))
     {
         finish_with_error(con);
@@ -24,7 +25,7 @@ char *get_contacts(MYSQL *con, char *user_id, int sock)
     {
         finish_with_error(con);
     }
-
+    free(bdrequest); //IR
     int num_fields = mysql_num_fields(result);
 
     MYSQL_ROW row;

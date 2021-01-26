@@ -1,7 +1,7 @@
 #ifndef CHAT_H
 #define CHAT_H
 
-#include "mysql/mysql.h"
+//std headers
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,65 +11,18 @@
 #include <pthread.h>
 #include <locale.h>
 #include <time.h>
-#include "json-c/json.h"
 #include <stdint.h>
 #include <math.h>
+#include <stdarg.h> //experimental for variadic template
+//ext libs headers
+#include "json-c/json.h"
+#include "mysql/mysql.h"
+//our own headers
+#include "server_structures.h"
 
-struct public_key_class
-{
-  long long modulus;
-  long long exponent;
-};
-
-typedef struct
-{
-  char **arr;
-  size_t cnt;
-} array_t;
-
-typedef struct
-{
-  char **arr;
-} json_t;
-
-typedef struct
-{
-  char *ch_id;
-  char *ch_name;
-  char *ch_avatar;
-  char *u_login;
-  char *u_lastSeen;
-  char *u_avatar;
-} chat_t;
-
-typedef struct
-{
-  char *ch_id;
-  char *ms_id;
-  char *u_id;
-  char *u_name;
-  char *u_surname;
-  char *ms_text;
-  char *ms_datetime;
-  char *ms_isedited;
-  char *ms_isforwarded;
-  char *ms_ismedia;
-  char *ms_isreply;
-  char *ms_isseen;
-} message_t;
-
-typedef struct
-{
-  char *c_id;
-  char *u_name;
-  char *u_surname;
-  char *u_avatar;
-  char *u_status;
-  char *u_lastSeen;
-
-} contact_t;
-
+//macros defines
 #define array_init(a) (a).arr = NULL, (a).cnt = 0
+
 //images
 void send_image(int socket);
 int receive_image(int socket);
@@ -78,7 +31,8 @@ int receive_image(int socket);
 void array_clear(array_t *a);
 int array_resize(array_t *a, size_t n);
 void array_strtok(array_t *a, char *s, const char *delim);
-char *strjoins(const char *s1, const char *s2);
+char *strjoins_arr(const char **str_arr);
+char *strjoin(int nHowMany, ... );
 char **add_string(char **array, char *string);
 char **init_array();
 char *int_to_str(int n);

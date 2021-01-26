@@ -3,10 +3,10 @@
 // char *user_contact_info(MYSQL *con, char *u_id)
 // {
 //     char *answer;
-//     char *bdrequest = strjoins("SELECT COUNT(user.u_id) FROM user Join credentials on credentials.u_id = user.u_id WHERE credentials.cr_pincode = \"", encrypted_pin);
-//     bdrequest = strjoins(bdrequest, "\" AND user.u_login = \"");
-//     bdrequest = strjoins(bdrequest, login);
-//     bdrequest = strjoins(bdrequest, "\";");
+//     char *bdrequest = strjoins_arr("SELECT COUNT(user.u_id) FROM user Join credentials on credentials.u_id = user.u_id WHERE credentials.cr_pincode = \"", encrypted_pin);
+//     bdrequest = strjoins_arr(bdrequest, "\" AND user.u_login = \"");
+//     bdrequest = strjoins_arr(bdrequest, login);
+//     bdrequest = strjoins_arr(bdrequest, "\";");
 
 //     //puts(bdrequest); //Вывод запроса в консоль
 

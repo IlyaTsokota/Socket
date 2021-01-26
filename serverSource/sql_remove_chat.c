@@ -6,17 +6,8 @@ char *chat_remove(MYSQL *con, char *chat_id)
     char *status = "Status is empty ;c";
     char *isonline = "1";
 
-    char *bdrequest = strjoins("delete from message where ch_id=\"", chat_id);
-    bdrequest = strjoins(bdrequest, "\";");
-    puts(bdrequest); //Вывод запроса в консоль
-
-    if (mysql_query(con, bdrequest))
-    {
-        finish_with_error(con);
-    }
-
-    bdrequest = strjoins("delete from chatusers where ch_id=\"", chat_id);
-    bdrequest = strjoins(bdrequest, "\";");
+    const char *request_parts[] = {"Delete from message where ch_id=\"", chat_id, "\";", NULL};
+    char *bdrequest = strjoins_arr(request_parts);
 
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -25,8 +16,10 @@ char *chat_remove(MYSQL *con, char *chat_id)
         finish_with_error(con);
     }
 
-    bdrequest = strjoins("delete from chat where ch_id=\"", chat_id);
-    bdrequest = strjoins(bdrequest, "\";");
+    free(bdrequest); //IR
+
+    const char *request_parts1[] = {"delete from chatusers where ch_id=\"", chat_id, "\";", NULL};
+    bdrequest = strjoins_arr(request_parts1);
 
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -34,6 +27,21 @@ char *chat_remove(MYSQL *con, char *chat_id)
     {
         finish_with_error(con);
     }
+
+    free(bdrequest); //IR
+
+    const char *request_parts2[] = {"delete from chat where ch_id=\"", chat_id, "\";", NULL};
+    bdrequest = strjoins_arr(request_parts2);
+
+    puts(bdrequest); //Вывод запроса в консоль
+
+    if (mysql_query(con, bdrequest))
+    {
+        finish_with_error(con);
+    }
+
+    free(bdrequest); //IR
+
     mysql_close(con);
 
     return "1";

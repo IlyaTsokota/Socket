@@ -4,14 +4,16 @@ char *is_login_exist(MYSQL *con, char *login)
     char *answer;
     // char *date = set_date();
 
-    char *bdrequest = strjoins("SELECT count(u_login) from user where u_login = \"", login);
-    bdrequest = strjoins(bdrequest, "\";");
+    const char *request_parts[] = {"SELECT count(u_login) from user where u_login = \"", login, "\";", NULL};
+    char *bdrequest = strjoins_arr(request_parts);
     puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))
     {
         finish_with_error(con);
     }
+
+    free(bdrequest);
 
     MYSQL_RES *result = mysql_store_result(con);
 
@@ -32,7 +34,7 @@ char *is_login_exist(MYSQL *con, char *login)
         }
     }
     mysql_free_result(result);
-     mysql_close(con);
+    mysql_close(con);
     
     return answer; //0 or >0
 }

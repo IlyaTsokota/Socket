@@ -7,10 +7,8 @@ char *contact_block(MYSQL *con, char *my_id, char *contact_id)
     {
         contact_add(con, contact_id, my_id,0);
     }
-    char *bdrequest = strjoins("UPDATE contacts SET u_blocked = \"1\" WHERE u_id = \"", my_id);
-    bdrequest = strjoins(bdrequest, "\" and c_id = \"");
-    bdrequest = strjoins(bdrequest, contact_id);
-    bdrequest = strjoins(bdrequest, "\";");
+    const char *request_parts[] = {"UPDATE contacts SET u_blocked = \"1\" WHERE u_id = \"", my_id, "\" and c_id = \"", contact_id, "\";", NULL};
+    char *bdrequest = strjoins_arr(request_parts);
 
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -19,6 +17,6 @@ char *contact_block(MYSQL *con, char *my_id, char *contact_id)
         finish_with_error(con);
     }
     mysql_close(con);
-
+    free(bdrequest); //IR
     return "1";
 }
