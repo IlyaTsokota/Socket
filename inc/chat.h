@@ -99,7 +99,7 @@ typedef struct
 	GtkWidget *fail_password;
 	GtkWidget *fail_auth;
 	char *login_text;
-	
+
 } autorization_w;
 
 autorization_w autorization;
@@ -124,6 +124,16 @@ typedef struct
 } main_form_t;
 
 typedef struct
+{
+	GtkWidget *event_box_message;
+	GtkWidget *message;
+	GtkWidget *message_time;
+	GtkWidget *message_info;
+	GtkWidget *message_text;
+	GtkWidget *message_login;
+} messages_t;
+
+	typedef struct
 {
 	GtkWidget *setting;
 	GtkWidget *contact;
@@ -151,28 +161,29 @@ typedef struct
 
 typedef struct
 {
-  char *ch_id;
-  char *ms_id;
-  char *u_id;
-  char *u_name;
-  char *u_surname;
-  char *ms_text;
-  char *ms_datetime;
-  char *ms_isedited;
-  char *ms_isforwarded;
-  char *ms_ismedia;
-  char *ms_isreply;
-  char *ms_isseen;
+	char *ch_id;
+	char *ms_id;
+	char *u_id;
+	char *u_name;
+	char *u_surname;
+	char *ms_text;
+	char *ms_datetime;
+	char *ms_isedited;
+	char *ms_isforwarded;
+	char *ms_ismedia;
+	char *ms_isreply;
+	char *ms_isseen;
 } message_t;
-
 
 typedef struct
 {
- 	 chat_item_t **chat_items;
+	chat_item_t **chat_items;
 } chats_form;
 chats_form chats_f;
 main_form_t main_form;
 
+void free_messages(message_t **messages);
+void get_messages_for_current_chat_from_db(GtkWidget *container_msg);
 void get_all_messages(char *user_id, char *last_msg_id);
 message_t **get_messages_from_file(char *filename, char *chat_id);
 char *request_get_messages(char *request);
@@ -180,7 +191,7 @@ void free_chat_items(chat_item_t **chats);
 gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event);
 bool is_online(char *last_seen);
 char *strjoins(const char *s1, const char *s2);
-char* int_to_str(int n);
+char *int_to_str(int n);
 void free_settings(settings_t *settings);
 settings_t *get_settings(char *settings);
 void create_settings_json(char *login, char *theme, char *language, char *is_in);

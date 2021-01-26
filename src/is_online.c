@@ -9,7 +9,7 @@ char *strjoins(const char *s1, const char *s2)
         strcpy(result, s1);
         strcat(result, s2);
     }
-
+    //result[strlen(s1) + strlen(s2)] = '\0';
     return result;
 }
 
