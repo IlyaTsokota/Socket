@@ -7,7 +7,7 @@ void get_all_messages(char *user_id, char *last_msg_id)
     char *json = write_to_json(num_f, arr);
     free(num_f);
     char *messages = request_get_messages(json);
-    //free(json);
+    free(json);
     //puts(messages);
     FILE *fp = fopen("messages.json", "a");
     if (fp != NULL)
@@ -15,5 +15,5 @@ void get_all_messages(char *user_id, char *last_msg_id)
         fputs(messages, fp);
         fclose(fp);
     }
-    //free(messages);
+    free(messages);
 }

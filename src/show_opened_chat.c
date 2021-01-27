@@ -9,7 +9,7 @@ void show_opened_chat(GtkWidget *main_grid, char *id)
     GtkWidget *messages_container = GTK_WIDGET(gtk_builder_get_object(builder, "messages_container"));
     GtkWidget *message_line = GTK_WIDGET(gtk_builder_get_object(builder, "message_line"));
     GtkWidget *message_scroll = GTK_WIDGET(gtk_builder_get_object(builder, "message_scroll"));
-    // get_messages_for_current_chat_from_db(message_line);
+    get_messages_for_current_chat_from_db(message_line);
 
     //memory leak
     msg_t *msg_entry = (msg_t *)malloc(sizeof(msg_t));

@@ -3,11 +3,13 @@
 char *strjoins(const char *s1, const char *s2)
 {
     char *result = mx_strnew(strlen(s1) + strlen(s2));
+    //puts(int_to_str((int)strlen(s2)));
 
     if (result)
     {
         strcpy(result, s1);
-        strcat(result, s2);
+        strcpy(result + strlen(s1), s2);
+        //strcat(result, s2);
     }
     //result[strlen(s1) + strlen(s2)] = '\0';
     return result;

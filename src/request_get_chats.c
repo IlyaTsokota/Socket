@@ -2,30 +2,41 @@
 
 chat_t **request_get_chats(char *request)
 {
-    write(data.socket_desc, request, strlen(request));
-    int size = 0, read_size = 0, stat;
-
-    ssize_t packet_size = 1024;
-    ssize_t packet_count = 0;
-    char *str = mx_strnew(4 * packet_size);
-    if (str == NULL)
-    {
-        g_print("UY\n");
-    }
-
-    stat = 0;
+    int stat;
+    
+    size_t packet_size = 1024, packet_count = 0, read_index = 0;
+    char buff[1024];
+    //buff[1024] = '\0';
+    char *str;
     char *tmp = str;
-    do
-    {
-        read_size = read(data.socket_desc, &str[stat], packet_size);
-        str[stat - 1] = '\0';
-        stat += read_size;
-        ++packet_count;
-        if (packet_count > 3)
-        {
-            str = realloc(str, sizeof(char) * (packet_count * packet_size * 4 + 1));
+    long size = 0;
+
+    write(data.socket_desc, request, strlen(request));
+
+    stat = 1025;
+
+    read(data.socket_desc, (void*)&size, sizeof(long));
+
+    str = mx_strnew(size);
+
+    do {
+        if (size < packet_size) {
+            packet_size = size;
         }
-    } while (read_size >= packet_size);
+        stat = recv(data.socket_desc, buff, packet_size, 0);
+        memcpy(&str[read_index], buff, packet_size);
+        if (stat == -1) {
+            perror("[-]Error in sending file.");
+            return false;
+        }
+        size -= stat;
+        read_index += stat;
+    } while (size > 0);
+    puts("\n\n\n");
+    puts(str);
+    puts("\n\n\n");
+    
+    read(data.socket_desc, buff, 1); //ах ты ёбаный ублюдок...
 
     int exist = 0;
     json_object *jobj, *values_obj, *tmp_values, *values_name;
@@ -34,6 +45,7 @@ chat_t **request_get_chats(char *request)
     int length = json_object_array_length(values_obj);
     if (length > 0)
     {
+        
         chat_t **chats = malloc(sizeof(chat_t *) * (length + 1));
         chats[length] = NULL;
         for (size_t i = 0; i < length; i++)
