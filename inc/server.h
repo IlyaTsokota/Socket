@@ -23,6 +23,9 @@
 //macros defines
 #define array_init(a) (a).arr = NULL, (a).cnt = 0
 
+//socket_send_data
+bool socket_send_data(char *data, int socket);
+
 //images
 void send_image(int socket);
 int receive_image(int socket);

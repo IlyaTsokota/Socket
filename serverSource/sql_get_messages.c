@@ -61,22 +61,20 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
         free_message_s(message);
     }
     str[strlen(str) - 1] = '\0';
-    tmp_str1 = strjoin(2, str, "]}\0");
+    tmp_str1 = strjoin(2, str, "]}");
     free(str);
     str = tmp_str1;
     tmp_str1 = NULL;
     //
-    int stat = 0;
-    size_t packet_size = 1024;
-    size_t read_index = 0;
-    puts(str);
-
-    while((stat = send(sock, &str[read_index], packet_size, 0)) > 0) {
-      
-        read_index+=stat-1;
-    }
-  
     mysql_free_result(result);
     mysql_close(con);
-    return "0"; //0 or >0
+    //
+    if (socket_send_data(str, sock)) {
+        return "0";
+    }
+    else {
+        return "1";
+    }
+    
+    return "1"; //0 or >0
 }

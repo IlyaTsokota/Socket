@@ -55,19 +55,19 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     }
     str[strlen(str) - 1] = '\0';
     //
-    tmp_str1 = strjoin(2, str, "]}\0");
+    tmp_str1 = strjoin(2, str, "]}");
     free(str);
     str = tmp_str1;
     tmp_str1 = NULL;
     //
-    int stat = 0;
-    ssize_t packet_size = 1024;
-    ssize_t read_index = 0;
-    do {
-            stat = write(sock, &str[read_index], packet_size);
-            read_index+=stat;
-    } while (stat >= packet_size);
     mysql_free_result(result);
     mysql_close(con);
-    return "0"; //0 or >0
+    //
+    if (socket_send_data(str, sock)) {
+        return "0";
+    }
+    else {
+        return "1";
+    }
+    return "1"; //0 or >0
 }
