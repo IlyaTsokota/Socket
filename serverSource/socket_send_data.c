@@ -2,8 +2,7 @@
 
 bool socket_send_data(char *data, int socket) {
     if (data == NULL) return false;
-    long stat = 0, size = strlen(data);
-    size_t packet_size = 1024, read_index = 0;
+    ssize_t stat = 0, packet_size = 1024, read_index = 0, size = strlen(data);
     char buff[1024];
 
     write(socket, (void*)&size, sizeof(long));

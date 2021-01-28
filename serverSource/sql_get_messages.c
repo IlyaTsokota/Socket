@@ -8,7 +8,7 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
     FROM chatusers cu \
     join message ms on cu.ch_id = ms.ch_id \
     join user u on ms.u_id = u.u_id \
-    WHERE cu.u_id = \"", user_id, "\" AND ms.ms_id > \"", last_message_id, "\";", NULL};
+    WHERE cu.u_id = \"", user_id, "\" AND ms.ms_id > \"", last_message_id, "\" order by ms.ms_id;", NULL};
 
     bdrequest = strjoins_arr(request_parts);
     
