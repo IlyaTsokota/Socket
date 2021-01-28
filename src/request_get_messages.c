@@ -1,5 +1,4 @@
 #include "chat.h"
-#include <strings.h>
 
 char *request_get_messages(char *request)
 {
@@ -31,12 +30,8 @@ char *request_get_messages(char *request)
         read_index += stat;
         str[read_index] = '\0';
     } while (size > 0);
+
+    stat = read(data.socket_desc, buff, 1); //ах ты ёбаный ублюдок...
     
-    // puts("\n\n\n");
-    // puts(str);
-    // puts("\n\n\n");
-
-    read(data.socket_desc, buff, 1); //ах ты ёбаный ублюдок...
-
     return str;
 }

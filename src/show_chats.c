@@ -11,6 +11,7 @@ void show_chats(GtkWidget *main_grid)
     GtkWidget *arr[] = {main_form.left_content, contacts_panel,  main_form.chats_grid, NULL};                   
     css_set(arr, "share/resources/css/main.css");
 
-    get_chats_from_db( main_form.chats_grid, data.user_id);
+    get_chats_from_db(main_form.chats_grid, data.user_id);
+    
     g_object_unref(builder);
 }

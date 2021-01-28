@@ -55,6 +55,7 @@ typedef struct
 	GtkWidget *contact_name_container;
 	GtkWidget *img_contact;
 	GtkWidget *contact_img_container;
+
 } chat_item_t;
 
 typedef struct
@@ -179,14 +180,15 @@ typedef struct
 typedef struct
 {
 	chat_item_t **chat_items;
+		char *curr_chat;
 } chats_form;
 chats_form chats_f;
 main_form_t main_form;
-
+char* get_last_mesage_id(char* filename);
 char* get_user_id_from_db(char *login);
 char* request_get_str_from_server(char *request);
 void free_messages(message_t **messages);
-void get_messages_for_current_chat_from_db(GtkWidget *container_msg);
+void get_messages_for_current_chat_from_db(GtkWidget *container_msg, char *chat_id);
 void get_all_messages(char *user_id, char *last_msg_id);
 message_t **get_messages_from_file(char *filename, char *chat_id);
 char *request_get_messages(char *request);

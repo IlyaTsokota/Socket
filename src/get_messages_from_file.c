@@ -2,21 +2,11 @@
 
 message_t **get_messages_from_file(char *filename, char *chat_id)
 {
-    puts("Golina\n");
     char *str = mx_file_to_str(filename);
-    if (str == NULL) {
-        puts("Vse Idet po planu!\n");
-    }
-    puts("\n");
-    puts(str);
-    puts("\n");
     int exist = 0;
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);
-    if (jobj == NULL) {
-        puts("Vse Idet po planu!\n");
-    }
-    // puts(str);
+    if (jobj == NULL) {puts("JOBJ == NULL");}
     free(str);
     exist = json_object_object_get_ex(jobj, "messages", &values_obj);
     int length = json_object_array_length(values_obj);
@@ -74,12 +64,7 @@ message_t **get_messages_from_file(char *filename, char *chat_id)
             free(tmp);
             free(tmp_values);
         }
-        //messages = realloc(messages, ++i);
         messages[i] = NULL;
-        for (size_t v = 0; messages[v]; ++v) {
-            puts(messages[v]->ch_id);
-            puts("\n/1/1/1/1/1/1/1/1/\n");
-        }
         free(values_obj);
         free(jobj);
         return messages;

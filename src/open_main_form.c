@@ -1,7 +1,9 @@
 #include "chat.h"
 void open_main_form(GtkWidget *window)
-{   
-    get_all_messages(data.user_id, "0");
+{  
+    char *last_ms_id = get_last_mesage_id("messages.json");
+    get_all_messages(data.user_id, last_ms_id);
+    
     is_fullscreen(window);
     GtkBuilder *builder = glade_file_to_interface("share/main.glade");
     GtkWidget *main_forma = GTK_WIDGET(gtk_builder_get_object(builder, "main_form"));
@@ -35,7 +37,7 @@ void open_main_form(GtkWidget *window)
     main_form.top_panel_bottom_text = GTK_WIDGET(gtk_builder_get_object(builder, "user_is_online_in_chat"));
     GtkWidget *box_contacts = GTK_WIDGET(gtk_builder_get_object(builder, "box_contacts"));
     show_chats(main_form.main_grid);
-    show_opened_chat(main_form.main_grid, "1");
+    show_opened_chat(main_form.main_grid,  chats_f.curr_chat);
     
     GtkWidget *arr[] = {box_contacts, main_forma, left_panel, is_connection, con_img, top_panel, search_entry, main_form.top_panel_top_text , main_form.top_panel_bottom_text,
                         left_panel_img->contact, left_panel_img->chat, left_panel_img->setting, left_panel_img->lock, NULL};

@@ -32,9 +32,9 @@ chat_t **request_get_chats(char *request)
         size -= stat;
         read_index += stat;
     } while (size > 0);
-    puts("\n\n\n");
-    puts(str);
-    puts("\n\n\n");
+    // puts("\n\n\n");
+    // puts(str);
+    // puts("\n\n\n");
     
     read(data.socket_desc, buff, 1); //ах ты ёбаный ублюдок...
 

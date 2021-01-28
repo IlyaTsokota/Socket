@@ -1,30 +1,14 @@
 #include "chat.h"
 
-void get_messages_for_current_chat_from_db(GtkWidget *container_msg)
+void get_messages_for_current_chat_from_db(GtkWidget *container_msg, char *chat_id)
 {
-    puts("LilPipa\n");
-    message_t **message = get_messages_from_file("messages.json", "3");
-    puts("Vasiliy\n");
+    message_t **message = get_messages_from_file("messages.json", chat_id);
     if (message != NULL)
     {
         size_t size = 0;
-        puts("pzdc");
         for (size_t i = 0; message[i]; i++)
         {
-            puts("----------------");
-            puts(message[i]->ch_id);
-            puts(message[i]->ms_datetime);
-            puts(message[i]->ms_id);
-            puts(message[i]->ms_isedited);
-            puts(message[i]->ms_isforwarded);
-            puts(message[i]->ms_ismedia);
-            puts(message[i]->ms_isreply);
-            puts(message[i]->ms_isseen);
-            puts(message[i]->ms_text);
-            puts(message[i]->u_id);
-            puts(message[i]->u_name);
-            puts(message[i]->u_surname);
-               puts("----------------");
+           
             size++;
         }
         
@@ -37,7 +21,11 @@ void get_messages_for_current_chat_from_db(GtkWidget *container_msg)
             messages_g[i]->event_box_message = gtk_event_box_new();
             // g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
             gtk_widget_set_hexpand(messages_g[i]->event_box_message, true);
-            gtk_widget_set_halign(messages_g[i]->event_box_message, GTK_ALIGN_START);
+            if(strcmp(message[i]->u_id, data.user_id) == 0){
+                gtk_widget_set_halign(messages_g[i]->event_box_message, GTK_ALIGN_END);
+            } else {
+                gtk_widget_set_halign(messages_g[i]->event_box_message, GTK_ALIGN_START);
+            }
             gtk_widget_set_vexpand(messages_g[i]->event_box_message, true);
             gtk_widget_set_name(messages_g[i]->event_box_message, message[i]->ms_id);
             gtk_widget_set_size_request(messages_g[i]->event_box_message, 500, -1);
@@ -92,5 +80,4 @@ void get_messages_for_current_chat_from_db(GtkWidget *container_msg)
         gtk_widget_show_all(container_msg);
         free_messages(message);
     }
-    puts("Onton\n");
 }
