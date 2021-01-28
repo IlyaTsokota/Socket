@@ -92,4 +92,6 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock); 
 char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data); //13
 
 
+char *get_my_id(MYSQL *con, char *login); //18
+
 #endif

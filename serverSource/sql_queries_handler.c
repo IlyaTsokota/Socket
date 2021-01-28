@@ -61,7 +61,9 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 17:
         puts("Query 17 -> get_chats");
         return get_chats(con, array[1], sock);
-
+    case 18:
+        puts("Query 18 -> get_my_id");
+        return get_my_id(con, array[1]);
     // operator doesn't match any case
     default:
         puts("Server queries_handler default error");
