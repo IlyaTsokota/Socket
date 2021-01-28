@@ -32,9 +32,9 @@ char *request_get_messages(char *request)
         str[read_index] = '\0';
     } while (size > 0);
     
-    puts("\n\n\n");
-    puts(str);
-    puts("\n\n\n");
+    // puts("\n\n\n");
+    // puts(str);
+    // puts("\n\n\n");
 
     read(data.socket_desc, buff, 1); //ах ты ёбаный ублюдок...
 

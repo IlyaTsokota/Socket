@@ -5,8 +5,7 @@ bool request_to_server(char *request){
     if (a == (int)strlen(request)) {
         char answer[1024];
         size_t bytes_readed = read(data.socket_desc, answer, 1024);
-        answer[bytes_readed] = '\0'; 
-        g_print("%s\n", answer);
+        answer[bytes_readed] = '\0';
         return strcmp("1", answer) > 0 ? false : true;
     }
     else {
@@ -14,4 +13,22 @@ bool request_to_server(char *request){
         return false;
     }
 }
+
+
+
+char* request_get_str_from_server(char *request){
+    int a = write(data.socket_desc, request, strlen(request));
+    if (a == (int)strlen(request)) {
+        char answer[1024];
+        size_t bytes_readed = read(data.socket_desc, answer, 1024);
+        answer[bytes_readed] = '\0'; 
+        char *result = strdup(answer);
+        return result;
+    }
+    else {
+        g_print("Request to server error!\n");
+        return NULL;
+    }
+}
+
 

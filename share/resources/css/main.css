@@ -101,7 +101,7 @@ grid#top-panel {
 }
 
 .message-time {
-    margin: 0 10px 10px 0;
+    margin-right: 15px;
     font-size: 12px;
     font-weight: 400;
     color: #878787;

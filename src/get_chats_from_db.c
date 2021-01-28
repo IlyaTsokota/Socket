@@ -1,9 +1,9 @@
 #include "chat.h"
 
-void get_chats_from_db(GtkWidget *container_chats)
+void get_chats_from_db(GtkWidget *container_chats, char *user_id)
 {
     char *num_f = strdup("17");
-    char *arr[] = {"3", NULL};
+    char *arr[] = {user_id, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
     chat_t **chats = request_get_chats(json);

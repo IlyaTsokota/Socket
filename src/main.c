@@ -44,6 +44,7 @@ void application_activate(GtkApplication *application, gpointer user_data)
         open_login(data.win);
     } else {
         autorization.login_text = strdup(settings_field->login);
+        data.user_id = get_user_id_from_db(autorization.login_text);
         open_form_pin(data.win, true);
     }
 
@@ -57,6 +58,9 @@ void application_shutdown(GtkApplication *application, gpointer user_data)
 {
     close(data.socket_desc);
     g_application_quit(G_APPLICATION(application));
+    if(data.user_id != NULL){
+        free(data.user_id);
+    }
 }
 
 int main(int argc, char *argv[])

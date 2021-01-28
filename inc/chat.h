@@ -108,6 +108,7 @@ typedef struct
 {
 	GtkApplication *restrict app;
 	GtkWidget *restrict win;
+	char *user_id;
 	int socket_desc;
 } appdata;
 
@@ -182,6 +183,8 @@ typedef struct
 chats_form chats_f;
 main_form_t main_form;
 
+char* get_user_id_from_db(char *login);
+char* request_get_str_from_server(char *request);
 void free_messages(message_t **messages);
 void get_messages_for_current_chat_from_db(GtkWidget *container_msg);
 void get_all_messages(char *user_id, char *last_msg_id);
@@ -197,7 +200,7 @@ settings_t *get_settings(char *settings);
 void create_settings_json(char *login, char *theme, char *language, char *is_in);
 void free_chats(chat_t **chats);
 void set_style_context(GtkWidget *widget, char *class_name);
-void get_chats_from_db(GtkWidget *widget);
+void get_chats_from_db(GtkWidget *container_chats, char *user_id);
 chat_t **request_get_chats(char *request);
 void *auth_check_f(void *auth_s);
 void *start_spinner(void *cur_grid);
