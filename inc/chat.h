@@ -5,6 +5,7 @@
 #include <time.h>
 
 #include <gtk/gtk.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -135,7 +136,24 @@ typedef struct
 	GtkWidget *message_login;
 } messages_t;
 
-	typedef struct
+
+typedef struct
+{
+	GtkWidget *edit_profile_img;
+	GtkWidget *edit_profile_text;
+	GtkWidget *notifications_img;
+	GtkWidget *notifications_text;
+	GtkWidget *privacy_img;
+	GtkWidget *privacy_text;
+	GtkWidget *language_img;
+	GtkWidget *language_text;
+	GtkWidget *theme_img;
+	GtkWidget *theme_text;
+	GtkWidget *double_bottom_img;
+	GtkWidget *double_bottom_text;
+} setting_items;
+
+typedef struct
 {
 	GtkWidget *setting;
 	GtkWidget *contact;
@@ -177,16 +195,39 @@ typedef struct
 	char *ms_isseen;
 } message_t;
 
+
+
 typedef struct
 {
 	chat_item_t **chat_items;
-		char *curr_chat;
+	char *curr_chat;
 } chats_form;
+
+
+setting_items setting_elements;
 chats_form chats_f;
 main_form_t main_form;
-char* get_last_mesage_id(char* filename);
-char* get_user_id_from_db(char *login);
-char* request_get_str_from_server(char *request);
+
+void set_active_setting_item(GtkWidget *text, GtkWidget *img, char *path_img,void(*f)(GtkWidget *grid));
+void logout(GtkWidget *button, GtkWidget *widget);
+
+gboolean block_app(GtkWidget *widget, GdkEventButton *event, GtkWidget *form);
+gboolean open_double_bottom(GtkWidget *widget, GdkEventButton *event);
+gboolean open_notification(GtkWidget *widget, GdkEventButton *event);
+gboolean open_appereance(GtkWidget *widget, GdkEventButton *event);
+gboolean open_privacy(GtkWidget *widget, GdkEventButton *event);
+gboolean open_language(GtkWidget *widget, GdkEventButton *event);
+gboolean open_edit_profile(GtkWidget *widget, GdkEventButton *event);
+void clear_styles_from_setting_elements();
+void show_appereance(GtkWidget *main_grid);
+void show_notification(GtkWidget *main_grid);
+void show_double_bottom(GtkWidget *main_grid);
+void show_privacy(GtkWidget *main_grid);
+void show_language(GtkWidget *main_grid);
+void show_edit_profile(GtkWidget *main_grid);
+char *get_last_mesage_id(char *filename);
+char *get_user_id_from_db(char *login);
+char *request_get_str_from_server(char *request);
 void free_messages(message_t **messages);
 void get_messages_for_current_chat_from_db(GtkWidget *container_msg, char *chat_id);
 void get_all_messages(char *user_id, char *last_msg_id);

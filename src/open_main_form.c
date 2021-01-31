@@ -49,7 +49,7 @@ void open_main_form(GtkWidget *window)
     g_signal_connect(G_OBJECT(event_box_contact_view), "button-press-event", G_CALLBACK(open_contacts), left_panel_img);
     g_signal_connect(G_OBJECT(event_box_setting), "button-press-event", G_CALLBACK(open_setting), left_panel_img);
     g_signal_connect(G_OBJECT(event_box_chats), "button-press-event", G_CALLBACK(open_chats), left_panel_img);
-    g_signal_connect(G_OBJECT(event_box_lock), "button-press-event", G_CALLBACK(open_setting), left_panel_img);
+    g_signal_connect(G_OBJECT(event_box_lock), "button-press-event", G_CALLBACK(block_app), main_forma);
 
     gtk_container_add(GTK_CONTAINER(window), main_forma);
     g_object_unref(builder);
