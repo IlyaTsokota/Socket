@@ -3,7 +3,7 @@
 char *get_contacts(MYSQL *con, char *user_id, int sock)
 {
     char *answer;
-    const char *request_parts[] = {"select c.c_id, u.u_name, u.u_surname, u.u_avatar, u.u_status, u.u_lastSeen \
+    const char *request_parts[] = {"select c.c_id, concat(u.u_surname, ' ', u.u_name), u.u_avatar, u.u_status, u.u_lastSeen \
     from contacts c \
     join user u \
     on c.c_id = u.u_id \
@@ -42,10 +42,9 @@ char *get_contacts(MYSQL *con, char *user_id, int sock)
         contact = (contact_t *)malloc(sizeof(contact_t));
         contact->c_id = strdup(row[0]);       //mx_strnew(strlen(row[0]));
         contact->u_name = strdup(row[1]);     //mx_strnew(strlen(row[1]));
-        contact->u_surname = strdup(row[2]);  //mx_strnew(strlen(row[2]));
-        contact->u_avatar = strdup(row[3]);   //mx_strnew(strlen(row[3]));
-        contact->u_status = strdup(row[4]);   //mx_strnew(strlen(row[4]));
-        contact->u_lastSeen = strdup(row[5]); //mx_strnew(strlen(row[4]));
+        contact->u_avatar = strdup(row[2]);   //mx_strnew(strlen(row[3]));
+        contact->u_status = strdup(row[3]);   //mx_strnew(strlen(row[4]));
+        contact->u_lastSeen = strdup(row[4]); //mx_strnew(strlen(row[4]));
 
         tmp_str = write_contact_to_json(contact);
         //puts(strdup(tmp_str));

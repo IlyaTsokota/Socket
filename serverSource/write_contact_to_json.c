@@ -11,8 +11,6 @@ const char *write_contact_to_json(contact_t *contact)
     json_object_object_add(object, "c_id", tmp);
     tmp = json_object_new_string(contact->u_name);
     json_object_object_add(object, "u_name", tmp);
-    tmp = json_object_new_string(contact->u_surname);
-    json_object_object_add(object, "u_surname", tmp);
 
     tmp = json_object_new_string(contact->u_avatar);
     json_object_object_add(object, "u_avatar", tmp);

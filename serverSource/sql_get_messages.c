@@ -4,7 +4,7 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
 {
     const char *tmp_str, *coma_str = ",";
     char *str, *bdrequest, *tmp_str1;
-    const char *request_parts[] = {"SELECT cu.ch_id, ms.ms_id, ms.u_id, u.u_name, u.u_surname, ms.ms_text, ms.ms_datetime, ms.ms_isedited, ms.ms_isforwarded, ms.ms_ismedia, ms.ms_isreply, ms.ms_isseen \
+    const char *request_parts[] = {"SELECT cu.ch_id, ms.ms_id, ms.u_id, concat(u.u_name, ' ', u.u_surname), ms.ms_text, ms.ms_datetime, ms.ms_isedited, ms.ms_isforwarded, ms.ms_ismedia, ms.ms_isreply, ms.ms_isseen \
     FROM chatusers cu \
     join message ms on cu.ch_id = ms.ch_id \
     join user u on ms.u_id = u.u_id \
@@ -44,14 +44,13 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
         message->ms_id = strdup(row[1]);
         message->u_id = strdup(row[2]);
         message->u_name = strdup(row[3]);
-        message->u_surname = strdup(row[4]);
-        message->ms_text = strdup(row[5]);
-        message->ms_datetime = strdup(row[6]);
-        message->ms_isedited = strdup(row[7]);
-        message->ms_isforwarded = strdup(row[8]);
-        message->ms_ismedia = strdup(row[9]);
-        message->ms_isreply = strdup(row[10]);
-        message->ms_isseen = strdup(row[11]);
+        message->ms_text = strdup(row[4]);
+        message->ms_datetime = strdup(row[5]);
+        message->ms_isedited = strdup(row[6]);
+        message->ms_isforwarded = strdup(row[7]);
+        message->ms_ismedia = strdup(row[8]);
+        message->ms_isreply = strdup(row[9]);
+        message->ms_isseen = strdup(row[10]);
         tmp_str = write_message_to_json(message);
         tmp_str1 = strjoin(3, str, tmp_str, coma_str);
         free(str);

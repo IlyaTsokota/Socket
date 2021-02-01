@@ -15,8 +15,6 @@ const char *write_message_to_json(message_t *message)
     json_object_object_add(object, "u_id", tmp);
     tmp = json_object_new_string(message->u_name);
     json_object_object_add(object, "u_name", tmp);
-    tmp = json_object_new_string(message->u_surname);
-    json_object_object_add(object, "u_surname", tmp);
     tmp = json_object_new_string(message->ms_text);
     json_object_object_add(object, "ms_text", tmp);
     tmp = json_object_new_string(message->ms_datetime);

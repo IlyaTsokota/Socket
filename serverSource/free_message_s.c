@@ -8,7 +8,6 @@ void free_message_s(message_t *message)
         free(message->ms_id);
         free(message->u_id);
         free(message->u_name);
-        free(message->u_surname);
         free(message->ms_text);
         free(message->ms_datetime);
         free(message->ms_isedited);

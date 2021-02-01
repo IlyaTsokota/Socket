@@ -49,6 +49,7 @@ void *connection_handler(void *socket_desc)
         array_clear(&query);
         //password_check(handler_con, "1111", "itsokota");
 
+
         write(sock, server_answer_message, strlen(server_answer_message));
         memset(client_message, 0, 2000);
 

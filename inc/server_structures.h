@@ -34,7 +34,6 @@ typedef struct
   char *ms_id;
   char *u_id;
   char *u_name;
-  char *u_surname;
   char *ms_text;
   char *ms_datetime;
   char *ms_isedited;
@@ -48,7 +47,6 @@ typedef struct
 {
   char *c_id;
   char *u_name;
-  char *u_surname;
   char *u_avatar;
   char *u_status;
   char *u_lastSeen;
