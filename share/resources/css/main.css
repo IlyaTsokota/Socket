@@ -313,3 +313,7 @@ grid#top-panel {
 .mt0 {
     margin-top: 0;
 }
+
+.logout{
+    color: #b21408;
+}

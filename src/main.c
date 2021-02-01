@@ -44,7 +44,6 @@ void application_activate(GtkApplication *application, gpointer user_data)
         open_login(data.win);
     } else {
         autorization.login_text = strdup(settings_field->login);
-        data.user_id = get_user_id_from_db(autorization.login_text);
         open_form_pin(data.win, true);
     }
 

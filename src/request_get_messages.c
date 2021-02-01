@@ -8,7 +8,9 @@ char *request_get_messages(char *request)
     char buff[1024];
     char *str;//= mx_strnew(0);
     char *tmp = str;
-    
+    puts("request = ");
+    puts(request);
+    puts("================");
     write(data.socket_desc, request, strlen(request));
 
     stat = 1025;

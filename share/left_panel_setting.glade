@@ -127,6 +127,66 @@
                         <property name="hexpand">True</property>
                         <property name="vexpand">False</property>
                         <child>
+                            <object class="GtkEventBox" id="event_logout">
+                            <property name="height_request">57</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="valign">start</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">False</property>
+                            <child>
+                                <object class="GtkGrid">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <child>
+                                    <object class="GtkImage" id="logout_img">
+                                    <property name="width_request">25</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="valign">center</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">True</property>
+                                    <property name="pixbuf">resources/img/logout1.png</property>
+                                    <style>
+                                        <class name="settings-item_img"/>
+                                    </style>
+                                    </object>
+                                    <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">0</property>
+                                    </packing>
+                                </child>
+                                <child>
+                                    <object class="GtkLabel" id="logout_text">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="halign">start</property>
+                                    <property name="valign">center</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="vexpand">True</property>
+                                    <property name="label" translatable="yes">Logout</property>
+                                    <style>
+                                        <class name="settings-item_text"/>
+                                        <class name="logout"/>
+                                    </style>
+                                    </object>
+                                    <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">0</property>
+                                    </packing>
+                                </child>
+                                </object>
+                            </child>
+                            </object>
+                            <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                            </packing>
+                        </child>
+                        <child>
                             <object class="GtkLabel" id="socket_version">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
@@ -139,7 +199,7 @@
                             </object>
                             <packing>
                             <property name="left_attach">0</property>
-                            <property name="top_attach">1</property>
+                            <property name="top_attach">2</property>
                             </packing>
                         </child>
                         <child>
@@ -155,7 +215,7 @@
                             </object>
                             <packing>
                             <property name="left_attach">0</property>
-                            <property name="top_attach">0</property>
+                            <property name="top_attach">1</property>
                             </packing>
                         </child>
                       

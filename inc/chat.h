@@ -181,11 +181,9 @@ typedef struct
 
 typedef struct
 {
-	char *ch_id;
 	char *ms_id;
 	char *u_id;
 	char *u_name;
-	char *u_surname;
 	char *ms_text;
 	char *ms_datetime;
 	char *ms_isedited;
@@ -193,9 +191,14 @@ typedef struct
 	char *ms_ismedia;
 	char *ms_isreply;
 	char *ms_isseen;
+
 } message_t;
 
-
+typedef struct
+{
+	message_t **messages;
+	int *length;
+}message_arr;
 
 typedef struct
 {
@@ -228,10 +231,10 @@ void show_edit_profile(GtkWidget *main_grid);
 char *get_last_mesage_id(char *filename);
 char *get_user_id_from_db(char *login);
 char *request_get_str_from_server(char *request);
-void free_messages(message_t **messages);
+void free_messages(message_arr *message_container);
 void get_messages_for_current_chat_from_db(GtkWidget *container_msg, char *chat_id);
 void get_all_messages(char *user_id, char *last_msg_id);
-message_t **get_messages_from_file(char *filename, char *chat_id);
+message_arr *get_messages_from_file(char *filename, char *chat_id);
 char *request_get_messages(char *request);
 void free_chat_items(chat_item_t **chats);
 gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event);

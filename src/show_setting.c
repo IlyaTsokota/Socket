@@ -40,17 +40,23 @@ void show_setting(GtkWidget *main_grid)
     setting_elements.double_bottom_img = GTK_WIDGET(gtk_builder_get_object(builder, "double_bottom_img"));
     setting_elements.double_bottom_text = GTK_WIDGET(gtk_builder_get_object(builder, "double_bottom_text"));
     
+    GtkWidget *event_logout = GTK_WIDGET(gtk_builder_get_object(builder, "event_logout"));
+    GtkWidget *logout_img = GTK_WIDGET(gtk_builder_get_object(builder, "logout_img"));
+    GtkWidget *logout_text = GTK_WIDGET(gtk_builder_get_object(builder, "logout_text"));
+    
+
     g_signal_connect(G_OBJECT(event_edit_profile), "button-press-event", G_CALLBACK(open_edit_profile), NULL);
     g_signal_connect(G_OBJECT(event_notifications), "button-press-event", G_CALLBACK(open_notification), NULL);
     g_signal_connect(G_OBJECT(event_privacy), "button-press-event", G_CALLBACK(open_privacy), NULL);
     g_signal_connect(G_OBJECT(event_language), "button-press-event", G_CALLBACK(open_language), NULL);
     g_signal_connect(G_OBJECT(event_theme), "button-press-event", G_CALLBACK(open_appereance), NULL);
     g_signal_connect(G_OBJECT(event_double_bottom), "button-press-event", G_CALLBACK(open_double_bottom), NULL);
+    g_signal_connect(G_OBJECT(event_logout), "button-press-event", G_CALLBACK(logout), NULL);
 
     GtkWidget *arr[] = {main_form.left_content, setting_info_panel,info_container,info_img,info_login, info_status,
     socket_version,socket_platform,event_edit_profile, setting_elements.edit_profile_img,setting_elements.edit_profile_text,event_notifications,
      setting_elements.notifications_img,setting_elements.notifications_text,event_privacy,setting_elements.privacy_img,setting_elements.privacy_text,event_language,setting_elements.language_img,
-     setting_elements.language_text,event_double_bottom,setting_elements.double_bottom_img,setting_elements.double_bottom_text,event_theme,setting_elements.theme_img,setting_elements.theme_text,NULL};
+     setting_elements.language_text,event_logout,logout_img,logout_text,event_double_bottom,setting_elements.double_bottom_img,setting_elements.double_bottom_text,event_theme,setting_elements.theme_img,setting_elements.theme_text,NULL};
     css_set(arr, "share/resources/css/main.css");
     gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content, 0, 0, 1, 1);
     g_object_unref(builder);

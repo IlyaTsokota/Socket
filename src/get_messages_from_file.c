@@ -1,6 +1,6 @@
 #include "chat.h"
 
-message_t **get_messages_from_file(char *filename, char *chat_id)
+message_arr *get_messages_from_file(char *filename, char *chat_id)
 {
     char *str = mx_file_to_str(filename);
     int exist = 0;
@@ -13,7 +13,8 @@ message_t **get_messages_from_file(char *filename, char *chat_id)
     if (length > 0)
     {
         int i = 0;
-        message_t **messages = malloc(sizeof(message_t *));
+        message_arr *arr_msgs = malloc(sizeof(message_arr));
+        arr_msgs->messages = malloc(sizeof(message_t *));
         char *tmp;
         for (size_t j = 0; j < length; j++)
         {
@@ -23,51 +24,49 @@ message_t **get_messages_from_file(char *filename, char *chat_id)
             free(values_name);
             if (strcmp(tmp, chat_id) == 0)
             {
-                messages[i] = malloc(sizeof(message_t));
-                messages[i]->ch_id = strdup(tmp);
+                arr_msgs->messages[i] = malloc(sizeof(message_t));
                 json_object_object_get_ex(tmp_values, "ms_id", &values_name);
-                messages[i]->ms_id = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->ms_id = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
                 json_object_object_get_ex(tmp_values, "u_id", &values_name);
-                messages[i]->u_id = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->u_id = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
                 json_object_object_get_ex(tmp_values, "u_name", &values_name);
-                messages[i]->u_name = strdup((char *)json_object_get_string(values_name));
-                free(values_name);
-                json_object_object_get_ex(tmp_values, "u_surname", &values_name);
-                messages[i]->u_surname = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->u_name = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
                 json_object_object_get_ex(tmp_values, "ms_text", &values_name);
-                messages[i]->ms_text = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->ms_text = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
                 json_object_object_get_ex(tmp_values, "ms_datetime", &values_name);
-                messages[i]->ms_datetime = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->ms_datetime = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
                 json_object_object_get_ex(tmp_values, "ms_isedited", &values_name);
-                messages[i]->ms_isedited = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->ms_isedited = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
                 json_object_object_get_ex(tmp_values, "ms_isforwarded", &values_name);
-                messages[i]->ms_isforwarded = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->ms_isforwarded = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
                 json_object_object_get_ex(tmp_values, "ms_ismedia", &values_name);
-                messages[i]->ms_ismedia = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->ms_ismedia = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
                 json_object_object_get_ex(tmp_values, "ms_isreply", &values_name);
-                messages[i]->ms_isreply = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->ms_isreply = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
                 json_object_object_get_ex(tmp_values, "ms_isseen", &values_name);
-                messages[i]->ms_isseen = strdup((char *)json_object_get_string(values_name));
+                arr_msgs->messages[i]->ms_isseen = strdup((char *)json_object_get_string(values_name));
                 free(values_name);
-                messages = realloc(messages, (i+2) * sizeof(message_t *));
+                arr_msgs->messages = realloc(arr_msgs->messages, (i +2) * sizeof(message_t *));
                 i++;
             }
-            free(tmp);
             free(tmp_values);
         }
-        messages[i] = NULL;
+        arr_msgs->messages[i] = NULL;
         free(values_obj);
         free(jobj);
-        return messages;
+        arr_msgs->length = malloc(sizeof(int)); 
+        *(arr_msgs->length) = i;
+
+        return arr_msgs;
     }
     free(values_obj);
     free(jobj);
