@@ -49,8 +49,14 @@ typedef struct
   char *u_name;
   char *u_avatar;
   char *u_status;
-  char *u_lastSeen;
-
 } contact_t;
+
+typedef struct
+{
+  char *u_name;
+  char *u_surname;
+  char *u_avatar;
+  char *u_status;
+} user_t;
 
 #endif

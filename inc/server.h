@@ -49,6 +49,7 @@ char *set_date();
 void free_chat_s(chat_t *chat);
 void free_message_s(message_t *message);
 void free_contact_s(contact_t *contact);
+void free_user_s(user_t *user);
 
 //working with queries
 array_t query_delimiter(char *str);
@@ -59,6 +60,7 @@ char *queries_handler(MYSQL *con, char **array, int sock);
 const char *write_chat_to_json(chat_t *chat);
 const char *write_message_to_json(message_t *message);
 const char *write_contact_to_json(contact_t *contact);
+const char *write_user_to_json(user_t *user);
 array_t json_to_data(char *json_str);
 
 //sql errors
@@ -86,6 +88,7 @@ char *contact_add(MYSQL *con, char *my_id, char *contact_id, int close_con_after
 char *contact_remove(MYSQL *con, char *my_id, char *contact_id);                                    //05
 char *contact_block(MYSQL *con, char *my_id, char *contact_id);                                     //09
 char *contact_unblock(MYSQL *con, char *my_id, char *contact_id);                                   //14
+char *get_contacts(MYSQL *con, char *user_id, int sock); //21
 
 //sql-message
 char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                //16
@@ -93,5 +96,6 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
 
 
 char *get_my_id(MYSQL *con, char *login); //18
-
+char *edit_profile(MYSQL *con, char* u_id, char* name, char* surname, char*quote); //19
+char *get_user_info(MYSQL *con, char *user_id, int sock); //20
 #endif
