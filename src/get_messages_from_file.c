@@ -6,7 +6,7 @@ message_arr *get_messages_from_file(char *filename, char *chat_id)
     int exist = 0;
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);
-    if (jobj == NULL) {puts("JOBJ == NULL");}
+ 
     free(str);
     exist = json_object_object_get_ex(jobj, "messages", &values_obj);
     int length = json_object_array_length(values_obj);

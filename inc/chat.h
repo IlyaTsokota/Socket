@@ -136,6 +136,12 @@ typedef struct
 	GtkWidget *message_login;
 } messages_t;
 
+typedef struct
+{
+	GtkWidget *name;
+	GtkWidget *surname;
+	GtkWidget *quote;
+} edit_prof_s;
 
 typedef struct
 {
@@ -152,6 +158,19 @@ typedef struct
 	GtkWidget *double_bottom_img;
 	GtkWidget *double_bottom_text;
 } setting_items;
+
+typedef struct
+{
+	GtkWidget *event_box_contact;
+	GtkWidget *contact_container;
+	GtkWidget *contact_info;
+	GtkWidget *contact_status;
+	GtkWidget *contact_status_lable;
+	GtkWidget *contact_name_container;
+	GtkWidget *contact_name_lable;
+	GtkWidget *grid_list_contact_img;
+	GtkWidget *img_contact;
+} contacts_widget_s;
 
 typedef struct
 {
@@ -198,7 +217,7 @@ typedef struct
 {
 	message_t **messages;
 	int *length;
-}message_arr;
+} message_arr;
 
 typedef struct
 {
@@ -206,14 +225,34 @@ typedef struct
 	char *curr_chat;
 } chats_form;
 
+typedef struct
+{
+	char *u_name;
+	char *u_surname;
+	char *u_avatar;
+	char *u_status;
+} user_t;
+
+typedef struct
+{
+	char *c_id;
+	char *u_name;
+	char *u_avatar;
+	char *u_status;
+} contact_t;
 
 setting_items setting_elements;
 chats_form chats_f;
 main_form_t main_form;
-
-void set_active_setting_item(GtkWidget *text, GtkWidget *img, char *path_img,void(*f)(GtkWidget *grid));
+edit_prof_s profile_s;
+void free_contacts_s(contact_t **contact);
+void get_contacts_from_db(GtkWidget *container, char *user_id);
+user_t *get_profile_info();
+void free_user_s(user_t *user);
+void set_active_setting_item(GtkWidget *text, GtkWidget *img, char *path_img, void (*f)(GtkWidget *grid));
 void logout(GtkWidget *button, GtkWidget *widget);
-
+void update_profile(GtkWidget *button);
+bool update_user_data(char *u_id, char *name, char *surname, char *quote);
 gboolean block_app(GtkWidget *widget, GdkEventButton *event, GtkWidget *form);
 gboolean open_double_bottom(GtkWidget *widget, GdkEventButton *event);
 gboolean open_notification(GtkWidget *widget, GdkEventButton *event);
@@ -227,6 +266,7 @@ void show_notification(GtkWidget *main_grid);
 void show_double_bottom(GtkWidget *main_grid);
 void show_privacy(GtkWidget *main_grid);
 void show_language(GtkWidget *main_grid);
+contact_t **get_contacts(char *response);
 void show_edit_profile(GtkWidget *main_grid);
 char *get_last_mesage_id(char *filename);
 char *get_user_id_from_db(char *login);
@@ -235,7 +275,7 @@ void free_messages(message_arr *message_container);
 void get_messages_for_current_chat_from_db(GtkWidget *container_msg, char *chat_id);
 void get_all_messages(char *user_id, char *last_msg_id);
 message_arr *get_messages_from_file(char *filename, char *chat_id);
-char *request_get_messages(char *request);
+char *request_on_server(char *request);
 void free_chat_items(chat_item_t **chats);
 gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event);
 bool is_online(char *last_seen);

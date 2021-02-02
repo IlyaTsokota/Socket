@@ -11,7 +11,12 @@ void show_setting(GtkWidget *main_grid)
 
     GtkWidget *info_container = GTK_WIDGET(gtk_builder_get_object(builder, "info_container"));
     GtkWidget *info_img = GTK_WIDGET(gtk_builder_get_object(builder, "info_img"));
+
+    char* settings = mx_file_to_str("settings.json");
+    settings_t *settings_field = get_settings(settings);
     GtkWidget *info_login = GTK_WIDGET(gtk_builder_get_object(builder, "info_login"));
+    gtk_label_set_text(GTK_LABEL(info_login), settings_field->login);
+    free_settings(settings_field); 
     GtkWidget *info_status = GTK_WIDGET(gtk_builder_get_object(builder, "info_status"));
     GtkWidget *socket_version = GTK_WIDGET(gtk_builder_get_object(builder, "socket_version"));
     GtkWidget *socket_platform = GTK_WIDGET(gtk_builder_get_object(builder, "socket_platform"));

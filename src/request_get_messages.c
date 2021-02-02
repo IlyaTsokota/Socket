@@ -1,13 +1,12 @@
 #include "chat.h"
 
-char *request_get_messages(char *request)
+char *request_on_server(char *request)
 {
     int stat;
     long size = 0;
     size_t packet_size = 1024, packet_count = 0, read_index = 0;
     char buff[1024];
-    char *str;//= mx_strnew(0);
-    char *tmp = str;
+    char *str;
     puts("request = ");
     puts(request);
     puts("================");

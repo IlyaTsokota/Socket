@@ -17,8 +17,6 @@ void get_chats_from_db(GtkWidget *container_chats, char *user_id)
             size++;
         }
 
-        GtkBuilder *builder = glade_file_to_interface("share/chat_item.glade");
-
         chats_f.chat_items = (chat_item_t **)malloc(sizeof(chat_item_t *) * (size + 1));
         chats_f.chat_items[size] = NULL;
         chats_f.curr_chat = strdup(chats[0]->ch_id);
@@ -149,6 +147,5 @@ void get_chats_from_db(GtkWidget *container_chats, char *user_id)
         }
         gtk_widget_show_all(container_chats);
         free_chats(chats);
-        g_object_unref(builder);
     }
 }

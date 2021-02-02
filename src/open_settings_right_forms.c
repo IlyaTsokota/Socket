@@ -19,25 +19,51 @@ void set_active_setting_item(GtkWidget *text, GtkWidget *img, char *path_img,voi
 
 void show_edit_profile(GtkWidget *main_grid)
 {
-    GtkBuilder *builder = glade_file_to_interface("share/edit_profile.glade");
 
+
+
+
+    GtkBuilder *builder = glade_file_to_interface("share/edit_profile.glade");
+    int *minSize = (int *)malloc(sizeof(int));
+    *minSize = 4;
+    int *maxSize = (int *)malloc(sizeof(int));
+    *maxSize = 16;
+    int *maxSizeQuote = (int *)malloc(sizeof(int));
+    *maxSizeQuote = 50;
     main_form.right_content = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
+   
+    user_t *user = get_profile_info();
+
     GtkWidget *nameLable = GTK_WIDGET(gtk_builder_get_object(builder, "nameLable"));
-    GtkWidget *nameInput = GTK_WIDGET(gtk_builder_get_object(builder, "nameInput"));
+    profile_s.name =  create_input(builder, "nameInput", maxSize);
+    gtk_entry_set_text(GTK_ENTRY(profile_s.name),user->u_name);
+    g_signal_connect(G_OBJECT( profile_s.name ), "changed", G_CALLBACK(change_event_entry_only_aplha), minSize);
+   
     GtkWidget *surnameLable = GTK_WIDGET(gtk_builder_get_object(builder, "surnameLable"));
-    GtkWidget *surnameInput = GTK_WIDGET(gtk_builder_get_object(builder, "surnameInput"));
+    profile_s.surname = create_input(builder, "surnameInput", maxSize);
+    gtk_entry_set_text(GTK_ENTRY(profile_s.surname), user->u_surname);
+    g_signal_connect(G_OBJECT( profile_s.surname), "changed", G_CALLBACK(change_event_entry_only_aplha), minSize);
+    
     GtkWidget *quoteLable = GTK_WIDGET(gtk_builder_get_object(builder, "quoteLable"));
-    GtkWidget *quoteInput = GTK_WIDGET(gtk_builder_get_object(builder, "quoteInput"));
+    profile_s.quote = create_input(builder, "quoteInput", maxSizeQuote);
+    gtk_entry_set_text(GTK_ENTRY(profile_s.quote), user->u_status);
+    g_signal_connect(G_OBJECT( profile_s.quote), "changed", G_CALLBACK(change_event_entry_only_aplha), minSize);
+ 
+    
+
     GtkWidget *apply_btn = GTK_WIDGET(gtk_builder_get_object(builder, "apply_btn"));
     GtkWidget *delete_acc = GTK_WIDGET(gtk_builder_get_object(builder, "delete_acc"));
     GtkWidget *just = GTK_WIDGET(gtk_builder_get_object(builder, "just"));
     GtkWidget *curr_img = GTK_WIDGET(gtk_builder_get_object(builder, "curr_img"));
     GtkWidget *select_img = GTK_WIDGET(gtk_builder_get_object(builder, "select_img"));
     GtkWidget *login_edit = GTK_WIDGET(gtk_builder_get_object(builder, "login_edit"));
-    GtkWidget *arr[] = {main_form.right_content, setting_form, nameLable, nameInput,
-                        surnameLable, surnameInput, quoteLable, quoteInput, apply_btn, delete_acc, just, curr_img,
+       free_user_s(user);
+    GtkWidget *arr[] = {main_form.right_content, setting_form, nameLable,  profile_s.name,
+                        surnameLable, profile_s.surname, quoteLable, profile_s.quote, apply_btn, delete_acc, just, curr_img,
                         select_img, login_edit, NULL};
+
+    g_signal_connect(G_OBJECT(apply_btn), "clicked", G_CALLBACK(update_profile), NULL);
     css_set(arr, "share/resources/css/main.css");
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content, 1, 0, 1, 1);
     g_object_unref(builder);
