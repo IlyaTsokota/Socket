@@ -49,6 +49,7 @@ char *set_date();
 void free_chat_s(chat_t *chat);
 void free_message_s(message_t *message);
 void free_contact_s(contact_t *contact);
+void free_contact_info_s(contact_info_t *contact);
 void free_user_s(user_t *user);
 
 //working with queries
@@ -61,6 +62,7 @@ const char *write_chat_to_json(chat_t *chat);
 const char *write_message_to_json(message_t *message);
 const char *write_contact_to_json(contact_t *contact);
 const char *write_user_to_json(user_t *user);
+const char *write_contact_info_to_json(contact_info_t *contact);
 array_t json_to_data(char *json_str);
 
 //sql errors
@@ -89,6 +91,7 @@ char *contact_remove(MYSQL *con, char *my_id, char *contact_id);                
 char *contact_block(MYSQL *con, char *my_id, char *contact_id);                                     //09
 char *contact_unblock(MYSQL *con, char *my_id, char *contact_id);                                   //14
 char *get_contacts(MYSQL *con, char *user_id, int sock); //21
+char *get_contact_info(MYSQL *con, char *user_id, int sock); //22
 
 //sql-message
 char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                //16
