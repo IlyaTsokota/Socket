@@ -1,43 +1,7 @@
 #include "chat.h"
 
-chat_t **request_get_chats(char *request)
+chat_t **request_get_chats(char *str)
 {
-    int stat;
-    
-    size_t packet_size = 1024, packet_count = 0, read_index = 0;
-    char buff[1024];
-    //buff[1024] = '\0';
-    char *str;
-    char *tmp = str;
-    long size = 0;
-
-    write(data.socket_desc, request, strlen(request));
-
-    stat = 1025;
-
-    read(data.socket_desc, (void*)&size, sizeof(long));
-
-    str = mx_strnew(size);
-
-    do {
-        if (size < packet_size) {
-            packet_size = size;
-        }
-        stat = recv(data.socket_desc, buff, packet_size, 0);
-        memcpy(&str[read_index], buff, packet_size);
-        if (stat == -1) {
-            perror("[-]Error in sending file.");
-            return false;
-        }
-        size -= stat;
-        read_index += stat;
-    } while (size > 0);
-    // puts("\n\n\n");
-    // puts(str);
-    // puts("\n\n\n");
-    
-    read(data.socket_desc, buff, 1); //ах ты ёбаный ублюдок...
-
     int exist = 0;
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);

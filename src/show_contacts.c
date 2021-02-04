@@ -5,8 +5,6 @@ void show_contacts(GtkWidget *main_grid)
     GtkBuilder *builder = glade_file_to_interface("share/contacts_left.glade");
     main_form.left_content = GTK_WIDGET(gtk_builder_get_object(builder, "grid_contacts_info"));
 
-
-    
     GtkWidget *contacts_info_panel = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_info_panel"));
     GtkWidget *box_contact = GTK_WIDGET(gtk_builder_get_object(builder, "box_contact"));
 

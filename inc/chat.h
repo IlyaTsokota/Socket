@@ -20,7 +20,7 @@
 #include <ctype.h>
 #include <locale.h>
 #include <wctype.h>
-
+#include <stdarg.h> 
 #include "json-c/json.h"
 #include <fcntl.h>
 #include <gio/gio.h>
@@ -124,6 +124,8 @@ typedef struct
 	GtkWidget *chats_grid;
 	GtkWidget *top_panel_top_text;
 	GtkWidget *top_panel_bottom_text;
+	int current_panel_id;
+	bool is_allow_access_next_panel;
 } main_form_t;
 
 typedef struct
@@ -134,6 +136,7 @@ typedef struct
 	GtkWidget *message_info;
 	GtkWidget *message_text;
 	GtkWidget *message_login;
+
 } messages_t;
 
 typedef struct
@@ -221,8 +224,15 @@ typedef struct
 
 typedef struct
 {
+	contacts_widget_s **widgets;
+	bool was_free;
+} contacts_arr;
+
+typedef struct
+{
 	chat_item_t **chat_items;
 	char *curr_chat;
+	bool was_free;
 } chats_form;
 
 typedef struct
@@ -243,8 +253,16 @@ typedef struct
 
 setting_items setting_elements;
 chats_form chats_f;
+contacts_arr contacts_t;
 main_form_t main_form;
 edit_prof_s profile_s;
+
+char *strjoin(int nHowMany, ... );
+char *cut_str(char *str, int count_sym_cut);
+void free_contact_widgets(contacts_widget_s **contacts);
+void free_chat_items(chat_item_t **chats);
+void free_all_children_in_container(GtkWidget *container);
+gboolean open_click_contact(GtkWidget *widget);
 void free_contacts_s(contact_t **contact);
 void get_contacts_from_db(GtkWidget *container, char *user_id);
 user_t *get_profile_info();
@@ -276,7 +294,6 @@ void get_messages_for_current_chat_from_db(GtkWidget *container_msg, char *chat_
 void get_all_messages(char *user_id, char *last_msg_id);
 message_arr *get_messages_from_file(char *filename, char *chat_id);
 char *request_on_server(char *request);
-void free_chat_items(chat_item_t **chats);
 gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event);
 bool is_online(char *last_seen);
 char *strjoins(const char *s1, const char *s2);

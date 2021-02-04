@@ -19,7 +19,7 @@ void show_open_contact(GtkWidget *main_grid, char *id)
     GtkWidget *fullname_text = GTK_WIDGET(gtk_builder_get_object(builder, "fullname_text"));
     GtkWidget *is_admin = GTK_WIDGET(gtk_builder_get_object(builder, "is_admin"));
     GtkWidget *support_text = GTK_WIDGET(gtk_builder_get_object(builder, "support_text"));
-    GtkWidget *arr[] = {main_form.right_content,contact_info_name_container,user_info_is_online,send_message,add_contact,blcok_contact,
+    GtkWidget *arr[] = {main_form.right_content, contact_info_name_container ,contact_info_name, user_info_is_online,send_message,add_contact,blcok_contact,
     user_info_is_online_round,img_info_contact,quote, quote_text,fullname,fullname_text,is_admin,support_text,NULL};
     css_set(arr, "share/resources/css/main.css");
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content, 1, 0, 1, 1);

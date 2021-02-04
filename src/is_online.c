@@ -19,7 +19,7 @@ static char *set_date()
 {
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
-puts(".................................");
+    puts(".................................");
     char *year = int_to_str((tm.tm_year + 1900));
     puts(year);
     char *month = int_to_str((tm.tm_mon + 1));
@@ -32,7 +32,7 @@ puts(".................................");
     puts(min);
     // char *sec = int_to_str(tm.tm_sec);
     // puts(sec);
-puts(".................................");
+    puts(".................................");
     char *date = strjoins(year, "-");
     date = strjoins(date, month);
     date = strjoins(date, "-");
@@ -65,13 +65,14 @@ static bool is_online2(double difference)
 bool is_online(char *last_seen)
 {
     struct tm tm1, tm2;
-    char* date = set_date();
+    char *date = set_date();
     puts(date);
     strptime(date, "%Y-%m-%d %H:%M:%S", &tm1);
     free(date);
     puts(last_seen);
     strptime(last_seen, "%Y-%m-%d %H:%M:%S", &tm2);
-    if (mktime(&tm1) == -1 || mktime(&tm2) == -1) {
+    if (mktime(&tm1) == -1 || mktime(&tm2) == -1)
+    {
         g_print("MKTIME ERROR!\n");
     }
     double diff = difftime(mktime(&tm1), mktime(&tm2));

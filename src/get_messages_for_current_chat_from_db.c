@@ -6,7 +6,7 @@ void get_messages_for_current_chat_from_db(GtkWidget *container_msg, char *chat_
     if (message != NULL)
     {   
         int length = *message->length;
-        messages_t **messages_g = (messages_t **)malloc(sizeof(messages_t *) * (*message->length));
+        messages_t **messages_g = (messages_t **)malloc(sizeof(messages_t *) * (length + 1));
         messages_g[length] = NULL;
         for (int i = 0; i < length; i++)
         {

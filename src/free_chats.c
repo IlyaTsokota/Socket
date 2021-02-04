@@ -41,7 +41,35 @@ void free_messages(message_arr *message_container)
         free(message_container->messages);
         free(message_container->length);
         free(message_container);
-        message_container->messages = NULL;
-        message_container = NULL;
+        // message_container->messages = NULL;
+        // message_container = NULL;
+    }
+}
+
+void free_chat_items(chat_item_t **chats)
+{
+    if (chats != NULL && !chats_f.was_free)
+    {
+        for (size_t i = 0; chats[i]; i++)
+        {
+            gtk_widget_destroy(chats[i]->img_contact);
+            gtk_widget_destroy(chats[i]->contact_img_container);
+            gtk_widget_destroy(chats[i]->text_last_message);
+            gtk_widget_destroy(chats[i]->login_last_message);
+            gtk_widget_destroy(chats[i]->contact_last_msg);
+            gtk_widget_destroy(chats[i]->contact_name_lable);
+            gtk_widget_destroy(chats[i]->user_is_online_round);
+            gtk_widget_destroy(chats[i]->user_is_online);
+            gtk_widget_destroy(chats[i]->contact_name_container);
+            gtk_widget_destroy(chats[i]->time_last_message);
+            gtk_widget_destroy(chats[i]->contact_info);
+            gtk_widget_destroy(chats[i]->contact_container);
+            gtk_widget_destroy(chats[i]->event_box_contact);
+            free(chats[i]);
+        }
+        free(chats);
+        chats = NULL;
+        chats_f.was_free = true;
+
     }
 }
