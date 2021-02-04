@@ -96,9 +96,8 @@ char *get_contact_info(MYSQL *con, char *user_id, int sock);                    
 
 //sql-message
 char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                //16
-char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data); //13
-
-//sql-unsorted
+char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock);
+//sql-unsorte
 char *get_my_id(MYSQL *con, char *login);                                           //18
 char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote); //19
 char *get_user_info(MYSQL *con, char *user_id, int sock);                           //20

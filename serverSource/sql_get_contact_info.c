@@ -38,8 +38,8 @@ char *get_contact_info(MYSQL *con, char *user_id, int sock)
         contact->u_login = strdup(row[0]);
         contact->u_name = strdup(row[1]);
         contact->u_avatar = strdup(row[2]);
- contact->u_status = strdup(row[3]);
- 
+        contact->u_status = strdup(row[3]);
+        
         tmp_str = write_contact_info_to_json(contact);
         tmp_str1 = strjoin(3, str, tmp_str, coma_str);
         free(str);

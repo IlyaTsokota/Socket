@@ -48,7 +48,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return add_user_to_group_chat(con, array[1], array[2]);
     case 13:
         puts("Query 13 -> add_message_to_chat");
-        return add_message_to_chat(con, array[1], array[2], array[3], array[4], array[5], array[6]);
+        return add_message_to_chat(con, array[1], array[2], array[3], array[4], array[5], array[6], sock);
     case 14:
         puts("Query 14 -> contact_unblock");
         return contact_unblock(con, array[1], array[2]);
