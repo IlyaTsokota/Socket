@@ -67,7 +67,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 19:
         puts("Query 19 -> edit_profile");
         return edit_profile(con, array[1], array[2], array[3], array[4]);
-        case 20:
+    case 20:
         puts("Query 20 -> profile_info");
         return get_user_info(con, array[1], sock);
     case 21:
@@ -76,6 +76,10 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 22:
         puts("Query 22 -> get_contact_info");
         return get_contact_info(con, array[1], sock);
+    case 23:
+        puts("Query 23 -> create_double_bottom");
+        return create_double_bottom(con, array[1], array[2]);
+
     // operator doesn't match any case
     default:
         puts("Server queries_handler default error");

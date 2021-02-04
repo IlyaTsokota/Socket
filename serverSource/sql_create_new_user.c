@@ -7,7 +7,7 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     char *status = "Status is empty ;c";
     char *isonline = "1";
     char *encrypted_password = crypt(password, "1337_1488");
-    char *encrypted_pin= crypt(pin, "1337_1488");
+    char *encrypted_pin = crypt(pin, "1337_1488");
     char *datetime = set_date();
     const char *request_parts[] = {"SELECT count(u_login) from user where u_login = \"", login, "\";", NULL};
     char *bdrequest = strjoins_arr(request_parts);
@@ -25,7 +25,7 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     {
         finish_with_error(con);
     }
-    
+
     free(bdrequest); //IR
 
     int num_fields = mysql_num_fields(result);
@@ -46,9 +46,9 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
         return "0"; //user already exist
 
     //Добавить юзера
-    const char *request_parts1[] = {"INSERT INTO user ( u_login, u_name, u_surname, u_status, u_isOnline, u_lastSeen, u_avatar) VALUES (\"", login, "\",\"", 
-    name, "\",\"", surname, "\",\"", status, "\",\"", isonline, "\",\"", datetime, "\",\"1234\");", NULL};
-    bdrequest =  strjoins_arr(request_parts1);
+    const char *request_parts1[] = {"INSERT INTO user ( u_login, u_name, u_surname, u_status, u_isBottommed, u_lastSeen, u_avatar) VALUES (\"", login, "\",\"",
+                                    name, "\",\"", surname, "\",\"", status, "\",\"", isonline, "\",\"", datetime, "\",\"1234\");", NULL};
+    bdrequest = strjoins_arr(request_parts1);
 
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -58,7 +58,7 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     }
 
     free(bdrequest); //IR
-    
+
     //Узнать айди user
     const char *request_parts2[] = {"SELECT u_id from user where u_login = \"", login, "\";", NULL};
     bdrequest = strjoins_arr(request_parts2);
@@ -96,14 +96,14 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     bdrequest = strjoins_arr(request_parts3);
 
     puts(bdrequest);
-     if (mysql_query(con, bdrequest))
+    if (mysql_query(con, bdrequest))
     {
         finish_with_error(con);
     }
-        mysql_close(con);
+    mysql_close(con);
 
     free(bdrequest); //IR
-    free(datetime); //IR
+    free(datetime);  //IR
 
     return "1";
 }

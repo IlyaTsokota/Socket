@@ -35,7 +35,7 @@ void array_clear(array_t *a);
 int array_resize(array_t *a, size_t n);
 void array_strtok(array_t *a, char *s, const char *delim);
 char *strjoins_arr(const char **str_arr);
-char *strjoin(int nHowMany, ... );
+char *strjoin(int nHowMany, ...);
 char **add_string(char **array, char *string);
 char **init_array();
 char *int_to_str(int n);
@@ -71,6 +71,7 @@ void finish_with_error(MYSQL *con);
 //sql-users
 char *user_add(MYSQL *con, char *login, char *name, char *surname, char *password, char *pin); //03
 char *is_login_exist(MYSQL *con, char *login);                                                 //07
+char *create_double_bottom(MYSQL *con, char *u_id, char *pin);                                 //23
 
 //sql-chats
 char *get_chats(MYSQL *con, char *user_id, int sock);                 //17
@@ -90,15 +91,22 @@ char *contact_add(MYSQL *con, char *my_id, char *contact_id, int close_con_after
 char *contact_remove(MYSQL *con, char *my_id, char *contact_id);                                    //05
 char *contact_block(MYSQL *con, char *my_id, char *contact_id);                                     //09
 char *contact_unblock(MYSQL *con, char *my_id, char *contact_id);                                   //14
-char *get_contacts(MYSQL *con, char *user_id, int sock); //21
-char *get_contact_info(MYSQL *con, char *user_id, int sock); //22
+char *get_contacts(MYSQL *con, char *user_id, int sock);                                            //21
+char *get_contact_info(MYSQL *con, char *user_id, int sock);                                        //22
 
 //sql-message
 char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                //16
 char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data); //13
 
+//sql-unsorted
+char *get_my_id(MYSQL *con, char *login);                                           //18
+char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote); //19
+char *get_user_info(MYSQL *con, char *user_id, int sock);                           //20
 
-char *get_my_id(MYSQL *con, char *login); //18
-char *edit_profile(MYSQL *con, char* u_id, char* name, char* surname, char*quote); //19
-char *get_user_info(MYSQL *con, char *user_id, int sock); //20
+//db-login-generator
+char *pass_gen();
+char *get_file7(FILE *file7, int line_no);
+char *get_file6(FILE *file6, int line_no);
+char *get_file5(FILE *file5, int line_no);
+char *get_file4(FILE *file4, int line_no);
 #endif
