@@ -36,6 +36,14 @@ typedef struct
 
 typedef struct
 {
+  char *u_login;
+  char *u_name;
+  char *u_avatar;
+  char *u_status;
+} contact_info_t;
+
+typedef struct
+{
 	cur_grid_t *current_grid;
 	char *login;
 	char *password;
@@ -112,6 +120,7 @@ typedef struct
 	GtkWidget *restrict win;
 	char *user_id;
 	int socket_desc;
+
 } appdata;
 
 appdata data;
@@ -126,6 +135,7 @@ typedef struct
 	GtkWidget *top_panel_bottom_text;
 	int current_panel_id;
 	bool is_allow_access_next_panel;
+	char *message;
 } main_form_t;
 
 typedef struct
@@ -257,6 +267,9 @@ contacts_arr contacts_t;
 main_form_t main_form;
 edit_prof_s profile_s;
 
+gboolean send_message(GtkWidget *widget, GtkTextView *text_view);
+void free_contact_info_s(contact_info_t *contact);
+contact_info_t *get_contact_info(char *contact_id);
 char *strjoin(int nHowMany, ... );
 char *cut_str(char *str, int count_sym_cut);
 void free_contact_widgets(contacts_widget_s **contacts);

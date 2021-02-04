@@ -13,10 +13,10 @@ void get_contacts_from_db(GtkWidget *container, char *user_id)
     jobj = json_tokener_parse(response);
     if (jobj == NULL) { return;}
     free(jobj);
-    puts("gg");
+
     contact_t **contacts = get_contacts(response);
     free(response);
-    puts("pzdc");
+  
     if (contacts != NULL)
     {
         contacts_t.was_free = false;
@@ -31,7 +31,7 @@ void get_contacts_from_db(GtkWidget *container, char *user_id)
 
         for (size_t i = 0; i < size; i++)
         {
-            puts("pzdc1");
+       
             contacts_t.widgets[i] = malloc(sizeof(contacts_widget_s));
 
             contacts_t.widgets[i]->event_box_contact = gtk_event_box_new();
@@ -41,51 +41,50 @@ void get_contacts_from_db(GtkWidget *container, char *user_id)
             gtk_widget_set_name(contacts_t.widgets[i]->event_box_contact, contacts[i]->c_id);
             gtk_widget_set_size_request(contacts_t.widgets[i]->event_box_contact, -1, 84);
             g_signal_connect(G_OBJECT(contacts_t.widgets[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_contact), NULL);
-            puts("pzdc2");
+    
             contacts_t.widgets[i]->contact_container = gtk_grid_new();
             gtk_widget_set_hexpand(contacts_t.widgets[i]->contact_container, true);
             gtk_widget_set_vexpand(contacts_t.widgets[i]->contact_container, true);
             set_style_context(contacts_t.widgets[i]->contact_container, "contact-container");
-            puts("pzdc3");
+        
             contacts_t.widgets[i]->contact_info = gtk_grid_new();
             gtk_widget_set_hexpand(contacts_t.widgets[i]->contact_info, true);
             gtk_widget_set_vexpand(contacts_t.widgets[i]->contact_info, true);
             set_style_context(contacts_t.widgets[i]->contact_info, "contact-body");
-            puts("pzdc4");
+ 
             contacts_t.widgets[i]->contact_status = gtk_grid_new();
             gtk_widget_set_hexpand(contacts_t.widgets[i]->contact_status, true);
             gtk_widget_set_vexpand(contacts_t.widgets[i]->contact_status, true);
             gtk_widget_set_valign(contacts_t.widgets[i]->contact_status, GTK_ALIGN_END);
-            puts("pzdc5");
-            //collapse to function
+          
             char *status = cut_str(contacts[i]->u_status, 25);
-            puts("pzdc6");
+        
             contacts_t.widgets[i]->contact_status_lable = gtk_label_new(status);
             gtk_widget_set_halign(contacts_t.widgets[i]->contact_status_lable, GTK_ALIGN_START);
             gtk_widget_set_hexpand(contacts_t.widgets[i]->contact_status_lable, false);
             set_style_context(contacts_t.widgets[i]->contact_status_lable, "contact-lastmessage");
             free(status);
-            puts("pzdc7");
+        
             contacts_t.widgets[i]->contact_name_container = gtk_grid_new();
 
             contacts_t.widgets[i]->contact_name_lable = gtk_label_new(contacts[i]->u_name);
             gtk_widget_set_margin_top( contacts_t.widgets[i]->contact_name_lable, 10);
             gtk_widget_set_halign(contacts_t.widgets[i]->contact_name_lable, GTK_ALIGN_START);
             set_style_context(contacts_t.widgets[i]->contact_name_lable, "contact-login");
-            puts("pzdc8");
+       
             contacts_t.widgets[i]->grid_list_contact_img = gtk_grid_new();
             gtk_widget_set_size_request(contacts_t.widgets[i]->grid_list_contact_img, 57, 57);
             gtk_widget_set_hexpand(contacts_t.widgets[i]->grid_list_contact_img, false);
             gtk_widget_set_halign(contacts_t.widgets[i]->grid_list_contact_img, GTK_ALIGN_START);
             gtk_widget_set_valign(contacts_t.widgets[i]->grid_list_contact_img, GTK_ALIGN_CENTER);
             set_style_context(contacts_t.widgets[i]->contact_name_lable, "contact-img");
-                puts("pzdc9");
+       
             contacts_t.widgets[i]->img_contact = gtk_image_new_from_file("share/resources/img/aa.png");
             gtk_widget_set_hexpand(contacts_t.widgets[i]->img_contact, true);
             gtk_widget_set_vexpand(contacts_t.widgets[i]->img_contact, true);
             gtk_widget_set_margin_start( contacts_t.widgets[i]->img_contact, 10);
             set_style_context(contacts_t.widgets[i]->img_contact, "contact-icon");
-            puts("pzdc8");
+         
             css_set_for_one(contacts_t.widgets[i]->img_contact, "share/resources/css/main.css");
             css_set_for_one(contacts_t.widgets[i]->grid_list_contact_img, "share/resources/css/main.css");
             css_set_for_one(contacts_t.widgets[i]->contact_name_lable, "share/resources/css/main.css");
@@ -93,7 +92,7 @@ void get_contacts_from_db(GtkWidget *container, char *user_id)
             css_set_for_one(contacts_t.widgets[i]->contact_status, "share/resources/css/main.css");
             css_set_for_one(contacts_t.widgets[i]->contact_container, "share/resources/css/main.css");
             css_set_for_one(contacts_t.widgets[i]->contact_info, "share/resources/css/main.css");
-puts("pzdc9");
+
             gtk_grid_attach(GTK_GRID(contacts_t.widgets[i]->contact_container), contacts_t.widgets[i]->contact_info, 1, 0, 1, 1);
             gtk_grid_attach(GTK_GRID(contacts_t.widgets[i]->contact_container), contacts_t.widgets[i]->grid_list_contact_img, 0, 0, 1, 1);
             gtk_grid_attach(GTK_GRID(contacts_t.widgets[i]->grid_list_contact_img), contacts_t.widgets[i]->img_contact, 0, 0, 1, 1);
@@ -101,11 +100,10 @@ puts("pzdc9");
             gtk_grid_attach(GTK_GRID(contacts_t.widgets[i]->contact_info), contacts_t.widgets[i]->contact_name_container, 0, 0, 1, 1);
             gtk_grid_attach(GTK_GRID(contacts_t.widgets[i]->contact_name_container), contacts_t.widgets[i]->contact_name_lable, 0, 0, 1, 1);
             gtk_grid_attach(GTK_GRID(contacts_t.widgets[i]->contact_status), contacts_t.widgets[i]->contact_status_lable, 0, 0, 1, 1);
-puts("pzdc10");
+
             gtk_container_add(GTK_CONTAINER(contacts_t.widgets[i]->event_box_contact), contacts_t.widgets[i]->contact_container);
             gtk_box_pack_start (GTK_BOX(container), contacts_t.widgets[i]->event_box_contact, false, true, 0);
         }
-        puts("GG");
         gtk_widget_show_all(container);
         free_contacts_s(contacts);
 

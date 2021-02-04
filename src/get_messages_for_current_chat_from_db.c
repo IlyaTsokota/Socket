@@ -48,6 +48,7 @@ void get_messages_for_current_chat_from_db(GtkWidget *container_msg, char *chat_
             gtk_widget_set_halign(messages_g[i]->message_text, GTK_ALIGN_START);
             gtk_label_set_line_wrap(GTK_LABEL(messages_g[i]->message_text), true);
             gtk_widget_set_size_request(messages_g[i]->message_text, 500, -1);
+            gtk_label_set_xalign(GTK_LABEL(messages_g[i]->message_text), 0);
             gtk_label_set_line_wrap_mode(GTK_LABEL(messages_g[i]->message_text), PANGO_WRAP_WORD);
             gtk_label_set_max_width_chars (GTK_LABEL (messages_g[i]->message_text), 30);
             gtk_label_set_selectable(GTK_LABEL (messages_g[i]->message_text),true);

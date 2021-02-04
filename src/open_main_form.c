@@ -2,8 +2,8 @@
 void open_main_form(GtkWidget *window)
 {  
     char *last_ms_id = get_last_mesage_id("messages.json");
-
     get_all_messages(data.user_id, last_ms_id);
+    free(last_ms_id);
     is_fullscreen(window);
     
     GtkBuilder *builder = glade_file_to_interface("share/main.glade");
