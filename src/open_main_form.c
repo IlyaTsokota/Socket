@@ -1,9 +1,10 @@
 #include "chat.h"
 void open_main_form(GtkWidget *window)
 {  
+            main_form.is_refresh_chat = true;
     char *last_ms_id = get_last_mesage_id("messages.json");
     get_all_messages(data.user_id, last_ms_id);
-    g_timeout_add(1000, refresh_chat,NULL);
+    g_timeout_add(3000, refresh_chat,NULL);
     free(last_ms_id);
     is_fullscreen(window);
     

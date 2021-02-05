@@ -2,6 +2,8 @@
 
 gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view)
 {
+
+    main_form.is_refresh_chat = false;
     char *message = get_text_of_textview(text_view);
     clear_text__buffer(text_view);
     puts(message);
@@ -23,6 +25,6 @@ gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *tex
     g_timeout_add(50, change_insert_to_message, main_form.message_scroll);
 
     // show_opened_chat(main_form.main_grid, chats_f.curr_chat);
-   
+    main_form.is_refresh_chat = true;
     return false;
 }

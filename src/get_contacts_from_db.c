@@ -2,6 +2,7 @@
 
 void get_contacts_from_db(GtkWidget *container, char *user_id)
 {
+    
     char *num_f = strdup("21");
     char *arr[] = {user_id, NULL};
     char *json = write_to_json(num_f, arr);

@@ -2,6 +2,7 @@
 
 void get_chats_from_db(GtkWidget *container_chats, char *user_id)
 {
+    main_form.is_refresh_chat = false;
     char *num_f = strdup("17");
     char *arr[] = {user_id, NULL};
     char *json = write_to_json(num_f, arr);
@@ -163,8 +164,9 @@ void get_chats_from_db(GtkWidget *container_chats, char *user_id)
 
             gtk_grid_attach(GTK_GRID(container_chats), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
         }
-
+        
         gtk_widget_show_all(container_chats);
         free_chats(chats);
+        main_form.is_refresh_chat = true;
     }
 }

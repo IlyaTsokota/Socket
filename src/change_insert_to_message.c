@@ -9,7 +9,7 @@ gboolean change_insert_to_message(gpointer widget)
 
 gboolean refresh_chat()
 {
-    if (main_form.current_panel_id == 2)
+    if (main_form.current_panel_id == 2 && main_form.is_refresh_chat)
     {
         char *last_ms_id = get_last_mesage_id("messages.json");
         get_all_messages(data.user_id, last_ms_id);

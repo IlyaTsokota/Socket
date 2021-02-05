@@ -157,6 +157,7 @@ typedef struct
 	int current_panel_id;
 	bool is_allow_access_next_panel;
 	char *message;
+	bool is_refresh_chat;
 } main_form_t;
 
 
