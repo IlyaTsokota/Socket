@@ -66,4 +66,11 @@ typedef struct
   char *u_avatar;
   char *u_status;
 } contact_info_t;
+
+typedef struct
+{
+  char *u_id;
+  char *u_login;
+  char *u_avatar;
+} login_pin_info_t;
 #endif

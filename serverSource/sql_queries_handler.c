@@ -15,7 +15,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return password_check(con, array[1], array[2]);
     case 2:
         puts("Query 02 -> pin_check");
-        return pin_check(con, array[1], array[2]);
+        return pin_check(con, array[1], array[2], sock);
     case 3:
         puts("Query 03 -> user_add");
         return user_add(con, array[1], array[2], array[3], array[4], array[5]);

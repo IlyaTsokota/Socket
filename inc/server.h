@@ -51,6 +51,7 @@ void free_message_s(message_t *message);
 void free_contact_s(contact_t *contact);
 void free_contact_info_s(contact_info_t *contact);
 void free_user_s(user_t *user);
+void free_validation_login_info_s(login_pin_info_t *message);
 
 //working with queries
 array_t query_delimiter(char *str);
@@ -63,6 +64,7 @@ const char *write_message_to_json(message_t *message);
 const char *write_contact_to_json(contact_t *contact);
 const char *write_user_to_json(user_t *user);
 const char *write_contact_info_to_json(contact_info_t *contact);
+const char *write_validation_login_info_to_json(login_pin_info_t *message);
 array_t json_to_data(char *json_str);
 
 //sql errors
@@ -83,7 +85,7 @@ char *add_user_to_group_chat(MYSQL *con, char *user_id, char *ch_id); //12
 
 //sql-validations
 char *password_check(MYSQL *con, char *login, char *password); //01
-char *pin_check(MYSQL *con, char *login, char *pin);           //02
+char *pin_check(MYSQL *con, char *login, char *pin, int sock); //02
 
 //sql-contacts
 char *is_contact_exist(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func); //11
@@ -95,7 +97,7 @@ char *get_contacts(MYSQL *con, char *user_id, int sock);                        
 char *get_contact_info(MYSQL *con, char *user_id, int sock);                                        //22
 
 //sql-message
-char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                //16
+char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock); //16
 char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock);
 //sql-unsorte
 char *get_my_id(MYSQL *con, char *login);                                           //18
