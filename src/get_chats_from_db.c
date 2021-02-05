@@ -30,11 +30,10 @@ void get_chats_from_db(GtkWidget *container_chats, char *user_id)
 
         chats_f.chat_items = (chat_item_t **)malloc(sizeof(chat_item_t *) * (size + 1));
         chats_f.chat_items[size] = NULL;
-        if (chats_f.curr_chat != NULL ){
-            free(chats_f.curr_chat);
+        
+        if (chats_f.curr_chat == NULL ){
+            chats_f.curr_chat = strdup(chats[0]->ch_id);
         }
-        chats_f.curr_chat = strdup(chats[0]->ch_id);
-
         message_arr *message = NULL;
 
         for (size_t i = 0; i < size; i++)
