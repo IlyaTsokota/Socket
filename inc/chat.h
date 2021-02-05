@@ -280,7 +280,7 @@ edit_prof_s profile_s;
 current_chat_s curr_chat;
 
 void clear_text__buffer(GtkTextView *text_view);
-gboolean download_message();
+gboolean refresh_chat();
 void create_one_messages(int length, message_t *message, GtkWidget *container_msg);
  char *get_text_of_textview(GtkTextView *text_view);
 gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view);
