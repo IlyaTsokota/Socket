@@ -20,7 +20,7 @@ char *get_file4(FILE *file4, int line_no)
     while (line_no && (bytes_read = fread(buf, 1, BUF_SIZE, file4)) > 0)
     {
         int i;
-        for (i = 0; i < bytes_read; i++)
+        for (i = 0; i < (int)bytes_read; i++)
         {
             if (in_line)
             {
@@ -73,7 +73,7 @@ char *get_file5(FILE *file5, int line_no)
     while (line_no && (bytes_read = fread(buf, 1, BUF_SIZE, file5)) > 0)
     {
         int i;
-        for (i = 0; i < bytes_read; i++)
+        for (i = 0; i < (int)bytes_read; i++)
         {
             if (in_line)
             {
@@ -126,7 +126,7 @@ char *get_file6(FILE *file6, int line_no)
     while (line_no && (bytes_read = fread(buf, 1, BUF_SIZE, file6)) > 0)
     {
         int i;
-        for (i = 0; i < bytes_read; i++)
+        for (i = 0; i < (int)bytes_read; i++)
         {
             if (in_line)
             {
@@ -179,7 +179,7 @@ char *get_file7(FILE *file7, int line_no)
     while (line_no && (bytes_read = fread(buf, 1, BUF_SIZE, file7)) > 0)
     {
         int i;
-        for (i = 0; i < bytes_read; i++)
+        for (i = 0; i < (int)bytes_read; i++)
         {
             if (in_line)
             {
