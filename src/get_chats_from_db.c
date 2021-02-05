@@ -41,7 +41,7 @@ void get_chats_from_db(GtkWidget *container_chats, char *user_id)
         {
             chats_f.chat_items[i] = (chat_item_t *)malloc(sizeof(chat_item_t));
             chats_f.chat_items[i]->event_box_contact = gtk_event_box_new();
-            // g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
+            g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
             gtk_widget_set_hexpand(chats_f.chat_items[i]->event_box_contact, true);
             gtk_widget_set_name(chats_f.chat_items[i]->event_box_contact, chats[i]->ch_id);
 
