@@ -28,6 +28,18 @@
 
 typedef struct
 {
+	GtkWidget *event_box_message;
+	GtkWidget *message;
+	GtkWidget *message_time;
+	GtkWidget *message_info;
+	GtkWidget *message_text;
+	GtkWidget *message_login;
+
+} messages_t;
+
+
+typedef struct
+{
 	GtkWidget *grid;
 	GtkWidget *btn_container;
 	GtkWidget *btn;
@@ -103,6 +115,13 @@ typedef struct msg_i
 
 typedef struct
 {
+	messages_t **messages_g;
+	int length;
+} current_chat_s;
+
+
+typedef struct
+{
 	GtkWidget *login;
 	GtkWidget *password;
 	GtkWidget *fail_login;
@@ -133,21 +152,13 @@ typedef struct
 	GtkWidget *chats_grid;
 	GtkWidget *top_panel_top_text;
 	GtkWidget *top_panel_bottom_text;
+	GtkWidget *message_line;
+	GtkWidget *message_scroll;
 	int current_panel_id;
 	bool is_allow_access_next_panel;
 	char *message;
 } main_form_t;
 
-typedef struct
-{
-	GtkWidget *event_box_message;
-	GtkWidget *message;
-	GtkWidget *message_time;
-	GtkWidget *message_info;
-	GtkWidget *message_text;
-	GtkWidget *message_login;
-
-} messages_t;
 
 typedef struct
 {
@@ -266,8 +277,13 @@ chats_form chats_f;
 contacts_arr contacts_t;
 main_form_t main_form;
 edit_prof_s profile_s;
+current_chat_s curr_chat;
 
-gboolean send_message(GtkWidget *widget, GtkTextView *text_view);
+void clear_text__buffer(GtkTextView *text_view);
+gboolean download_message();
+void create_one_messages(int length, message_t *message, GtkWidget *container_msg);
+ char *get_text_of_textview(GtkTextView *text_view);
+gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view);
 void free_contact_info_s(contact_info_t *contact);
 contact_info_t *get_contact_info(char *contact_id);
 char *strjoin(int nHowMany, ... );

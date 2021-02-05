@@ -1,6 +1,6 @@
 #include "chat.h"
 
-static char *get_text_of_textview(GtkTextView *text_view) {
+ char *get_text_of_textview(GtkTextView *text_view) {
     GtkTextIter start, end;
     
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(text_view);       
@@ -10,6 +10,16 @@ static char *get_text_of_textview(GtkTextView *text_view) {
     char *text = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
     return text;
 }
+
+void clear_text__buffer(GtkTextView *text_view) {
+    GtkTextIter start, end;
+    
+    GtkTextBuffer *buffer = gtk_text_view_get_buffer(text_view);       
+    gtk_text_buffer_get_start_iter(buffer, &start);
+    gtk_text_buffer_get_end_iter(buffer, &end);
+    gtk_text_buffer_delete(buffer, &start, &end);
+}
+
 
 void change_size_message_input(GtkWidget *widget, msg_t *msg_entry)
 {
@@ -38,9 +48,4 @@ void change_size_message_input(GtkWidget *widget, msg_t *msg_entry)
         gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(msg_entry->container), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
     }
     g_timeout_add(50, change_insert_to_message, msg_entry->container);
-
-    if(main_form.message != NULL)
-        free(main_form.message);
-    main_form.message = get_text_of_textview(GTK_TEXT_VIEW(msg_entry->text_view));
-
 }
