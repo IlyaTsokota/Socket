@@ -116,7 +116,7 @@ typedef struct msg_i
 typedef struct
 {
 	messages_t **messages_g;
-	int length;
+	int *length;
 } current_chat_s;
 
 
@@ -144,10 +144,11 @@ typedef struct
 
 appdata data;
 
+
 typedef struct
 {
-	GtkWidget *left_content;
-	GtkWidget *right_content;
+	GtkWidget **left_content;
+	GtkWidget **right_content;
 	GtkWidget *main_grid;
 	GtkWidget *chats_grid;
 	GtkWidget *top_panel_top_text;
@@ -157,7 +158,8 @@ typedef struct
 	int current_panel_id;
 	bool is_allow_access_next_panel;
 	char *message;
-	bool is_refresh_chat;
+	char *last_ms_id;
+
 } main_form_t;
 
 
@@ -225,6 +227,7 @@ typedef struct
 
 typedef struct
 {
+	char *ch_id;
 	char *ms_id;
 	char *u_id;
 	char *u_name;
@@ -280,9 +283,14 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 
+void init_interface();
+void hide_gtk_widgets(GtkWidget **widgets);
+void create_chat_widgets(char *user_id);
+message_arr *take_messages(char *user_id, char *last_msg_id);
+message_arr *messages_to_json(char *str);
 void clear_text__buffer(GtkTextView *text_view);
 gboolean refresh_chat();
-void create_one_messages(int length, message_t *message, GtkWidget *container_msg);
+void create_one_messages(int index, message_t *message);
  char *get_text_of_textview(GtkTextView *text_view);
 gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view);
 void free_contact_info_s(contact_info_t *contact);
@@ -297,7 +305,7 @@ void free_contacts_s(contact_t **contact);
 void get_contacts_from_db(GtkWidget *container, char *user_id);
 user_t *get_profile_info();
 void free_user_s(user_t *user);
-void set_active_setting_item(GtkWidget *text, GtkWidget *img, char *path_img, void (*f)(GtkWidget *grid));
+void set_active_setting_item(GtkWidget *text, GtkWidget *img, char *path_img, void (*f)(GtkWidget *grid), int index);
 void logout(GtkWidget *button, GtkWidget *widget);
 void update_profile(GtkWidget *button);
 bool update_user_data(char *u_id, char *name, char *surname, char *quote);
@@ -320,9 +328,9 @@ char *get_last_mesage_id(char *filename);
 char *get_user_id_from_db(char *login);
 char *request_get_str_from_server(char *request);
 void free_messages(message_arr *message_container);
-void get_messages_for_current_chat_from_db(GtkWidget *container_msg, char *chat_id);
+void create_widget_messages();
 void get_all_messages(char *user_id, char *last_msg_id);
-message_arr *get_messages_from_file(char *filename, char *chat_id);
+message_arr *get_messages_from_file(char *filename);
 char *request_on_server(char *request);
 gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event);
 bool is_online(char *last_seen);
@@ -333,7 +341,6 @@ settings_t *get_settings(char *settings);
 void create_settings_json(char *login, char *theme, char *language, char *is_in);
 void free_chats(chat_t **chats);
 void set_style_context(GtkWidget *widget, char *class_name);
-void get_chats_from_db(GtkWidget *container_chats, char *user_id);
 chat_t **request_get_chats(char *request);
 void *auth_check_f(void *auth_s);
 void *start_spinner(void *cur_grid);

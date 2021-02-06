@@ -32,6 +32,10 @@ char *request_on_server(char *request)
         str[read_index] = '\0';
     } while (size > 0);
 
+    // puts("answer = ");
+    // puts(str);
+    // puts("================");
+
     stat = read(data.socket_desc, buff, 1); //ах ты ёбаный ублюдок...
     
     return str;

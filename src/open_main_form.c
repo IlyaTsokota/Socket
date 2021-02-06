@@ -1,13 +1,14 @@
 #include "chat.h"
 void open_main_form(GtkWidget *window)
-{  
-            main_form.is_refresh_chat = true;
-    char *last_ms_id = get_last_mesage_id("messages.json");
-    get_all_messages(data.user_id, last_ms_id);
-    g_timeout_add(3000, refresh_chat,NULL);
-    free(last_ms_id);
+{
+    init_interface();
+    main_form.last_ms_id = get_last_mesage_id("messages.json");
+    get_all_messages(data.user_id,  main_form.last_ms_id);
+    g_timeout_add(10000, refresh_chat, NULL);
     is_fullscreen(window);
-    
+    create_widget_messages();
+    create_chat_widgets(data.user_id);
+
     GtkBuilder *builder = glade_file_to_interface("share/main.glade");
     GtkWidget *main_forma = GTK_WIDGET(gtk_builder_get_object(builder, "main_form"));
 
@@ -39,11 +40,12 @@ void open_main_form(GtkWidget *window)
     main_form.top_panel_top_text = GTK_WIDGET(gtk_builder_get_object(builder, "chat_name_lable"));
     main_form.top_panel_bottom_text = GTK_WIDGET(gtk_builder_get_object(builder, "user_is_online_in_chat"));
     GtkWidget *box_contacts = GTK_WIDGET(gtk_builder_get_object(builder, "box_contacts"));
+
     show_chats(main_form.main_grid);
-    show_opened_chat(main_form.main_grid,  chats_f.curr_chat);
-    GtkWidget *arr[] = {box_contacts, main_forma, left_panel, is_connection, con_img, top_panel, search_entry, main_form.top_panel_top_text , main_form.top_panel_bottom_text,
+    show_opened_chat(main_form.main_grid, chats_f.curr_chat);
+
+    GtkWidget *arr[] = {box_contacts, main_forma, left_panel, is_connection, con_img, top_panel, search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
                         left_panel_img->contact, left_panel_img->chat, left_panel_img->setting, left_panel_img->lock, NULL};
-    
     css_set(arr, "share/resources/css/main.css");
 
     edit_styles_for_widget(left_panel_img->chat, "* {background: #88c5ce;}");

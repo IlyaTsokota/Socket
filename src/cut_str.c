@@ -11,7 +11,6 @@ char *cut_str(char *str, int count_sym_cut)
         status = mx_strnew(len * 8);
         g_utf8_strncpy(status, str, count_sym_cut);
         g_utf8_strncpy(&status[count_sym_cut - g_utf8_strlen(&str[g_utf8_strlen(str, 1) - 1], 1)], "...\0", 4);
-        puts(status);
     }
     else
     {

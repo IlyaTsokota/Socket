@@ -1,8 +1,7 @@
 #include "chat.h"
 
-void get_chats_from_db(GtkWidget *container_chats, char *user_id)
+void create_chat_widgets(char *user_id)
 {
-    main_form.is_refresh_chat = false;
     char *num_f = strdup("17");
     char *arr[] = {user_id, NULL};
     char *json = write_to_json(num_f, arr);
@@ -35,25 +34,32 @@ void get_chats_from_db(GtkWidget *container_chats, char *user_id)
         if (chats_f.curr_chat == NULL ){
             chats_f.curr_chat = strdup(chats[0]->ch_id);
         }
-        message_arr *message = NULL;
 
         for (size_t i = 0; i < size; i++)
         {
             chats_f.chat_items[i] = (chat_item_t *)malloc(sizeof(chat_item_t));
             chats_f.chat_items[i]->event_box_contact = gtk_event_box_new();
-            g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
             gtk_widget_set_hexpand(chats_f.chat_items[i]->event_box_contact, true);
             gtk_widget_set_name(chats_f.chat_items[i]->event_box_contact, chats[i]->ch_id);
+            g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
+            
+            int last_msg_index = 0;
+            for (size_t j = *(curr_chat.length) - 1; j >= 0; j--)
+            {
+                if(strcmp((char*)gtk_widget_get_name(curr_chat.messages_g[j]->message), chats[i]->ch_id) == 0){
+                    last_msg_index = j;
+                    break;
+                }
+            }
 
-            message = get_messages_from_file("messages.json", chats[i]->ch_id);
-            int last_item = *message->length - 1;
+
             chats_f.chat_items[i]->contact_container = gtk_grid_new();
             gtk_widget_set_hexpand(chats_f.chat_items[i]->contact_container, false);
             gtk_widget_set_vexpand(chats_f.chat_items[i]->contact_container, true);
             gtk_widget_set_size_request(chats_f.chat_items[i]->contact_container, -1, 84);
             set_style_context(chats_f.chat_items[i]->contact_container, "contact-container");
-
-            char *time = strdup(&message->messages[last_item]->ms_datetime[11]);
+            
+            char *time = strdup(&gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[last_msg_index]->message_time))[11]);
             chats_f.chat_items[i]->time_last_message = gtk_label_new(time);
             gtk_widget_set_valign(chats_f.chat_items[i]->time_last_message, GTK_ALIGN_START);
             gtk_widget_set_hexpand(chats_f.chat_items[i]->time_last_message, false);
@@ -72,21 +78,20 @@ void get_chats_from_db(GtkWidget *container_chats, char *user_id)
             gtk_widget_set_hexpand(chats_f.chat_items[i]->contact_last_msg, true);
             gtk_widget_set_vexpand(chats_f.chat_items[i]->contact_last_msg, true);
 
-            char *last_msg = cut_str(message->messages[last_item]->ms_text , 25);
+            char *last_msg = cut_str((char*)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[last_msg_index]->message_text)) , 25);
             chats_f.chat_items[i]->text_last_message = gtk_label_new(last_msg);
             gtk_widget_set_hexpand(chats_f.chat_items[i]->text_last_message, false);
             set_style_context(chats_f.chat_items[i]->text_last_message, "contact-lastmsg");
             set_style_context(chats_f.chat_items[i]->text_last_message, "contact-lastmessage");
             free(last_msg);
 
-            char *last_login = strjoin(2,message->messages[last_item]->u_name, ":");
+            char *last_login = strjoin(2,(char*)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[last_msg_index]->message_login)) , ":");
             //strcpy(&message->messages[last_item]->u_name[strlen(message->messages[last_item]->u_name)-1], ":");
             chats_f.chat_items[i]->login_last_message = gtk_label_new(last_login);
             gtk_widget_set_valign(chats_f.chat_items[i]->login_last_message, GTK_ALIGN_START);
             gtk_widget_set_hexpand(chats_f.chat_items[i]->login_last_message, false);
             set_style_context(chats_f.chat_items[i]->login_last_message, "contact-lastmessage");
             free(last_login);
-            free_messages(message);
 
             chats_f.chat_items[i]->contact_name_container = gtk_grid_new();
 
@@ -162,11 +167,9 @@ void get_chats_from_db(GtkWidget *container_chats, char *user_id)
 
             gtk_container_add(GTK_CONTAINER(chats_f.chat_items[i]->event_box_contact), chats_f.chat_items[i]->contact_container);
 
-            gtk_grid_attach(GTK_GRID(container_chats), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
         }
         
-        gtk_widget_show_all(container_chats);
         free_chats(chats);
-        main_form.is_refresh_chat = true;
+
     }
 }

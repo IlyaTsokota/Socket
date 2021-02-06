@@ -2,11 +2,13 @@
 
 void show_open_contact(GtkWidget *main_grid, char *id)
 {
-
+static bool do_once = true;
+    if (!do_once)
+        return;
     contact_info_t *current_info = get_contact_info(id);
     GtkBuilder *builder = glade_file_to_interface("share/contacts_right.glade");
 
-    main_form.right_content = GTK_WIDGET(gtk_builder_get_object(builder, "grid_contact_info_panel")); // это грид который буду менять
+   GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_contact_info_panel")); // это грид который буду менять
     GtkWidget *contact_info_name_container = GTK_WIDGET(gtk_builder_get_object(builder, "contact_info_name_container"));
     GtkWidget *contact_info_name = GTK_WIDGET(gtk_builder_get_object(builder, "contact_info_name"));
     gtk_label_set_text(GTK_LABEL(contact_info_name), current_info->u_login);
@@ -34,8 +36,13 @@ void show_open_contact(GtkWidget *main_grid, char *id)
     GtkWidget *support_text = GTK_WIDGET(gtk_builder_get_object(builder, "support_text"));
 
     free_contact_info_s(current_info);
-    GtkWidget *arr[] = {main_form.right_content, contact_info_name_container, contact_info_name, send_message, add_contact, blcok_contact, img_info_contact, quote, quote_text, fullname, fullname_text, is_admin, support_text, NULL};
+    GtkWidget *arr[] = {main_form.right_content[2], contact_info_name_container, contact_info_name, send_message, add_contact, blcok_contact, img_info_contact, quote, quote_text, fullname, fullname_text, is_admin, support_text, NULL};
     css_set(arr, "share/resources/css/main.css");
-    gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content, 1, 0, 1, 1);
+    gtk_grid_attach(GTK_GRID(main_form.right_content[2]), child, 0, 0, 1, 1);
+
+    gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[2], 1, 0, 1, 1);
+            gtk_widget_show_all(main_form.right_content[2]);
+
     g_object_unref(builder);
+    do_once = false;
 }

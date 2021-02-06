@@ -2,11 +2,15 @@
 
 void show_setting(GtkWidget *main_grid)
 {
+
+    static bool do_once = true;
+    if (!do_once)
+        return;
     gtk_label_set_text(GTK_LABEL(main_form.top_panel_top_text), "Settings"); 
     gtk_label_set_text(GTK_LABEL(main_form.top_panel_bottom_text), "Some settings can affect your life"); 
 
     GtkBuilder *builder = glade_file_to_interface("share/left_panel_setting.glade");
-    main_form.left_content = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_info"));
+    GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_info"));
     GtkWidget *setting_info_panel = GTK_WIDGET(gtk_builder_get_object(builder, "setting_info_panel"));
 
     GtkWidget *info_container = GTK_WIDGET(gtk_builder_get_object(builder, "info_container"));
@@ -58,11 +62,14 @@ void show_setting(GtkWidget *main_grid)
     g_signal_connect(G_OBJECT(event_double_bottom), "button-press-event", G_CALLBACK(open_double_bottom), NULL);
     g_signal_connect(G_OBJECT(event_logout), "button-press-event", G_CALLBACK(logout), NULL);
 
-    GtkWidget *arr[] = {main_form.left_content, setting_info_panel,info_container,info_img,info_login, info_status,
+    GtkWidget *arr[] = {main_form.left_content[2], setting_info_panel,info_container,info_img,info_login, info_status,
     socket_version,socket_platform,event_edit_profile, setting_elements.edit_profile_img,setting_elements.edit_profile_text,event_notifications,
      setting_elements.notifications_img,setting_elements.notifications_text,event_privacy,setting_elements.privacy_img,setting_elements.privacy_text,event_language,setting_elements.language_img,
      setting_elements.language_text,event_logout,logout_img,logout_text,event_double_bottom,setting_elements.double_bottom_img,setting_elements.double_bottom_text,event_theme,setting_elements.theme_img,setting_elements.theme_text,NULL};
     css_set(arr, "share/resources/css/main.css");
-    gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content, 0, 0, 1, 1);
+    gtk_grid_attach(GTK_GRID( main_form.left_content[2]), child, 0, 0, 1, 1);
+    gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content[2], 0, 0, 1, 1);
+    gtk_widget_show_all(main_form.left_content[2]);
     g_object_unref(builder);
+    do_once = false;
 }
