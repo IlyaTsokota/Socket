@@ -1,10 +1,10 @@
 #include "server.h"
 //Создать чат
-char *chat_create(MYSQL *con, char *my_id, char *contact_id)
+char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func)
 {
     char *answer;
 
-    char *bdrequest = "INSERT INTO chat (ch_name, ch_avatar) VALUES (\"personal_chat\",\"no_avatar\");"; 
+    char *bdrequest = "INSERT INTO chat (ch_name, ch_avatar) VALUES (\"personal_chat\",\"no_avatar\");";
     puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))
@@ -12,7 +12,7 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id)
         finish_with_error(con);
     }
 
- //Узнаём айди созданного чата
+    //Узнаём айди созданного чата
     bdrequest = "SELECT max(ch_id) from chat LIMIT 1;";
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -50,7 +50,7 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id)
         finish_with_error(con);
     }
     free(bdrequest); //IR
-    //Добавить в чатюзерс контакта 
+    //Добавить в чатюзерс контакта
     const char *request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", answer, "\",\"", contact_id, "\",\"0\");", NULL};
     bdrequest = strjoins_arr(request_parts1);
 
@@ -63,9 +63,10 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id)
 
     free(bdrequest); //IR
 
-    mysql_close(con);
+    if (close_con_after_end_of_func == 1)
+    {
+        mysql_close(con);
+    }
 
     return "1";
-
-
 }

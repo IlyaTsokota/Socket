@@ -24,7 +24,7 @@ client:
 	@printf "\r\33[2K$@\t \033[32;1mcreated\033[0m\n"
 
 server:
-	@clang -o server -I$(INC_DIR) serverSource/*.c $(LIBS)
+	@clang -o server -I$(INC_DIR) ` pkg-config --cflags --libs gmodule-2.0` serverSource/*.c $(LIBS)
 	@printf "\r\33[2K$@\t \033[32;1mcreated\033[0m\n"
 
 clean:

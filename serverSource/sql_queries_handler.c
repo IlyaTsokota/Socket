@@ -33,7 +33,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return is_login_exist(con, array[1]);
     case 8:
         puts("Query 08 -> chat_create");
-        return chat_create(con, array[1], array[2]);
+        return chat_create(con, array[1], array[2], 1);
     case 9:
         puts("Query 09 -> contact_block");
         return contact_block(con, array[1], array[2]);
@@ -79,6 +79,9 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 23:
         puts("Query 23 -> create_double_bottom");
         return create_double_bottom(con, array[1], array[2]);
+    case 24:
+        puts("Query 24 -> delete_account");
+        return delete_account(con, array[1]);
 
     // operator doesn't match any case
     default:

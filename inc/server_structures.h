@@ -73,4 +73,11 @@ typedef struct
   char *u_login;
   char *u_avatar;
 } login_pin_info_t;
+
+typedef struct
+{
+  char *ms_id;
+  char *ms_datetime;
+} message_back_info_t;
+
 #endif

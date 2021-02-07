@@ -19,7 +19,7 @@
 #include "mysql/mysql.h"
 //our own headers
 #include "server_structures.h"
-
+#include <gmodule.h>
 //macros defines
 #define array_init(a) (a).arr = NULL, (a).cnt = 0
 
@@ -52,6 +52,7 @@ void free_contact_s(contact_t *contact);
 void free_contact_info_s(contact_info_t *contact);
 void free_user_s(user_t *user);
 void free_validation_login_info_s(login_pin_info_t *message);
+void free_message_back_info_s(message_back_info_t *user);
 
 //working with queries
 array_t query_delimiter(char *str);
@@ -65,6 +66,7 @@ const char *write_contact_to_json(contact_t *contact);
 const char *write_user_to_json(user_t *user);
 const char *write_contact_info_to_json(contact_info_t *contact);
 const char *write_validation_login_info_to_json(login_pin_info_t *message);
+const char *write_message_back_info_json(message_back_info_t *contact);
 array_t json_to_data(char *json_str);
 
 //sql errors
@@ -74,14 +76,15 @@ void finish_with_error(MYSQL *con);
 char *user_add(MYSQL *con, char *login, char *name, char *surname, char *password, char *pin); //03
 char *is_login_exist(MYSQL *con, char *login);                                                 //07
 char *create_double_bottom(MYSQL *con, char *u_id, char *pin);                                 //23
+char *delete_account(MYSQL *con, char *my_id);                                                 //24
 
 //sql-chats
-char *get_chats(MYSQL *con, char *user_id, int sock);                 //17
-char *make_message_seen(MYSQL *con, char *ms_id);                     //15
-char *chat_create(MYSQL *con, char *my_id, char *contact_id);         //08
-char *group_chat_create(MYSQL *con, char *my_id, char *chat_name);    //06
-char *chat_remove(MYSQL *con, char *chat_id);                         //10
-char *add_user_to_group_chat(MYSQL *con, char *user_id, char *ch_id); //12
+char *get_chats(MYSQL *con, char *user_id, int sock);                                          //17
+char *make_message_seen(MYSQL *con, char *ms_id);                                              //15
+char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func); //08
+char *group_chat_create(MYSQL *con, char *my_id, char *chat_name);                             //06
+char *chat_remove(MYSQL *con, char *chat_id);                                                  //10
+char *add_user_to_group_chat(MYSQL *con, char *user_id, char *ch_id);                          //12
 
 //sql-validations
 char *password_check(MYSQL *con, char *login, char *password); //01

@@ -89,7 +89,6 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
         }
     }
     mysql_free_result(result);
-    // mysql_close(con);
 
     //Добавить юзеру пароль и пин в креденшлс
     const char *request_parts3[] = {"INSERT INTO credentials (u_id, cr_password, cr_pincode) VALUES (\"", answer, "\",\"", encrypted_password, "\",\"", encrypted_pin, "\");", NULL};
@@ -100,6 +99,8 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     {
         finish_with_error(con);
     }
+    //Добавить юзеру Saved Messages в контакты
+    chat_create(con, answer, "1", 0);
     mysql_close(con);
 
     free(bdrequest); //IR
