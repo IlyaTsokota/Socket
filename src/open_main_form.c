@@ -4,6 +4,9 @@ void open_main_form(GtkWidget *window)
     init_interface();
     main_form.last_ms_id = get_last_mesage_id("messages.json");
     get_all_messages(data.user_id,  main_form.last_ms_id);
+    free(main_form.last_ms_id);
+    main_form.last_ms_id = get_last_mesage_id("messages.json");
+ 
     g_timeout_add(10000, refresh_chat, NULL);
     is_fullscreen(window);
     create_widget_messages();

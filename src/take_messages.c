@@ -7,18 +7,21 @@ message_arr *take_messages(char *user_id, char *last_msg_id)
     char *json = write_to_json(num_f, arr);
     free(num_f);
     char *messages = request_on_server(json);
+    puts(messages);
     free(json);
     message_arr *messages_s = messages_to_json(messages);
     
     free(messages);
+    if(messages_s == NULL)
+        return NULL;
     return messages_s;
 }
 
 message_arr *messages_to_json(char *str)
 {
-    int exist = 0;
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);
+     int exist = 0;
     if(jobj == NULL) return NULL;
     exist = json_object_object_get_ex(jobj, "messages", &values_obj);
     int length = json_object_array_length(values_obj);
@@ -75,8 +78,6 @@ message_arr *messages_to_json(char *str)
         free(jobj);
         arr_msgs->length = malloc(sizeof(int));
         *(arr_msgs->length) = i ;
-        puts("arr_msgs");
-        g_print("%d\n", i);
         return arr_msgs;
     }
     free(values_obj);

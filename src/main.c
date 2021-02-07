@@ -55,11 +55,18 @@ void application_activate(GtkApplication *application, gpointer user_data)
 
 void application_shutdown(GtkApplication *application, gpointer user_data)
 {
-    close(data.socket_desc);
-    g_application_quit(G_APPLICATION(application));
+     if (main_form.main_grid != NULL && data.user_id !=NULL){
+        main_form.last_ms_id = get_last_mesage_id("messages.json");
+        get_all_messages(data.user_id,  main_form.last_ms_id);
+    }
+     
     if(data.user_id != NULL){
         free(data.user_id);
     }
+    close(data.socket_desc);
+    g_application_quit(G_APPLICATION(application));
+   
+   
 }
 
 int main(int argc, char *argv[])

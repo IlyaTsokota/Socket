@@ -8,7 +8,7 @@ void create_widget_messages()
         curr_chat.length = malloc(sizeof(int));
         int length = *message->length;
 
-        for (int i = 0; i < length - 1; i++)
+        for (int i = 0; i < length; i++)
         {
            create_one_messages(i, message->messages[i]);
         }

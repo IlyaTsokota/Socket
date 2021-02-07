@@ -11,23 +11,50 @@ gboolean refresh_chat()
 {
 
     message_arr *messages = take_messages(data.user_id, main_form.last_ms_id);
-    if ( messages != NULL)
+    if (messages != NULL)
     {
-        int j = *(curr_chat.length);
-        for (int i = 0; i < *messages->length; i++)
+        int messages_length = *(messages->length);
+        int length = *(curr_chat.length);
+        int j = length;
+        for (int i = 0; i < messages_length; i++)
         {
             create_one_messages(j++, messages->messages[i]);
         }
+        char *time = NULL;
+        char *last_msg = NULL;
+        char *last_login = NULL;
+        for (int i = 0; chats_f.chat_items[i]; i++)
+        {
+            for (int j = *(curr_chat.length) - 1; j > 0; j--)
+            {
+                if (strcmp((char *)gtk_widget_get_name(curr_chat.messages_g[j]->message), (char *)gtk_widget_get_name(chats_f.chat_items[i]->event_box_contact)) == 0)
+                {
+                    time = strdup(&gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_time))[11]);
+                    gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->time_last_message), time);
+                    last_msg = cut_str((char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_text)), 25);
+                    gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->text_last_message), last_msg);
+                    last_login = strjoin(2, (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_login)), ":");
+                    gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->login_last_message), last_login);
+                    free(time);
+                    free(last_msg);
+                    free(last_login);
+                    break;
+                }
+            }
+        }
+
         free(main_form.last_ms_id);
-        main_form.last_ms_id = strdup(int_to_str(j));
+        main_form.last_ms_id = strdup(messages->messages[messages_length - 1]->ms_id);
+
         if (main_form.current_panel_id == 2)
         {
-            j = *(curr_chat.length);
-            for (int i = j; i < j + *(messages->length); i++)
+            j = length;
+            for (int i = j; i < length + messages_length; i++)
             {
+
                 if (strcmp(chats_f.curr_chat, (char *)gtk_widget_get_name(curr_chat.messages_g[i]->message)) == 0)
                 {
-                    gtk_grid_attach(GTK_GRID(main_form.message_line), curr_chat.messages_g[i]->event_box_message, 0, j++, 1, 1);
+                    gtk_grid_attach(GTK_GRID(main_form.message_line), curr_chat.messages_g[i]->event_box_message, 0, i, 1, 1);
                 }
             }
             gtk_widget_show_all(main_form.message_line);

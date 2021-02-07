@@ -48,7 +48,7 @@ void create_one_messages(int index, message_t *message)
     gtk_label_set_line_wrap(GTK_LABEL(curr_chat.messages_g[index]->message_text), true);
     gtk_widget_set_size_request(curr_chat.messages_g[index]->message_text, 500, -1);
     gtk_label_set_xalign(GTK_LABEL(curr_chat.messages_g[index]->message_text), 0);
-    gtk_label_set_line_wrap_mode(GTK_LABEL(curr_chat.messages_g[index]->message_text), PANGO_WRAP_WORD);
+    gtk_label_set_line_wrap_mode(GTK_LABEL(curr_chat.messages_g[index]->message_text), PANGO_WRAP_WORD_CHAR);
     gtk_label_set_max_width_chars(GTK_LABEL(curr_chat.messages_g[index]->message_text), 30);
     gtk_label_set_selectable(GTK_LABEL(curr_chat.messages_g[index]->message_text), true);
     set_style_context(curr_chat.messages_g[index]->message_text, "message-text");
@@ -67,6 +67,8 @@ void create_one_messages(int index, message_t *message)
     gtk_grid_attach(GTK_GRID(curr_chat.messages_g[index]->message), curr_chat.messages_g[index]->message_info, 0, 0, 1, 1);
 
     gtk_container_add(GTK_CONTAINER(curr_chat.messages_g[index]->event_box_message), curr_chat.messages_g[index]->message);
+    g_print("Index -- %d\n", index);
+    
     curr_chat.messages_g[index + 1] = NULL;
     *(curr_chat.length) = index + 1;
 }
