@@ -9,7 +9,7 @@ bool request_to_server(char *request){
         return strcmp("1", answer) > 0 ? false : true;
     }
     else {
-        g_print("Request to server error!\n");
+        //g_print("Request to server error!\n");
         return false;
     }
 }
@@ -26,7 +26,7 @@ char* request_get_str_from_server(char *request){
         return result;
     }
     else {
-        g_print("Request to server error!\n");
+        //g_print("Request to server error!\n");
         return NULL;
     }
 }

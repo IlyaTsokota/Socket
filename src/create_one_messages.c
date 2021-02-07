@@ -67,7 +67,7 @@ void create_one_messages(int index, message_t *message)
     gtk_grid_attach(GTK_GRID(curr_chat.messages_g[index]->message), curr_chat.messages_g[index]->message_info, 0, 0, 1, 1);
 
     gtk_container_add(GTK_CONTAINER(curr_chat.messages_g[index]->event_box_message), curr_chat.messages_g[index]->message);
-    g_print("Index -- %d\n", index);
+    //g_print("Index -- %d\n", index);
     
     curr_chat.messages_g[index + 1] = NULL;
     *(curr_chat.length) = index + 1;

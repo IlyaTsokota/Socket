@@ -7,7 +7,7 @@ message_arr *take_messages(char *user_id, char *last_msg_id)
     char *json = write_to_json(num_f, arr);
     free(num_f);
     char *messages = request_on_server(json);
-    puts(messages);
+    //puts(messages);
     free(json);
     message_arr *messages_s = messages_to_json(messages);
     

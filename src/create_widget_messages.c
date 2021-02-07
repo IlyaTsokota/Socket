@@ -3,9 +3,10 @@
 void create_widget_messages()
 {
     message_arr *message = get_messages_from_file("messages.json");
+    curr_chat.length = malloc(sizeof(int));
     if (message != NULL)
     {   
-        curr_chat.length = malloc(sizeof(int));
+        
         int length = *message->length;
 
         for (int i = 0; i < length; i++)

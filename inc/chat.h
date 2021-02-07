@@ -161,6 +161,7 @@ typedef struct
 	char *message;
 	char *last_ms_id;
 	GMutex mutex;
+	GMutex mutex_seding_msg;
 } main_form_t;
 
 
@@ -284,6 +285,7 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 
+void* sending(gpointer text_view);
 void insert_text(GtkTextBuffer *buffer, GtkTextIter *location, gchar *text, gint len, gpointer user_data);
 void end_of_timer(gpointer data);
 gpointer thread_by_refresh_data(gpointer data);

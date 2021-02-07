@@ -7,9 +7,9 @@ char *request_on_server(char *request)
     size_t packet_size = 1024, packet_count = 0, read_index = 0;
     char buff[1024];
     char *str;
-    puts("request = ");
-    puts(request);
-    puts("================");
+    //puts("request = ");
+    //puts(request);
+    //puts("================");
     write(data.socket_desc, request, strlen(request));
 
     stat = 1025;
@@ -32,9 +32,9 @@ char *request_on_server(char *request)
         str[read_index] = '\0';
     } while (size > 0);
 
-    puts("answer = ");
-    puts(str);
-    puts("================");
+    //puts("answer = ");
+    //puts(str);
+    //puts("================");
 
     stat = read(data.socket_desc, buff, 1); //ах ты ёбаный ублюдок...
     

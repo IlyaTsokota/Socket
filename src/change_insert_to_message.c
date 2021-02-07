@@ -12,7 +12,7 @@ gboolean change_insert_to_message(gpointer widget)
 gboolean refresh_chat()
 {
     g_mutex_lock(&main_form.mutex);
-    puts("Lock");
+    //puts("Lock");
     message_arr *messages = take_messages(data.user_id, main_form.last_ms_id);
     if (messages != NULL)
     {
@@ -64,7 +64,7 @@ gboolean refresh_chat()
         }
         free_messages(messages);
     }
-        puts("Unlock");
+    //puts("Unlock");
 
     g_mutex_unlock(&main_form.mutex);
 

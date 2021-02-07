@@ -8,5 +8,5 @@ void open_main_form_after_register(GtkWidget *button, GtkWidget *widget)
     free_settings(settings_field); 
     data.user_id = get_user_id_from_db(registration.login_text);
     gtk_widget_destroy(widget);
-    open_main_form(data.win);    
+    open_main_form(data.win); 
 }
