@@ -39,9 +39,10 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
             answer = row[i];
         }
     }
+    char* chat_id = strdup(answer);
     mysql_free_result(result);
     //Добавить в чатюзерс юзера создавшего переписку
-    const char *request_parts[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", answer, "\",\"", my_id, "\",\"0\");", NULL};
+    const char *request_parts[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", chat_id, "\",\"", my_id, "\",\"0\");", NULL};
     bdrequest = strjoins_arr(request_parts);
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -51,9 +52,9 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
     }
     free(bdrequest); //IR
     //Добавить в чатюзерс контакта
-    const char *request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", answer, "\",\"", contact_id, "\",\"0\");", NULL};
+    const char *request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", chat_id, "\",\"", contact_id, "\",\"0\");", NULL};
     bdrequest = strjoins_arr(request_parts1);
-
+    free(chat_id);
     puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))

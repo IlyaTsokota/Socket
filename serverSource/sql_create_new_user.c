@@ -88,6 +88,8 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
             answer = row[i];
         }
     }
+       puts("i want to sleep now goodnight");
+    char *some_id = strdup(answer);  puts(answer);
     mysql_free_result(result);
 
     //Добавить юзеру пароль и пин в креденшлс
@@ -100,7 +102,8 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
         finish_with_error(con);
     }
     //Добавить юзеру Saved Messages в контакты
-    chat_create(con, answer, "1", 0);
+    chat_create(con, some_id, "1", 0);
+    free(some_id);
     mysql_close(con);
 
     free(bdrequest); //IR
