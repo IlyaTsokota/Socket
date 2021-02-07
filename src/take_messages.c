@@ -21,9 +21,8 @@ message_arr *messages_to_json(char *str)
 {
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);
-     int exist = 0;
     if(jobj == NULL) return NULL;
-    exist = json_object_object_get_ex(jobj, "messages", &values_obj);
+    int exist = json_object_object_get_ex(jobj, "messages", &values_obj);
     int length = json_object_array_length(values_obj);
     if (length > 0)
     {

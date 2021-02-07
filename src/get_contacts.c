@@ -8,8 +8,7 @@ contact_t **get_contacts(char *response)
     exist = json_object_object_get_ex(jobj, "contacts", &values_obj);
     int length = json_object_array_length(values_obj);
     if (length > 0)
-    {
-        
+    { 
         contact_t **contacts = malloc(sizeof(contact_t *) * (length + 1));
         contacts[length] = NULL;
         for (size_t i = 0; i < length; i++)

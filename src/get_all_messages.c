@@ -45,7 +45,7 @@ void get_all_messages(char *user_id, char *last_msg_id)
         size_t size_str_from_db = strlen(messages);
         size_t full_size = size_str_in_file + size_str_from_db - 14;
 
-        str_from_file = realloc(str_from_file, full_size + 2);
+        str_from_file = realloc(str_from_file, full_size + 3);
         str_from_file[++size_str_in_file] = ',';
         strcpy(&str_from_file[++size_str_in_file], &messages[14]);
 
@@ -55,11 +55,9 @@ void get_all_messages(char *user_id, char *last_msg_id)
             fputs(str_from_file, fp);
             fclose(fp);
         }
-    }
-    if (str_from_file != NULL)
-    {
         free(str_from_file);
     }
+ 
     free(messages);
 }
 

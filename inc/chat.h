@@ -25,6 +25,7 @@
 #include <fcntl.h>
 #include <gio/gio.h>
 #include <pthread.h>
+#include <glib.h>
 
 typedef struct
 {
@@ -159,7 +160,7 @@ typedef struct
 	bool is_allow_access_next_panel;
 	char *message;
 	char *last_ms_id;
-
+	GMutex mutex;
 } main_form_t;
 
 
@@ -283,6 +284,10 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 
+void insert_text(GtkTextBuffer *buffer, GtkTextIter *location, gchar *text, gint len, gpointer user_data);
+void end_of_timer(gpointer data);
+gpointer thread_by_refresh_data(gpointer data);
+void start_timer_in_other_thread();
 void init_interface();
 void hide_gtk_widgets(GtkWidget **widgets);
 void create_chat_widgets(char *user_id);
