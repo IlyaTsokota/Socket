@@ -18,7 +18,6 @@ void autorization_click_pin(GtkWidget *button, pin_t *pin_struct)
     {
         if (is_pin_user(pin))
         {
-            data.user_id = get_user_id_from_db(autorization.login_text);
             gtk_widget_destroy(pin_struct->pin_form);
             main_form.current_panel_id = 2;
             main_form.is_allow_access_next_panel = true;

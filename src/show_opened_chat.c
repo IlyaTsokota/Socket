@@ -11,12 +11,15 @@ void show_opened_chat(GtkWidget *main_grid, char *chat_id)
     main_form.message_line = GTK_WIDGET(gtk_builder_get_object(builder, "message_line"));
     main_form.message_scroll = GTK_WIDGET(gtk_builder_get_object(builder, "message_scroll"));
 
-    int j = 0;
-    for (int i = 0; curr_chat.messages_g[i]; i++)
+    if (curr_chat.messages_g != NULL)
     {
-        if (strcmp(chat_id, (char *)gtk_widget_get_name(curr_chat.messages_g[i]->message)) == 0)
+        int j = 0;
+        for (int i = 0; curr_chat.messages_g[i]; i++)
         {
-            gtk_grid_attach(GTK_GRID(main_form.message_line), curr_chat.messages_g[i]->event_box_message, 0, j++, 1, 1);
+            if (strcmp(chat_id, (char *)gtk_widget_get_name(curr_chat.messages_g[i]->message)) == 0)
+            {
+                gtk_grid_attach(GTK_GRID(main_form.message_line), curr_chat.messages_g[i]->event_box_message, 0, j++, 1, 1);
+            }
         }
     }
     gtk_widget_show_all(main_form.message_line);

@@ -9,11 +9,11 @@ gboolean change_insert_to_message(gpointer widget)
     return false;
 }
 
-gboolean refresh_chat()
+gboolean refresh_chat(update_t *update)
 {
     g_mutex_lock(&main_form.mutex);
-    //puts("Lock");
-    message_arr *messages = take_messages(data.user_id, main_form.last_ms_id);
+    ////puts("Lock");
+    message_arr *messages = take_messages(update->socket ,data.user_id, main_form.last_ms_id);
     if (messages != NULL)
     {
         int messages_length = *(messages->length);
@@ -64,7 +64,7 @@ gboolean refresh_chat()
         }
         free_messages(messages);
     }
-    //puts("Unlock");
+    ////puts("Unlock");
 
     g_mutex_unlock(&main_form.mutex);
 

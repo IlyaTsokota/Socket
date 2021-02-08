@@ -7,9 +7,9 @@ void get_contacts_from_db(GtkWidget *container, char *user_id)
     char *arr[] = {user_id, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
-    char *response = request_on_server(json);
+    char *response = request_on_server(data.socket_desc,json);
     free(json);
-    //puts(response);
+    ////puts(response);
     json_object *jobj;
     jobj = json_tokener_parse(response);
     if (jobj == NULL) { return;}

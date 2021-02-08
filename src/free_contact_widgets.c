@@ -4,7 +4,7 @@ void free_contact_widgets(contacts_widget_s **contacts)
     if (contacts != NULL && !contacts_t.was_free)
     {
 
-        //puts("To e pizda");
+        ////puts("To e pizda");
         for (size_t i = 0; contacts[i]; i++)
         {
             gtk_widget_destroy(contacts[i]->contact_name_lable);
@@ -19,7 +19,7 @@ void free_contact_widgets(contacts_widget_s **contacts)
             free(contacts[i]);
         }
         free(contacts);
-        //puts("Tochno pizda");
+        ////puts("Tochno pizda");
         contacts = NULL;
         contacts_t.was_free = true;
     }

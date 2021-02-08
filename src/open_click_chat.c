@@ -5,7 +5,8 @@ gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event)
     char *id = (char *)gtk_widget_get_name(widget);
     if (strcmp(id, chats_f.curr_chat) != 0)
     {       
-        free(chats_f.curr_chat);
+        if(chats_f.curr_chat != NULL)
+            free(chats_f.curr_chat);
         chats_f.curr_chat = strdup(id);
         free_all_children_in_container(main_form.message_line);
         int j = 0;

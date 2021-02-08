@@ -9,7 +9,7 @@ void open_main_form(GtkWidget *window)
     is_fullscreen(window);
     create_widget_messages();
     create_chat_widgets(data.user_id);
-   
+    //puts("want dead");
 
     GtkBuilder *builder = glade_file_to_interface("share/main.glade");
     GtkWidget *main_forma = GTK_WIDGET(gtk_builder_get_object(builder, "main_form"));
@@ -42,10 +42,13 @@ void open_main_form(GtkWidget *window)
     main_form.top_panel_top_text = GTK_WIDGET(gtk_builder_get_object(builder, "chat_name_lable"));
     main_form.top_panel_bottom_text = GTK_WIDGET(gtk_builder_get_object(builder, "user_is_online_in_chat"));
     GtkWidget *box_contacts = GTK_WIDGET(gtk_builder_get_object(builder, "box_contacts"));
-
+    
+    //puts("I want to say pizdec");
     show_chats(main_form.main_grid);
-    show_opened_chat(main_form.main_grid, chats_f.curr_chat);
+    //puts("I want to say pizdec1");
 
+    show_opened_chat(main_form.main_grid, chats_f.curr_chat);
+  //puts("I want to say pizdec2");
     GtkWidget *arr[] = {box_contacts, main_forma, left_panel, is_connection, con_img, top_panel, search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
                         left_panel_img->contact, left_panel_img->chat, left_panel_img->setting, left_panel_img->lock, NULL};
     css_set(arr, "share/resources/css/main.css");

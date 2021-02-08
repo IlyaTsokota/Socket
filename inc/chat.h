@@ -20,7 +20,7 @@
 #include <ctype.h>
 #include <locale.h>
 #include <wctype.h>
-#include <stdarg.h> 
+#include <stdarg.h>
 #include "json-c/json.h"
 #include <fcntl.h>
 #include <gio/gio.h>
@@ -38,7 +38,6 @@ typedef struct
 
 } messages_t;
 
-
 typedef struct
 {
 	GtkWidget *grid;
@@ -49,10 +48,10 @@ typedef struct
 
 typedef struct
 {
-  char *u_login;
-  char *u_name;
-  char *u_avatar;
-  char *u_status;
+	char *u_login;
+	char *u_name;
+	char *u_avatar;
+	char *u_status;
 } contact_info_t;
 
 typedef struct
@@ -120,7 +119,6 @@ typedef struct
 	int *length;
 } current_chat_s;
 
-
 typedef struct
 {
 	GtkWidget *login;
@@ -140,11 +138,12 @@ typedef struct
 	GtkWidget *restrict win;
 	char *user_id;
 	int socket_desc;
+	char *user_login;
+	char *picture_name;
 
 } appdata;
 
 appdata data;
-
 
 typedef struct
 {
@@ -164,6 +163,12 @@ typedef struct
 	GMutex mutex_seding_msg;
 } main_form_t;
 
+typedef struct
+{
+	char *u_id;
+	char *u_login;
+	char *u_avatar;
+} login_pin_info_t;
 
 typedef struct
 {
@@ -259,6 +264,7 @@ typedef struct
 {
 	chat_item_t **chat_items;
 	char *curr_chat;
+	int size;
 	bool was_free;
 } chats_form;
 
@@ -278,6 +284,11 @@ typedef struct
 	char *u_status;
 } contact_t;
 
+typedef struct {
+	int socket;
+	GMainLoop *l;
+} update_t;
+
 setting_items setting_elements;
 chats_form chats_f;
 contacts_arr contacts_t;
@@ -285,7 +296,10 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 
-void* sending(gpointer text_view);
+void create_one_chat(int index, chat_t *chat);
+login_pin_info_t *request_get_pin_info(char *response);
+void free_validation_login_info_s(login_pin_info_t *message);
+void *sending(gpointer text_view);
 void insert_text(GtkTextBuffer *buffer, GtkTextIter *location, gchar *text, gint len, gpointer user_data);
 void end_of_timer(gpointer data);
 gpointer thread_by_refresh_data(gpointer data);
@@ -293,16 +307,16 @@ void start_timer_in_other_thread();
 void init_interface();
 void hide_gtk_widgets(GtkWidget **widgets);
 void create_chat_widgets(char *user_id);
-message_arr *take_messages(char *user_id, char *last_msg_id);
+message_arr *take_messages(int socket, char *user_id, char *last_msg_id);
 message_arr *messages_to_json(char *str);
 void clear_text__buffer(GtkTextView *text_view);
-gboolean refresh_chat();
+gboolean refresh_chat(update_t *update);
 void create_one_messages(int index, message_t *message);
- char *get_text_of_textview(GtkTextView *text_view);
+char *get_text_of_textview(GtkTextView *text_view);
 gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view);
 void free_contact_info_s(contact_info_t *contact);
 contact_info_t *get_contact_info(char *contact_id);
-char *strjoin(int nHowMany, ... );
+char *strjoin(int nHowMany, ...);
 char *cut_str(char *str, int count_sym_cut);
 void free_contact_widgets(contacts_widget_s **contacts);
 void free_chat_items(chat_item_t **chats);
@@ -338,7 +352,7 @@ void free_messages(message_arr *message_container);
 void create_widget_messages();
 void get_all_messages(char *user_id, char *last_msg_id);
 message_arr *get_messages_from_file(char *filename);
-char *request_on_server(char *request);
+char *request_on_server(int socket ,char *request);
 gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event);
 bool is_online(char *last_seen);
 char *strjoins(const char *s1, const char *s2);

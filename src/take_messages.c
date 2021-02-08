@@ -1,13 +1,13 @@
 #include "chat.h"
 
-message_arr *take_messages(char *user_id, char *last_msg_id)
+message_arr *take_messages(int socket, char *user_id, char *last_msg_id)
 {
     char *num_f = strdup("16");
     char *arr[] = {user_id, last_msg_id, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
-    char *messages = request_on_server(json);
-    //puts(messages);
+    char *messages = request_on_server(socket, json);
+    ////puts(messages);
     free(json);
     message_arr *messages_s = messages_to_json(messages);
     
@@ -19,9 +19,10 @@ message_arr *take_messages(char *user_id, char *last_msg_id)
 
 message_arr *messages_to_json(char *str)
 {
+    //puts(str);
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);
-    if(jobj == NULL) return NULL;
+    if(jobj == NULL){ return NULL;}
     int exist = json_object_object_get_ex(jobj, "messages", &values_obj);
     int length = json_object_array_length(values_obj);
     if (length > 0)

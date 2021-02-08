@@ -8,7 +8,7 @@ void server_set_connection()
     client_addr.sin_family = AF_INET;
     client_addr.sin_addr.s_addr = INADDR_ANY; //inet_addr("178.165.30.151");
     client_addr.sin_port = htons(port);
-
+    
     if (connect(data.socket_desc, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
         printf("Connected to server, port is %d\n", port);
@@ -21,6 +21,8 @@ void server_set_connection()
         exit(1);
     }
 }
+
+
 
 void application_activate(GtkApplication *application, gpointer user_data)
 {

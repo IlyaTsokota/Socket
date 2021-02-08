@@ -11,9 +11,13 @@ void show_chats(GtkWidget *main_grid)
     main_form.chats_grid = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_container"));
     GtkWidget *arr[] = {main_form.left_content[0], contacts_panel, main_form.chats_grid, NULL};
     css_set(arr, "share/resources/css/main.css");
-    for (int i = 0; chats_f.chat_items[i]; i++)
+ 
+    if (chats_f.chat_items != NULL && chats_f.chat_items[0] != NULL)
     {
-        gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
+        for (int i = 0; chats_f.chat_items[i]; i++)
+        {
+            gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
+        }
     }
     gtk_grid_attach(GTK_GRID(main_form.left_content[0]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content[0], 0, 0, 1, 1);

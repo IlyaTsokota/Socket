@@ -6,7 +6,7 @@ void get_all_messages(char *user_id, char *last_msg_id)
     char *arr[] = {user_id, last_msg_id, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
-    char *messages = request_on_server(json);
+    char *messages = request_on_server(data.socket_desc,json);
     json_object *jobj;
     jobj = json_tokener_parse(messages);
     if (jobj == NULL)

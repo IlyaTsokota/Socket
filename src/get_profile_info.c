@@ -5,7 +5,7 @@ user_t *get_profile_info(){
     char *arr[] = {data.user_id, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
-    char *response = request_on_server(json);
+    char *response = request_on_server(data.socket_desc,json);
     int exist = 0;
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(response);
