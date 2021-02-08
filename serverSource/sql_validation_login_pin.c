@@ -26,9 +26,13 @@ char *pin_check(MYSQL *con, char *login, char *pin, int sock)
 
     int num_fields = mysql_num_fields(result);
     //If bug, try to comment this if
+
     if (num_fields <= 0)
     {
-        return "1";
+        char *string = strdup("0");
+        socket_send_data(string, sock);
+        free(string);
+        return "0";
     }
 
     MYSQL_ROW row;
