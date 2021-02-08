@@ -2,9 +2,9 @@
 
 void show_open_contact(GtkWidget *main_grid, char *id)
 {
-static bool do_once = true;
-    if (!do_once)
+   if (!do_once.bshow_open_contact)
         return;
+    do_once.bshow_open_contact = false;
     contact_info_t *current_info = get_contact_info(id);
     GtkBuilder *builder = glade_file_to_interface("share/contacts_right.glade");
 
@@ -44,5 +44,4 @@ static bool do_once = true;
             gtk_widget_show_all(main_form.right_content[2]);
 
     g_object_unref(builder);
-    do_once = false;
 }

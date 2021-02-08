@@ -296,11 +296,20 @@ grid#top-panel {
 
 .mt20 {
     margin-top: 20px;
-    
 }
 
-.color_normal{
+.color_normal {
+    text-shadow: none;
+    box-shadow: none;
+    font-size: 17px;
     color: #c5c5c5;
+}
+
+.color_red {
+    text-shadow: none;
+    box-shadow: none;
+    font-size: 17px;
+    color: #b21408;
 }
 
 .best {

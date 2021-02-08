@@ -8,8 +8,9 @@ void open_login_form(GtkWidget *button, GtkWidget *widget)
 
 void logout(GtkWidget *button, GtkWidget *widget)
 {
+    init_do_once(true);
     main_form.current_panel_id = -1;
-    gtk_widget_destroy(widget);
+    gtk_widget_destroy(main_form.app_form);
     remove("messages.json");
     char* settings = mx_file_to_str("settings.json");
     settings_t *settings_field = get_settings(settings);

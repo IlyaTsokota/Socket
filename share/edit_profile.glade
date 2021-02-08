@@ -171,6 +171,8 @@
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <style>
+                                            <class name="color_normal"/>
+
                     <class name="btn_info"/>
                     <class name="mt20"/>
                 </style>
@@ -193,6 +195,8 @@
                 <property name="margin_bottom">50</property>
                 <property name="hexpand">True</property>
                 <style>
+                                            <class name="color_red"/>
+
                     <class name="btn_info"/>
                 </style>
                 </object>

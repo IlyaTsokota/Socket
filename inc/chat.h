@@ -29,6 +29,29 @@
 
 typedef struct
 {
+	bool bshow_chats;
+	bool bshow_contacts;
+	bool bshow_edit_profile;
+	bool bshow_language;
+	bool bshow_privacy;
+	bool bshow_double_bottom;
+	bool bshow_appereance;
+	bool bshow_open_contact;
+	bool bshow_right_panel_is_clear;
+	bool bshow_setting;
+		bool bshow_notification;
+
+} do_once_t;
+do_once_t do_once;
+
+typedef struct
+{
+	GtkWidget *pin;
+	GtkWidget *fail_pin;
+} db_data;
+
+typedef struct
+{
 	GtkWidget *event_box_message;
 	GtkWidget *message;
 	GtkWidget *message_time;
@@ -147,6 +170,8 @@ appdata data;
 
 typedef struct
 {
+	GtkWidget *app_form;
+
 	GtkWidget **left_content;
 	GtkWidget **right_content;
 	GtkWidget *main_grid;
@@ -284,7 +309,8 @@ typedef struct
 	char *u_status;
 } contact_t;
 
-typedef struct {
+typedef struct
+{
 	int socket;
 	GMainLoop *l;
 } update_t;
@@ -296,6 +322,8 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 
+void init_do_once(bool value);
+void create_db_acc(GtkWidget *button, db_data *db_data);
 void create_one_chat(int index, chat_t *chat);
 login_pin_info_t *request_get_pin_info(char *response);
 void free_validation_login_info_s(login_pin_info_t *message);
@@ -352,7 +380,7 @@ void free_messages(message_arr *message_container);
 void create_widget_messages();
 void get_all_messages(char *user_id, char *last_msg_id);
 message_arr *get_messages_from_file(char *filename);
-char *request_on_server(int socket ,char *request);
+char *request_on_server(int socket, char *request);
 gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event);
 bool is_online(char *last_seen);
 char *strjoins(const char *s1, const char *s2);

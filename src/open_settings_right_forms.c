@@ -20,9 +20,10 @@ void set_active_setting_item(GtkWidget *text, GtkWidget *img, char *path_img, vo
 
 void show_edit_profile(GtkWidget *main_grid)
 {
-    static bool do_once = true;
-    if (!do_once)
+    
+    if (!do_once.bshow_edit_profile)
         return;
+    do_once.bshow_edit_profile = false;
     GtkBuilder *builder = glade_file_to_interface("share/edit_profile.glade");
     int *minSize = (int *)malloc(sizeof(int));
     *minSize = 4;
@@ -69,7 +70,7 @@ void show_edit_profile(GtkWidget *main_grid)
     gtk_widget_show_all(main_form.right_content[8]);
 
     g_object_unref(builder);
-    do_once = false;
+    
 }
 
 gboolean open_language(GtkWidget *widget, GdkEventButton *event)
@@ -83,9 +84,9 @@ gboolean open_language(GtkWidget *widget, GdkEventButton *event)
 void show_language(GtkWidget *main_grid)
 {
 
-    static bool do_once = true;
-    if (!do_once)
+        if (!do_once.bshow_language)
         return;
+    do_once.bshow_language = false;
     GtkBuilder *builder = glade_file_to_interface("share/language.glade");
 
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
@@ -100,7 +101,6 @@ void show_language(GtkWidget *main_grid)
     gtk_widget_show_all(main_form.right_content[7]);
 
     g_object_unref(builder);
-    do_once = false;
 }
 
 gboolean open_privacy(GtkWidget *widget, GdkEventButton *event)
@@ -113,9 +113,9 @@ gboolean open_privacy(GtkWidget *widget, GdkEventButton *event)
 void show_privacy(GtkWidget *main_grid)
 {
 
-    static bool do_once = true;
-    if (!do_once)
+    if (!do_once.bshow_privacy)
         return;
+    do_once.bshow_privacy = false;
     GtkBuilder *builder = glade_file_to_interface("share/privacy.glade");
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
@@ -131,7 +131,6 @@ void show_privacy(GtkWidget *main_grid)
     gtk_widget_show_all(main_form.right_content[6]);
 
     g_object_unref(builder);
-    do_once = false;
 }
 
 gboolean open_double_bottom(GtkWidget *widget, GdkEventButton *event)
@@ -143,29 +142,34 @@ gboolean open_double_bottom(GtkWidget *widget, GdkEventButton *event)
 
 void show_double_bottom(GtkWidget *main_grid)
 {
-    static bool do_once = true;
-    if (!do_once)
+    if (!do_once.bshow_double_bottom)
         return;
+    do_once.bshow_double_bottom = false;
     GtkBuilder *builder = glade_file_to_interface("share/double_bottom.glade");
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
-    GtkWidget *loginLable = GTK_WIDGET(gtk_builder_get_object(builder, "loginLable"));
-    GtkWidget *loginInput = GTK_WIDGET(gtk_builder_get_object(builder, "loginInput"));
-    GtkWidget *create_db = GTK_WIDGET(gtk_builder_get_object(builder, "create_db"));
-    GtkWidget *create_ac = GTK_WIDGET(gtk_builder_get_object(builder, "create_ac"));
     GtkWidget *pinLable = GTK_WIDGET(gtk_builder_get_object(builder, "pinLable"));
-    GtkWidget *pinInput = GTK_WIDGET(gtk_builder_get_object(builder, "pinInput"));
+    db_data * data_pin = malloc(sizeof(db_data));
+    data_pin->fail_pin = GTK_WIDGET(gtk_builder_get_object(builder, "fail_pin"));
 
-    GtkWidget *arr[] = {main_form.right_content[5], setting_form, text_info, loginLable, loginInput, create_db, create_ac, pinLable, pinInput, NULL};
+    int *maxSize = (int *)malloc(sizeof(int));
+    *maxSize = 4;
+    data_pin->pin = create_input(builder, "pinInput", maxSize);
+    g_signal_connect(G_OBJECT(data_pin->pin), "changed", G_CALLBACK(change_event_pin), maxSize);
+
+    GtkWidget *create_db = GTK_WIDGET(gtk_builder_get_object(builder, "create_db"));
+    g_signal_connect(G_OBJECT(create_db), "clicked", G_CALLBACK(create_db_acc), data_pin);
+    //free(maxSize);
+    GtkWidget *arr[] = {main_form.right_content[5], setting_form, data_pin->fail_pin, text_info, create_db,  pinLable, data_pin->pin, NULL};
     css_set(arr, "share/resources/css/main.css");
     gtk_grid_attach(GTK_GRID(main_form.right_content[5]), child, 0, 0, 1, 1);
+
 
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[5], 1, 0, 1, 1);
     gtk_widget_show_all(main_form.right_content[5]);
 
     g_object_unref(builder);
-    do_once = false;
 }
 
 gboolean open_notification(GtkWidget *widget, GdkEventButton *event)
@@ -177,9 +181,9 @@ gboolean open_notification(GtkWidget *widget, GdkEventButton *event)
 
 void show_notification(GtkWidget *main_grid)
 {
-    static bool do_once = true;
-    if (!do_once)
+    if (!do_once.bshow_notification)
         return;
+    do_once.bshow_notification = false;
     GtkBuilder *builder = glade_file_to_interface("share/notifications.glade");
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
@@ -195,7 +199,6 @@ void show_notification(GtkWidget *main_grid)
     gtk_widget_show_all(main_form.right_content[4]);
 
     g_object_unref(builder);
-    do_once = false;
 }
 
 gboolean open_appereance(GtkWidget *widget, GdkEventButton *event)
@@ -208,10 +211,9 @@ gboolean open_appereance(GtkWidget *widget, GdkEventButton *event)
 
 void show_appereance(GtkWidget *main_grid)
 {
-
-    static bool do_once = true;
-    if (!do_once)
+    if (!do_once.bshow_appereance)
         return;
+    do_once.bshow_appereance = false;
     GtkBuilder *builder = glade_file_to_interface("share/appereance.glade");
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
@@ -227,5 +229,4 @@ void show_appereance(GtkWidget *main_grid)
     gtk_widget_show_all(main_form.right_content[3]);
 
     g_object_unref(builder);
-    do_once = false;
 }

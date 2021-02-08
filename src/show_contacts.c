@@ -2,9 +2,9 @@
 
 void show_contacts(GtkWidget *main_grid)
 {
-    static bool do_once = true;
-    if (!do_once)
+   if (!do_once.bshow_contacts)
         return;
+    do_once.bshow_contacts = false;
     GtkBuilder *builder = glade_file_to_interface("share/contacts_left.glade");
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_contacts_info"));
 
@@ -22,5 +22,4 @@ void show_contacts(GtkWidget *main_grid)
     gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content[1], 0, 0, 1, 1);
     gtk_widget_show_all(main_form.left_content[1]);
     g_object_unref(builder);
-    do_once = false;
 }

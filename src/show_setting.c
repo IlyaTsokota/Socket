@@ -3,9 +3,9 @@
 void show_setting(GtkWidget *main_grid)
 {
 
-    static bool do_once = true;
-    if (!do_once)
+       if (!do_once.bshow_setting)
         return;
+    do_once.bshow_setting = false;
     gtk_label_set_text(GTK_LABEL(main_form.top_panel_top_text), "Settings"); 
     gtk_label_set_text(GTK_LABEL(main_form.top_panel_bottom_text), "Some settings can affect your life"); 
 
@@ -16,11 +16,8 @@ void show_setting(GtkWidget *main_grid)
     GtkWidget *info_container = GTK_WIDGET(gtk_builder_get_object(builder, "info_container"));
     GtkWidget *info_img = GTK_WIDGET(gtk_builder_get_object(builder, "info_img"));
 
-    char* settings = mx_file_to_str("settings.json");
-    settings_t *settings_field = get_settings(settings);
     GtkWidget *info_login = GTK_WIDGET(gtk_builder_get_object(builder, "info_login"));
-    gtk_label_set_text(GTK_LABEL(info_login), settings_field->login);
-    free_settings(settings_field); 
+    gtk_label_set_text(GTK_LABEL(info_login), data.user_login);
     GtkWidget *info_status = GTK_WIDGET(gtk_builder_get_object(builder, "info_status"));
     GtkWidget *socket_version = GTK_WIDGET(gtk_builder_get_object(builder, "socket_version"));
     GtkWidget *socket_platform = GTK_WIDGET(gtk_builder_get_object(builder, "socket_platform"));
@@ -71,5 +68,4 @@ void show_setting(GtkWidget *main_grid)
     gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content[2], 0, 0, 1, 1);
     gtk_widget_show_all(main_form.left_content[2]);
     g_object_unref(builder);
-    do_once = false;
 }
