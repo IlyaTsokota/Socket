@@ -9,8 +9,9 @@ CC = clang
 
 LIBSDIR = libs
 
-LIBS = -L$(LIBSDIR)/json-c/ -ljson-c -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lpthread -lz -lm -ldl -lpthread -lz -lm -ldl -lcrypt
+//LIBS = -L$(LIBSDIR)/json-c/  -L$(LIBSDIR)/mysql -L/usr/lib/x86_64-linux-gnu -lmysqlclient -ljson-c -L/usr/lib/x86_64-linux-gnu  -lpthread -lz -lm -ldl -lpthread -lz -lm -ldl -lcrypt 
 
+LIBS = -L$(LIBSDIR)/json-c/ -ljson-c -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lpthread -lz -lm -ldl -lpthread -lz -lm -ldl -lcrypt
 CFLAGS = -std=c11 -Wall -Wextra -Werror -Wpedantic
 
 RM = rm -rf

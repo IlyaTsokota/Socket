@@ -26,9 +26,10 @@
 //socket_send_data
 bool socket_send_data(char *data, int socket);
 
+char *send_image(int socket, char *chat_id, char *message_id);
 //images
-void send_image(int socket);
-char* receive_image(int socket);
+
+char *receive_image(int socket, char *chat_id, char *message_id);
 
 //utilities
 void array_clear(array_t *a);

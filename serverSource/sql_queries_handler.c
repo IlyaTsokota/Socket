@@ -83,8 +83,12 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         puts("Query 24 -> delete_account");
         return delete_account(con, array[1]);
     case 25:
-        puts("Query 25 -> Recieve image");
-        return receive_image(sock);
+        puts("Query 25 -> recieve image");
+        return receive_image(sock, array[1], array[2]);
+    case 26:
+        puts("Query 26 -> send_image");
+        return send_image(sock, array[1], array[2]);
+
     default:
         puts("Server queries_handler default error");
         return "Server queries_handler default error";

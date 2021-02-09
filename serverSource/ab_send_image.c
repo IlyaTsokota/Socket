@@ -1,13 +1,14 @@
 #include "server.h"
 
-void send_image(int socket)
+char *send_image(int socket, char *chat_id, char *message_id)
 {
     FILE *picture;
     int size, read_size, stat, packet_index;
     char send_buffer[10240], read_buffer[256];
     packet_index = 1;
-
-    picture = fopen("zhaba.png", "r");
+    const char *path_parts[] = {"./", chat_id, "/", message_id, ".png", NULL};
+    char *path = strjoins_arr(path_parts);
+    picture = fopen(path, "r");
     printf("Getting Picture Size\n");
 
     if (picture == NULL)
@@ -58,4 +59,5 @@ void send_image(int socket)
         //Zero out our send buffer
         bzero(send_buffer, sizeof(send_buffer));
     }
+    return "1";
 }

@@ -1,6 +1,6 @@
 #include "server.h"
 
-char* receive_image(int socket)
+char *receive_image(int socket, char *chat_id, char *message_id)
 { // Start function
 
     int buffersize = 0, recv_size = 0, size = 0, read_size, write_size, packet_index = 1, stat;
@@ -27,8 +27,10 @@ char* receive_image(int socket)
 
     printf("Reply sent\n");
     printf(" \n");
-
-    image = fopen("capture3.png", "w");
+    const char *path_parts[] = {"./", chat_id, "/", message_id, ".png", NULL};
+    char *path = strjoins_arr(path_parts);
+    puts(path);
+    image = fopen("path", "w");
 
     if (image == NULL)
     {
