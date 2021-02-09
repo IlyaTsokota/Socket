@@ -63,7 +63,7 @@ void show_setting(GtkWidget *main_grid)
     socket_version,socket_platform,event_edit_profile, setting_elements.edit_profile_img,setting_elements.edit_profile_text,event_notifications,
      setting_elements.notifications_img,setting_elements.notifications_text,event_privacy,setting_elements.privacy_img,setting_elements.privacy_text,event_language,setting_elements.language_img,
      setting_elements.language_text,event_logout,logout_img,logout_text,event_double_bottom,setting_elements.double_bottom_img,setting_elements.double_bottom_text,event_theme,setting_elements.theme_img,setting_elements.theme_text,NULL};
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID( main_form.left_content[2]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content[2], 0, 0, 1, 1);
     gtk_widget_show_all(main_form.left_content[2]);

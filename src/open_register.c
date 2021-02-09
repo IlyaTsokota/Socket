@@ -41,7 +41,7 @@ void open_register(GtkWidget *window)
     g_signal_connect(G_OBJECT(signInLabel), "clicked", G_CALLBACK(open_login_form), regOne);
     g_signal_connect(G_OBJECT(btnNext), "clicked", G_CALLBACK(open_register_second_form), regOne);
 
-    css_set(arr, "share/resources/css/auth.css");
+    css_set(arr,   data.auth_theme_path);
 
     gtk_container_add(GTK_CONTAINER(window), regOne);
     g_object_unref(builder);

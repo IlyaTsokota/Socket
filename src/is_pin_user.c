@@ -7,10 +7,14 @@ bool is_pin_user(char *pin)
     char *json = write_to_json(num_f, arr);
     free(num_f);
     char *response = request_on_server(data.socket_desc,json);
-    if (strcmp(response, "0") == 0)
+    puts(response);
+    json_object *jobj;
+    jobj = json_tokener_parse(response);
+    if (jobj == NULL)
     {
         return false;
     }
+    free(jobj);
     login_pin_info_t *pin_info = request_get_pin_info(response);
     free(response);
     data.user_id = strdup(pin_info->u_id);

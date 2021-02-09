@@ -63,7 +63,7 @@ void show_edit_profile(GtkWidget *main_grid)
                         select_img, login_edit, NULL};
 
     g_signal_connect(G_OBJECT(apply_btn), "clicked", G_CALLBACK(update_profile), NULL);
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[8]), child, 0, 0, 1, 1);
 
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[8], 1, 0, 1, 1);
@@ -95,7 +95,7 @@ void show_language(GtkWidget *main_grid)
     GtkWidget *languageLable = GTK_WIDGET(gtk_builder_get_object(builder, "languageLable"));
     GtkWidget *language_combobox = GTK_WIDGET(gtk_builder_get_object(builder, "language_combobox"));
     GtkWidget *arr[] = {main_form.right_content[7], setting_form, text_info, languageLable, language_combobox, NULL};
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[7]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[7], 1, 0, 1, 1);
     gtk_widget_show_all(main_form.right_content[7]);
@@ -125,7 +125,7 @@ void show_privacy(GtkWidget *main_grid)
     GtkWidget *vpn_btn = GTK_WIDGET(gtk_builder_get_object(builder, "vpn_btn"));
 
     GtkWidget *arr[] = {main_form.right_content[6], setting_form, text_info, change_password, change_pin, vpn_btn, NULL};
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[6]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[6], 1, 0, 1, 1);
     gtk_widget_show_all(main_form.right_content[6]);
@@ -162,7 +162,7 @@ void show_double_bottom(GtkWidget *main_grid)
     g_signal_connect(G_OBJECT(create_db), "clicked", G_CALLBACK(create_db_acc), data_pin);
     //free(maxSize);
     GtkWidget *arr[] = {main_form.right_content[5], setting_form, data_pin->fail_pin, text_info, create_db,  pinLable, data_pin->pin, NULL};
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[5]), child, 0, 0, 1, 1);
 
 
@@ -192,7 +192,7 @@ void show_notification(GtkWidget *main_grid)
     GtkWidget *is_notification = GTK_WIDGET(gtk_builder_get_object(builder, "is_notification"));
 
     GtkWidget *arr[] = {main_form.right_content[4], setting_form, text_info, notificationsLable, is_notification, NULL};
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[4]), child, 0, 0, 1, 1);
 
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[4], 1, 0, 1, 1);
@@ -222,7 +222,7 @@ void show_appereance(GtkWidget *main_grid)
     GtkWidget *is_appereance = GTK_WIDGET(gtk_builder_get_object(builder, "is_notification"));
 
     GtkWidget *arr[] = {main_form.right_content[3], setting_form, text_info, notificationsLable, is_appereance, NULL};
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[3]), child, 0, 0, 1, 1);
 
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[3], 1, 0, 1, 1);

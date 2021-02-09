@@ -45,12 +45,17 @@ void application_activate(GtkApplication *application, gpointer user_data)
     data.win = GTK_WIDGET(gtk_builder_get_object(builder, "windowAuth"));
     if (strcmp(settings_field->theme, "Dark") == 0)
     {
-        css_set_for_one(data.win, "share/resources/css/auth.css"); //Dark
+        data.auth_theme_path = strdup("share/resources/css/auth.css");
+        data.main_theme_path = strdup("share/resources/css/main.css");
     }
     else
     {
-        css_set_for_one(data.win, "share/resources/css/auth.css"); //White
+        data.auth_theme_path = strdup("share/resources/css/auth-light.css");
+        data.main_theme_path = strdup("share/resources/css/main-light.css"); //White
     }
+
+    css_set_for_one(data.win,  data.auth_theme_path); //Dark
+
     g_object_unref(builder);
 
     if (strcmp(settings_field->is_in, "FALSE") == 0)

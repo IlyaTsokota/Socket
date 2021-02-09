@@ -2,21 +2,27 @@
 
 void create_one_messages(int index, message_t *message)
 {
+    g_print("%d -- index\n",index);
     curr_chat.messages_g = (messages_t **)realloc(curr_chat.messages_g, sizeof(messages_t *) * (index + 2));
-
+    if(curr_chat.messages_g == NULL){
+        puts("Pizda");
+    }
     curr_chat.messages_g[index] = (messages_t *)malloc(sizeof(messages_t));
+    if(curr_chat.messages_g[index] == NULL){
+        puts("Pizda index");
+    }
     curr_chat.messages_g[index]->event_box_message = gtk_event_box_new();
 
     // g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
     gtk_widget_set_hexpand(curr_chat.messages_g[index]->event_box_message, true);
+    
     if (strcmp(message->u_id, data.user_id) == 0)
     {
         gtk_widget_set_halign(curr_chat.messages_g[index]->event_box_message, GTK_ALIGN_END);
-    }
-    else
-    {
+    } else {
         gtk_widget_set_halign(curr_chat.messages_g[index]->event_box_message, GTK_ALIGN_START);
     }
+
     gtk_widget_set_vexpand(curr_chat.messages_g[index]->event_box_message, true);
     gtk_widget_set_name(curr_chat.messages_g[index]->event_box_message, message->ms_id);
     gtk_widget_set_size_request(curr_chat.messages_g[index]->event_box_message, 500, -1);
@@ -40,7 +46,7 @@ void create_one_messages(int index, message_t *message)
     gtk_widget_set_halign(curr_chat.messages_g[index]->message_login, GTK_ALIGN_START);
     set_style_context(curr_chat.messages_g[index]->message_login, "contact-login");
     set_style_context(curr_chat.messages_g[index]->message_login, "message-from");
-
+    
     curr_chat.messages_g[index]->message_text = gtk_label_new(message->ms_text);
     gtk_widget_set_hexpand(curr_chat.messages_g[index]->message_text, true);
     gtk_widget_set_vexpand(curr_chat.messages_g[index]->message_text, true);
@@ -53,12 +59,12 @@ void create_one_messages(int index, message_t *message)
     gtk_label_set_selectable(GTK_LABEL(curr_chat.messages_g[index]->message_text), true);
     set_style_context(curr_chat.messages_g[index]->message_text, "message-text");
 
-    css_set_for_one(curr_chat.messages_g[index]->event_box_message, "share/resources/css/main.css");
-    css_set_for_one(curr_chat.messages_g[index]->message, "share/resources/css/main.css");
-    css_set_for_one(curr_chat.messages_g[index]->message_info, "share/resources/css/main.css");
-    css_set_for_one(curr_chat.messages_g[index]->message_time, "share/resources/css/main.css");
-    css_set_for_one(curr_chat.messages_g[index]->message_text, "share/resources/css/main.css");
-    css_set_for_one(curr_chat.messages_g[index]->message_login, "share/resources/css/main.css");
+    css_set_for_one(curr_chat.messages_g[index]->event_box_message,  data.main_theme_path);
+    css_set_for_one(curr_chat.messages_g[index]->message,  data.main_theme_path);
+    css_set_for_one(curr_chat.messages_g[index]->message_info,  data.main_theme_path);
+    css_set_for_one(curr_chat.messages_g[index]->message_time,  data.main_theme_path);
+    css_set_for_one(curr_chat.messages_g[index]->message_text,  data.main_theme_path);
+    css_set_for_one(curr_chat.messages_g[index]->message_login,  data.main_theme_path);
 
     gtk_grid_attach(GTK_GRID(curr_chat.messages_g[index]->message_info), curr_chat.messages_g[index]->message_login, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(curr_chat.messages_g[index]->message_info), curr_chat.messages_g[index]->message_time, 1, 0, 1, 1);
@@ -67,7 +73,6 @@ void create_one_messages(int index, message_t *message)
     gtk_grid_attach(GTK_GRID(curr_chat.messages_g[index]->message), curr_chat.messages_g[index]->message_info, 0, 0, 1, 1);
 
     gtk_container_add(GTK_CONTAINER(curr_chat.messages_g[index]->event_box_message), curr_chat.messages_g[index]->message);
-    //g_print("Index -- %d\n", index);
     
     curr_chat.messages_g[index + 1] = NULL;
     *(curr_chat.length) = index + 1;

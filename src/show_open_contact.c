@@ -37,7 +37,7 @@ void show_open_contact(GtkWidget *main_grid, char *id)
 
     free_contact_info_s(current_info);
     GtkWidget *arr[] = {main_form.right_content[2], contact_info_name_container, contact_info_name, send_message, add_contact, blcok_contact, img_info_contact, quote, quote_text, fullname, fullname_text, is_admin, support_text, NULL};
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[2]), child, 0, 0, 1, 1);
 
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[2], 1, 0, 1, 1);

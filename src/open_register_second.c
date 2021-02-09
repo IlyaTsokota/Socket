@@ -28,7 +28,7 @@ void open_register_second(GtkWidget *window)
     GtkWidget *arr[] = {grid, labelLogo, labelText, passwordLable, registration.password, pinLable, registration.pin, signInLabel, btnNext, registration.fail_pin, registration.fail_password, registration.fail_password, NULL};
     g_signal_connect(G_OBJECT(signInLabel), "clicked", G_CALLBACK(open_login_form), grid);
     g_signal_connect(G_OBJECT(btnNext), "clicked", G_CALLBACK(open_register_third_form), grid);
-    css_set(arr, "share/resources/css/auth.css");
+    css_set(arr,   data.auth_theme_path);
     gtk_container_add(GTK_CONTAINER(window), grid);
     g_object_unref(builder);
 }

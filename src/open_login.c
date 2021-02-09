@@ -25,7 +25,7 @@ void open_login(GtkWidget *window)
     g_signal_connect(G_OBJECT(autorization.password), "changed", G_CALLBACK(change_event_login_or_password), minSize);
     g_signal_connect(G_OBJECT(autorization.password), "activate", G_CALLBACK(autorization_in_app), grid);
     GtkWidget *arrWidgetForStyled[] = {labelLogo, labelText, labelCreate, labelLogin, labelPassword, autorization.password, autorization.login, btn , grid, autorization.fail_login, autorization.fail_password,autorization.fail_auth, NULL };
-    css_set(arrWidgetForStyled, "share/resources/css/auth.css");
+    css_set(arrWidgetForStyled,   data.auth_theme_path);
     g_signal_connect(G_OBJECT(btn), "clicked", G_CALLBACK(autorization_in_app), grid);
     g_signal_connect(G_OBJECT(labelCreate), "clicked", G_CALLBACK(open_reg), grid);
     gtk_container_add(GTK_CONTAINER(window), grid);

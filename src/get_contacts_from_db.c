@@ -86,13 +86,13 @@ void get_contacts_from_db(GtkWidget *container, char *user_id)
             gtk_widget_set_margin_start( contacts_t.widgets[i]->img_contact, 10);
             set_style_context(contacts_t.widgets[i]->img_contact, "contact-icon");
          
-            css_set_for_one(contacts_t.widgets[i]->img_contact, "share/resources/css/main.css");
-            css_set_for_one(contacts_t.widgets[i]->grid_list_contact_img, "share/resources/css/main.css");
-            css_set_for_one(contacts_t.widgets[i]->contact_name_lable, "share/resources/css/main.css");
-            css_set_for_one(contacts_t.widgets[i]->contact_status_lable, "share/resources/css/main.css");
-            css_set_for_one(contacts_t.widgets[i]->contact_status, "share/resources/css/main.css");
-            css_set_for_one(contacts_t.widgets[i]->contact_container, "share/resources/css/main.css");
-            css_set_for_one(contacts_t.widgets[i]->contact_info, "share/resources/css/main.css");
+            css_set_for_one(contacts_t.widgets[i]->img_contact,  data.main_theme_path);
+            css_set_for_one(contacts_t.widgets[i]->grid_list_contact_img,  data.main_theme_path);
+            css_set_for_one(contacts_t.widgets[i]->contact_name_lable,  data.main_theme_path);
+            css_set_for_one(contacts_t.widgets[i]->contact_status_lable,  data.main_theme_path);
+            css_set_for_one(contacts_t.widgets[i]->contact_status,  data.main_theme_path);
+            css_set_for_one(contacts_t.widgets[i]->contact_container,  data.main_theme_path);
+            css_set_for_one(contacts_t.widgets[i]->contact_info,  data.main_theme_path);
 
             gtk_grid_attach(GTK_GRID(contacts_t.widgets[i]->contact_container), contacts_t.widgets[i]->contact_info, 1, 0, 1, 1);
             gtk_grid_attach(GTK_GRID(contacts_t.widgets[i]->contact_container), contacts_t.widgets[i]->grid_list_contact_img, 0, 0, 1, 1);

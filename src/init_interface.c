@@ -23,3 +23,20 @@ void init_interface()
         set_style_context(main_form.left_content[i], "contacts-panel");
     }
 }
+
+
+
+void clear_interface()
+{
+    for (size_t i = 0; i < 9; i++)
+    {
+        gtk_widget_destroy(main_form.right_content[i]) ;
+    }
+    free(main_form.right_content);
+
+    for (size_t i = 0; i < 3; i++)
+    {
+        gtk_widget_destroy(main_form.left_content[i]) ;
+    }
+    free(main_form.left_content);
+}

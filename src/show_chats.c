@@ -10,7 +10,7 @@ void show_chats(GtkWidget *main_grid)
     GtkWidget *contacts_panel = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_panel"));
     main_form.chats_grid = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_container"));
     GtkWidget *arr[] = {main_form.left_content[0], contacts_panel, main_form.chats_grid, NULL};
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
  
     if (chats_f.chat_items != NULL && chats_f.chat_items[0] != NULL)
     {

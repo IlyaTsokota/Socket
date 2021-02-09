@@ -52,7 +52,7 @@ void open_main_form(GtkWidget *window)
   //puts("I want to say pizdec2");
     GtkWidget *arr[] = {box_contacts, main_form.app_form, left_panel, is_connection, con_img, top_panel, search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
                         left_panel_img->contact, left_panel_img->chat, left_panel_img->setting, left_panel_img->lock, NULL};
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
 
     edit_styles_for_widget(left_panel_img->chat, "* {background: #88c5ce;}");
 

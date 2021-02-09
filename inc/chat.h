@@ -163,7 +163,8 @@ typedef struct
 	int socket_desc;
 	char *user_login;
 	char *picture_name;
-
+	char *auth_theme_path;
+	char *main_theme_path;
 } appdata;
 
 appdata data;
@@ -186,6 +187,8 @@ typedef struct
 	char *last_ms_id;
 	GMutex mutex;
 	GMutex mutex_seding_msg;
+	GMainLoop *loop;
+	GThread *update_thread;
 } main_form_t;
 
 typedef struct
@@ -312,7 +315,6 @@ typedef struct
 typedef struct
 {
 	int socket;
-	GMainLoop *l;
 } update_t;
 
 setting_items setting_elements;
@@ -322,6 +324,12 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 
+gboolean show_emoji(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view);
+void send_source(int socket, char *filename);
+gboolean send_pinned_resource(GtkWidget *widget);
+void clear_interface();
+void free_message_widgets(messages_t **message);
+void free_chat_widgets(chat_item_t **contacts);
 void init_do_once(bool value);
 void create_db_acc(GtkWidget *button, db_data *db_data);
 void create_one_chat(int index, chat_t *chat);

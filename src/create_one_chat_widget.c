@@ -4,7 +4,7 @@ void create_one_chat(int index, chat_t *chat)
 {
     chats_f.chat_items = (chat_item_t **)realloc(chats_f.chat_items, sizeof(chat_item_t *) * (index + 2));
     chats_f.chat_items[index] = (chat_item_t *)malloc(sizeof(chat_item_t));
-
+    
     chats_f.chat_items[index]->event_box_contact = gtk_event_box_new();
     gtk_widget_set_hexpand(chats_f.chat_items[index]->event_box_contact, true);
     gtk_widget_set_name(chats_f.chat_items[index]->event_box_contact, chat->ch_id);
@@ -64,6 +64,7 @@ void create_one_chat(int index, chat_t *chat)
         last_msg = strdup("");
     }
 
+    
     chats_f.chat_items[index]->text_last_message = gtk_label_new(last_msg);
     gtk_widget_set_hexpand(chats_f.chat_items[index]->text_last_message, false);
     set_style_context(chats_f.chat_items[index]->text_last_message, "contact-lastmsg");
@@ -105,7 +106,7 @@ void create_one_chat(int index, chat_t *chat)
     chats_f.chat_items[index]->user_is_online_round = gtk_level_bar_new();
     gtk_widget_set_opacity(chats_f.chat_items[index]->user_is_online_round, 0);
 
-    css_set_for_one(chats_f.chat_items[index]->user_is_online, "share/resources/css/main.css");
+    css_set_for_one(chats_f.chat_items[index]->user_is_online,  data.main_theme_path);
 
     // }
 
@@ -131,15 +132,15 @@ void create_one_chat(int index, chat_t *chat)
     gtk_widget_set_vexpand(chats_f.chat_items[index]->img_contact, true);
     set_style_context(chats_f.chat_items[index]->img_contact, "contact-icon");
 
-    css_set_for_one(chats_f.chat_items[index]->contact_container, "share/resources/css/main.css");
-    css_set_for_one(chats_f.chat_items[index]->time_last_message, "share/resources/css/main.css");
-    css_set_for_one(chats_f.chat_items[index]->contact_info, "share/resources/css/main.css");
-    css_set_for_one(chats_f.chat_items[index]->text_last_message, "share/resources/css/main.css");
-    css_set_for_one(chats_f.chat_items[index]->login_last_message, "share/resources/css/main.css");
+    css_set_for_one(chats_f.chat_items[index]->contact_container,  data.main_theme_path);
+    css_set_for_one(chats_f.chat_items[index]->time_last_message,  data.main_theme_path);
+    css_set_for_one(chats_f.chat_items[index]->contact_info,  data.main_theme_path);
+    css_set_for_one(chats_f.chat_items[index]->text_last_message,  data.main_theme_path);
+    css_set_for_one(chats_f.chat_items[index]->login_last_message,  data.main_theme_path);
 
-    css_set_for_one(chats_f.chat_items[index]->contact_img_container, "share/resources/css/main.css");
-    css_set_for_one(chats_f.chat_items[index]->img_contact, "share/resources/css/main.css");
-    css_set_for_one(chats_f.chat_items[index]->contact_name_lable, "share/resources/css/main.css");
+    css_set_for_one(chats_f.chat_items[index]->contact_img_container,  data.main_theme_path);
+    css_set_for_one(chats_f.chat_items[index]->img_contact,  data.main_theme_path);
+    css_set_for_one(chats_f.chat_items[index]->contact_name_lable,  data.main_theme_path);
 
     gtk_grid_attach(GTK_GRID(chats_f.chat_items[index]->contact_container), chats_f.chat_items[index]->contact_img_container, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(chats_f.chat_items[index]->contact_img_container), chats_f.chat_items[index]->img_contact, 0, 0, 1, 1);

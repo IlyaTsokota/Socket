@@ -16,7 +16,7 @@ void show_contacts(GtkWidget *main_grid)
     GtkWidget *arr[] = {main_form.left_content[1], contacts_info_panel,box_contact, box_add_new,add_new_contact,NULL};
     gtk_label_set_text(GTK_LABEL(main_form.top_panel_top_text), "Contacts"); 
     gtk_label_set_text(GTK_LABEL(main_form.top_panel_bottom_text), "Some contacts can affect your life"); 
-    css_set(arr, "share/resources/css/main.css");
+    css_set(arr,  data.main_theme_path);
     get_contacts_from_db(box_contact, data.user_id);
      gtk_grid_attach(GTK_GRID( main_form.left_content[1]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content[1], 0, 0, 1, 1);

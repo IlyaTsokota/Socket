@@ -13,7 +13,6 @@ void *sending(gpointer text_view)
     struct sockaddr_in client_addr;
     update_t *update = malloc(sizeof(update));
     update->socket = socket(AF_INET, SOCK_STREAM, 0);
-    update->l = NULL;
     int port = 3762;
     client_addr.sin_family = AF_INET;
     client_addr.sin_addr.s_addr = INADDR_ANY; //inet_addr("178.165.30.151");

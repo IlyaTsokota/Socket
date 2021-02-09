@@ -1,0 +1,336 @@
+* {
+    caret-color: #fff;
+}
+
+grid#connection {
+    background: green;
+}
+
+grid#left-panel,
+grid#top-panel {
+    background-color: #cccccc;
+}
+
+.contacts-panel {
+    background-color: #dadad9;
+}
+
+.message-panel {
+    background-color: #fff;
+}
+
+.bg-pupure {
+    background-color: #b787ff;
+}
+
+.message-container {
+    background-color: #fff;
+}
+
+.message-input text {
+    background-color: #c4c4c4;
+    border: none;
+    border-radius: 0;
+    color: #c3c3c3;
+}
+
+.message-input {
+    font-weight: 400;
+    font-size: 14px;
+    padding: 16px 15px 0 0;
+}
+
+.p-msg {
+    padding-left: 15px;
+}
+
+.msg-input {
+    background: #c4c4c4;
+    border: none;
+    border-radius: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.search-entry {
+    background-color: #c4c4c4;
+    border-radius: 10px;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.name-chat {
+    font-size: 24px;
+    font-weight: 700;
+    color: #b787ff;
+}
+
+.status {
+    font-size: 14px;
+    font-weight: 400;
+    color: #3a3a3a;
+}
+
+.contact-login {
+    margin-top: -5px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #b787ff;
+}
+
+.contact-time,
+.contact-lastmessage {
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.is-online {
+    border-radius: 50%;
+    background-color: #196148;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.message-body {
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.message-time {
+    margin-right: 15px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #878787;
+}
+
+.message-text {
+    margin: 10px;
+    color: #c3c3c3;
+    font-size: 15px;
+}
+
+.contact-body {
+    margin: 10px;
+}
+
+.contact-time {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.contact-img {
+    margin-left: 10px;
+}
+
+.contact-lastmsg {
+    margin-left: 10px;
+}
+
+.bg-gray {
+    background-color: #cccccc;
+}
+
+.border-none,
+.border_none {
+    border: none;
+}
+
+.contact-icon {
+    border-radius: 50%;
+}
+
+.message-from {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.my-status {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #88c5ce;
+}
+
+.my_login {
+    margin: 10px 0 0 10px;
+}
+
+.my-block {
+    border-bottom: 5px solid #333;
+}
+
+.settings-item_text {
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #3a3a3a;
+}
+
+.settings-item_img {
+    margin-left: 35px;
+}
+
+.socket_platform,
+.socket_version {
+    font-size: 14px;
+    font-weight: 700;
+    color: #cccccc;
+    margin-left: 10px;
+}
+
+.socket_version {
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.contact_button {
+    background-color: #c4c4c4;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #3a3a3a;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.name_center {
+    margin-top: 20px;
+}
+
+.login_info {
+    font-size: 25px;
+}
+
+.is_admin {
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #b787ff;
+    margin-bottom: 10px;
+}
+
+.img_info_user {
+    margin: 15px 0;
+}
+
+.italic_info {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: #3a3a3a;
+}
+
+.fullname_info {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #88c5ce;
+}
+
+.quote_info {
+    color: #fff;
+    margin-bottom: 35px;
+}
+
+.button_info {
+    margin: 10px 15px 0;
+    background-color: #d5d5d5;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #3a3a3a;
+    box-shadow: none;
+    border: none;
+}
+
+.button_block {
+    color: #b21408;
+    margin-bottom: 10px;
+}
+
+.bg-circle {
+    background: #b787ff;
+    border-radius: 50%;
+}
+
+.setting_form {
+    margin: 50px;
+    background: #cccccc;
+    border-radius: 25px;
+}
+
+.label {
+    margin: 15px 15px 0 0;
+    color: #88c5ce;
+    font-size: 14px;
+}
+
+.input_edit {
+    margin-top: 15px;
+    color: #fff;
+    border: none;
+    border-bottom: 2px solid #b787ff;
+    background-color: #cccccc;
+    box-shadow: none;
+}
+
+.btn_info {
+    margin-top: 20px;
+    background: #d5d5d5;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #b21408;
+    box-shadow: none;
+    border: none;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.color_normal {
+    text-shadow: none;
+    box-shadow: none;
+    font-size: 17px;
+    color: #3a3a3a;
+}
+
+.color_red {
+    text-shadow: none;
+    box-shadow: none;
+    font-size: 17px;
+    color: #b21408;
+}
+
+.best {
+    font-weight: 700;
+    color: #88c5ce;
+}
+
+.login_edit {
+    font-size: 25.5px;
+    font-weight: 700;
+    color: #b787ff;
+}
+
+.ml40 {
+    margin-left: 40px;
+}
+
+.mt0 {
+    margin-top: 0;
+}
+
+.logout {
+    color: #b21408;
+}
