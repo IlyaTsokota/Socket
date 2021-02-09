@@ -82,8 +82,9 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 24:
         puts("Query 24 -> delete_account");
         return delete_account(con, array[1]);
-
-    // operator doesn't match any case
+    case 25:
+        puts("Query 25 -> Recieve image");
+        return receive_image(sock);
     default:
         puts("Server queries_handler default error");
         return "Server queries_handler default error";

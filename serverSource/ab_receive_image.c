@@ -1,13 +1,11 @@
 #include "server.h"
 
-int receive_image(int socket)
+char* receive_image(int socket)
 { // Start function
 
     int buffersize = 0, recv_size = 0, size = 0, read_size, write_size, packet_index = 1, stat;
-
     char imagearray[10241], verify = '1';
     FILE *image;
-
     //Find the size of the image
     do
     {
@@ -30,12 +28,12 @@ int receive_image(int socket)
     printf("Reply sent\n");
     printf(" \n");
 
-    image = fopen("capture2.png", "w");
+    image = fopen("capture3.png", "w");
 
     if (image == NULL)
     {
         printf("Error has occurred. Image file could not be opened\n");
-        return -1;
+        return "0";
     }
 
     //Loop while we have not received the entire file yet
@@ -91,5 +89,5 @@ int receive_image(int socket)
 
     fclose(image);
     printf("Image successfully Received!\n");
-    return 1;
+    return "1";
 }

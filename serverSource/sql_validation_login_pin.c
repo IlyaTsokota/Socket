@@ -45,8 +45,8 @@ char *pin_check(MYSQL *con, char *login, char *pin, int sock)
     {
         message = (login_pin_info_t *)malloc(sizeof(login_pin_info_t));
         message->u_id = strdup(row[0]);
-        message->u_login = strdup(row[1]);
-        message->u_avatar = strdup(row[2]);
+        message->u_avatar = strdup(row[1]);
+        message->u_login = strdup(row[2]);
         tmp_str = write_validation_login_info_to_json(message);
         tmp_str1 = strjoin(3, str, tmp_str, coma_str);
         free(str);

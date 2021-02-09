@@ -28,7 +28,7 @@ bool socket_send_data(char *data, int socket);
 
 //images
 void send_image(int socket);
-int receive_image(int socket);
+char* receive_image(int socket);
 
 //utilities
 void array_clear(array_t *a);
