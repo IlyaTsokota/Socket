@@ -1,6 +1,6 @@
 #include "server.h"
 
-char *user_add(MYSQL *con, char *login, char *name, char *surname, char *password, char *pin)
+char *user_add(MYSQL *con, char *login, char *name, char *surname, char *password, char *pin, int sock)
 {
     //Проверить нет ли такого юзера   SELECT  count(u_login) from user where u_login = "itsokota"
     char *answer;
@@ -88,8 +88,9 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
             answer = row[i];
         }
     }
-       puts("i want to sleep now goodnight");
-    char *some_id = strdup(answer);  puts(answer);
+    puts("i want to sleep now goodnight");
+    char *some_id = strdup(answer);
+    puts(answer);
     mysql_free_result(result);
 
     //Добавить юзеру пароль и пин в креденшлс
@@ -102,7 +103,7 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
         finish_with_error(con);
     }
     //Добавить юзеру Saved Messages в контакты
-    chat_create(con, some_id, "1", 0);
+    chat_create(con, some_id, "1", 0, "0", sock);
     free(some_id);
     mysql_close(con);
 

@@ -18,7 +18,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return pin_check(con, array[1], array[2], sock);
     case 3:
         puts("Query 03 -> user_add");
-        return user_add(con, array[1], array[2], array[3], array[4], array[5]);
+        return user_add(con, array[1], array[2], array[3], array[4], array[5], sock);
     case 4:
         puts("Query 04 -> contact_add");
         return contact_add(con, array[1], array[2], 1);
@@ -27,13 +27,13 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return contact_remove(con, array[1], array[2]);
     case 6:
         puts("Query 06 -> group_chat_create");
-        return group_chat_create(con, array[1], array[2]);
+        return group_chat_create(con, array[1], array[2], "1", sock);
     case 7:
         puts("Query 07 -> is_login_exist");
         return is_login_exist(con, array[1]);
     case 8:
         puts("Query 08 -> chat_create");
-        return chat_create(con, array[1], array[2], 1);
+        return chat_create(con, array[1], array[2], 1, "1", sock);
     case 9:
         puts("Query 09 -> contact_block");
         return contact_block(con, array[1], array[2]);
