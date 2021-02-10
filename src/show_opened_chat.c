@@ -45,6 +45,7 @@ void show_opened_chat(GtkWidget *main_grid, char *chat_id)
     g_signal_connect(G_OBJECT(event_box_send), "button-press-event", G_CALLBACK(send_message), msg_entry->text_view);
     g_signal_connect(G_OBJECT(event_box_emoji), "button-press-event", G_CALLBACK(show_emoji), msg_entry->text_view);
     g_signal_connect(G_OBJECT(msg_entry->buffer), "changed", G_CALLBACK(change_size_message_input), msg_entry);
+    
     // g_signal_connect_after(G_OBJECT(msg_entry->buffer), "insert-text", G_CALLBACK(insert_text), NULL);
 
     GtkWidget *arr[] = {main_form.right_content[0], message_panel, messages_container, main_form.message_line, message_size_body,

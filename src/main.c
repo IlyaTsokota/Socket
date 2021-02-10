@@ -8,7 +8,7 @@ void server_set_connection()
     client_addr.sin_family = AF_INET;
     client_addr.sin_addr.s_addr = INADDR_ANY; //inet_addr("178.165.30.151");
     client_addr.sin_port = htons(port);
-    
+
     if (connect(data.socket_desc, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
         printf("Connected to server, port is %d\n", port);
@@ -21,8 +21,6 @@ void server_set_connection()
         exit(1);
     }
 }
-
-
 
 void application_activate(GtkApplication *application, gpointer user_data)
 {
@@ -43,18 +41,9 @@ void application_activate(GtkApplication *application, gpointer user_data)
                               ? glade_file_to_interface("share/window_auth.glade")  // английский
                               : glade_file_to_interface("share/window_auth.glade"); // русский
     data.win = GTK_WIDGET(gtk_builder_get_object(builder, "windowAuth"));
-    if (strcmp(settings_field->theme, "Dark") == 0)
-    {
-        data.auth_theme_path = strdup("share/resources/css/auth.css");
-        data.main_theme_path = strdup("share/resources/css/main.css");
-    }
-    else
-    {
-        data.auth_theme_path = strdup("share/resources/css/auth-light.css");
-        data.main_theme_path = strdup("share/resources/css/main-light.css"); //White
-    }
+    what_theme_select(settings_field->theme);
 
-    css_set_for_one(data.win,  data.auth_theme_path); //Dark
+    css_set_for_one(data.win, data.auth_theme_path); //Dark
 
     g_object_unref(builder);
 

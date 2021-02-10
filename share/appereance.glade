@@ -84,14 +84,14 @@
                     <property name="margin_top">80</property>
                     <property name="hexpand">True</property>
                     <child>
-                        <object class="GtkLabel" id="notificationsLable">
+                        <object class="GtkLabel" id="themeLable">
                         <property name="width_request">50</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">end</property>
                         <property name="valign">start</property>
                         <property name="hexpand">True</property>
-                        <property name="label" translatable="yes">notifications</property>
+                        <property name="label" translatable="yes">theme</property>
                         <property name="justify">right</property>
                         <style>
                             <class name="label"/>
@@ -103,7 +103,7 @@
                         </packing>
                     </child>
                     <child>
-                        <object class="GtkSwitch" id="is_notification">
+                        <object class="GtkSwitch" id="theme">
                         <property name="width_request">60</property>
                         <property name="height_request">30</property>
                         <property name="visible">True</property>
@@ -112,6 +112,9 @@
                         <property name="margin_right">30</property>
                         <property name="margin_top">10</property>
                         <property name="vexpand">False</property>
+                        <style>
+                            <class name="switch_theme"/>
+                        </style>
                         </object>
                         <packing>
                         <property name="left_attach">1</property>

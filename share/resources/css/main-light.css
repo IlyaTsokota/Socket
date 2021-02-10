@@ -1,5 +1,5 @@
 * {
-    caret-color: #fff;
+    caret-color: #000;
 }
 
 grid#connection {
@@ -8,30 +8,30 @@ grid#connection {
 
 grid#left-panel,
 grid#top-panel {
-    background-color: #cccccc;
+    background-color: #ebeff5;
 }
 
 .contacts-panel {
-    background-color: #dadad9;
+    background-color: #c8d1e0;
 }
 
 .message-panel {
-    background-color: #fff;
+    background-color: #e6eefc;
 }
 
 .bg-pupure {
-    background-color: #b787ff;
+    background-color: #457d99;
 }
 
 .message-container {
-    background-color: #fff;
+    background-color: #dde3ed;
 }
 
 .message-input text {
-    background-color: #c4c4c4;
+    background-color: #ebf3f7;
     border: none;
     border-radius: 0;
-    color: #c3c3c3;
+    color: #000;
 }
 
 .message-input {
@@ -45,52 +45,52 @@ grid#top-panel {
 }
 
 .msg-input {
-    background: #c4c4c4;
+    background: #ebf3f7;
     border: none;
     border-radius: 0;
     font-size: 18px;
     font-weight: 400;
-    color: #ffffff;
+    color: #000;
 }
 
 .search-entry {
-    background-color: #c4c4c4;
+    background-color: #c8d1e0;
     border-radius: 10px;
     border: none;
     font-size: 18px;
     font-weight: 700;
-    color: #fff;
+    color: #000;
 }
 
 .name-chat {
     font-size: 24px;
     font-weight: 700;
-    color: #b787ff;
+    color: #457d99;
 }
 
 .status {
     font-size: 14px;
     font-weight: 400;
-    color: #3a3a3a;
+    color: #1d3947;
 }
 
 .contact-login {
     margin-top: -5px;
     font-size: 16px;
     font-weight: 700;
-    color: #b787ff;
+    color: #457d99;
 }
 
 .contact-time,
 .contact-lastmessage {
     font-size: 12px;
     font-weight: 400;
-    color: #ffffff;
+    color: #000;
 }
 
 .is-online {
     border-radius: 50%;
-    background-color: #196148;
+    background-color: #72a5f2;
     margin-top: 10px;
     margin-left: 10px;
 }
@@ -102,6 +102,7 @@ grid#top-panel {
 }
 
 .message-time {
+    margin-top: 10px;
     margin-right: 15px;
     font-size: 12px;
     font-weight: 400;
@@ -110,7 +111,7 @@ grid#top-panel {
 
 .message-text {
     margin: 10px;
-    color: #c3c3c3;
+    color:#1d3947;
     font-size: 15px;
 }
 
@@ -132,7 +133,7 @@ grid#top-panel {
 }
 
 .bg-gray {
-    background-color: #cccccc;
+    background-color: #ebf3f7;
 }
 
 .border-none,
@@ -145,8 +146,8 @@ grid#top-panel {
 }
 
 .message-from {
-    margin-top: 10px;
-    margin-left: 10px;
+
+    margin: 10px 10px 0;
 }
 
 .my-status {
@@ -154,7 +155,7 @@ grid#top-panel {
     margin-left: 10px;
     font-size: 12px;
     font-weight: 400;
-    color: #88c5ce;
+    color: #1d3947;
 }
 
 .my_login {
@@ -169,7 +170,7 @@ grid#top-panel {
     margin-left: 20px;
     font-size: 16px;
     font-weight: 700;
-    color: #3a3a3a;
+    color: #1d3947;
 }
 
 .settings-item_img {
@@ -180,7 +181,7 @@ grid#top-panel {
 .socket_version {
     font-size: 14px;
     font-weight: 700;
-    color: #cccccc;
+    color: #ebeff5;
     margin-left: 10px;
 }
 
@@ -190,14 +191,14 @@ grid#top-panel {
 }
 
 .contact_button {
-    background-color: #c4c4c4;
+    color: #1d3947;
+    background: #d5d5d5;
     border-radius: 10px;
     outline: none;
     box-shadow: none;
     border: none;
     border-radius: 10px;
     font-weight: 700;
-    color: #3a3a3a;
     font-size: 16px;
     margin: 0 10px;
 }
@@ -214,7 +215,7 @@ grid#top-panel {
     margin-left: 5px;
     font-size: 14px;
     font-weight: 700;
-    color: #b787ff;
+    color: #1d3947;
     margin-bottom: 10px;
 }
 
@@ -226,7 +227,7 @@ grid#top-panel {
     font-size: 16px;
     font-weight: 400;
     font-style: italic;
-    color: #3a3a3a;
+    color: #1d3947;
 }
 
 .fullname_info {
@@ -237,17 +238,17 @@ grid#top-panel {
 }
 
 .quote_info {
-    color: #fff;
+    color: #000;
     margin-bottom: 35px;
 }
 
 .button_info {
     margin: 10px 15px 0;
-    background-color: #d5d5d5;
+    color: #1d3947;
+    background: #457d99;
     border-radius: 5px;
     font-size: 16px;
     font-weight: 700;
-    color: #3a3a3a;
     box-shadow: none;
     border: none;
 }
@@ -258,28 +259,32 @@ grid#top-panel {
 }
 
 .bg-circle {
-    background: #b787ff;
+    background: #457d99;
     border-radius: 50%;
+}
+
+.switch_theme{
+    background-color: #fff;
 }
 
 .setting_form {
     margin: 50px;
-    background: #cccccc;
+    background: #c8d1e0;
     border-radius: 25px;
 }
 
 .label {
     margin: 15px 15px 0 0;
-    color: #88c5ce;
+    color: #1d3947;
     font-size: 14px;
 }
 
 .input_edit {
     margin-top: 15px;
-    color: #fff;
+    color: #000;
     border: none;
-    border-bottom: 2px solid #b787ff;
-    background-color: #cccccc;
+    border-bottom: 2px solid #457d99;
+    background-color: #ebeff5;
     box-shadow: none;
 }
 
@@ -302,7 +307,7 @@ grid#top-panel {
     text-shadow: none;
     box-shadow: none;
     font-size: 17px;
-    color: #3a3a3a;
+    color: #1d3947;
 }
 
 .color_red {
@@ -314,13 +319,13 @@ grid#top-panel {
 
 .best {
     font-weight: 700;
-    color: #88c5ce;
+    color: #457d99;
 }
 
 .login_edit {
     font-size: 25.5px;
     font-weight: 700;
-    color: #b787ff;
+    color: #457d99;
 }
 
 .ml40 {

@@ -29,7 +29,7 @@ void open_main_form(GtkWidget *window)
     GtkWidget *event_box_contact_view = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_contact_view"));
     left_panel_img->contact = GTK_WIDGET(gtk_builder_get_object(builder, "contact_view_img"));
 
-    GtkWidget *event_box_setting = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_setting"));
+   	GtkWidget *event_box_setting = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_setting"));
     left_panel_img->setting = GTK_WIDGET(gtk_builder_get_object(builder, "setting_img"));
 
     GtkWidget *is_connection = GTK_WIDGET(gtk_builder_get_object(builder, "is_connection"));
@@ -39,25 +39,27 @@ void open_main_form(GtkWidget *window)
     GtkWidget *profile_img = GTK_WIDGET(gtk_builder_get_object(builder, "profile_img"));
 
     GtkWidget *top_panel = GTK_WIDGET(gtk_builder_get_object(builder, "top_panel"));
-    GtkWidget *search_entry = GTK_WIDGET(gtk_builder_get_object(builder, "search_entry"));
+
+    main_form.search_entry = GTK_WIDGET(gtk_builder_get_object(builder, "search_entry"));
+    main_form.create_chat_event_box = GTK_WIDGET(gtk_builder_get_object(builder, "create_chat_event_box"));
+
     main_form.top_panel_top_text = GTK_WIDGET(gtk_builder_get_object(builder, "chat_name_lable"));
     main_form.top_panel_bottom_text = GTK_WIDGET(gtk_builder_get_object(builder, "user_is_online_in_chat"));
+    main_form.chat_info_event_box = GTK_WIDGET(gtk_builder_get_object(builder, "chat_info_event_box"));
     GtkWidget *box_contacts = GTK_WIDGET(gtk_builder_get_object(builder, "box_contacts"));
     
-    //puts("I want to say pizdec");
     show_chats(main_form.main_grid);
-    //puts("I want to say pizdec1");
-
     show_opened_chat(main_form.main_grid, chats_f.curr_chat);
-  //puts("I want to say pizdec2");
-    GtkWidget *arr[] = {box_contacts, main_form.app_form, left_panel, is_connection, con_img, top_panel, search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
+    GtkWidget *arr[] = {box_contacts, main_form.app_form, left_panel, is_connection, con_img, top_panel,  main_form.search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
                         left_panel_img->contact, left_panel_img->chat, left_panel_img->setting, left_panel_img->lock, NULL};
     css_set(arr,  data.main_theme_path);
 
     edit_styles_for_widget(left_panel_img->chat, "* {background: #88c5ce;}");
 
+    g_signal_connect(G_OBJECT(main_form.create_chat_event_box), "button-press-event", G_CALLBACK(open_add_chat), NULL);
+    
     g_signal_connect(G_OBJECT(event_box_contact_view), "button-press-event", G_CALLBACK(open_contacts), left_panel_img);
-    g_signal_connect(G_OBJECT(event_box_setting), "button-press-event", G_CALLBACK(open_setting), left_panel_img);
+    g_signal_connect(G_OBJECT( event_box_setting), "button-press-event", G_CALLBACK(open_setting), left_panel_img);
     g_signal_connect(G_OBJECT(event_box_chats), "button-press-event", G_CALLBACK(open_chats), left_panel_img);
     g_signal_connect(G_OBJECT(event_box_lock), "button-press-event", G_CALLBACK(block_app), main_form.app_form);
     

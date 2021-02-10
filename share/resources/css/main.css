@@ -101,7 +101,12 @@ grid#top-panel {
     border-radius: 10px;
 }
 
+.switch_theme{
+    background-color: #323232;
+}
+
 .message-time {
+    margin-top: 10px;
     margin-right: 15px;
     font-size: 12px;
     font-weight: 400;
@@ -145,8 +150,8 @@ grid#top-panel {
 }
 
 .message-from {
-    margin-top: 10px;
-    margin-left: 10px;
+    margin: 10px 10px 0;
+
 }
 
 .my-status {

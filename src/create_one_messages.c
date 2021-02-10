@@ -2,15 +2,8 @@
 
 void create_one_messages(int index, message_t *message)
 {
-    g_print("%d -- index\n",index);
     curr_chat.messages_g = (messages_t **)realloc(curr_chat.messages_g, sizeof(messages_t *) * (index + 2));
-    if(curr_chat.messages_g == NULL){
-        puts("Pizda");
-    }
     curr_chat.messages_g[index] = (messages_t *)malloc(sizeof(messages_t));
-    if(curr_chat.messages_g[index] == NULL){
-        puts("Pizda index");
-    }
     curr_chat.messages_g[index]->event_box_message = gtk_event_box_new();
 
     // g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
@@ -25,7 +18,7 @@ void create_one_messages(int index, message_t *message)
 
     gtk_widget_set_vexpand(curr_chat.messages_g[index]->event_box_message, true);
     gtk_widget_set_name(curr_chat.messages_g[index]->event_box_message, message->ms_id);
-    gtk_widget_set_size_request(curr_chat.messages_g[index]->event_box_message, 500, -1);
+    // gtk_widget_set_size_request(curr_chat.messages_g[index]->event_box_message, 300, -1);
 
     curr_chat.messages_g[index]->message = gtk_grid_new();
     gtk_widget_set_name(curr_chat.messages_g[index]->message, message->ch_id);
@@ -52,10 +45,10 @@ void create_one_messages(int index, message_t *message)
     gtk_widget_set_vexpand(curr_chat.messages_g[index]->message_text, true);
     gtk_widget_set_halign(curr_chat.messages_g[index]->message_text, GTK_ALIGN_START);
     gtk_label_set_line_wrap(GTK_LABEL(curr_chat.messages_g[index]->message_text), true);
-    gtk_widget_set_size_request(curr_chat.messages_g[index]->message_text, 500, -1);
+    // gtk_widget_set_size_request(curr_chat.messages_g[index]->message_text, 500, -1);
     gtk_label_set_xalign(GTK_LABEL(curr_chat.messages_g[index]->message_text), 0);
     gtk_label_set_line_wrap_mode(GTK_LABEL(curr_chat.messages_g[index]->message_text), PANGO_WRAP_WORD_CHAR);
-    gtk_label_set_max_width_chars(GTK_LABEL(curr_chat.messages_g[index]->message_text), 30);
+    gtk_label_set_max_width_chars(GTK_LABEL(curr_chat.messages_g[index]->message_text), 50);
     gtk_label_set_selectable(GTK_LABEL(curr_chat.messages_g[index]->message_text), true);
     set_style_context(curr_chat.messages_g[index]->message_text, "message-text");
 

@@ -39,9 +39,10 @@ typedef struct
 	bool bshow_open_contact;
 	bool bshow_right_panel_is_clear;
 	bool bshow_setting;
-		bool bshow_notification;
-
+	bool bshow_notification;
+	bool bshow_add_chat;
 } do_once_t;
+
 do_once_t do_once;
 
 typedef struct
@@ -165,6 +166,7 @@ typedef struct
 	char *picture_name;
 	char *auth_theme_path;
 	char *main_theme_path;
+	char *theme;
 } appdata;
 
 appdata data;
@@ -172,7 +174,6 @@ appdata data;
 typedef struct
 {
 	GtkWidget *app_form;
-
 	GtkWidget **left_content;
 	GtkWidget **right_content;
 	GtkWidget *main_grid;
@@ -189,6 +190,9 @@ typedef struct
 	GMutex mutex_seding_msg;
 	GMainLoop *loop;
 	GThread *update_thread;
+	GtkWidget *search_entry;
+	GtkWidget *create_chat_event_box;
+	GtkWidget *chat_info_event_box;
 } main_form_t;
 
 typedef struct
@@ -324,6 +328,14 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 
+void add_one_chat_after_request(char *user_id);
+gboolean open_add_chat(GtkWidget *widget, GdkEventButton *event);
+void show_add_chat(GtkWidget *main_grid);
+void add_new_chat(GtkWidget *button, GtkWidget *widgets);
+void switch_current_theme(char *curr_theme);
+void what_theme_select(char *curr_theme);
+void free_theme();
+gboolean switch_theme(GtkSwitch *widget, gboolean state, gpointer data);
 gboolean show_emoji(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view);
 void send_source(int socket, char *filename);
 gboolean send_pinned_resource(GtkWidget *widget);

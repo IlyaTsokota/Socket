@@ -4,12 +4,12 @@
 
 window#login {
     font-family: "Consolas";
-    background-color: #dadad9;
+    background-color: #e1f3fc;
     font-weight: 400;
 }
 
 label {
-    color: #88c5ce;
+    color: #1d3947;
     font-size: 14px;
 }
 
@@ -18,33 +18,34 @@ label#logo {
 }
 
 label#text {
-    color: #fff;
+    color: #1d3947;
 }
 
 entry#login,
 entry#password,
 entry#pin {
-    color: #fff;
+    color: #000;
     border: none;
-    border-bottom: 2px solid #b787ff;
-    background-color: #dadad9;
+    border-bottom: 2px solid #457d99;
+    background-color: #e1f3fc;
     box-shadow: none;
 }
 
 entry#pin {
-    color: #88C5CE;
-    border-top: 2px solid #B787FF;
+    color: #1d3947;
+    border-top: 2px solid #457d99;
     border-radius: 0px;
 }
 
 entry#password {
-    color: #88c5ce;
+    color: #1d3947;
 }
 
 button#btn {
-    color: #fff;
-    background: #b787ff;
-    border: 1px solid #b787ff;
+    color: #1d3947;
+    background: #457d99;
+    border: 1px solid #457d99;
+    font-size: 14px;
     border-radius: 10px;
     outline: none;
     box-shadow: none;
@@ -52,11 +53,11 @@ button#btn {
 
 button#signIn,
 button#create {
-    color: #88c5ce;
+    color: #1d3947;
     background: none;
     font-size: 12px;
     font-style: italic;
-    border: 1px solid #dadad9;
+    border: 1px solid #e1f3fc;
     outline: none;
     box-shadow: none;
 }

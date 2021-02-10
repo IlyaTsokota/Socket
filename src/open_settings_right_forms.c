@@ -218,10 +218,14 @@ void show_appereance(GtkWidget *main_grid)
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
-    GtkWidget *notificationsLable = GTK_WIDGET(gtk_builder_get_object(builder, "notificationsLable"));
-    GtkWidget *is_appereance = GTK_WIDGET(gtk_builder_get_object(builder, "is_notification"));
+    GtkWidget *themeLable = GTK_WIDGET(gtk_builder_get_object(builder, "themeLable"));
+    GtkWidget *theme = GTK_WIDGET(gtk_builder_get_object(builder, "theme")); 
+    bool is_active = strcmp(data.theme, "Dark") != 0 ? true : false;    
+    gtk_switch_set_active (GTK_SWITCH(theme), is_active);
 
-    GtkWidget *arr[] = {main_form.right_content[3], setting_form, text_info, notificationsLable, is_appereance, NULL};
+    g_signal_connect(G_OBJECT(theme), "state-set", G_CALLBACK(switch_theme), NULL);
+
+    GtkWidget *arr[] = {main_form.right_content[3], setting_form, text_info, themeLable, theme, NULL};
     css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[3]), child, 0, 0, 1, 1);
 

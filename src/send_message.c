@@ -20,7 +20,7 @@ void *sending(gpointer text_view)
 
     if (connect(update->socket , (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
-        printf("Connected to server, port is %d\n", port);
+        puts("Send message\n");
         char *message = get_text_of_textview(GTK_TEXT_VIEW(text_view));
         clear_text__buffer(GTK_TEXT_VIEW(text_view));
         char *num_f = strdup("13");

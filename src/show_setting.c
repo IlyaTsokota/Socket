@@ -32,7 +32,7 @@ void show_setting(GtkWidget *main_grid)
 
     GtkWidget *event_privacy = GTK_WIDGET(gtk_builder_get_object(builder, "event_privacy"));
     setting_elements.privacy_img = GTK_WIDGET(gtk_builder_get_object(builder, "privacy_img"));
-   setting_elements.privacy_text = GTK_WIDGET(gtk_builder_get_object(builder, "privacy_text"));
+    setting_elements.privacy_text = GTK_WIDGET(gtk_builder_get_object(builder, "privacy_text"));
 
     GtkWidget *event_language = GTK_WIDGET(gtk_builder_get_object(builder, "event_language"));
     setting_elements.language_img = GTK_WIDGET(gtk_builder_get_object(builder, "language_img"));
@@ -49,8 +49,12 @@ void show_setting(GtkWidget *main_grid)
     GtkWidget *event_logout = GTK_WIDGET(gtk_builder_get_object(builder, "event_logout"));
     GtkWidget *logout_img = GTK_WIDGET(gtk_builder_get_object(builder, "logout_img"));
     GtkWidget *logout_text = GTK_WIDGET(gtk_builder_get_object(builder, "logout_text"));
+    if(strcmp(data.theme, "Dark") != 0 ){
+        GdkPixbuf *theme_img = gdk_pixbuf_new_from_file("./share/resources/img/logout-l.png", NULL);
+        gtk_image_set_from_pixbuf(GTK_IMAGE(logout_img), theme_img);
     
-
+    }
+   
     g_signal_connect(G_OBJECT(event_edit_profile), "button-press-event", G_CALLBACK(open_edit_profile), NULL);
     g_signal_connect(G_OBJECT(event_notifications), "button-press-event", G_CALLBACK(open_notification), NULL);
     g_signal_connect(G_OBJECT(event_privacy), "button-press-event", G_CALLBACK(open_privacy), NULL);

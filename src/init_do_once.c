@@ -13,5 +13,6 @@ void init_do_once(bool value)
     do_once.bshow_right_panel_is_clear = value;
     do_once.bshow_setting = value;
     do_once.bshow_notification = value;
+    do_once.bshow_add_chat = value;
 
 }
