@@ -38,15 +38,14 @@ char *group_chat_create(MYSQL *con, char *my_id, char *chat_name)
     {
         for (int i = 0; i < num_fields; i++)
         {
-            answer = row[i];
+            answer = strdup(row[i]);
         }
     }
     mysql_free_result(result);
-    
     //Добавить в чатюзерс юзера админа
     const char *request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", answer, "\",\"", my_id, "\",\"1\");", NULL};
     bdrequest = strjoins_arr(request_parts1);
-
+    free(answer);
     puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))

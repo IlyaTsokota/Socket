@@ -31,12 +31,14 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
     {
         for (int i = 0; i < num_fields; i++)
         {
-            answer = row[i];
+            answer = strdup(row[i]);
         }
     }
+
     mysql_free_result(result);
     if (strcmp(answer, "2") != 0)
     {
+        free(answer);
         char *date_time = set_date();
         const char *request_parts[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
                                        ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};
@@ -64,8 +66,8 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
     }
     else
     {
+        free(answer);
         char *maxid;
-
         const char *request_parts2[] = {"select max(u_id) from chatusers where ch_id = \"", ch_id, "\";", NULL};
         char *bdrequest2 = strjoins_arr(request_parts2);
 
@@ -93,14 +95,14 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         {
             for (int i = 0; i < num_fields; i++)
             {
-                maxid = row[i];
+                maxid = strdup(row[i]);
             }
         }
         mysql_free_result(result);
 
         char *minid;
 
-        const char *request_parts3[] = {"select max(u_id) from chatusers where ch_id = \"", ch_id, "\";", NULL};
+        const char *request_parts3[] = {"select min(u_id) from chatusers where ch_id = \"", ch_id, "\";", NULL};
         char *bdrequest3 = strjoins_arr(request_parts3);
 
         puts(bdrequest3); //Вывод запроса в консоль
@@ -125,14 +127,16 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         {
             for (int i = 0; i < num_fields; i++)
             {
-                minid = row[i];
+                minid = strdup(row[i]);
             }
         }
         mysql_free_result(result);
 
         char *answer3;
 
-        const char *request_parts4[] = {"select count(u_blocked) from contacts where c_id = \"", minid, "and u_id =\"", maxid, "\"limit 1;", NULL};
+        const char *request_parts4[] = {"select count(u_blocked) from contacts where c_id = \"", minid, "\" and u_id =\"", maxid, "\" limit 1;", NULL};
+        free(minid);
+        free(maxid);
 
         char *bdrequest4 = strjoins_arr(request_parts4);
 
@@ -158,16 +162,19 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         {
             for (int i = 0; i < num_fields; i++)
             {
-                answer3 = row[i];
+                answer3 = strdup(row[i]);
             }
         }
         mysql_free_result(result);
         if (strcmp(answer3, "0") != 0)
         {
+            free(answer3);
             return "1";
         }
         else
         {
+            free(answer3);
+
             char *date_time = set_date();
             const char *request_parts[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
                                            ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};

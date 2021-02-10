@@ -4,7 +4,7 @@ char *get_contacts(MYSQL *con, char *user_id, int sock)
 {
     const char *tmp_str, *coma_str = ",";
     char *str, *bdrequest, *tmp_str1;
-    const char *request_parts[] = {"select c.c_id, concat(u.u_surname, ' ', u.u_name), u.u_avatar, u.u_status \
+    const char *request_parts[] = {"select c.c_id, concat(u.u_name, ' ', u.u_surname), u.u_avatar, u.u_status \
     from contacts c \
     join user u \
     on c.c_id = u.u_id \
