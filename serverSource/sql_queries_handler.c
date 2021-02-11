@@ -94,6 +94,9 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 28:
         puts("Query 28 -> change_pin");
         return change_pin(con, array[1], array[2]);
+    case 29:
+        puts("Query 29 -> chat_rename");
+        return chat_rename(con, array[1], array[2]);
 
     default:
         puts("Server queries_handler default error");

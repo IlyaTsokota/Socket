@@ -80,13 +80,13 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin);                  
 char *delete_account(MYSQL *con, char *my_id);                                                           //24
 
 //sql-chats
-char *get_chats(MYSQL *con, char *user_id, int sock);                                                                                                    //17
-char *make_message_seen(MYSQL *con, char *ms_id);                                                                                                        //15
-char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock); //13
-char *group_chat_create(MYSQL *con, char *my_id, char *chat_name, char *is_return_data, int sock);                                                       //06
-char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func, char *is_return_data, int sock);                           //08
-char *chat_remove(MYSQL *con, char *chat_id);                                                                                                            //10
-char *add_user_to_group_chat(MYSQL *con, char *user_id, char *ch_id);                                                                                    //12
+char *get_chats(MYSQL *con, char *user_id, int sock);                                                                          //17
+char *make_message_seen(MYSQL *con, char *ms_id);                                                                              //15
+char *group_chat_create(MYSQL *con, char *my_id, char *chat_name, char *is_return_data, int sock);                             //06
+char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func, char *is_return_data, int sock); //08
+char *chat_remove(MYSQL *con, char *chat_id);                                                                                  //10
+char *add_user_to_group_chat(MYSQL *con, char *user_id, char *ch_id);                                                          //12
+char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name);                                                               //29
 
 //sql-validations
 char *password_check(MYSQL *con, char *login, char *password); //01
@@ -102,12 +102,12 @@ char *get_contacts(MYSQL *con, char *user_id, int sock);                        
 char *get_contact_info(MYSQL *con, char *user_id, int sock);                                        //22
 
 //sql-credentials
-char *change_password(MYSQL *con, char *u_id, char *new_pass);
-char *change_pin(MYSQL *con, char *u_id, char *new_pin);
+char *change_password(MYSQL *con, char *u_id, char *new_pass); //27
+char *change_pin(MYSQL *con, char *u_id, char *new_pin);       //28
 
 //sql-message
-char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock); //16
-char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock);
+char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                          //16
+char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock); //13
 //sql-unsorte
 char *get_my_id(MYSQL *con, char *login);                                           //18
 char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote); //19
