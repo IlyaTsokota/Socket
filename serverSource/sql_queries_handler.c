@@ -88,6 +88,12 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 26:
         puts("Query 26 -> send_image");
         return send_image(sock, array[1], array[2]);
+    case 27:
+        puts("Query 27 -> change_password");
+        return change_password(con, array[1], array[2]);
+    case 28:
+        puts("Query 28 -> change_pin");
+        return change_pin(con, array[1], array[2]);
 
     default:
         puts("Server queries_handler default error");

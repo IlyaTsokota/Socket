@@ -101,6 +101,10 @@ char *contact_unblock(MYSQL *con, char *my_id, char *contact_id);               
 char *get_contacts(MYSQL *con, char *user_id, int sock);                                            //21
 char *get_contact_info(MYSQL *con, char *user_id, int sock);                                        //22
 
+//sql-credentials
+char *change_password(MYSQL *con, char *u_id, char *new_pass);
+char *change_pin(MYSQL *con, char *u_id, char *new_pin);
+
 //sql-message
 char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock); //16
 char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock);

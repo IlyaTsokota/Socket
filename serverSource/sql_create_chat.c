@@ -68,10 +68,10 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
     {
         char *str, *tmp_str1;
         const char *tmp_str, *coma_str = ",";
-        const char *request_parts[] = {"SELECT max(ch.ch_id), ch.ch_name, ch.ch_avatar, IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select concat(b.u_name, ' ', b.u_surname) from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"",
+        const char *request_parts[] = {"SELECT ch.ch_id, ch.ch_name, ch.ch_avatar, IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select concat(b.u_name, ' ', b.u_surname) from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"",
                                        my_id, "\"and a.ch_id = ch.ch_id)), IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_lastSeen from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"",
                                        my_id, "\"and a.ch_id = ch.ch_id)), IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_avatar from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"",
-                                       my_id, "\" and a.ch_id = ch.ch_id)) from chat ch join chatusers cu on ch.ch_id = cu.ch_id where cu.u_id = \"", my_id, "\" ;", NULL};
+                                       my_id, "\" and a.ch_id = ch.ch_id)) from chat ch join chatusers cu on ch.ch_id = cu.ch_id where cu.u_id = \"", my_id, "\" and ch.ch_id = (select max(dfs.ch_id )from chat dfs) ;", NULL};
         char *bdrequest = strjoins_arr(request_parts);
 
         puts(bdrequest); //Вывод запроса в консоль

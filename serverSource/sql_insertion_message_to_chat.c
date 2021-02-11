@@ -135,7 +135,6 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         char *answer3;
 
         const char *request_parts4[] = {"select count(u_blocked) from contacts where c_id = \"", minid, "\" and u_id =\"", maxid, "\" limit 1;", NULL};
-       
 
         char *bdrequest4 = strjoins_arr(request_parts4);
         free(minid);
@@ -168,6 +167,8 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         mysql_free_result(result);
         if (strcmp(answer3, "0") != 0)
         {
+            char *string = strdup("1");
+            socket_send_data(string, sock);
             free(answer3);
             return "1";
         }
