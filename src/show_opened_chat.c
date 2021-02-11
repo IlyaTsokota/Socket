@@ -31,7 +31,7 @@ void show_opened_chat(GtkWidget *main_grid, char *chat_id)
     msg_entry->buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(msg_entry->text_view));
     msg_entry->container = GTK_WIDGET(gtk_builder_get_object(builder, "message_input_scroll"));
     // char *placeholder_msg = "Write a message...";
-
+    // main_form.buffer_msg =    msg_entry->buffer;
     // g_signal_connect(G_OBJECT(message_input), "focus-in-event", G_CALLBACK(change_placeholder_msg_in_focus), placeholder_msg);
     // g_signal_connect(G_OBJECT(message_input), "focus-out-event", G_CALLBACK(change_placeholder_msg_out_focus), placeholder_msg);
     GtkWidget *emoji_container = GTK_WIDGET(gtk_builder_get_object(builder, "emoji_container"));

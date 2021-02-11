@@ -2,9 +2,9 @@
 
 void init_interface()
 {
-    main_form.right_content = malloc(sizeof(GtkWidget *) * 11);
-    main_form.right_content[10] = NULL;
-    for (size_t i = 0; i < 10; i++)
+    main_form.right_content = malloc(sizeof(GtkWidget *) * 12);
+    main_form.right_content[11] = NULL;
+    for (size_t i = 0; i < 11; i++)
     {
         main_form.right_content[i] = gtk_grid_new();
         gtk_widget_set_hexpand(main_form.right_content[i], true);
@@ -28,7 +28,7 @@ void init_interface()
 
 void clear_interface()
 {
-    for (size_t i = 0; i < 9; i++)
+    for (size_t i = 0; i < 11; i++)
     {
         gtk_widget_destroy(main_form.right_content[i]) ;
     }

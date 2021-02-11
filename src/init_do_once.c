@@ -14,5 +14,7 @@ void init_do_once(bool value)
     do_once.bshow_setting = value;
     do_once.bshow_notification = value;
     do_once.bshow_add_chat = value;
+        do_once.bshow_chat_info = value;
+
 
 }

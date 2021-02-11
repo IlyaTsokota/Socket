@@ -50,16 +50,20 @@ void open_main_form(GtkWidget *window)
     
     show_chats(main_form.main_grid);
     show_opened_chat(main_form.main_grid, chats_f.curr_chat);
+  
     GtkWidget *arr[] = {box_contacts, main_form.app_form, left_panel, is_connection, con_img, top_panel,  main_form.search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
                         left_panel_img->contact, left_panel_img->chat, left_panel_img->setting, left_panel_img->lock, NULL};
     css_set(arr,  data.main_theme_path);
-
     edit_styles_for_widget(left_panel_img->chat, "* {background: #88c5ce;}");
-
+    char *color = strcmp(data.theme, "Dark") == 0 ? strdup("* { background-color: #3c3c3c;}")
+                                                  : strdup("* { background-color: #ebf3f7;}");
+    edit_styles_for_widget(chats_f.chat_items[0]->event_box_contact, color);
+    free(color);
     g_signal_connect(G_OBJECT(main_form.create_chat_event_box), "button-press-event", G_CALLBACK(open_add_chat), NULL);
-    
+    g_signal_connect(G_OBJECT(main_form.chat_info_event_box), "button-press-event", G_CALLBACK(open_chat_info), NULL);
+    set_chat_name_top();
     g_signal_connect(G_OBJECT(event_box_contact_view), "button-press-event", G_CALLBACK(open_contacts), left_panel_img);
-    g_signal_connect(G_OBJECT( event_box_setting), "button-press-event", G_CALLBACK(open_setting), left_panel_img);
+    g_signal_connect(G_OBJECT(event_box_setting), "button-press-event", G_CALLBACK(open_setting), left_panel_img);
     g_signal_connect(G_OBJECT(event_box_chats), "button-press-event", G_CALLBACK(open_chats), left_panel_img);
     g_signal_connect(G_OBJECT(event_box_lock), "button-press-event", G_CALLBACK(block_app), main_form.app_form);
     

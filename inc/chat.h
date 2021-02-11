@@ -41,6 +41,7 @@ typedef struct
 	bool bshow_setting;
 	bool bshow_notification;
 	bool bshow_add_chat;
+	bool bshow_chat_info;
 } do_once_t;
 
 do_once_t do_once;
@@ -193,6 +194,10 @@ typedef struct
 	GtkWidget *search_entry;
 	GtkWidget *create_chat_event_box;
 	GtkWidget *chat_info_event_box;
+		GtkWidget *chat_name_title;
+
+	GtkWidget *chat_name_input;
+
 } main_form_t;
 
 typedef struct
@@ -328,7 +333,12 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 
-void add_one_chat_after_request(char *user_id);
+void set_chat_name_in_info_chat();
+gboolean open_chat_info(GtkWidget *widget, GdkEventButton *event);
+void show_chat_info(GtkWidget *main_grid);
+void set_chat_name_top();
+GtkWidget *find_child(GtkWidget *parent, const gchar *name);
+void clear_style_all_chat_widgets();
 gboolean open_add_chat(GtkWidget *widget, GdkEventButton *event);
 void show_add_chat(GtkWidget *main_grid);
 void add_new_chat(GtkWidget *button, GtkWidget *widgets);

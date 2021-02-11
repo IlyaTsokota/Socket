@@ -15,7 +15,10 @@ gboolean open_contacts(GtkWidget *widget, GdkEventButton *event, left_panel_img_
         show_right_panel_is_clear(main_form.main_grid);
         gtk_widget_show_all(main_form.left_content[1]);
         gtk_widget_show_all(main_form.right_content[1]);
+
         main_form.is_allow_access_next_panel = true;
+        gtk_widget_hide(main_form.chat_info_event_box);
+
     }
     return false;
 }

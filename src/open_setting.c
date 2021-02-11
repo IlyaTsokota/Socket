@@ -5,6 +5,7 @@ gboolean open_setting(GtkWidget *widget, GdkEventButton *event, left_panel_img_t
 
     if (main_form.current_panel_id != 1 && main_form.is_allow_access_next_panel)
     {
+        gtk_widget_hide(main_form.chat_info_event_box);
 
         main_form.is_allow_access_next_panel = false;
         main_form.current_panel_id = 1;

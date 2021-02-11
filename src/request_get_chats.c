@@ -12,7 +12,7 @@ chat_t **request_get_chats(char *str)
         
         chat_t **chats = malloc(sizeof(chat_t *) * (length + 1));
         chats[length] = NULL;
-        for (size_t i = 0; i < length; i++)
+        for (ssize_t i = 0; i < length; i++)
         {
             tmp_values = json_object_array_get_idx(values_obj, i);
             chats[i] = malloc(sizeof(chat_t));
