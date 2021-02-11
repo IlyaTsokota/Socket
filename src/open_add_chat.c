@@ -45,11 +45,11 @@ void show_add_chat(GtkWidget *main_grid)
 
 gboolean open_chat_info(GtkWidget *widget, GdkEventButton *event)
 {
-            set_chat_name_in_info_chat();
     main_form.is_allow_access_next_panel = true;
     main_form.current_panel_id = -1;
     hide_gtk_widgets(main_form.right_content);
     show_chat_info(main_form.main_grid);
+    set_chat_name_in_info_chat();
     gtk_widget_show_all(main_form.right_content[10]);
     return false;
 }
@@ -87,7 +87,7 @@ void show_chat_info(GtkWidget *main_grid)
     css_set(arr, data.main_theme_path);
     g_signal_connect(G_OBJECT(main_form.chat_name_input), "changed", G_CALLBACK(change_event_login_or_password), minSize);
 
-    // g_signal_connect(G_OBJECT(add_chat), "clicked", G_CALLBACK(add_new_chat), chat_name);
+    // g_signal_connect(G_OBJECT(add_chat), "clicked", G_CALLBACK(edit_name_chat), chat_name);
     gtk_grid_attach(GTK_GRID(main_form.right_content[10]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[10], 1, 0, 1, 1);
     gtk_widget_show_all(main_form.right_content[10]);

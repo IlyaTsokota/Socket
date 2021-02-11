@@ -28,13 +28,13 @@ void init_interface()
 
 void clear_interface()
 {
-    for (size_t i = 0; i < 11; i++)
+    for (size_t i = 0; main_form.right_content[i]; i++)
     {
         gtk_widget_destroy(main_form.right_content[i]) ;
     }
     free(main_form.right_content);
 
-    for (size_t i = 0; i < 3; i++)
+    for (size_t i = 0; main_form.left_content[i]; i++)
     {
         gtk_widget_destroy(main_form.left_content[i]) ;
     }

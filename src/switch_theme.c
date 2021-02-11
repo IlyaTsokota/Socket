@@ -23,7 +23,7 @@ gboolean switch_theme(GtkSwitch *widget, gboolean state, gpointer info)
     free_theme();
     switch_current_theme(settings_field->theme);
     puts(settings_field->login);
-    create_settings_json(settings_field->login,  data.theme, settings_field->language, settings_field->is_in);
+    create_settings_json(settings_field->login, data.theme, settings_field->language, settings_field->is_in);
     free(settings_field);
 
     g_main_loop_quit(main_form.loop);
@@ -47,8 +47,9 @@ void free_theme()
     data.main_theme_path = NULL;
 }
 
-void what_theme_select(char *curr_theme){
- if (strcmp(curr_theme, "Dark") == 0)
+void what_theme_select(char *curr_theme)
+{
+    if (strcmp(curr_theme, "Dark") == 0)
     {
         data.theme = strdup("Dark");
         data.auth_theme_path = strdup("share/resources/css/auth.css");
@@ -58,21 +59,24 @@ void what_theme_select(char *curr_theme){
     {
         data.theme = strdup("Light");
         data.auth_theme_path = strdup("share/resources/css/auth-light.css");
-        data.main_theme_path = strdup("share/resources/css/main-light.css"); 
+        data.main_theme_path = strdup("share/resources/css/main-light.css");
     }
 }
 
-void switch_current_theme(char *curr_theme){
- if (strcmp(curr_theme, "Dark") != 0)
+void switch_current_theme(char *curr_theme)
+{
+    if (strcmp(curr_theme, "Dark") != 0)
     {
         data.theme = strdup("Dark");
         data.auth_theme_path = strdup("share/resources/css/auth.css");
         data.main_theme_path = strdup("share/resources/css/main.css");
+        edit_styles_for_widget(data.win, "*{background-color: #252526;}");
     }
     else
     {
+        edit_styles_for_widget(data.win, "*{background-color: #e1f3fc;}");
         data.theme = strdup("Light");
         data.auth_theme_path = strdup("share/resources/css/auth-light.css");
-        data.main_theme_path = strdup("share/resources/css/main-light.css"); 
+        data.main_theme_path = strdup("share/resources/css/main-light.css");
     }
 }

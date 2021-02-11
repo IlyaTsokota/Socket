@@ -20,7 +20,7 @@ void open_form_pin(GtkWidget *window, bool is_start_app)
     GtkWidget *logoutnBtn = GTK_WIDGET(gtk_builder_get_object(builder, "logout"));
     pin_struct->fail_pin = GTK_WIDGET(gtk_builder_get_object(builder, "fail_pin"));
     g_signal_connect(G_OBJECT(btnNext), "clicked", G_CALLBACK(autorization_click_pin), pin_struct);
-    g_signal_connect(G_OBJECT(logoutnBtn), "clicked", G_CALLBACK(logout), pin_struct->pin_form);
+    g_signal_connect(G_OBJECT(logoutnBtn), "clicked", G_CALLBACK(logout_on_pin_form), pin_struct->pin_form);
     GtkWidget *arrWidgetForStyled[] = {pin_struct->pin_form, labelTitle, labelText, pinLable, pin_struct->pin, btnNext, logoutnBtn, pin_struct->fail_pin, NULL};
     css_set(arrWidgetForStyled,   data.auth_theme_path);
     gtk_container_add(GTK_CONTAINER(window), pin_struct->pin_form);

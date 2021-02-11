@@ -15,11 +15,13 @@ bool is_pin_user(char *pin)
         return false;
     }
     free(jobj);
+    puts("Pizda");
     login_pin_info_t *pin_info = request_get_pin_info(response);
     free(response);
     data.user_id = strdup(pin_info->u_id);
     data.user_login = strdup(pin_info->u_login);
     data.picture_name = strdup(pin_info->u_avatar);
     free_validation_login_info_s(pin_info);
+    
     return true;
 }

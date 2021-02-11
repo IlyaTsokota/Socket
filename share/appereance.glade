@@ -36,7 +36,7 @@
                             <property name="hexpand">False</property>
                             <property name="wrap">True</property>~
                             <property name="max_width_chars">28</property>
-                            <property name="label" translatable="yes">Sometimes a timely notification can save your life.</property>
+                            <property name="label" translatable="yes">There are three things you can watch forever: fire, water, and Socket working.</property>
                             <style>
                                 <class name="best"/>
                                 <class name="mt20"/>
@@ -53,11 +53,11 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                            <property name="halign">start</property>
-                            <property name="margin_left">50</property>
+                            <property name="margin_left">100</property>
                             <property name="margin_right">20</property>
                             <property name="margin_top">25</property>
                             <property name="hexpand">True</property>
-                            <property name="pixbuf">resources/img/bell_big.png</property>
+                            <property name="pixbuf">resources/img/theme_big.png</property>
                             </object>
                             <packing>
                             <property name="left_attach">1</property>
