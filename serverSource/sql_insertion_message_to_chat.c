@@ -4,7 +4,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
 {
     char *answer;
 
-    const char *request_parts[] = {"select count(u_id) from chatusers where ch_id =\"", ch_id, "\";", NULL};
+    const char *request_parts[] = {"select ch_name from chat ch join chatusers chu on ch.ch_id = chu.ch_id where chu.ch_id =\"", ch_id, "\" limit 1;", NULL};
     char *bdrequest = strjoins_arr(request_parts);
 
     puts(bdrequest); //Вывод запроса в консоль
@@ -36,13 +36,14 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
     }
 
     mysql_free_result(result);
-    if (strcmp(answer, "2") != 0)
+
+    if (strcmp(answer, "personal_chat") != 0)
     {
         free(answer);
         char *date_time = set_date();
-        const char *request_parts[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
+        const char *request_parts0[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
                                        ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};
-        char *bdrequest = strjoins_arr(request_parts);
+        bdrequest = strjoins_arr(request_parts0);
 
         puts(bdrequest); //Вывод запроса в консоль
 
@@ -69,17 +70,16 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         free(answer);
         char *maxid;
         const char *request_parts2[] = {"select max(u_id) from chatusers where ch_id = \"", ch_id, "\";", NULL};
-        char *bdrequest2 = strjoins_arr(request_parts2);
+        bdrequest = strjoins_arr(request_parts2);
 
-        puts(bdrequest2); //Вывод запроса в консоль
+        puts(bdrequest); //Вывод запроса в консоль
 
         if (mysql_query(con, bdrequest))
         {
             finish_with_error(con);
         }
 
-        free(bdrequest2); //IR
-
+        free(bdrequest); //IR
         MYSQL_RES *result = mysql_store_result(con);
 
         if (result == NULL)
@@ -103,17 +103,16 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         char *minid;
 
         const char *request_parts3[] = {"select min(u_id) from chatusers where ch_id = \"", ch_id, "\";", NULL};
-        char *bdrequest3 = strjoins_arr(request_parts3);
+        bdrequest = strjoins_arr(request_parts3);
 
-        puts(bdrequest3); //Вывод запроса в консоль
+        puts(bdrequest); //Вывод запроса в консоль
 
-        if (mysql_query(con, bdrequest3))
+        if (mysql_query(con, bdrequest))
         {
             finish_with_error(con);
         }
 
-        free(bdrequest3); //IR
-
+        free(bdrequest); //IR
         result = mysql_store_result(con);
 
         if (result == NULL)
@@ -136,17 +135,17 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
 
         const char *request_parts4[] = {"select count(u_blocked) from contacts where c_id = \"", minid, "\" and u_id =\"", maxid, "\" limit 1;", NULL};
 
-        char *bdrequest4 = strjoins_arr(request_parts4);
+        bdrequest = strjoins_arr(request_parts4);
         free(minid);
         free(maxid);
-        puts(bdrequest4); //Вывод запроса в консоль
+        puts(bdrequest); //Вывод запроса в консоль
 
-        if (mysql_query(con, bdrequest4))
+        if (mysql_query(con, bdrequest))
         {
             finish_with_error(con);
         }
 
-        free(bdrequest4); //IR
+        free(bdrequest); //IR
 
         result = mysql_store_result(con);
 
@@ -165,7 +164,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             }
         }
         mysql_free_result(result);
-        if (strcmp(answer3, "0") != 0)
+        if (strcmp(answer3, "0") == 0)
         {
             char *string = strdup("1");
             socket_send_data(string, sock);
@@ -177,9 +176,9 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             free(answer3);
 
             char *date_time = set_date();
-            const char *request_parts[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
+            const char *request_parts7[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
                                            ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};
-            char *bdrequest = strjoins_arr(request_parts);
+            bdrequest = strjoins_arr(request_parts7);
 
             puts(bdrequest); //Вывод запроса в консоль
 
