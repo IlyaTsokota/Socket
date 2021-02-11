@@ -135,11 +135,11 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         char *answer3;
 
         const char *request_parts4[] = {"select count(u_blocked) from contacts where c_id = \"", minid, "\" and u_id =\"", maxid, "\" limit 1;", NULL};
-        free(minid);
-        free(maxid);
+       
 
         char *bdrequest4 = strjoins_arr(request_parts4);
-
+        free(minid);
+        free(maxid);
         puts(bdrequest4); //Вывод запроса в консоль
 
         if (mysql_query(con, bdrequest4))

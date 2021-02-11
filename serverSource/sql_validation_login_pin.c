@@ -25,8 +25,8 @@ char *pin_check(MYSQL *con, char *login, char *pin, int sock)
     free(bdrequest); //IR
 
     int num_fields = mysql_num_fields(result);
-    //If bug, try to comment this if
 
+    
     if (num_fields <= 0)
     {
         char *string = strdup("0");

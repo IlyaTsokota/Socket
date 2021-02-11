@@ -11,7 +11,7 @@ MYSQL *connection_try()
     }
     // if (mysql_real_connect(con, "remotemysql.com", "F7PtEuRzNu", "w17IurRRy7",
     //                        "F7PtEuRzNu", 0, NULL, 0) == NULL)
-    if (mysql_real_connect(con, "159.224.0.212", "root", "Dhtvtybdfujydhjlt032",
+    if (mysql_real_connect(con, "178.165.30.151", "root", "3030",
                            "socket_db", 0, NULL, 0) == NULL)
     {
         fprintf(stderr, "%s\n", mysql_error(con));
