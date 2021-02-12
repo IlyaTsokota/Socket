@@ -26,7 +26,6 @@ char *pin_check(MYSQL *con, char *login, char *pin, int sock)
 
     int num_fields = mysql_num_fields(result);
 
-    
     if (num_fields <= 0)
     {
         char *string = strdup("0");
@@ -37,23 +36,24 @@ char *pin_check(MYSQL *con, char *login, char *pin, int sock)
 
     MYSQL_ROW row;
 
-    login_pin_info_t *message = NULL;
+    login_pin_info_t2 *message = NULL;
 
     str = strdup("{\"pin_check_info\": [");
 
     while ((row = mysql_fetch_row(result)))
     {
-        message = (login_pin_info_t *)malloc(sizeof(login_pin_info_t));
+        message = (login_pin_info_t2 *)malloc(sizeof(login_pin_info_t2));
         message->u_id = strdup(row[0]);
         message->u_avatar = strdup(row[1]);
         message->u_login = strdup(row[2]);
-        tmp_str = write_validation_login_info_to_json(message);
+        message->u_isBottommed = strdup(row[3]);
+        tmp_str = write_validation_login_info_to_json2(message);
         tmp_str1 = strjoin(3, str, tmp_str, coma_str);
         free(str);
         str = tmp_str1;
         tmp_str1 = NULL;
         free((void *)tmp_str);
-        free_validation_login_info_s(message);
+        free_validation_login_info2_s(message);
     }
     str[strlen(str) - 1] = '\0';
     tmp_str1 = strjoin(2, str, "]}");

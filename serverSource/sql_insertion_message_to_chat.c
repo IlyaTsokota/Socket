@@ -1,6 +1,6 @@
 #include "server.h"
 
-char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock)
+char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock, int is_send_answer)
 {
     char *answer;
 
@@ -42,7 +42,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         free(answer);
         char *date_time = set_date();
         const char *request_parts0[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
-                                       ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};
+                                        ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};
         bdrequest = strjoins_arr(request_parts0);
 
         puts(bdrequest); //Вывод запроса в консоль
@@ -167,7 +167,8 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         if (strcmp(answer3, "0") == 0)
         {
             char *string = strdup("1");
-            socket_send_data(string, sock);
+            if (is_send_answer == 1)
+                socket_send_data(string, sock);
             free(answer3);
             return "1";
         }
@@ -177,7 +178,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
 
             char *date_time = set_date();
             const char *request_parts7[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
-                                           ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};
+                                            ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};
             bdrequest = strjoins_arr(request_parts7);
 
             puts(bdrequest); //Вывод запроса в консоль

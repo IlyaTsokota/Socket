@@ -80,4 +80,12 @@ typedef struct
   char *ms_datetime;
 } message_back_info_t;
 
+typedef struct
+{
+  char *u_id;
+  char *u_login;
+  char *u_avatar;
+  char *u_isBottommed;
+} login_pin_info_t2;
+
 #endif

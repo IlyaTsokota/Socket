@@ -54,6 +54,7 @@ void free_contact_info_s(contact_info_t *contact);
 void free_user_s(user_t *user);
 void free_validation_login_info_s(login_pin_info_t *message);
 void free_message_back_info_s(message_back_info_t *user);
+void free_validation_login_info2_s(login_pin_info_t2 *message);
 
 //working with queries
 array_t query_delimiter(char *str);
@@ -68,6 +69,7 @@ const char *write_user_to_json(user_t *user);
 const char *write_contact_info_to_json(contact_info_t *contact);
 const char *write_validation_login_info_to_json(login_pin_info_t *message);
 const char *write_message_back_info_json(message_back_info_t *contact);
+const char *write_validation_login_info_to_json2(login_pin_info_t2 *message);
 array_t json_to_data(char *json_str);
 
 //sql errors
@@ -87,6 +89,9 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
 char *chat_remove(MYSQL *con, char *chat_id);                                                                                  //10
 char *add_user_to_group_chat(MYSQL *con, char *user_id, char *ch_id);                                                          //12
 char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name);                                                               //29
+char *get_chat_users(MYSQL *con, char *ch_id, int sock);                                                                       //30
+char *remove_user_from_chat(MYSQL *con, char *u_id);                                                                           //31
+char *is_user_chat_admin(MYSQL *con, char *ch_id, char *u_id);
 
 //sql-validations
 char *password_check(MYSQL *con, char *login, char *password); //01
@@ -106,8 +111,10 @@ char *change_password(MYSQL *con, char *u_id, char *new_pass); //27
 char *change_pin(MYSQL *con, char *u_id, char *new_pin);       //28
 
 //sql-message
-char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                          //16
-char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock); //13
+char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                                              //16
+char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock, int is_send_answer); //13
+char *change_message(MYSQL *con, char *ch_id, char *ms_id, char *ms_text);                                                                                                   //33
+char *delete_message(MYSQL *con, char *ch_id, char *ms_id);                                                                                                                  //34
 //sql-unsorte
 char *get_my_id(MYSQL *con, char *login);                                           //18
 char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote); //19

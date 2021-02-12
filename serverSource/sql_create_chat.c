@@ -54,7 +54,7 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
     //Добавить в чатюзерс контакта
     const char *request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", chat_id, "\",\"", contact_id, "\",\"0\");", NULL};
     bdrequest = strjoins_arr(request_parts1);
-    free(chat_id);
+
     puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))
@@ -132,12 +132,20 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
         }
         else
         {
+            add_message_to_chat(con, chat_id, "1", "0", "0", "0", "0", sock, 0);
+            free(chat_id);
             return "1";
         }
         return "1"; //0 or >0
     }
+    else
+    {
+        //отправить сообщение
+    }
+
     if (close_con_after_end_of_func == 1)
     {
+
         mysql_close(con);
     }
 
