@@ -115,7 +115,9 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 35:
         puts("Query 35 -> contact_add_by_login");
         return contact_add_by_login(con, array[1], array[2], 1 ,sock);
-   
+   case 36:
+        puts("Query 36 -> get_user_info_by_login");
+        return get_user_info_by_login(con, array[1],sock);
 
     default:
         puts("Server queries_handler default error");

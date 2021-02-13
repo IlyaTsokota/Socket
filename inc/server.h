@@ -81,6 +81,8 @@ char *get_my_id_no_answer(MYSQL *con, char *login, int close_con_after_end_of_fu
 char *is_login_exist(MYSQL *con, char *login);                                                           //07
 char *create_double_bottom(MYSQL *con, char *u_id, char *pin);                                           //23
 char *delete_account(MYSQL *con, char *my_id);                                                           //24
+char *get_user_info(MYSQL *con, char *user_id, int sock);                                                //20
+char *get_user_info_by_login(MYSQL *con, char *login, int sock);                                         //36
 
 //sql-chats
 char *get_chats(MYSQL *con, char *user_id, int sock);                                                                          //17
@@ -90,9 +92,9 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
 char *chat_remove(MYSQL *con, char *chat_id);                                                                                  //10
 
 char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id, int sock); //12
-char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name);    //29
-char *get_chat_users(MYSQL *con, char *ch_id, int sock);            //30
-char *remove_user_from_chat(MYSQL *con, char *u_id, char* ch_id)  ;          //31
+char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name);              //29
+char *get_chat_users(MYSQL *con, char *ch_id, int sock);                      //30
+char *remove_user_from_chat(MYSQL *con, char *u_id, char *ch_id);             //31
 char *is_user_chat_admin(MYSQL *con, char *ch_id, char *u_id);
 
 //sql-validations
@@ -100,14 +102,14 @@ char *password_check(MYSQL *con, char *login, char *password); //01
 char *pin_check(MYSQL *con, char *login, char *pin, int sock); //02
 
 //sql-contacts
-char *is_contact_exist(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func); //11
-char *contact_add(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func);      //04
-char *contact_remove(MYSQL *con, char *my_id, char *contact_id);                                    //05
-char *contact_block(MYSQL *con, char *my_id, char *contact_id);                                     //09
-char *contact_unblock(MYSQL *con, char *my_id, char *contact_id);                                   //14
-char *get_contacts(MYSQL *con, char *user_id, int sock);                                            //21
-char *get_contact_info(MYSQL *con, char *contact_id, char *my_id, int sock);                        //22
-char *contact_add_by_login(MYSQL *con, char *login, char *my_id, int close_con_after_end_of_func,int sock); //35
+char *is_contact_exist(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func);          //11
+char *contact_add(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func);               //04
+char *contact_remove(MYSQL *con, char *my_id, char *contact_id);                                             //05
+char *contact_block(MYSQL *con, char *my_id, char *contact_id);                                              //09
+char *contact_unblock(MYSQL *con, char *my_id, char *contact_id);                                            //14
+char *get_contacts(MYSQL *con, char *user_id, int sock);                                                     //21
+char *get_contact_info(MYSQL *con, char *contact_id, char *my_id, int sock);                                 //22
+char *contact_add_by_login(MYSQL *con, char *login, char *my_id, int close_con_after_end_of_func, int sock); //35
 
 //sql-credentials
 char *change_password(MYSQL *con, char *u_id, char *new_pass); //27
@@ -120,8 +122,7 @@ char *change_message(MYSQL *con, char *ch_id, char *ms_id, char *ms_text);      
 char *delete_message(MYSQL *con, char *ch_id, char *ms_id);                                                                                                                  //34
 //sql-unsorte
 char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func, int sock); //18
-char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote); //19
-char *get_user_info(MYSQL *con, char *user_id, int sock);                           //20
+char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote);  //19
 
 //db-login-generator
 char *pass_gen();
