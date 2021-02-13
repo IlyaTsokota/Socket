@@ -86,7 +86,7 @@ typedef struct
   char *u_id;
   char *u_login;
   char *u_avatar;
-  char *u_isBottommed;
+  bool u_isBottommed;
 } login_pin_info_t2;
 
 #endif

@@ -48,10 +48,6 @@ char *get_contact_info(MYSQL *con, char *contact_id, char *my_id, int sock)
         // free((void *)tmp_str);
         // free_contact_info_s(contact);
     }
-    free(request_parts);
-    free(row);
-    free(result);
-
     const char *request_parts2[] = {"select count (c_id) from contacts where c_id = \"", contact_id, "\" and u_id = \"", my_id, "\";", NULL};
 
     bdrequest = strjoins_arr(request_parts2);
@@ -63,20 +59,21 @@ char *get_contact_info(MYSQL *con, char *contact_id, char *my_id, int sock)
         finish_with_error(con);
     }
 
-    result = mysql_store_result(con);
+    MYSQL_RES *result1 = mysql_store_result(con);
 
-    if (result == NULL)
+    if (result1 == NULL)
     {
         finish_with_error(con);
     }
 
     free(bdrequest); //IR
 
-    num_fields = mysql_num_fields(result);
+    num_fields = mysql_num_fields(result1);
+ 
+    MYSQL_ROW row1 = mysql_fetch_row(result1);
 
-    row = mysql_fetch_row(result);
-
-    contact->is_my_contact = strdup(row[0]);
+    contact->is_my_contact = strdup(row1[0]);
+    puts(contact->is_my_contact);
     //Сюда вставил
     tmp_str = write_contact_info_to_json(contact);
     tmp_str1 = strjoin(3, str, tmp_str, coma_str);

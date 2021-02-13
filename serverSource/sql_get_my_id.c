@@ -31,7 +31,7 @@ char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func)
     {
         for (int i = 0; i < num_fields; i++)
         {
-            answer = row[i];
+            answer = strdup(row[i]);
         }
     }
     mysql_free_result(result);

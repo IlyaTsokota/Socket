@@ -31,16 +31,19 @@ char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id)
     {
         for (int i = 0; i < num_fields; i++)
         {
-            answer = row[i];
+            answer = strdup(row[i]);
         }
     }
     mysql_free_result(result);
-    if (atoi(answer) == 1)
-        return "0"; //user already exist in this chat
 
+    if (atoi(answer) == 1){
+        free(answer);
+        return "0"; //user already exist in this chat
+    }
+    free(answer);
+    
     //Добавить юзера
-    const char *
-        request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", ch_id, "\",\"", my_id, "\",\"0\");", NULL};
+    const char *request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", ch_id, "\",\"", my_id, "\",\"0\");", NULL};
     bdrequest = strjoins_arr(request_parts1);
 
     puts(bdrequest); //Вывод запроса в консоль
@@ -49,7 +52,7 @@ char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id)
     {
         finish_with_error(con);
     }
-
+    free(my_id);
     free(bdrequest); //IR
 
     mysql_close(con);
