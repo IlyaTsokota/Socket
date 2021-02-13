@@ -2,12 +2,12 @@
 
 void show_setting(GtkWidget *main_grid)
 {
-
+    gtk_label_set_text(GTK_LABEL(main_form.top_panel_top_text), "Settings");
+    gtk_label_set_text(GTK_LABEL(main_form.top_panel_bottom_text), "Some settings can affect your life");
     if (!do_once.bshow_setting)
         return;
     do_once.bshow_setting = false;
-    gtk_label_set_text(GTK_LABEL(main_form.top_panel_top_text), "Settings");
-    gtk_label_set_text(GTK_LABEL(main_form.top_panel_bottom_text), "Some settings can affect your life");
+
 
     GtkBuilder *builder = glade_file_to_interface("share/left_panel_setting.glade");
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_info"));
@@ -16,8 +16,7 @@ void show_setting(GtkWidget *main_grid)
     GtkWidget *info_container = GTK_WIDGET(gtk_builder_get_object(builder, "info_container"));
     GtkWidget *info_img = GTK_WIDGET(gtk_builder_get_object(builder, "info_img"));
 
-    GtkWidget *info_login = GTK_WIDGET(gtk_builder_get_object(builder, "info_login"));
-    gtk_label_set_text(GTK_LABEL(info_login), data.user_login);
+    main_form.setting_login = GTK_WIDGET(gtk_builder_get_object(builder, "info_login"));
     GtkWidget *info_status = GTK_WIDGET(gtk_builder_get_object(builder, "info_status"));
     GtkWidget *socket_version = GTK_WIDGET(gtk_builder_get_object(builder, "socket_version"));
     GtkWidget *socket_platform = GTK_WIDGET(gtk_builder_get_object(builder, "socket_platform"));
@@ -70,7 +69,7 @@ void show_setting(GtkWidget *main_grid)
     g_signal_connect(G_OBJECT(event_double_bottom), "button-press-event", G_CALLBACK(open_double_bottom), NULL);
     g_signal_connect(G_OBJECT(event_logout), "button-press-event", G_CALLBACK(logout), NULL);
 
-    GtkWidget *arr[] = {main_form.left_content[2], setting_info_panel, info_container, info_img, info_login, info_status,
+    GtkWidget *arr[] = {main_form.left_content[2], setting_info_panel, info_container, info_img, main_form.setting_login, info_status,
                         socket_version, socket_platform, event_edit_profile, setting_elements.edit_profile_img, setting_elements.edit_profile_text, event_notifications,
                         setting_elements.notifications_img, setting_elements.notifications_text, event_privacy, setting_elements.privacy_img, setting_elements.privacy_text, event_language, setting_elements.language_img,
                         setting_elements.language_text, event_logout, logout_img, logout_text, event_double_bottom, setting_elements.double_bottom_img, setting_elements.double_bottom_text, event_theme, setting_elements.theme_img, setting_elements.theme_text, NULL};

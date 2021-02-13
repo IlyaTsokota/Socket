@@ -1,7 +1,7 @@
 #include "chat.h"
 
 char *request_on_server(int socket , char *request)
-{
+{g_mutex_lock(&main_form.mutex);
     int stat;
     long size = 0;
     size_t packet_size = 1024, packet_count = 0, read_index = 0;
@@ -38,6 +38,6 @@ char *request_on_server(int socket , char *request)
     // puts("================");
 
     stat = read(socket, buff, 1); //ах ты ёбаный ублюдок...
-    
+    g_mutex_unlock(&main_form.mutex);
     return str;
 }

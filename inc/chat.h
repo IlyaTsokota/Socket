@@ -227,6 +227,7 @@ typedef struct
 	GtkWidget *quote_text;
 	GtkWidget *img_info_contact;
 	GtkWidget *fullname_text;
+	GtkWidget *setting_login;
 
 } main_form_t;
 

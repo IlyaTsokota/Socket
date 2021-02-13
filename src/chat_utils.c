@@ -275,7 +275,7 @@ void show_add_contact(GtkWidget *main_grid)
                         loginLable, login_edit, info->fail_lable, NULL};
     css_set(arr, data.main_theme_path);
 
-    g_signal_connect(G_OBJECT(add_cont), "clicked", G_CALLBACK(add_contact), NULL);
+    g_signal_connect(G_OBJECT(add_cont), "clicked", G_CALLBACK(add_contact), info);
 
     gtk_grid_attach(GTK_GRID(main_form.right_content[13]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[13], 1, 0, 1, 1);
@@ -295,12 +295,28 @@ void add_contact(GtkWidget *button, data_input_t *info)
     free(minSize);
     if (flag == 1)
     {
-        char *num_f = strdup("29");
-        char *arr[] = {chats_f.curr_chat, login, NULL};
+        char *num_f = strdup("35");
+        char *arr[] = {login, data.user_id, NULL};
         char *json = write_to_json(num_f, arr);
         free(num_f);
-        request_to_server(json);
+        char *request = request_on_server(data.socket_desc, json);
+        puts(request);
         free(json);
+        if (strcmp(request, "1") == 0)
+        {
+            gtk_label_set_text(GTK_LABEL(info->fail_lable), "User doesn't exist");
+        }
+        else if (strcmp(request, "2") == 0)
+        {
+            gtk_label_set_text(GTK_LABEL(info->fail_lable), "User already in contacts ");
+        }
+        else
+        {
+            edit_styles_for_widget(info->fail_lable, "* {color: green;}");
+            gtk_label_set_text(GTK_LABEL(info->fail_lable), "User added successfully to contacts");
+        }
+        free(request);
+        
     }
     //g_mutex_unlock(&main_form.mutex);
 }

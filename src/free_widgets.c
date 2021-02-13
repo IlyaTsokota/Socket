@@ -20,8 +20,9 @@ void free_contact_widgets(contacts_widget_s **contacts)
         }
         free(contacts);
         ////puts("Tochno pizda");
-        contacts = NULL;
+        contacts_t.widgets = NULL;
         contacts_t.was_free = true;
+        contacts_t.size = 0;
     }
 }
 

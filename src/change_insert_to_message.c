@@ -9,7 +9,7 @@ gboolean change_insert_to_message(gpointer widget)
 
 gboolean refresh_chat(update_t *update)
 {
-    g_mutex_lock(&main_form.mutex);
+    // g_mutex_lock(&main_form.mutex);
     ////puts("Lock");
     message_arr *messages = take_messages(update->socket, data.user_id, main_form.last_ms_id);
     if (messages != NULL)
@@ -73,7 +73,7 @@ gboolean refresh_chat(update_t *update)
     }
     ////puts("Unlock");
     //sort_by_chat_widget();
-    g_mutex_unlock(&main_form.mutex);
+    // g_mutex_unlock(&main_form.mutex);
 
     return true;
 }
