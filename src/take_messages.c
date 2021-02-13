@@ -118,24 +118,24 @@ user_curr_chat_t **users_by_chat_to_json(char *str)
     int length = json_object_array_length(values_obj);
     if (length > 0)
     {
-        int i = 0;
         user_curr_chat_t **arr_msgs = malloc(sizeof(user_curr_chat_t *) * (length + 1));
         arr_msgs[length] = NULL;
-
+        g_print("%d -- length\n", length);
         char *tmp;
         for (size_t j = 0; j < length; j++)
         {
+            puts("a");
             tmp_values = json_object_array_get_idx(values_obj, j);
 
-            arr_msgs[i] = malloc(sizeof(user_curr_chat_t));
+            arr_msgs[j] = malloc(sizeof(user_curr_chat_t));
             json_object_object_get_ex(tmp_values, "u_id", &values_name);
-            arr_msgs[i]->u_id = strdup((char *)json_object_get_string(values_name));
+            arr_msgs[j]->u_id = strdup((char *)json_object_get_string(values_name));
             free(values_name);
             json_object_object_get_ex(tmp_values, "u_login", &values_name);
-            arr_msgs[i]->u_login = strdup((char *)json_object_get_string(values_name));
+            arr_msgs[j]->u_login = strdup((char *)json_object_get_string(values_name));
             free(values_name);
             json_object_object_get_ex(tmp_values, "u_avatar", &values_name);
-            arr_msgs[i]->u_avatar = strdup((char *)json_object_get_string(values_name));
+            arr_msgs[j]->u_avatar = strdup((char *)json_object_get_string(values_name));
             free(values_name);
             free(tmp_values);
         }
