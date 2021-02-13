@@ -16,6 +16,9 @@ login_pin_info_t *request_get_pin_info(char *response)
     json_object_object_get_ex(tmp_values, "u_avatar", &values_name);
     info->u_avatar = strdup((char *)json_object_get_string(values_name));
     free(values_name);
+    json_object_object_get_ex(tmp_values, "u_isBottommed", &values_name);
+    info->u_isBottomed = json_object_get_boolean(values_name);
+    free(values_name);
     free(tmp_values);
     free(values_obj);
     free(jobj);

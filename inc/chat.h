@@ -42,6 +42,10 @@ typedef struct
 	bool bshow_notification;
 	bool bshow_add_chat;
 	bool bshow_chat_info;
+	bool bshow_add_participant;
+	bool bshow_remove_participant;
+	bool bshow_add_contact;
+
 } do_once_t;
 
 do_once_t do_once;
@@ -101,7 +105,6 @@ typedef struct
 	GtkWidget *contact_name_container;
 	GtkWidget *img_contact;
 	GtkWidget *contact_img_container;
-
 } chat_item_t;
 
 typedef struct
@@ -168,6 +171,7 @@ typedef struct
 	char *auth_theme_path;
 	char *main_theme_path;
 	char *theme;
+	bool isBottomed;
 } appdata;
 
 appdata data;
@@ -194,8 +198,8 @@ typedef struct
 	GtkWidget *search_entry;
 	GtkWidget *create_chat_event_box;
 	GtkWidget *chat_info_event_box;
-		GtkWidget *chat_name_title;
-
+	GtkWidget *chat_name_title;
+	GtkWidget *text_view;
 	GtkWidget *chat_name_input;
 
 } main_form_t;
@@ -205,6 +209,7 @@ typedef struct
 	char *u_id;
 	char *u_login;
 	char *u_avatar;
+	bool u_isBottomed;
 } login_pin_info_t;
 
 typedef struct
@@ -295,6 +300,7 @@ typedef struct
 {
 	contacts_widget_s **widgets;
 	bool was_free;
+	int size;
 } contacts_arr;
 
 typedef struct
@@ -326,6 +332,14 @@ typedef struct
 	int socket;
 } update_t;
 
+typedef struct
+{
+	GtkWidget *input;
+	GtkWidget *fail_lable;
+} data_input_t;
+
+
+
 setting_items setting_elements;
 chats_form chats_f;
 contacts_arr contacts_t;
@@ -333,6 +347,18 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 
+void sort_by_chat_widget();
+void create_widget_contacts(char *user_id);
+void add_contact(GtkWidget *button, data_input_t *info);
+void add_participant(GtkWidget *button, data_input_t *info);
+void show_add_contact(GtkWidget *main_grid);
+gboolean open_add_contact(GtkWidget *widget, GdkEventButton *event);
+void show_remove_participant(GtkWidget *main_grid);
+gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event);
+gboolean open_add_participant(GtkWidget *widget, GdkEventButton *event);
+void show_add_participant(GtkWidget *main_grid);
+int get_curr_chat_index();
+void edit_name_chat(GtkWidget *button);
 void set_chat_name_in_info_chat();
 gboolean open_chat_info(GtkWidget *widget, GdkEventButton *event);
 void show_chat_info(GtkWidget *main_grid);
@@ -381,7 +407,7 @@ void free_chat_items(chat_item_t **chats);
 void free_all_children_in_container(GtkWidget *container);
 gboolean open_click_contact(GtkWidget *widget);
 void free_contacts_s(contact_t **contact);
-void get_contacts_from_db(GtkWidget *container, char *user_id);
+void create_one_contact(int i, contact_t *contacts);
 user_t *get_profile_info();
 void free_user_s(user_t *user);
 void set_active_setting_item(GtkWidget *text, GtkWidget *img, char *path_img, void (*f)(GtkWidget *grid), int index);

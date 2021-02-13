@@ -1,6 +1,8 @@
 #include "chat.h"
 
 contact_info_t *get_contact_info(char *contact_id){
+            //g_mutex_lock(&main_form.mutex);
+
     char *num_f = strdup("22");
     char *arr[] = {contact_id, NULL};
     char *json = write_to_json(num_f, arr);
@@ -27,5 +29,7 @@ contact_info_t *get_contact_info(char *contact_id){
     free(tmp_values);
     free(values_obj);
     free(jobj);
+            //g_mutex_unlock(&main_form.mutex);
+
     return info;
 }

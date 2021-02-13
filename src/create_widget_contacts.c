@@ -1,8 +1,10 @@
 #include "chat.h"
 
-void create_chat_widgets(char *user_id)
+void create_widget_contacts(char *user_id)
 {
-    char *num_f = strdup("17");
+    //g_mutex_lock(&main_form.mutex);
+
+    char *num_f = strdup("21");
     char *arr[] = {user_id, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
@@ -16,26 +18,24 @@ void create_chat_widgets(char *user_id)
         return;
     }
     free(jobj);
-    chat_t **chats = request_get_chats(response);
+
+    contact_t **contacts = get_contacts(response);
     free(response);
-    if (chats != NULL)
+
+    if (contacts != NULL)
     {
-        //puts("Ne veselo");
-        chats_f.was_free = false;
+        contacts_t.was_free = false;
         int size = 0;
-        for (size_t i = 0; chats[i]; i++)
+        for (size_t i = 0; contacts[i]; i++)
         {
             size++;
         }
-
+        
         for (size_t i = 0; i < size; i++)
         {
-            create_one_chat(i, chats[i]);
+            create_one_contact(i, contacts[i]);
         }
-
-        free_chats(chats);
-       sort_by_chat_widget();
-
+        free_contacts_s(contacts);
     }
+    //g_mutex_unlock(&main_form.mutex);
 }
-

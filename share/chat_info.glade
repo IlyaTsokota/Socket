@@ -116,7 +116,7 @@
             </child>
              <child>
                 <object class="GtkButton" id="delete_participants">
-                <property name="label" translatable="yes">Delete participants</property>
+                <property name="label" translatable="yes">Remove participants</property>
                 <property name="width_request">420</property>
                 <property name="height_request">70</property>
                 <property name="visible">True</property>
@@ -128,7 +128,6 @@
                 <property name="vexpand">True</property>
                 <style>
                  <class name="color_normal"/>
-
                     <class name="btn_info"/>
                 </style>
                 </object>

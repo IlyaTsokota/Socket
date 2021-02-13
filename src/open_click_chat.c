@@ -3,8 +3,8 @@
 gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event)
 {
     char *id = (char *)gtk_widget_get_name(widget);
-    if (strcmp(id, chats_f.curr_chat) != 0)
-    {
+    // if (strcmp(id, chats_f.curr_chat) != 0)
+    // {
         hide_gtk_widgets(main_form.right_content);
         gtk_widget_show_all(main_form.right_content[0]);
         clear_style_all_chat_widgets();
@@ -14,10 +14,11 @@ gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event)
         free(color);
         if (chats_f.curr_chat != NULL)
             free(chats_f.curr_chat);
+            
         chats_f.curr_chat = strdup(id);
         free_all_children_in_container(main_form.message_line);
-
         set_chat_name_top();
+
         int j = 0;
         for (int i = 0; curr_chat.messages_g[i]; i++)
         {
@@ -26,8 +27,10 @@ gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event)
                 gtk_grid_attach(GTK_GRID(main_form.message_line), curr_chat.messages_g[i]->event_box_message, 0, j++, 1, 1);
             }
         }
+        clear_text__buffer(GTK_TEXT_VIEW(main_form.text_view));
 
         gtk_widget_show_all(main_form.message_line);
-    }
+
+    // }
     return false;
 }

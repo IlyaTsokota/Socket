@@ -73,7 +73,7 @@ gboolean refresh_chat(update_t *update)
         free_messages(messages);
     }
     ////puts("Unlock");
-
+    sort_by_chat_widget();
     g_mutex_unlock(&main_form.mutex);
 
     return true;

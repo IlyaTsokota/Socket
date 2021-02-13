@@ -2,6 +2,7 @@
 
 gboolean open_edit_profile(GtkWidget *widget, GdkEventButton *event)
 {
+    
     set_active_setting_item(setting_elements.edit_profile_text, setting_elements.edit_profile_img,
                             "./share/resources/img/info_a.png", show_edit_profile, 8);
     return false;
@@ -20,7 +21,6 @@ void set_active_setting_item(GtkWidget *text, GtkWidget *img, char *path_img, vo
 
 void show_edit_profile(GtkWidget *main_grid)
 {
-    
     if (!do_once.bshow_edit_profile)
         return;
     do_once.bshow_edit_profile = false;
@@ -65,11 +65,11 @@ void show_edit_profile(GtkWidget *main_grid)
     g_signal_connect(G_OBJECT(apply_btn), "clicked", G_CALLBACK(update_profile), NULL);
     css_set(arr,  data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[8]), child, 0, 0, 1, 1);
-
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[8], 1, 0, 1, 1);
     gtk_widget_show_all(main_form.right_content[8]);
 
     g_object_unref(builder);
+
     
 }
 

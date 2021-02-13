@@ -39,10 +39,16 @@ void clear_styles_from_setting_elements()
 
     GdkPixbuf *theme_img = gdk_pixbuf_new_from_file(path_img[0], NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(setting_elements.theme_img), theme_img);
+    if (!data.isBottomed)
+    {
+        edit_styles_for_widget(setting_elements.double_bottom_text, color);
+        GdkPixbuf *double_bottom_img = gdk_pixbuf_new_from_file(path_img[5], NULL);
+        gtk_image_set_from_pixbuf(GTK_IMAGE(setting_elements.double_bottom_img), double_bottom_img);
 
-    edit_styles_for_widget(setting_elements.privacy_text, color);
-    GdkPixbuf *privacy_img = gdk_pixbuf_new_from_file(path_img[1], NULL);
-    gtk_image_set_from_pixbuf(GTK_IMAGE(setting_elements.privacy_img), privacy_img);
+        edit_styles_for_widget(setting_elements.privacy_text, color);
+        GdkPixbuf *privacy_img = gdk_pixbuf_new_from_file(path_img[1], NULL);
+        gtk_image_set_from_pixbuf(GTK_IMAGE(setting_elements.privacy_img), privacy_img);
+    }
 
     edit_styles_for_widget(setting_elements.notifications_text, color);
     GdkPixbuf *notification_img = gdk_pixbuf_new_from_file(path_img[2], NULL);
@@ -55,10 +61,6 @@ void clear_styles_from_setting_elements()
     edit_styles_for_widget(setting_elements.edit_profile_text, color);
     GdkPixbuf *edit_profile_img = gdk_pixbuf_new_from_file(path_img[4], NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(setting_elements.edit_profile_img), edit_profile_img);
-
-    edit_styles_for_widget(setting_elements.double_bottom_text, color);
-    GdkPixbuf *double_bottom_img = gdk_pixbuf_new_from_file(path_img[5], NULL);
-    gtk_image_set_from_pixbuf(GTK_IMAGE(setting_elements.double_bottom_img), double_bottom_img);
 
     free(color);
 }

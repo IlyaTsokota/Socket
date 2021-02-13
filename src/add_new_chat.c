@@ -2,7 +2,7 @@
 
 void add_new_chat(GtkWidget *button, GtkWidget *widgets)
 {
-    g_mutex_lock(&main_form.mutex);
+    //g_mutex_lock(&main_form.mutex);
     char *name = (char *)gtk_entry_get_text(GTK_ENTRY(widgets));
 
     if (strlen(name) <= 0)
@@ -27,5 +27,5 @@ void add_new_chat(GtkWidget *button, GtkWidget *widgets)
         gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[chats_f.size - 1]->event_box_contact, 0, (chats_f.size - 1) , 1, 1);
         gtk_widget_show_all(main_form.left_content[0]);
     }
-    g_mutex_unlock(&main_form.mutex);
+    //g_mutex_unlock(&main_form.mutex);
 }

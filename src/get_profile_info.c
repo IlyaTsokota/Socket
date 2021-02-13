@@ -1,6 +1,8 @@
 #include "chat.h"
 
 user_t *get_profile_info(){
+    //g_mutex_lock(&main_form.mutex);
+
     char *num_f = strdup("20");
     char *arr[] = {data.user_id, NULL};
     char *json = write_to_json(num_f, arr);
@@ -27,5 +29,7 @@ user_t *get_profile_info(){
     free(tmp_values);
     free(values_obj);
     free(jobj);
+    //g_mutex_unlock(&main_form.mutex);
+
     return user;
 }

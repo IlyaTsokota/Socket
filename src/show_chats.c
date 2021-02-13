@@ -19,6 +19,8 @@ void show_chats(GtkWidget *main_grid)
             gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
         }
     }
+        gtk_widget_show_all(main_form.chats_grid );
+
     gtk_grid_attach(GTK_GRID(main_form.left_content[0]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content[0], 0, 0, 1, 1);
     gtk_widget_show_all(main_form.left_content[0]);

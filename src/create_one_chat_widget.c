@@ -30,6 +30,7 @@ void create_one_chat(int index, chat_t *chat)
     gtk_widget_set_vexpand(chats_f.chat_items[index]->contact_container, true);
     gtk_widget_set_size_request(chats_f.chat_items[index]->contact_container, -1, 84);
     set_style_context(chats_f.chat_items[index]->contact_container, "contact-container");
+    
     char *time;
     if (last_msg_index != -1)
     {
