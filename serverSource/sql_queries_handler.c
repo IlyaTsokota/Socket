@@ -102,7 +102,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return get_chat_users(con, array[1], sock);
     case 31:
         puts("Query 31 -> remove_user_from_chat");
-        return remove_user_from_chat(con, array[1]);
+        return remove_user_from_chat(con, array[1], array[2]);
     case 32:
         puts("Query 32 -> get_chat_is_user_chat_adminusers");
         return is_user_chat_admin(con, array[1], array[2]);
@@ -112,6 +112,10 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 34:
         puts("Query 34 -> delete_message");
         return delete_message(con, array[1], array[2]);
+    case 35:
+        puts("Query 35 -> contact_add_by_login");
+        return contact_add_by_login(con, array[1], array[2], 1 ,sock);
+   
 
     default:
         puts("Server queries_handler default error");

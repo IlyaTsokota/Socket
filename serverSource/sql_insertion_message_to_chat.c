@@ -172,7 +172,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             }
         }
         mysql_free_result(result);
-        if (strcmp(answer3, "0") != 0)
+        if (strcmp(answer3, "0") == 0)
         {
             char *string = strdup("1");
             if (is_send_answer == 1) {

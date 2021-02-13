@@ -92,7 +92,7 @@ char *chat_remove(MYSQL *con, char *chat_id);                                   
 char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id, int sock); //12
 char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name);    //29
 char *get_chat_users(MYSQL *con, char *ch_id, int sock);            //30
-char *remove_user_from_chat(MYSQL *con, char *u_id);                //31
+char *remove_user_from_chat(MYSQL *con, char *u_id, char* ch_id)  ;          //31
 char *is_user_chat_admin(MYSQL *con, char *ch_id, char *u_id);
 
 //sql-validations
@@ -107,6 +107,7 @@ char *contact_block(MYSQL *con, char *my_id, char *contact_id);                 
 char *contact_unblock(MYSQL *con, char *my_id, char *contact_id);                                   //14
 char *get_contacts(MYSQL *con, char *user_id, int sock);                                            //21
 char *get_contact_info(MYSQL *con, char *contact_id, char *my_id, int sock);                        //22
+char *contact_add_by_login(MYSQL *con, char *login, char *my_id, int close_con_after_end_of_func,int sock); //35
 
 //sql-credentials
 char *change_password(MYSQL *con, char *u_id, char *new_pass); //27
