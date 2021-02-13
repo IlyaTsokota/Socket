@@ -5,7 +5,7 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     //Проверить нет ли такого юзера   SELECT  count(u_login) from user where u_login = "itsokota"
     char *answer;
     char *status = "Status is empty ;c";
-    char *isonline = "1";
+    char *is_bottomed = "0";
     char *encrypted_password = crypt(password, "1337_1488");
     char *encrypted_pin = crypt(pin, "1337_1488");
     char *datetime = set_date();
@@ -46,7 +46,7 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     free(answer);
     //Добавить юзера
     const char *request_parts1[] = {"INSERT INTO user ( u_login, u_name, u_surname, u_status, u_isBottommed, u_lastSeen, u_avatar) VALUES (\"", login, "\",\"",
-                                    name, "\",\"", surname, "\",\"", status, "\",\"", isonline, "\",\"", datetime, "\",\"1234\");", NULL};
+                                    name, "\",\"", surname, "\",\"", status, "\",\"", is_bottomed, "\",\"", datetime, "\",\"1234\");", NULL};
     bdrequest = strjoins_arr(request_parts1);
 
     puts(bdrequest); //Вывод запроса в консоль
