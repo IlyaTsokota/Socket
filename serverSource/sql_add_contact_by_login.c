@@ -5,7 +5,7 @@ char *contact_add_by_login(MYSQL *con, char *login, char *my_id, int close_con_a
     //if_user_exitst
     char *answer;
     char *contact_id;
-    const char *request_parts[] = {"SELECT COUNT(u_id), u_id FROM user WHERE  u_login = \"", login, "\" group by 2;", NULL};
+    const char *request_parts[] = {"SELECT COUNT(u_id), u_id FROM user WHERE u_login = \"", login, "\" group by 2;", NULL};
     char *bdrequest = strjoins_arr(request_parts);
     puts(bdrequest); //Вывод запроса в консоль
 
@@ -24,15 +24,34 @@ char *contact_add_by_login(MYSQL *con, char *login, char *my_id, int close_con_a
     }
 
     int num_fields = mysql_num_fields(result);
+    
+    int num_rows = mysql_num_rows(result);
+    printf("nf: --%d--\n", num_rows);
+    
+    if (num_rows == 0) {
+        if (socket_send_data("2", sock))
+        {
+             mysql_close(con);
+            //free(answer);
+            return strdup("1");
+        }
+        else
+        {
+             mysql_close(con);
+            //free(answer);
+            return strdup("0");
+        }
+    }
+    
 
     MYSQL_ROW row;
 
     while ((row = mysql_fetch_row(result)))
     {
-
         answer = strdup(row[0]);
         contact_id = strdup(row[1]);
     }
+
     mysql_free_result(result);
 
     if (strcmp(answer, "0") == 0) //user doesn't exist
