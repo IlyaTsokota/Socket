@@ -65,6 +65,7 @@ typedef struct
   char *u_name;
   char *u_avatar;
   char *u_status;
+  char *is_my_contact;
 } contact_info_t;
 
 typedef struct

@@ -75,7 +75,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return get_contacts(con, array[1], sock);
     case 22:
         puts("Query 22 -> get_contact_info");
-        return get_contact_info(con, array[1], sock);
+        return get_contact_info(con, array[1], array[2], sock);
     case 23:
         puts("Query 23 -> create_double_bottom");
         return create_double_bottom(con, array[1], array[2]);

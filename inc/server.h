@@ -104,7 +104,7 @@ char *contact_remove(MYSQL *con, char *my_id, char *contact_id);                
 char *contact_block(MYSQL *con, char *my_id, char *contact_id);                                     //09
 char *contact_unblock(MYSQL *con, char *my_id, char *contact_id);                                   //14
 char *get_contacts(MYSQL *con, char *user_id, int sock);                                            //21
-char *get_contact_info(MYSQL *con, char *user_id, int sock);                                        //22
+char *get_contact_info(MYSQL *con, char *contact_id, char *my_id, int sock);                        //22
 
 //sql-credentials
 char *change_password(MYSQL *con, char *u_id, char *new_pass); //27

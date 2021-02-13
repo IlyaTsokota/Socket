@@ -132,7 +132,7 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
         }
         else
         {
-            add_message_to_chat(con, chat_id, "1", "0", "0", "0", "0", sock, 0);
+            add_message_to_chat(con, chat_id, "1", "0", "0", "0", "Добро пожаловать в Socket!\nЧувствуйте себя в безопасности.\nКаждое сообщение в Socket, как и это, надёжно зашифровано.\nSaved Messages необходим для файло-помойки, можешь отправлять мне всякий хлам ;)\n", sock, 0);
             free(chat_id);
             return "1";
         }
