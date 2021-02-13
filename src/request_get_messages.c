@@ -7,9 +7,9 @@ char *request_on_server(int socket , char *request)
     size_t packet_size = 1024, packet_count = 0, read_index = 0;
     char buff[1024];
     char *str;
-    // puts("request = ");
-    // puts(request);
-    // puts("================");
+    puts("request = ");
+    puts(request);
+    puts("================");
     write(socket, request, strlen(request));
 
     stat = 1025;
@@ -22,19 +22,21 @@ char *request_on_server(int socket , char *request)
             packet_size = size;
         }
         stat = recv(socket, buff, packet_size, 0);
+        puts(buff);
         memcpy(&str[read_index], buff, packet_size);
         if (stat == -1) {
             perror("[-]Error in sending file.");
-            return false;
+            return NULL;
         }
         size -= stat;
         read_index += stat;
         str[read_index] = '\0';
+        
     } while (size > 0);
 
-    // puts("answer = ");
-    // puts(str);
-    // puts("================");
+    puts("answer = ");
+    puts(str);
+    puts("================");
 
     stat = read(socket, buff, 1); //ах ты ёбаный ублюдок...
     

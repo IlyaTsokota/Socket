@@ -81,7 +81,7 @@ typedef struct
 	char *u_name;
 	char *u_avatar;
 	char *u_status;
-	  bool is_my_contact;
+	bool is_my_contact;
 } contact_info_t;
 
 typedef struct
@@ -158,6 +158,20 @@ typedef struct
 	char *login_text;
 
 } autorization_w;
+
+
+typedef struct
+{
+	GtkWidget *users_item;
+	GtkWidget *user_event_box;
+	GtkWidget *body_user;
+	GtkWidget *user_img;
+	GtkWidget *user_name;
+	GtkWidget *delete_event_box;
+	GtkWidget *remove_img;
+
+} user_by_chat_t;
+
 
 autorization_w autorization;
 
@@ -347,6 +361,8 @@ contacts_arr contacts_t;
 main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
+user_by_chat_t users_in_chat;
+
 
 void sort_by_chat_widget();
 void create_widget_contacts(char *user_id);

@@ -11,7 +11,9 @@ void open_main_form_after_register(GtkWidget *button, GtkWidget *widget)
     data.isBottomed = false;
 
     puts(data.user_id);
+
     puts(data.user_login);
+    
 
     gtk_widget_destroy(widget);
     open_main_form(data.win);

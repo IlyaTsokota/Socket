@@ -201,23 +201,19 @@ void show_remove_participant(GtkWidget *main_grid)
     GtkBuilder *builder = glade_file_to_interface("share/remove_participant.glade");
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
-    GtkWidget *loginLable = GTK_WIDGET(gtk_builder_get_object(builder, "loginLable"));
     GtkWidget *login_edit = GTK_WIDGET(gtk_builder_get_object(builder, "login_edit"));
-    GtkWidget *fail_login = GTK_WIDGET(gtk_builder_get_object(builder, "fail_login"));
+    GtkWidget *scroll_by_users = GTK_WIDGET(gtk_builder_get_object(builder, "scroll_by_users"));
+    GtkWidget *users_container = GTK_WIDGET(gtk_builder_get_object(builder, "users_container"));
 
-    int *maxSize = (int *)malloc(sizeof(int));
-    *maxSize = 16;
-    int *minSize = (int *)malloc(sizeof(int));
-    *minSize = 1;
-    GtkWidget *loginInput = create_input(builder, "loginInput", maxSize);
+    
 
-    GtkWidget *remove_participants = GTK_WIDGET(gtk_builder_get_object(builder, "add_participants"));
+
+
     GtkWidget *back = GTK_WIDGET(gtk_builder_get_object(builder, "back"));
-    g_signal_connect(G_OBJECT(loginInput), "changed", G_CALLBACK(change_event_login_or_password), minSize);
     g_signal_connect(G_OBJECT(back), "button-press-event", G_CALLBACK(open_chat_info), NULL);
 
-    GtkWidget *arr[] = {main_form.right_content[12], child, setting_form, back, remove_participants, loginInput,
-                        loginLable, login_edit, fail_login, NULL};
+    GtkWidget *arr[] = {main_form.right_content[12], child, setting_form, back,scroll_by_users,
+                        login_edit, NULL};
     css_set(arr, data.main_theme_path);
 
     // g_signal_connect(G_OBJECT(add_participants), "clicked", G_CALLBACK(open_add_participant), NULL);

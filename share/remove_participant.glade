@@ -17,108 +17,124 @@
             <property name="can_focus">False</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            
-          <child>
-                   <object class="GtkGrid">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_top">50</property>
-                    <child>
-                    <object class="GtkGrid">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
-                        <child>
-                        <object class="GtkLabel" id="loginLable">
-                            <property name="width_request">50</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <property name="margin_right">10</property>
-                            <property name="hexpand">True</property>
-                            <property name="label" translatable="yes">login</property>
-                            <property name="justify">right</property>
-                             <style>
-                            <class name="label"/>
-                        </style>
-                        </object>
-                        <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">0</property>
-                        </packing>
-                        </child>
-                        <child>
-                        <object class="GtkEntry" id="loginInput">
-                            <property name="name">login</property>
-                            <property name="width_request">100</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="has_focus">True</property>
-                            <property name="halign">start</property>
-                            <property name="valign">start</property>
-                            <property name="margin_right">70</property>
-                            <property name="hexpand">True</property>
-                            <property name="input_purpose">name</property>
-                            <style>
-                                <class name="input_edit"/>
-                            </style>
-                        </object>
-                        <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">0</property>
-                        </packing>
-                        </child>
-                    </object>
-                    <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
-                    </packing>
-                    </child>
-                    <child>
-                    <object class="GtkLabel" id="fail_login">
-                        <property name="name">danger_lable</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_top">10</property>
-                          <style>
-                                <class name="logout"/>
-                            </style>
-                    </object>
-                    <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
-                    </packing>
-                  </child>
-                   </object>
-                    <packing>
-                    <property name="left_attach">0</property>
-                    <property name="top_attach">1</property>
-                    </packing>
-                </child>
-             <child>
-                <object class="GtkButton" id="add_participants">
-                <property name="label" translatable="yes"> Remove participant</property>
-                <property name="width_request">420</property>
-                <property name="height_request">70</property>
+            <child>
+                <object class="GtkScrolledWindow" id="scroll_by_users">
+                <property name="height_request">250</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">end</property>
+                <property name="margin_top">40</property>
                 <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
+                <property name="vexpand">False</property>
+                <property name="shadow_type">in</property>
+                <child>
+                    <object class="GtkViewport">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <child>
+                        <object class="GtkGrid" id="users_container">
+                        <property name="height_request">70</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="valign">start</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">False</property>
+                        <child>
+                            <object class="GtkGrid" id="users_item">
+                            <property name="height_request">70</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">center</property>
+                            <property name="valign">start</property>
+                            <property name="margin_top">1</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                            <child>
+                                <object class="GtkEventBox" id="user_event_box">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <child>
+                                    <object class="GtkGrid" id="body_user">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <child>
+                                    <object class="GtkImage" id="user_img">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="pixbuf">ava2.png</property>
+                                    </object>
+                                    <packing>
+                                    <property name="left_attach">0</property>
+                                    <property name="top_attach">0</property>
+                                    </packing>
+                                    </child>
+                                    <child>
+                                    <object class="GtkLabel" id="user_name">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="margin_left">10</property>
+                                    <property name="margin_right">10</property>
+                                    <property name="label" translatable="yes">iromanovyc</property>
+                                    <style>
+                                    <class name="contact-login"/>
+                                    </style>
+                                    </object>
+                                    <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="top_attach">0</property>
+                                    </packing>
+                                    </child>
+                                    </object>
+                                </child>
+                                </object>
+                                <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">0</property>
+                                </packing>
+                            </child>
+                            <child>
+                                <object class="GtkEventBox" id="delete_event_box">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <child>
+                                    <object class="GtkImage" id="remove_img">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="pixbuf">../../../Desktop/uchatClient/uchat/share/resources/img/delete.png</property>
+                                    </object>
+                                </child>
+                                </object>
+                                <packing>
+                                <property name="left_attach">1</property>
+                                <property name="top_attach">0</property>
+                                </packing>
+                            </child>
+                            </object>
+                            <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                            </packing>
+                        </child>
+                        <style>
+                            <class name="border-none"/>
+                        </style>
+                        </object>
+                    </child>
+                    <style>
+                        <class name="border-none"/>
+                    </style>
+                    </object>
+                </child>
                 <style>
-                 <class name="color_normal"/>
-
-                    <class name="btn_info"/>
+                    <class name="border-none"/>
                 </style>
                 </object>
                 <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">2</property>
+                <property name="top_attach">1</property>
                 </packing>
             </child>
-           
             <child>
                 <object class="GtkButton" id="back">
                 <property name="label" translatable="yes">Back</property>
@@ -140,7 +156,7 @@
                 </object>
                 <packing>
                 <property name="left_attach">0</property>
-                <property name="top_attach">3</property>
+                <property name="top_attach">2</property>
                 </packing>
             </child>
             
@@ -152,7 +168,7 @@
                     <object class="GtkLabel" id="login_edit">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="halign">start</property>
+                    <property name="halign">center</property>
                     <property name="margin_top">25</property>
                     <property name="margin_start">25</property>
                     <property name="hexpand">True</property>

@@ -23,8 +23,7 @@ char* request_get_str_from_server(char *request){
         char answer[1024];
         size_t bytes_readed = read(data.socket_desc, answer, 1024);
         answer[bytes_readed] = '\0'; 
-        char *result = strdup(answer);
-        return result;
+        return  strdup(answer);
     }
     else {
         //g_print("Request to server error!\n");

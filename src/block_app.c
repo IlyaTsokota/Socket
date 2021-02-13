@@ -11,13 +11,7 @@ gboolean block_app(GtkWidget *widget, GdkEventButton *event, GtkWidget *form)
     	free(chats_f.curr_chat);
     	chats_f.curr_chat = NULL;
     }
-    if (main_form.last_ms_id != NULL) {
-    	
-        free(main_form.last_ms_id);
-    	
-        main_form.last_ms_id = NULL;
-    }
-    puts(main_form.last_ms_id);
+   
     if (data.user_id != NULL) {
     	free(data.user_id);
     	data.user_id = NULL;
@@ -33,9 +27,11 @@ gboolean block_app(GtkWidget *widget, GdkEventButton *event, GtkWidget *form)
     clear_interface();
     if (form != NULL) {
     	gtk_widget_destroy(form);
-   	form = NULL;
+    	form = NULL;
     }
     remove("messages.json");
+    free(main_form.last_ms_id);
+    main_form.last_ms_id = NULL;
     open_form_pin(data.win, false);
     return false;
 }
