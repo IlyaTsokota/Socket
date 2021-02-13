@@ -33,8 +33,10 @@ char *is_login_exist(MYSQL *con, char *login)
             answer = row[i];
         }
     }
+    char *aanswer = strdup(answer);
+    
     mysql_free_result(result);
     mysql_close(con);
     
-     return strdup(answer);
+    return aanswer;
 }

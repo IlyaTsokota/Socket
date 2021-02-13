@@ -72,7 +72,7 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
        return strdup("0");
     }
     else {
-        return strdup("1");;
+        return strdup("1");
     }
     
     return strdup("1");; //0 or >0

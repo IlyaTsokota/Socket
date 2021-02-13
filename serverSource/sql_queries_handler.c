@@ -45,7 +45,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return is_contact_exist(con, array[1], array[2], 1);
     case 12:
         puts("Query 12 -> add_user_to_group_chat");
-        return add_user_to_group_chat(con, array[1], array[2]);
+        return add_user_to_group_chat(con, array[1], array[2], sock);
     case 13:
         puts("Query 13 -> add_message_to_chat");
         return add_message_to_chat(con, array[1], array[2], array[3], array[4], array[5], array[6], sock, 1);
@@ -63,7 +63,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return get_chats(con, array[1], sock);
     case 18:
         puts("Query 18 -> get_my_id");
-        return get_my_id(con, array[1], 1);
+        return get_my_id(con, array[1], 1, sock);
     case 19:
         puts("Query 19 -> edit_profile");
         return edit_profile(con, array[1], array[2], array[3], array[4]);

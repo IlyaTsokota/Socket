@@ -1,6 +1,6 @@
 #include <server.h>
 
-char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func)
+char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func, int sock)
 {
     char *answer;
 
@@ -34,6 +34,17 @@ char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func)
             answer = strdup(row[i]);
         }
     }
+    char *aanswer = strdup(answer); 
+    if (socket_send_data(aanswer, sock)) {
+        free(aanswer);
+        return strdup("0");
+    }
+    else {
+        free(aanswer);
+        return strdup("1");
+    }
+
+
     mysql_free_result(result);
     if (close_con_after_end_of_func == 1)
         mysql_close(con);

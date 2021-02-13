@@ -88,7 +88,7 @@ char *group_chat_create(MYSQL *con, char *my_id, char *chat_name, char *is_retur
 char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func, char *is_return_data, int sock); //08
 char *chat_remove(MYSQL *con, char *chat_id);                                                                                  //10
 
-char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id); //12
+char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id, int sock); //12
 char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name);    //29
 char *get_chat_users(MYSQL *con, char *ch_id, int sock);            //30
 char *remove_user_from_chat(MYSQL *con, char *u_id);                //31
@@ -117,7 +117,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
 char *change_message(MYSQL *con, char *ch_id, char *ms_id, char *ms_text);                                                                                                   //33
 char *delete_message(MYSQL *con, char *ch_id, char *ms_id);                                                                                                                  //34
 //sql-unsorte
-char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func);          //18
+char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func, int sock); //18
 char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote); //19
 char *get_user_info(MYSQL *con, char *user_id, int sock);                           //20
 
