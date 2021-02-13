@@ -52,7 +52,10 @@ char *get_file(FILE *file7, int line_no, char *filename)
     }
     line4 = realloc(line4, curr_ofs + 1);
     if (!line4)
+    {
+        free(line4);
         return NULL;
+    }
     line4[curr_ofs] = '\0';
     return line4;
     fclose(file7);
@@ -65,7 +68,7 @@ char *pass_gen()
     int i;
     int n = 1;
     int length;
-    char *password = (char *)malloc(101 * sizeof(char));
+    char *password = (char *)malloc(17 * sizeof(char));
     for (i = 0; i < count; i++)
     {
         puts("start");
@@ -133,5 +136,7 @@ char *pass_gen()
     {
         pass16[i] = password[i];
     }
+    free(password);
     return pass16;
 }
+

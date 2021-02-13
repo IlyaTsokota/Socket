@@ -7,7 +7,11 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin)
     char *name = "Socket";
     char *surname = "User";
     puts("GG");
-    char *login = strdup("Pizda");
+    const char *request_parts228[] = {u_id,pin, NULL};
+    char *login = crypt(strjoins_arr(request_parts228), "1337_1488");
+
+  
+    //char *login = strdup("Pizda");
     // pass_gen();
     puts("GG2");
     char *status = "Status is empty ;c";
@@ -88,7 +92,8 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin)
 
     if (atoi(answer2) == 1){
     free(answer2);
-        login = pass_gen(); }//Login already exist, try to create generate new login
+        login = crypt(strjoins_arr(request_parts228), "1337_1488");
+        }//Login already exist, try to create generate new login
     free(answer2);
 
     //Добавить юзеру DB
@@ -108,7 +113,7 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin)
     //Узнать айди user
     const char *request_parts3[] = {"SELECT u_id from user where u_login = \"", login, "\";", NULL};
     bdrequest = strjoins_arr(request_parts3);
-
+    free(login);
     puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))
@@ -153,5 +158,5 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin)
     free(bdrequest); //IR
     free(datetime);  //IR
 
-    return strdup("1");;
+    return strdup("1");
 }
