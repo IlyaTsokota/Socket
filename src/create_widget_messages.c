@@ -4,6 +4,7 @@ void create_widget_messages()
 {
     message_arr *message = get_messages_from_file("messages.json");
     curr_chat.length = malloc(sizeof(int));
+    *(curr_chat.length) = 0;
     if (message != NULL)
     {   
         int length = *message->length;
@@ -14,4 +15,5 @@ void create_widget_messages()
         }
         free_messages(message);
     }
+   
 }

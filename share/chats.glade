@@ -39,14 +39,14 @@
                                                <object class="GtkGrid" >
                                                 <property name="visible">True</property>
                                                 <property name="can_focus">False</property>
-                                                <property name="valign">end</property>
+                                                <property name="valign">start</property>
                                                 <property name="hexpand">True</property>
                                                 <property name="vexpand">True</property>
                                                 <child>
                                                   <object class="GtkGrid" id="contacts_container">
                                                     <property name="visible">True</property>
                                                     <property name="can_focus">False</property>
-                                                    <property name="valign">end</property>
+                                                    <property name="valign">start</property>
                                                     <property name="hexpand">True</property>
                                                     <property name="vexpand">True</property>
                                                   </object>

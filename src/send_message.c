@@ -22,7 +22,6 @@ void *sending(gpointer text_view)
     {
         puts("Send message\n");
         char *message = get_text_of_textview(GTK_TEXT_VIEW(text_view));
-        clear_text__buffer(GTK_TEXT_VIEW(text_view));
         char *num_f = strdup("13");
         char *arr[] = {chats_f.curr_chat, data.user_id, "0", "0", "0", message, NULL};
         char *json = write_to_json(num_f, arr);
@@ -30,6 +29,7 @@ void *sending(gpointer text_view)
         char *response = request_on_server(update->socket, json);
         free(json);
         free(response);
+        clear_text__buffer(GTK_TEXT_VIEW(text_view));
         g_mutex_unlock(&main_form.mutex);
 
         refresh_chat(update);

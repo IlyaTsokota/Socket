@@ -10,6 +10,7 @@ bool is_pin_user(char *pin)
     puts(response);
     json_object *jobj;
     jobj = json_tokener_parse(response);
+   
     if (jobj == NULL)
     {
         return false;

@@ -15,12 +15,15 @@ gboolean refresh_chat(update_t *update)
     message_arr *messages = take_messages(update->socket ,data.user_id, main_form.last_ms_id);
     if (messages != NULL)
     {
+        puts("What");
         int messages_length = *(messages->length);
+        g_print("%d --- llelelel\n", messages_length);
         int length = *(curr_chat.length);
         int j = length;
         
         for (int i = 0; i < messages_length; i++)
         {
+            puts("Why");
             create_one_messages(j++, messages->messages[i]);
         }
         

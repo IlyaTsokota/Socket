@@ -5,5 +5,7 @@ char* get_user_id_from_db(char *login){
     char *arr[] = {login, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
-    return request_get_str_from_server(json);
+    char *id = request_get_str_from_server(json);
+    
+    return id;
 }

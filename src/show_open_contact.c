@@ -42,6 +42,6 @@ void show_open_contact(GtkWidget *main_grid, char *id)
 
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[2], 1, 0, 1, 1);
             gtk_widget_show_all(main_form.right_content[2]);
-
+    
     g_object_unref(builder);
 }

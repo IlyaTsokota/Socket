@@ -8,8 +8,10 @@ void create_one_chat(int index, chat_t *chat)
     chats_f.chat_items[index]->event_box_contact = gtk_event_box_new();
 
     gtk_widget_set_hexpand(chats_f.chat_items[index]->event_box_contact, true);
+    gtk_widget_set_vexpand(chats_f.chat_items[index]->event_box_contact, false);
     gtk_widget_set_name(chats_f.chat_items[index]->event_box_contact, chat->ch_id);
     g_signal_connect(G_OBJECT(chats_f.chat_items[index]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
+    gtk_widget_set_valign(chats_f.chat_items[index]->event_box_contact, GTK_ALIGN_START); 
 
     int last_msg_index = -1;
     if (curr_chat.messages_g != NULL)
