@@ -136,7 +136,7 @@ void show_add_participant(GtkWidget *main_grid)
 
     GtkWidget *add_participants = GTK_WIDGET(gtk_builder_get_object(builder, "add_participants"));
     GtkWidget *back = GTK_WIDGET(gtk_builder_get_object(builder, "back"));
-    g_signal_connect(G_OBJECT( info->input ), "changed", G_CALLBACK(change_event_login_or_password), minSize);
+    g_signal_connect(G_OBJECT(info->input), "changed", G_CALLBACK(change_event_login_or_password), minSize);
     g_signal_connect(G_OBJECT(back), "button-press-event", G_CALLBACK(open_chat_info), NULL);
 
     GtkWidget *arr[] = {main_form.right_content[11], child, setting_form, back, add_participants, info->input,
@@ -154,7 +154,7 @@ void show_add_participant(GtkWidget *main_grid)
 
 void add_participant(GtkWidget *button, data_input_t *info)
 {
-        //g_mutex_lock(&main_form.mutex);
+    //g_mutex_lock(&main_form.mutex);
 
     char *login = (char *)gtk_entry_get_text(GTK_ENTRY(info->input));
     int flag = 0;
@@ -169,17 +169,18 @@ void add_participant(GtkWidget *button, data_input_t *info)
         char *arr[] = {login, chats_f.curr_chat, NULL};
         char *json = write_to_json(num_f, arr);
         free(num_f);
-        if(request_to_server(json)){
+        if (request_to_server(json))
+        {
             edit_styles_for_widget(info->fail_lable, "* {color: green;}");
-            gtk_label_set_text(GTK_LABEL(info->fail_lable), "");
-        } else {
+            gtk_label_set_text(GTK_LABEL(info->fail_lable), "User added successfully");
+        }
+        else
+        {
             gtk_label_set_text(GTK_LABEL(info->fail_lable), "User already exist in this chat");
         }
         free(json);
-       
     }
-        //g_mutex_unlock(&main_form.mutex);
-
+    //g_mutex_unlock(&main_form.mutex);
 }
 
 gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event)
@@ -188,6 +189,24 @@ gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event)
     main_form.current_panel_id = -1;
     hide_gtk_widgets(main_form.right_content);
     show_remove_participant(main_form.main_grid);
+    free_user_widgets(users_in_chat.users);
+    user_curr_chat_t **users = take_users_by_chat(data.socket_desc);
+    if (users != NULL)
+    {
+
+        for (size_t i = 0; users[i]; i++)
+        {
+            puts("In");
+            create_one_user_widget(i, users[i]);
+        }
+        free_user_curr_chat_t_s(users);
+
+        for (size_t i = 0; users_in_chat.users[i]; i++)
+        {
+            gtk_grid_attach(GTK_GRID(main_form.users_container), users_in_chat.users[i]->users_item, 0, i, 1, 1);
+        }
+        gtk_widget_show_all(main_form.users_container);
+    }
     gtk_widget_show_all(main_form.right_content[12]);
     return false;
 }
@@ -203,16 +222,12 @@ void show_remove_participant(GtkWidget *main_grid)
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *login_edit = GTK_WIDGET(gtk_builder_get_object(builder, "login_edit"));
     GtkWidget *scroll_by_users = GTK_WIDGET(gtk_builder_get_object(builder, "scroll_by_users"));
-    GtkWidget *users_container = GTK_WIDGET(gtk_builder_get_object(builder, "users_container"));
-
-    
-
-
+    main_form.users_container = GTK_WIDGET(gtk_builder_get_object(builder, "users_container"));
 
     GtkWidget *back = GTK_WIDGET(gtk_builder_get_object(builder, "back"));
     g_signal_connect(G_OBJECT(back), "button-press-event", G_CALLBACK(open_chat_info), NULL);
 
-    GtkWidget *arr[] = {main_form.right_content[12], child, setting_form, back,scroll_by_users,
+    GtkWidget *arr[] = {main_form.right_content[12], child, setting_form, back, scroll_by_users,
                         login_edit, NULL};
     css_set(arr, data.main_theme_path);
 
@@ -246,7 +261,7 @@ void show_add_contact(GtkWidget *main_grid)
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *loginLable = GTK_WIDGET(gtk_builder_get_object(builder, "loginLable"));
     GtkWidget *login_edit = GTK_WIDGET(gtk_builder_get_object(builder, "login_edit"));
-     data_input_t *info = malloc(sizeof(data_input_t));
+    data_input_t *info = malloc(sizeof(data_input_t));
     info->fail_lable = GTK_WIDGET(gtk_builder_get_object(builder, "fail_login"));
 
     int *maxSize = (int *)malloc(sizeof(int));
@@ -255,7 +270,7 @@ void show_add_contact(GtkWidget *main_grid)
     *minSize = 4;
     info->input = create_input(builder, "loginInput", maxSize);
 
-    GtkWidget *add_cont= GTK_WIDGET(gtk_builder_get_object(builder, "add_participants"));
+    GtkWidget *add_cont = GTK_WIDGET(gtk_builder_get_object(builder, "add_participants"));
     g_signal_connect(G_OBJECT(info->input), "changed", G_CALLBACK(change_event_login_or_password), minSize);
 
     GtkWidget *arr[] = {main_form.right_content[13], child, setting_form, add_cont, info->input,
@@ -270,7 +285,6 @@ void show_add_contact(GtkWidget *main_grid)
 
     g_object_unref(builder);
 }
-
 
 void add_contact(GtkWidget *button, data_input_t *info)
 {
@@ -289,8 +303,6 @@ void add_contact(GtkWidget *button, data_input_t *info)
         free(num_f);
         request_to_server(json);
         free(json);
-       
     }
-        //g_mutex_unlock(&main_form.mutex);
-
+    //g_mutex_unlock(&main_form.mutex);
 }

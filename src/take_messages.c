@@ -10,9 +10,9 @@ message_arr *take_messages(int socket, char *user_id, char *last_msg_id)
     ////puts(messages);
     free(json);
     message_arr *messages_s = messages_to_json(messages);
-    
+
     free(messages);
-    if(messages_s == NULL)
+    if (messages_s == NULL)
         return NULL;
     return messages_s;
 }
@@ -22,7 +22,10 @@ message_arr *messages_to_json(char *str)
     //puts(str);
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);
-    if(jobj == NULL){ return NULL;}
+    if (jobj == NULL)
+    {
+        return NULL;
+    }
     int exist = json_object_object_get_ex(jobj, "messages", &values_obj);
     int length = json_object_array_length(values_obj);
     if (length > 0)
@@ -34,7 +37,7 @@ message_arr *messages_to_json(char *str)
         for (size_t j = 0; j < length; j++)
         {
             tmp_values = json_object_array_get_idx(values_obj, j);
-            
+
             arr_msgs->messages[i] = malloc(sizeof(message_t));
             json_object_object_get_ex(tmp_values, "ch_id", &values_name);
             arr_msgs->messages[i]->ch_id = strdup((char *)json_object_get_string(values_name));
@@ -77,10 +80,86 @@ message_arr *messages_to_json(char *str)
         free(values_obj);
         free(jobj);
         arr_msgs->length = malloc(sizeof(int));
-        *(arr_msgs->length) = i ;
+        *(arr_msgs->length) = i;
         return arr_msgs;
     }
     free(values_obj);
     free(jobj);
     return NULL;
+}
+
+user_curr_chat_t **take_users_by_chat(int socket)
+{
+    char *num_f = strdup("30");
+    char *arr[] = {chats_f.curr_chat, NULL};
+    char *json = write_to_json(num_f, arr);
+    free(num_f);
+    char *messages = request_on_server(socket, json);
+    ////puts(messages);
+    free(json);
+    user_curr_chat_t **messages_s = users_by_chat_to_json(messages);
+
+    free(messages);
+    if (messages_s == NULL)
+        return NULL;
+    return messages_s;
+}
+
+user_curr_chat_t **users_by_chat_to_json(char *str)
+{
+    //puts(str);
+    json_object *jobj, *values_obj, *tmp_values, *values_name;
+    jobj = json_tokener_parse(str);
+    if (jobj == NULL)
+    {
+        return NULL;
+    }
+    int exist = json_object_object_get_ex(jobj, "chat_users_info", &values_obj);
+    int length = json_object_array_length(values_obj);
+    if (length > 0)
+    {
+        int i = 0;
+        user_curr_chat_t **arr_msgs = malloc(sizeof(user_curr_chat_t *) * (length + 1));
+        arr_msgs[length] = NULL;
+
+        char *tmp;
+        for (size_t j = 0; j < length; j++)
+        {
+            tmp_values = json_object_array_get_idx(values_obj, j);
+
+            arr_msgs[i] = malloc(sizeof(user_curr_chat_t));
+            json_object_object_get_ex(tmp_values, "u_id", &values_name);
+            arr_msgs[i]->u_id = strdup((char *)json_object_get_string(values_name));
+            free(values_name);
+            json_object_object_get_ex(tmp_values, "u_login", &values_name);
+            arr_msgs[i]->u_login = strdup((char *)json_object_get_string(values_name));
+            free(values_name);
+            json_object_object_get_ex(tmp_values, "u_avatar", &values_name);
+            arr_msgs[i]->u_avatar = strdup((char *)json_object_get_string(values_name));
+            free(values_name);
+            free(tmp_values);
+        }
+        free(values_obj);
+        free(jobj);
+        return arr_msgs;
+    }
+    free(values_obj);
+    free(jobj);
+    return NULL;
+}
+
+void free_user_curr_chat_t_s(user_curr_chat_t **message)
+{
+    if (message != NULL)
+    {
+        for (size_t i = 0; message[i]; i++)
+        {
+            free(message[i]->u_login);
+            free(message[i]->u_avatar);
+            free(message[i]->u_id);
+        }
+
+        free(message);
+        message = NULL;
+    }
 }

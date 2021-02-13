@@ -8,7 +8,8 @@ void open_login_form(GtkWidget *button, GtkWidget *widget)
 
 void logout(GtkWidget *button)
 {
-    g_main_loop_quit(main_form.loop);
+    g_main_loop_quit( main_form.loop );
+    g_thread_join(main_form.update_thread);
     init_do_once(true);
     free_message_widgets(curr_chat.messages_g);
 

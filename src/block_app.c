@@ -3,6 +3,7 @@
 gboolean block_app(GtkWidget *widget, GdkEventButton *event, GtkWidget *form)
 {
     g_main_loop_quit( main_form.loop );
+    g_thread_join(main_form.update_thread);
     init_do_once(true);
     free_message_widgets(curr_chat.messages_g);
     free_chat_widgets(chats_f.chat_items);

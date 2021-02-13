@@ -78,3 +78,27 @@ void free_message_widgets(messages_t **message)
     }
 }
 
+void free_user_widgets(user_in_chat_t **contacts)
+{
+    if (contacts != NULL )
+    {
+
+        ////puts("To e pizda");
+        for (size_t i = 0; contacts[i]; i++)
+        {
+            gtk_widget_destroy(contacts[i]->user_img);
+            gtk_widget_destroy(contacts[i]->user_name);
+            gtk_widget_destroy(contacts[i]->remove_img);
+            gtk_widget_destroy(contacts[i]->body_user);
+            gtk_widget_destroy(contacts[i]->delete_event_box);
+            gtk_widget_destroy(contacts[i]->user_event_box);
+            gtk_widget_destroy(contacts[i]->users_item);
+            free(contacts[i]);
+        }
+        free(contacts);
+        ////puts("Tochno pizda");
+     users_in_chat.users = NULL;
+    users_in_chat.size = 0;
+    }
+}
+

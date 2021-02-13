@@ -170,6 +170,12 @@ typedef struct
 	GtkWidget *delete_event_box;
 	GtkWidget *remove_img;
 
+} user_in_chat_t;
+
+typedef struct
+{
+	user_in_chat_t **users;
+	int size;
 } user_by_chat_t;
 
 
@@ -216,6 +222,7 @@ typedef struct
 	GtkWidget *chat_name_title;
 	GtkWidget *text_view;
 	GtkWidget *chat_name_input;
+	GtkWidget *users_container;
 
 } main_form_t;
 
@@ -349,11 +356,16 @@ typedef struct
 
 typedef struct
 {
+  char *u_id;
+  char *u_login;
+  char *u_avatar;
+} user_curr_chat_t;
+
+typedef struct
+{
 	GtkWidget *input;
 	GtkWidget *fail_lable;
 } data_input_t;
-
-
 
 setting_items setting_elements;
 chats_form chats_f;
@@ -363,7 +375,11 @@ edit_prof_s profile_s;
 current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 
-
+void create_one_user_widget(int i, user_curr_chat_t *contact);
+void free_user_widgets(user_in_chat_t **contacts);
+user_curr_chat_t **take_users_by_chat(int socket);
+user_curr_chat_t **users_by_chat_to_json(char *str);
+void free_user_curr_chat_t_s(user_curr_chat_t **message);
 void sort_by_chat_widget();
 void create_widget_contacts(char *user_id);
 void add_contact(GtkWidget *button, data_input_t *info);

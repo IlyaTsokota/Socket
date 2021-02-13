@@ -2,7 +2,7 @@
 
 void create_one_messages(int index, message_t *message)
 {
-    curr_chat.messages_g = (messages_t **)realloc(curr_chat.messages_g, sizeof(messages_t *) * (index + 2));
+    curr_chat.messages_g = (messages_t **)realloc(curr_chat.messages_g, sizeof(user_by_chat_t *) * (index + 2));
     curr_chat.messages_g[index] = (messages_t *)malloc(sizeof(messages_t));
     curr_chat.messages_g[index]->event_box_message = gtk_event_box_new();
 
