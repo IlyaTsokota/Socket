@@ -3,7 +3,10 @@
 char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id, int sock)
 {
     char *answer;
-    char *my_id = get_my_id(con, login, 0, sock);
+    char *my_id = get_my_id_no_answer(con, login, 0);
+    puts("_+_+_+_");
+    puts(my_id);
+    puts("_+_+_+_");
     const char *request_parts[] = {"SELECT count(u_id) from chatusers where u_id = \"", my_id, "\" and ch_id = \"", ch_id, "\";", NULL};
     char *bdrequest = strjoins_arr(request_parts);
 

@@ -34,7 +34,10 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             answer = strdup(row[i]);
         }
     }
+    puts("\nis_send_answer:");
+    printf("%d\n", is_send_answer);
     if (is_send_answer == 0) {
+        free(answer);
         answer = strdup("SavedMessages");
     } 
     if (strcmp(answer, "personal_chat") != 0)
@@ -57,14 +60,18 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         free(date_time); //IR
         free(bdrequest); //IR
         char *str = strdup("1");
-        if (socket_send_data(str, sock))
-        {
-            return strdup("0");
-        }
-        else
-        {
-            return strdup("1");;
-        }
+       if (is_send_answer == 1) {
+            if (socket_send_data(str, sock))
+            {
+                return strdup("0");
+            }
+            else
+            {
+                return strdup("1");;
+            }
+       }
+       else
+       return str;
     }
     else
     {
@@ -168,8 +175,10 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         if (strcmp(answer3, "0") != 0)
         {
             char *string = strdup("1");
-            if (is_send_answer == 1)
+            if (is_send_answer == 1) {
+                puts("ssd2");
                 socket_send_data(string, sock);
+            }
             free(string);
             free(answer3);
             return strdup("1");;
@@ -195,13 +204,19 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             free(date_time); //IR
             free(bdrequest); //IR
             char *str = strdup("1");
-            if (socket_send_data(str, sock))
-            {
-                return strdup("0");
+            if (is_send_answer == 1) {
+                puts("ssd3");
+                if (socket_send_data(str, sock))
+                {
+                   return strdup("0");
+                }
+                else
+                {
+                    return strdup("1");
+                }
             }
-            else
-            {
-                return strdup("1");
+            else {
+                return str;
             }
         }
     }

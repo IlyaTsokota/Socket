@@ -77,6 +77,7 @@ void finish_with_error(MYSQL *con);
 
 //sql-users
 char *user_add(MYSQL *con, char *login, char *name, char *surname, char *password, char *pin, int sock); //03
+char *get_my_id_no_answer(MYSQL *con, char *login, int close_con_after_end_of_func);                     //no answer 03
 char *is_login_exist(MYSQL *con, char *login);                                                           //07
 char *create_double_bottom(MYSQL *con, char *u_id, char *pin);                                           //23
 char *delete_account(MYSQL *con, char *my_id);                                                           //24
