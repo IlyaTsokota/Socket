@@ -72,8 +72,8 @@ char *get_contact_info(MYSQL *con, char *contact_id, char *my_id, int sock)
 
     MYSQL_ROW row1 = mysql_fetch_row(result1);
 
-    contact->is_my_contact = strcmp(row1[0], 0) ? false : true;
-    
+    contact->is_my_contact = strcmp(row1[0], "0") ? false : true;
+
     //Сюда вставил
     tmp_str = write_contact_info_to_json(contact);
     tmp_str1 = strjoin(3, str, tmp_str, coma_str);

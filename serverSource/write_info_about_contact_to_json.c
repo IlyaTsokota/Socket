@@ -15,7 +15,7 @@ const char *write_contact_info_to_json(contact_info_t *contact)
     json_object_object_add(object, "u_status", tmp);
     tmp = json_object_new_string(contact->u_avatar);
     json_object_object_add(object, "u_avatar", tmp);
-    tmp = json_object_new_string(contact->is_my_contact);
+    tmp = json_object_new_boolean(contact->is_my_contact);
     json_object_object_add(object, "is_my_contact", tmp);
 
     const char *answer = json_object_to_json_string(object);
