@@ -113,6 +113,17 @@ char *contact_add_by_login(MYSQL *con, char *login, char *my_id, int close_con_a
                 mysql_close(con);
             }
             free(bdrequest); //IR
+
+            if (socket_send_data("3", sock))
+            {
+                free(answer);
+                return strdup("1");
+            }
+            else
+            {
+                free(answer);
+                return strdup("0");
+            }
         }
     }
     return strdup("1");
