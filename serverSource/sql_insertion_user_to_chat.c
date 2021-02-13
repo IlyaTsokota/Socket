@@ -1,10 +1,10 @@
 #include "server.h"
 
-char *add_user_to_group_chat(MYSQL *con, char *user_id, char *ch_id)
+char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id)
 {
     char *answer;
-
-    const char *request_parts[] = {"SELECT count(u_id) from chatusers where u_id = \"", user_id, "\" and ch_id = \"", ch_id, "\";", NULL};
+    char *my_id = get_my_id(con, login, 0);
+    const char *request_parts[] = {"SELECT count(u_id) from chatusers where u_id = \"", my_id, "\" and ch_id = \"", ch_id, "\";", NULL};
     char *bdrequest = strjoins_arr(request_parts);
 
     puts(bdrequest); //Вывод запроса в консоль
@@ -39,7 +39,8 @@ char *add_user_to_group_chat(MYSQL *con, char *user_id, char *ch_id)
         return "0"; //user already exist in this chat
 
     //Добавить юзера
-    const char *request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", ch_id, "\",\"", user_id, "\",\"0\");", NULL};
+    const char *
+        request_parts1[] = {"INSERT INTO chatusers (ch_id, u_id, ch_isadmin) VALUES (\"", ch_id, "\",\"", my_id, "\",\"0\");", NULL};
     bdrequest = strjoins_arr(request_parts1);
 
     puts(bdrequest); //Вывод запроса в консоль

@@ -1,6 +1,6 @@
 #include <server.h>
 
-char *get_my_id(MYSQL *con, char *login)
+char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func)
 {
     char *answer;
 
@@ -35,6 +35,7 @@ char *get_my_id(MYSQL *con, char *login)
         }
     }
     mysql_free_result(result);
-    mysql_close(con);
+    if (close_con_after_end_of_func == 1)
+        mysql_close(con);
     return answer; //0 or >0
 }

@@ -63,7 +63,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return get_chats(con, array[1], sock);
     case 18:
         puts("Query 18 -> get_my_id");
-        return get_my_id(con, array[1]);
+        return get_my_id(con, array[1], 1);
     case 19:
         puts("Query 19 -> edit_profile");
         return edit_profile(con, array[1], array[2], array[3], array[4]);
