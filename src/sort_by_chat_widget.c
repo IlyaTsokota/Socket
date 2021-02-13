@@ -4,7 +4,7 @@ void sort_by_chat_widget()
 {
     if (chats_f.chat_items != NULL && chats_f.chat_items[0] != NULL)
     {
-        if (main_form.chats_grid != NULL)
+        if (main_form.chats_grid != NULL && GTK_IS_WIDGET(main_form.chats_grid))
         {
             char *max, *curr;
             chat_item_t *temp;

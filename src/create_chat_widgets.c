@@ -34,7 +34,7 @@ void create_chat_widgets(char *user_id)
         }
 
         free_chats(chats);
-       sort_by_chat_widget();
+      
 
     }
 }

@@ -193,10 +193,8 @@ gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event)
     user_curr_chat_t **users = take_users_by_chat(data.socket_desc);
     if (users != NULL)
     {
-
         for (size_t i = 0; users[i]; i++)
         {
-            puts("In");
             create_one_user_widget(i, users[i]);
         }
         free_user_curr_chat_t_s(users);

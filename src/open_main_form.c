@@ -68,7 +68,7 @@ void open_main_form(GtkWidget *window)
     g_signal_connect(G_OBJECT(main_form.chat_info_event_box), "button-press-event", G_CALLBACK(open_chat_info), NULL);
 
     set_chat_name_top();
-
+    //sort_by_chat_widget();
     g_signal_connect(G_OBJECT(event_box_contact_view), "button-press-event", G_CALLBACK(open_contacts), left_panel_img);
     g_signal_connect(G_OBJECT(event_box_setting), "button-press-event", G_CALLBACK(open_setting), left_panel_img);
     g_signal_connect(G_OBJECT(event_box_chats), "button-press-event", G_CALLBACK(open_chats), left_panel_img);

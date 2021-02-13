@@ -223,6 +223,10 @@ typedef struct
 	GtkWidget *text_view;
 	GtkWidget *chat_name_input;
 	GtkWidget *users_container;
+	GtkWidget *contact_info_name;
+	GtkWidget *quote_text;
+	GtkWidget *img_info_contact;
+	GtkWidget *fullname_text;
 
 } main_form_t;
 

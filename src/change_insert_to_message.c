@@ -1,6 +1,5 @@
 #include "chat.h"
 
-
 gboolean change_insert_to_message(gpointer widget)
 {
     GtkAdjustment *adjustment = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW((GtkWidget *)widget));
@@ -12,21 +11,18 @@ gboolean refresh_chat(update_t *update)
 {
     g_mutex_lock(&main_form.mutex);
     ////puts("Lock");
-    message_arr *messages = take_messages(update->socket ,data.user_id, main_form.last_ms_id);
+    message_arr *messages = take_messages(update->socket, data.user_id, main_form.last_ms_id);
     if (messages != NULL)
     {
-        puts("What");
         int messages_length = *(messages->length);
-        g_print("%d --- llelelel\n", messages_length);
         int length = *(curr_chat.length);
         int j = length;
-        
+
         for (int i = 0; i < messages_length; i++)
         {
-            puts("Why");
             create_one_messages(j++, messages->messages[i]);
         }
-        
+
         char *time = NULL;
         char *last_msg = NULL;
         char *last_login = NULL;
@@ -46,8 +42,8 @@ gboolean refresh_chat(update_t *update)
                     last_msg_temp = (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_text));
                     last_msg = cut_str(last_msg_temp, 25);
                     gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->text_last_message), last_msg);
-                    last_login_temp =  (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_login));
-                    last_login = strjoin(2,last_login_temp, ":");
+                    last_login_temp = (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_login));
+                    last_login = strjoin(2, last_login_temp, ":");
                     gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->login_last_message), last_login);
                     free(time);
                     free(last_msg);
@@ -76,7 +72,7 @@ gboolean refresh_chat(update_t *update)
         free_messages(messages);
     }
     ////puts("Unlock");
-    sort_by_chat_widget();
+    //sort_by_chat_widget();
     g_mutex_unlock(&main_form.mutex);
 
     return true;
