@@ -36,5 +36,5 @@ char *is_login_exist(MYSQL *con, char *login)
     mysql_free_result(result);
     mysql_close(con);
     
-    return answer; //0 or >0
+     return strdup(answer);
 }

@@ -14,5 +14,5 @@ char *remove_user_from_chat(MYSQL *con, char *u_id)
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

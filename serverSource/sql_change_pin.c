@@ -17,5 +17,5 @@ char *change_pin(MYSQL *con, char *u_id, char *new_pin)
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

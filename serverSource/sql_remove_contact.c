@@ -20,5 +20,5 @@ char *contact_remove(MYSQL *con, char *my_id, char *contact_id)
     free(bdrequest); //IR
 
     mysql_close(con);
-    return "1";
+    return strdup("1");;
 }

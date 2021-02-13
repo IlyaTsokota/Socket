@@ -17,5 +17,5 @@ char *change_password(MYSQL *con, char *u_id, char *new_pass)
 
     mysql_close(con);
 
-    return "1";
+   return strdup("1");
 }

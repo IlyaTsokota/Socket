@@ -38,5 +38,5 @@ char *is_contact_exist(MYSQL *con, char *my_id, char *contact_id, int close_con_
     {
     mysql_close(con);
     }
-    return answer; //0 or >0
+     return strdup(answer);
 }

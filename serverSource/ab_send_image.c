@@ -59,5 +59,5 @@ char *send_image(int socket, char *chat_id, char *message_id)
         //Zero out our send buffer
         bzero(send_buffer, sizeof(send_buffer));
     }
-    return "1";
+    return strdup("1");
 }

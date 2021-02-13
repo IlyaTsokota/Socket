@@ -16,5 +16,5 @@ char *edit_profile(MYSQL *con, char* u_id, char* name, char* surname, char*quote
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

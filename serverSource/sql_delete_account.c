@@ -28,5 +28,5 @@ char *delete_account(MYSQL *con, char *my_id)
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

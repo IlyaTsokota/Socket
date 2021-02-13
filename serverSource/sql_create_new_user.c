@@ -41,7 +41,7 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     puts(answer);
     if (atoi(answer) == 1) {
         free(answer);
-        return "0"; //user already exist
+       return strdup("0");
     }
     free(answer);
     //Добавить юзера
@@ -105,5 +105,5 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     free(bdrequest); //IR
     free(datetime);  //IR
 
-    return "1";
+   return strdup("1");
 }

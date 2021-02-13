@@ -31,7 +31,7 @@ char *pin_check(MYSQL *con, char *login, char *pin, int sock)
         char *string = strdup("0");
         socket_send_data(string, sock);
         free(string);
-        return "0";
+        return strdup("0");
     }
 
     MYSQL_ROW row;
@@ -66,12 +66,12 @@ char *pin_check(MYSQL *con, char *login, char *pin, int sock)
     //
     if (socket_send_data(str, sock))
     {
-        return "0";
+       return strdup("0");
     }
     else
     {
-        return "1";
+        return strdup("1");;
     }
 
-    return "1"; //0 or >0
+    return strdup("1");; //0 or >0
 }

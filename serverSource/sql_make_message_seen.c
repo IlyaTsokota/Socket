@@ -16,5 +16,5 @@ char *make_message_seen(MYSQL *con, char *ms_id)
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

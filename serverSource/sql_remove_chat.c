@@ -44,5 +44,5 @@ char *chat_remove(MYSQL *con, char *chat_id)
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

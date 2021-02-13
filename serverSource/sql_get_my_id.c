@@ -38,5 +38,5 @@ char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func)
     if (close_con_after_end_of_func == 1)
         mysql_close(con);
         
-    return answer;
+     return strdup(answer);
 }

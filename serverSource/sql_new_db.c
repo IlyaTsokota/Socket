@@ -49,7 +49,7 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin)
     puts(answer1);
     if (atoi(answer1) == 1){
         free(answer1);
-        return "0";
+        return strdup("0");
         } //DB already exist
     free(answer1);
 
@@ -153,5 +153,5 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin)
     free(bdrequest); //IR
     free(datetime);  //IR
 
-    return "1";
+    return strdup("1");;
 }

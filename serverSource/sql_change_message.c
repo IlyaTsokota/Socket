@@ -16,5 +16,5 @@ char *change_message(MYSQL *con, char *ch_id, char *ms_id, char *ms_text)
 
     mysql_close(con);
 
-    return "1";
+  return strdup("1");
 }

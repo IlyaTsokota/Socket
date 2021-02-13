@@ -14,5 +14,5 @@ char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name)
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

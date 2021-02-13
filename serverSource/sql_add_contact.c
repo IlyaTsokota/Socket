@@ -17,5 +17,5 @@ char *contact_add(MYSQL *con, char *my_id, char *contact_id, int close_con_after
         mysql_close(con);
     }
     free(bdrequest); //IR
-    return "1";
+    return strdup("1");
 }

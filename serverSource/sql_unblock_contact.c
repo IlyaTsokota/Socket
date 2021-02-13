@@ -22,5 +22,5 @@ char *contact_unblock(MYSQL *con, char *my_id, char *contact_id)
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

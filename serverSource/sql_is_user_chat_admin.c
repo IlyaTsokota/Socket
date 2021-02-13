@@ -36,5 +36,5 @@ char *is_user_chat_admin(MYSQL *con, char *ch_id, char *u_id)
     mysql_free_result(result);
     mysql_close(con);
 
-    return answer; //0 or >0
+     return strdup(answer);
 }

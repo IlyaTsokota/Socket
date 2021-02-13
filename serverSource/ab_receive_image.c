@@ -35,7 +35,7 @@ char *receive_image(int socket, char *chat_id, char *message_id)
     if (image == NULL)
     {
         printf("Error has occurred. Image file could not be opened\n");
-        return "0";
+         return strdup("0");
     }
 
     //Loop while we have not received the entire file yet
@@ -91,5 +91,5 @@ char *receive_image(int socket, char *chat_id, char *message_id)
 
     fclose(image);
     printf("Image successfully Received!\n");
-    return "1";
+  return strdup("1");
 }

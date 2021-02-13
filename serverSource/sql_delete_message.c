@@ -16,5 +16,5 @@ char *delete_message(MYSQL *con, char *ch_id, char *ms_id)
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

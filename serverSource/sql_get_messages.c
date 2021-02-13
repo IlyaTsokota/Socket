@@ -69,11 +69,11 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
     mysql_close(con);
     //
     if (socket_send_data(str, sock)) {
-        return "0";
+       return strdup("0");
     }
     else {
-        return "1";
+        return strdup("1");;
     }
     
-    return "1"; //0 or >0
+    return strdup("1");; //0 or >0
 }

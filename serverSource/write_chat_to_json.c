@@ -20,7 +20,7 @@ const char *write_chat_to_json(chat_t *chat)
 	tmp = json_object_new_string(chat->u_avatar);
 	json_object_object_add(object, "u_avatar", tmp);
 	const char *answer = json_object_to_json_string(object);
-	return answer;
+	 return answer;
 }
 
 

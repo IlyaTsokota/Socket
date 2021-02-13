@@ -38,7 +38,7 @@ char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id)
 
     if (atoi(answer) == 1){
         free(answer);
-        return "0"; //user already exist in this chat
+        return strdup("0"); //user already exist in this chat
     }
     free(answer);
     
@@ -57,5 +57,5 @@ char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id)
 
     mysql_close(con);
 
-    return "1";
+    return strdup("1");;
 }

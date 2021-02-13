@@ -59,11 +59,11 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         char *str = strdup("1");
         if (socket_send_data(str, sock))
         {
-            return "0";
+            return strdup("0");
         }
         else
         {
-            return "1";
+            return strdup("1");;
         }
     }
     else
@@ -172,7 +172,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
                 socket_send_data(string, sock);
             free(string);
             free(answer3);
-            return "1";
+            return strdup("1");;
         }
         else
         {
@@ -197,14 +197,14 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             char *str = strdup("1");
             if (socket_send_data(str, sock))
             {
-                return "0";
+                return strdup("0");
             }
             else
             {
-                return "1";
+                return strdup("1");
             }
         }
     }
 
-    return "1";
+   return strdup("1");
 }
