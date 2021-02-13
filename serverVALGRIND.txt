@@ -1,0 +1,95 @@
+==44071== Memcheck, a memory error detector
+==44071== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==44071== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==44071== Command: ./server
+==44071== Parent PID: 31737
+==44071== 
+==44071== Thread 2:
+==44071== Invalid read of size 1
+==44071==    at 0x483EF46: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44071==    by 0x407CA4: connection_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x5092608: start_thread (pthread_create.c:477)
+==44071==    by 0x537C292: clone (clone.S:95)
+==44071==  Address 0x5c0f370 is 80 bytes inside a block of size 8,232 free'd
+==44071==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44071==    by 0x4A226A2: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49C49C0: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49C4E3B: mysql_free_result (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x40BA52: is_login_exist (in /home/harry/UCHAT/server/server)
+==44071==    by 0x40C558: queries_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x407C56: connection_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x5092608: start_thread (pthread_create.c:477)
+==44071==    by 0x537C292: clone (clone.S:95)
+==44071==  Block was alloc'd at
+==44071==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44071==    by 0x4A24B77: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x4A22529: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x4A225B3: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x4A22634: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49C96C9: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49CD228: mysql_store_result (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x40B9D8: is_login_exist (in /home/harry/UCHAT/server/server)
+==44071==    by 0x40C558: queries_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x407C56: connection_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x5092608: start_thread (pthread_create.c:477)
+==44071==    by 0x537C292: clone (clone.S:95)
+==44071== 
+==44071== Invalid read of size 1
+==44071==    at 0x483EF54: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44071==    by 0x407CA4: connection_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x5092608: start_thread (pthread_create.c:477)
+==44071==    by 0x537C292: clone (clone.S:95)
+==44071==  Address 0x5c0f371 is 81 bytes inside a block of size 8,232 free'd
+==44071==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44071==    by 0x4A226A2: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49C49C0: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49C4E3B: mysql_free_result (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x40BA52: is_login_exist (in /home/harry/UCHAT/server/server)
+==44071==    by 0x40C558: queries_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x407C56: connection_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x5092608: start_thread (pthread_create.c:477)
+==44071==    by 0x537C292: clone (clone.S:95)
+==44071==  Block was alloc'd at
+==44071==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44071==    by 0x4A24B77: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x4A22529: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x4A225B3: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x4A22634: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49C96C9: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49CD228: mysql_store_result (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x40B9D8: is_login_exist (in /home/harry/UCHAT/server/server)
+==44071==    by 0x40C558: queries_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x407C56: connection_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x5092608: start_thread (pthread_create.c:477)
+==44071==    by 0x537C292: clone (clone.S:95)
+==44071== 
+==44071== Syscall param write(buf) points to unaddressable byte(s)
+==44071==    at 0x509D2CF: __libc_write (write.c:26)
+==44071==    by 0x509D2CF: write (write.c:24)
+==44071==    by 0x407CB9: connection_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x5092608: start_thread (pthread_create.c:477)
+==44071==    by 0x537C292: clone (clone.S:95)
+==44071==  Address 0x5c0f370 is 80 bytes inside a block of size 8,232 free'd
+==44071==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44071==    by 0x4A226A2: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49C49C0: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49C4E3B: mysql_free_result (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x40BA52: is_login_exist (in /home/harry/UCHAT/server/server)
+==44071==    by 0x40C558: queries_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x407C56: connection_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x5092608: start_thread (pthread_create.c:477)
+==44071==    by 0x537C292: clone (clone.S:95)
+==44071==  Block was alloc'd at
+==44071==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==44071==    by 0x4A24B77: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x4A22529: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x4A225B3: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x4A22634: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49C96C9: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x49CD228: mysql_store_result (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==44071==    by 0x40B9D8: is_login_exist (in /home/harry/UCHAT/server/server)
+==44071==    by 0x40C558: queries_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x407C56: connection_handler (in /home/harry/UCHAT/server/server)
+==44071==    by 0x5092608: start_thread (pthread_create.c:477)
+==44071==    by 0x537C292: clone (clone.S:95)
+==44071== 

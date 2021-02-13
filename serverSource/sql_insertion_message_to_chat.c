@@ -34,9 +34,9 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             answer = strdup(row[i]);
         }
     }
-
-    mysql_free_result(result);
-
+    if (is_send_answer == 0) {
+        answer = strdup("SavedMessages");
+    } 
     if (strcmp(answer, "personal_chat") != 0)
     {
         free(answer);
@@ -51,8 +51,9 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         {
             finish_with_error(con);
         }
-        mysql_close(con);
-
+        if (is_send_answer != 0) {
+            mysql_close(con);
+        }
         free(date_time); //IR
         free(bdrequest); //IR
         char *str = strdup("1");
@@ -98,7 +99,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
                 maxid = strdup(row[i]);
             }
         }
-        mysql_free_result(result);
+        //mysql_free_result(result);
 
         char *minid;
 
@@ -164,11 +165,12 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             }
         }
         mysql_free_result(result);
-        if (strcmp(answer3, "0") == 0)
+        if (strcmp(answer3, "0") != 0)
         {
             char *string = strdup("1");
             if (is_send_answer == 1)
                 socket_send_data(string, sock);
+            free(string);
             free(answer3);
             return "1";
         }
@@ -187,6 +189,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             {
                 finish_with_error(con);
             }
+
             mysql_close(con);
 
             free(date_time); //IR

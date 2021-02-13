@@ -37,5 +37,6 @@ char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func)
     mysql_free_result(result);
     if (close_con_after_end_of_func == 1)
         mysql_close(con);
-    return answer; //0 or >0
+        
+    return answer;
 }

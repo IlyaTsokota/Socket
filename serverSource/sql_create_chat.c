@@ -66,6 +66,7 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
 
     if (strcmp(is_return_data, "1") == 0)
     {
+        puts("Here");
         char *str, *tmp_str1;
         const char *tmp_str, *coma_str = ",";
         const char *request_parts[] = {"SELECT ch.ch_id, ch.ch_name, ch.ch_avatar, IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select concat(b.u_name, ' ', b.u_surname) from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"",
@@ -132,14 +133,15 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
         }
         else
         {
-            add_message_to_chat(con, chat_id, "1", "0", "0", "0", "Добро пожаловать в Socket!\nЧувствуйте себя в безопасности.\nКаждое сообщение в Socket, как и это, надёжно зашифровано.\nSaved Messages необходим для файло-помойки, можешь отправлять мне всякий хлам ;)\n", sock, 0);
-            free(chat_id);
             return "1";
         }
         return "1"; //0 or >0
     }
     else
     {
+        puts("Here111");
+        add_message_to_chat(con, chat_id, "1", "0", "0", "0", "Добро пожаловать в Socket!\nЧувствуйте себя в безопасности.\nКаждое сообщение в Socket, как и это, надёжно зашифровано.\nSaved Messages необходим для файло-помойки, можешь отправлять мне всякий хлам ;)\n", sock, 0);
+        free(chat_id);
         //отправить сообщение
     }
 

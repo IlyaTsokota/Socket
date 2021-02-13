@@ -40,5 +40,7 @@ char *password_check(MYSQL *con, char *login, char *password)
     }
     mysql_free_result(result);
     mysql_close(con);
-    return answer; // 0 or >0
+    
+    return strdup(answer);
+
 }

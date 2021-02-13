@@ -6,12 +6,12 @@ char *set_date()
     time_t t = time(NULL);
     struct tm tm = *localtime(&t); //*gmtime(&t);
     //char *answer = (char *)malloc(sizeof(char) * 60);
-    char *year = (char *)malloc(sizeof(char) * 4);
-    char *month = (char *)malloc(sizeof(char) * 2);
-    char *day = (char *)malloc(sizeof(char) * 2);
-    char *hour = (char *)malloc(sizeof(char) * 2);
-    char *min = (char *)malloc(sizeof(char) * 2);
-    char *sec = (char *)malloc(sizeof(char) * 2);
+    char *year = mx_strnew(4);
+    char *month = mx_strnew(2);
+    char *day = mx_strnew(2);
+    char *hour = mx_strnew(2);
+    char *min = mx_strnew(2);
+    char *sec = mx_strnew(2);
     itobase10(year, tm.tm_year + 1900);
     itobase10(month, tm.tm_mon + 1);
     itobase10(day, tm.tm_mday);

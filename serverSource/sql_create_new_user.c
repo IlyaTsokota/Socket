@@ -34,17 +34,16 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
 
     while ((row = mysql_fetch_row(result)))
     {
-        for (int i = 0; i < num_fields; i++)
-        {
-            answer = row[i];
-        }
+        answer = strdup(row[0]);
     }
     mysql_free_result(result);
     puts("LLL\n");
     puts(answer);
-    if (atoi(answer) == 1)
+    if (atoi(answer) == 1) {
+        free(answer);
         return "0"; //user already exist
-
+    }
+    free(answer);
     //Добавить юзера
     const char *request_parts1[] = {"INSERT INTO user ( u_login, u_name, u_surname, u_status, u_isBottommed, u_lastSeen, u_avatar) VALUES (\"", login, "\",\"",
                                     name, "\",\"", surname, "\",\"", status, "\",\"", isonline, "\",\"", datetime, "\",\"1234\");", NULL};
@@ -83,13 +82,8 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
 
     while ((row = mysql_fetch_row(result)))
     {
-        for (int i = 0; i < num_fields; i++)
-        {
-            answer = row[i];
-        }
+        answer = strdup(row[0]);
     }
-    puts("i want to sleep now goodnight");
-    char *some_id = strdup(answer);
     puts(answer);
     mysql_free_result(result);
 
@@ -98,15 +92,16 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     bdrequest = strjoins_arr(request_parts3);
 
     puts(bdrequest);
+
     if (mysql_query(con, bdrequest))
     {
         finish_with_error(con);
     }
     //Добавить юзеру Saved Messages в контакты
-    chat_create(con, some_id, "1", 0, "0", sock);
-    free(some_id);
+    chat_create(con, answer, "1", 0, "0", sock);
+    
     mysql_close(con);
-
+    free(answer); //IR
     free(bdrequest); //IR
     free(datetime);  //IR
 

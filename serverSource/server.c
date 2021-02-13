@@ -58,6 +58,7 @@ void *connection_handler(void *socket_desc)
 
 
         write(sock, server_answer_message, strlen(server_answer_message));
+        free(server_answer_message);
         memset(client_message, 0, 2000);
 
         if (read_size == 0)
