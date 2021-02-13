@@ -38,7 +38,7 @@ char *contact_add_by_login(MYSQL *con, char *login, char *my_id, int close_con_a
 
     if (strcmp(answer, "0") == 0) //user doesn't exist
     {
-        if (socket_send_data(answer, sock))
+        if (socket_send_data("2", sock))
         {
             free(answer);
             return strdup("1");
@@ -85,7 +85,7 @@ char *contact_add_by_login(MYSQL *con, char *login, char *my_id, int close_con_a
 
         if (strcmp(answer, "0") != 0) //contact exist
         {
-            if (socket_send_data(answer, sock))
+            if (socket_send_data("1", sock))
             {
                 free(answer);
                 return strdup("1");
