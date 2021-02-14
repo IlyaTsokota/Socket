@@ -53,11 +53,16 @@ void *connection_handler(void *socket_desc)
         
         server_answer_message = queries_handler(handler_con, query.arr, sock);
         puts("<-------------[Waiting for next query]------------->");
+         puts("qqqqq");
         array_clear(&query);
         //password_check(handler_con, "1111", "itsokota");
-
+ puts("wwww");
 
         write(sock, server_answer_message, strlen(server_answer_message));
+               puts("PZDC");
+
+        puts(server_answer_message);
+
         free(server_answer_message);
         memset(client_message, 0, 2000);
 

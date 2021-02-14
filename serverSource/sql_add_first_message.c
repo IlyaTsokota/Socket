@@ -2,11 +2,10 @@
 
 char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock)
 {
-    char *answer;
     char *ch_id;
     char *is_personal_chat_exist; //exist if =2 or >2
 
-    const char *request_parts[] = { "select c.ch_id, count(c.ch_id) from chat c join chatusers  ch on c.ch_id = ch.ch_id where(ch.u_id = \"", my_id, "\" or ch.u_id = \"", c_id ,"\") and c.ch_name = \"personal_chat\" group by 1 order by 2 desc limit 1", NULL};
+    const char *request_parts[] = {"select c.ch_id, count(c.ch_id) from chat c join chatusers  ch on c.ch_id = ch.ch_id where(ch.u_id = \"", my_id, "\" or ch.u_id = \"", c_id, "\") and c.ch_name = \"personal_chat\" group by 1 order by 2 desc limit 1", NULL};
     char *bdrequest = strjoins_arr(request_parts);
 
     puts(bdrequest); //Вывод запроса в консоль
@@ -47,9 +46,9 @@ char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock)
         const char *request_parts[] = {"SELECT ch.ch_id, ch.ch_name, ch.ch_avatar, IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select concat(b.u_name, ' ', b.u_surname) from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"",
                                        my_id, "\"and a.ch_id = ch.ch_id)), IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_lastSeen from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"",
                                        my_id, "\"and a.ch_id = ch.ch_id)), IF(STRCMP(ch.ch_name, \"personal_chat\"), \"0\", (select b.u_avatar from chatusers a join user b on b.u_id = a.u_id where a.u_id != \"",
-                                       my_id, "\" and a.ch_id = ch.ch_id)) from chat ch join chatusers cu on ch.ch_id = cu.ch_id where cu.u_id = \"", my_id, "\" and ch.ch_id = \",", ch_id, "\" ;", NULL};
-      
-        char *bdrequest = strjoins_arr(request_parts);
+                                       my_id, "\" and a.ch_id = ch.ch_id)) from chat ch join chatusers cu on ch.ch_id = cu.ch_id where cu.u_id = \"", my_id, "\" and ch.ch_id = \"", ch_id, "\" ;", NULL};
+
+        bdrequest = strjoins_arr(request_parts);
 
         puts(bdrequest); //Вывод запроса в консоль
 
@@ -57,20 +56,17 @@ char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock)
         {
             finish_with_error(con);
         }
-        free(my_id);
         free(ch_id);
         free(bdrequest); //IR
 
-        MYSQL_RES *result = mysql_store_result(con);
+        result = mysql_store_result(con);
 
         if (result == NULL)
         {
             finish_with_error(con);
         }
 
-        int num_fields = mysql_num_fields(result);
-
-        MYSQL_ROW row;
+        num_fields = mysql_num_fields(result);
 
         chat_t *chat = NULL;
 
@@ -117,13 +113,14 @@ char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock)
     }
     else
     {
-        char* answ = chat_create(con, my_id, c_id, 0, "1", sock);
+        char *answ = chat_create(con, my_id, c_id, 0, "1", sock);
+        puts("How");
         free(answ);
-        free(my_id);
         free(ch_id);
     }
+    puts("Ok1");
 
     mysql_close(con);
-    answer = strdup("1");
-    return answer;
+    puts("Ok");
+    return strdup("1");
 }

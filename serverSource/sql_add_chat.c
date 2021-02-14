@@ -125,7 +125,11 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
         tmp_str1 = NULL;
         //
         mysql_free_result(result);
+        if (close_con_after_end_of_func == 1)
+    {
+
         mysql_close(con);
+    }
 
         if (socket_send_data(str, sock))
         {

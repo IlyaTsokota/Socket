@@ -8,6 +8,11 @@ int get_query_number(char *line)
 char *queries_handler(MYSQL *con, char **array, int sock)
 {
     int query_number = get_query_number(array[0]);
+    printf("%d -- index\n", query_number);
+    puts(array[0]);
+        puts(array[1]);
+    puts(array[2]);
+
     switch (query_number)
     {
     case 1:
@@ -119,7 +124,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         puts("Query 36 -> get_user_info_by_login");
         return get_user_info_by_login(con, array[1],sock);
    case 37:
-        puts("Query 37 -> get_user_info_by_login");
+        puts("Query 37 -> add_first_message");
         return add_first_message(con, array[1],array[2],sock);
 
     default:
