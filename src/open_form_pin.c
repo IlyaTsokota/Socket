@@ -8,7 +8,7 @@ void open_form_pin(GtkWidget *window, bool is_start_app)
     int *maxSize = (int *)malloc(sizeof(int));
     *maxSize = 4;
     pin_t *pin_struct = (pin_t*)malloc(sizeof(pin_t));
-    GtkBuilder *builder = glade_file_to_interface("share/pin_code.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.pin_code);
     pin_struct->pin_form = GTK_WIDGET(gtk_builder_get_object(builder, "pin_form"));
     GtkWidget *labelTitle = GTK_WIDGET(gtk_builder_get_object(builder, "loginTitle"));
     GtkWidget *labelText = GTK_WIDGET(gtk_builder_get_object(builder, "loginText"));

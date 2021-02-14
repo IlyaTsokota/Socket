@@ -8,7 +8,7 @@ void show_contacts(GtkWidget *main_grid)
     if (!do_once.bshow_contacts)
         return;
     do_once.bshow_contacts = false;
-    GtkBuilder *builder = glade_file_to_interface("share/contacts_left.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.contacts_left);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_contacts_info"));
 
     GtkWidget *contacts_info_panel = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_info_panel"));

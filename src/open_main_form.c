@@ -12,7 +12,7 @@ void open_main_form(GtkWidget *window)
     create_chat_widgets(data.user_id);
     create_widget_contacts(data.user_id);
 
-    GtkBuilder *builder = glade_file_to_interface("share/main.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.main);
     main_form.app_form = GTK_WIDGET(gtk_builder_get_object(builder, "main_form"));
 
     main_form.main_grid = GTK_WIDGET(gtk_builder_get_object(builder, "main_grid"));

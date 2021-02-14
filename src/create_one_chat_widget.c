@@ -66,7 +66,7 @@ void create_one_chat(int index, chat_t *chat)
     char *last_msg;
     if (last_msg_index != -1)
     {
-        last_msg = cut_str((char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[last_msg_index]->message_text)), 25);
+        last_msg = cut_str((char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[last_msg_index]->message_text)), 10);
     }
     else
     {

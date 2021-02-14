@@ -2,7 +2,7 @@
 
 void open_register_third(GtkWidget *window)
 {
-    GtkBuilder *builder = glade_file_to_interface("share/register_three.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.register_three);
     GtkWidget *grid = GTK_WIDGET(gtk_builder_get_object(builder, "registrationTwo"));
     GtkWidget *labelLogo = GTK_WIDGET(gtk_builder_get_object(builder, "loginTitle"));
     GtkWidget *labelText = GTK_WIDGET(gtk_builder_get_object(builder, "loginText"));

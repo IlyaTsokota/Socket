@@ -62,7 +62,7 @@
             </child>
             <child>
                 <object class="GtkButton" id="back">
-                <property name="label" translatable="yes">Back</property>
+                <property name="label" translatable="yes">Назад</property>
                 <property name="width_request">420</property>
                 <property name="height_request">70</property>
                 <property name="visible">True</property>
@@ -98,7 +98,7 @@
                     <property name="margin_start">25</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
-                    <property name="label" translatable="yes">Show participants</property>
+                    <property name="label" translatable="yes">Участники</property>
                     <style>
                         <class name="login_edit"/>
                     </style>

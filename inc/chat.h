@@ -159,7 +159,6 @@ typedef struct
 
 } autorization_w;
 
-
 typedef struct
 {
 	GtkWidget *users_item;
@@ -174,10 +173,36 @@ typedef struct
 
 typedef struct
 {
+	char *add_chat;
+	char *add_contact;
+	char *add_participant;
+	char *appereance;
+	char *chat_info;
+	char *chats;
+	char *contacts_left;
+	char *contacts_right;
+	char *double_bottom;
+	char *edit_profile;
+	char *language;
+	char *left_panel_setting;
+	char *login;
+	char *main;
+	char *notifications;
+	char *opened_chat;
+	char *pin_code;
+	char *privacy;
+	char *register_one;
+	char *register_three;
+	char *register_two;
+	char *remove_participant;
+
+} localization_t;
+
+typedef struct
+{
 	user_in_chat_t **users;
 	int size;
 } user_by_chat_t;
-
 
 autorization_w autorization;
 
@@ -193,6 +218,7 @@ typedef struct
 	char *main_theme_path;
 	char *theme;
 	bool isBottomed;
+	char *language;
 } appdata;
 
 appdata data;
@@ -229,6 +255,7 @@ typedef struct
 	GtkWidget *fullname_text;
 	GtkWidget *setting_login;
 	GtkWidget *box_contact;
+	GtkWidget *add_contact;
 
 } main_form_t;
 
@@ -329,6 +356,7 @@ typedef struct
 	contacts_widget_s **widgets;
 	bool was_free;
 	int size;
+	char *curr_contact;
 } contacts_arr;
 
 typedef struct
@@ -362,9 +390,9 @@ typedef struct
 
 typedef struct
 {
-  char *u_id;
-  char *u_login;
-  char *u_avatar;
+	char *u_id;
+	char *u_login;
+	char *u_avatar;
 } user_curr_chat_t;
 
 typedef struct
@@ -380,8 +408,10 @@ main_form_t main_form;
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
-
-
+localization_t localization_s;
+void init_language_interface(char *language);
+void remove_from_contact(GtkWidget *button);
+void add_to_contact(GtkWidget *button);
 void clear_style_all_contact_widgets();
 gboolean remove_user_from_chat(GtkWidget *widget);
 void refresh_users_by_chat();

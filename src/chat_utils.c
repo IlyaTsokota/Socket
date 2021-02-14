@@ -22,7 +22,7 @@ void show_add_chat(GtkWidget *main_grid)
     if (!do_once.bshow_add_chat)
         return;
     do_once.bshow_add_chat = false;
-    GtkBuilder *builder = glade_file_to_interface("share/add_chat.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.add_chat);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
@@ -67,7 +67,7 @@ void show_chat_info(GtkWidget *main_grid)
         return;
     do_once.bshow_chat_info = false;
 
-    GtkBuilder *builder = glade_file_to_interface("share/chat_info.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.chat_info);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *nameLable = GTK_WIDGET(gtk_builder_get_object(builder, "nameLable"));
@@ -120,7 +120,7 @@ void show_add_participant(GtkWidget *main_grid)
         return;
     do_once.bshow_add_participant = false;
 
-    GtkBuilder *builder = glade_file_to_interface("share/add_participant.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.add_participant);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *loginLable = GTK_WIDGET(gtk_builder_get_object(builder, "loginLable"));
@@ -219,7 +219,7 @@ void show_remove_participant(GtkWidget *main_grid)
         return;
     do_once.bshow_remove_participant = false;
 
-    GtkBuilder *builder = glade_file_to_interface("share/remove_participant.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.remove_participant);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *login_edit = GTK_WIDGET(gtk_builder_get_object(builder, "login_edit"));
@@ -258,7 +258,7 @@ void show_add_contact(GtkWidget *main_grid)
         return;
     do_once.bshow_add_contact = false;
 
-    GtkBuilder *builder = glade_file_to_interface("share/add_contact.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.add_contact);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *loginLable = GTK_WIDGET(gtk_builder_get_object(builder, "loginLable"));

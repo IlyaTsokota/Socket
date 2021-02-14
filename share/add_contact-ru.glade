@@ -36,7 +36,7 @@
                             <property name="halign">end</property>
                             <property name="margin_right">10</property>
                             <property name="hexpand">True</property>
-                            <property name="label" translatable="yes">login</property>
+                            <property name="label" translatable="yes">логин</property>
                             <property name="justify">right</property>
                              <style>
                             <class name="label"/>
@@ -97,16 +97,18 @@
                 </child>
              <child>
                 <object class="GtkButton" id="add_participants">
-                <property name="label" translatable="yes"> Add participant</property>
+                <property name="label" translatable="yes"> Добавить в контакты</property>
                 <property name="width_request">420</property>
                 <property name="height_request">70</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">center</property>
-                <property name="valign">end</property>
+                <property name="valign">center</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
+                                <property name="margin_bottom">50</property>
+
                 <style>
                  <class name="color_normal"/>
 
@@ -116,31 +118,6 @@
                 <packing>
                 <property name="left_attach">0</property>
                 <property name="top_attach">2</property>
-                </packing>
-            </child>
-           
-            <child>
-                <object class="GtkButton" id="back">
-                <property name="label" translatable="yes">Back</property>
-                <property name="width_request">420</property>
-                <property name="height_request">70</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">center</property>
-                <property name="valign">start</property>
-                <property name="vexpand">True</property>
-                <property name="hexpand">True</property>
-                                <property name="margin_bottom">50</property>
-
-                <style>
-                    <class name="color_normal"/>
-                    <class name="btn_info"/>
-                </style>
-                </object>
-                <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">3</property>
                 </packing>
             </child>
             
@@ -157,7 +134,7 @@
                     <property name="margin_start">25</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
-                    <property name="label" translatable="yes">Add participants</property>
+                    <property name="label" translatable="yes">Добавить в контакты</property>
                     <style>
                         <class name="login_edit"/>
                     </style>

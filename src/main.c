@@ -6,7 +6,7 @@ void server_set_connection()
     data.socket_desc = socket(AF_INET, SOCK_STREAM, 0);
     int port = 3762;
     client_addr.sin_family = AF_INET;
-    client_addr.sin_addr.s_addr = INADDR_ANY; //inet_addr("178.165.30.151");
+    client_addr.sin_addr.s_addr =  inet_addr("159.224.0.212"); //INADDR_ANY;
     client_addr.sin_port = htons(port);
 
     if (connect(data.socket_desc, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
@@ -34,17 +34,17 @@ void application_activate(GtkApplication *application, gpointer user_data)
     {
         create_settings_json("NULL", "Dark", "English", "FALSE");
     }
+
     settings = mx_file_to_str("settings.json");
     settings_t *settings_field = get_settings(settings);
 
-    GtkBuilder *builder = strcmp(settings_field->language, "Englsih") == 0
-                              ? glade_file_to_interface("share/window_auth.glade")  // английский
-                              : glade_file_to_interface("share/window_auth.glade"); // русский
+    GtkBuilder *builder = glade_file_to_interface("share/window_auth.glade"); 
     data.win = GTK_WIDGET(gtk_builder_get_object(builder, "windowAuth"));
     what_theme_select(settings_field->theme);
-
     css_set_for_one(data.win, data.auth_theme_path); //Dark
-
+    
+    data.language = strdup(settings_field->language);
+    init_language_interface(data.language);
     g_object_unref(builder);
 
     if (strcmp(settings_field->is_in, "FALSE") == 0)

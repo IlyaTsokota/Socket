@@ -59,7 +59,6 @@ void logout(GtkWidget *button)
 
 void logout_on_pin_form(GtkWidget *button, GtkWidget *widget)
 {
-   
     gtk_widget_destroy(widget);
     remove("messages.json");
     char *settings = mx_file_to_str("settings.json");

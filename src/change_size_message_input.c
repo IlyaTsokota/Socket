@@ -3,10 +3,11 @@
 char *get_text_of_textview(GtkTextView *text_view)
 {
   GtkTextIter start, end;
-
   GtkTextBuffer *buffer = gtk_text_view_get_buffer(text_view);
-  gtk_text_buffer_get_start_iter(buffer, &start);
-  gtk_text_buffer_get_end_iter(buffer, &end);
+  if (buffer == NULL) {puts("buff==null"); return NULL;}
+  gtk_text_buffer_get_bounds(buffer, &start, &end);
+ // gtk_text_buffer_get_start_iter();
+ // gtk_text_buffer_get_end_iter(buffer, );
 
   char *text = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
   return text;

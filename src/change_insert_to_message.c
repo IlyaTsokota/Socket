@@ -41,7 +41,7 @@ gboolean refresh_chat(update_t *update)
                     time = strdup(&time_temp[11]);
                     gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->time_last_message), time);
                     last_msg_temp = (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_text));
-                    last_msg = cut_str(last_msg_temp, 25);
+                    last_msg = cut_str(last_msg_temp, 10);
                     gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->text_last_message), last_msg);
                     last_login_temp = (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_login));
                     last_login = strjoin(2, last_login_temp, ":");

@@ -15,7 +15,7 @@ void *sending(gpointer text_view)
     update->socket = socket(AF_INET, SOCK_STREAM, 0);
     int port = 3762;
     client_addr.sin_family = AF_INET;
-    client_addr.sin_addr.s_addr = INADDR_ANY; //inet_addr("178.165.30.151");
+    client_addr.sin_addr.s_addr = inet_addr("159.224.0.212"); //inet_addr("178.165.30.151");
     client_addr.sin_port = htons(port);
 
     if (connect(update->socket, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)

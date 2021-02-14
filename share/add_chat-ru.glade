@@ -36,7 +36,7 @@
                             <property name="hexpand">False</property>
                             <property name="wrap">True</property>
                             <property name="max_width_chars">28</property>
-                            <property name="label" translatable="yes">What is most annoying about public transport is society. You can communicate with society with group chats.</property>
+                            <property name="label" translatable="yes">Больше всего в общественном транспорте раздражает общество. Вы можете общаться с обществом в групповых чатах.</property>
                             <style>
                                 <class name="best"/>
                                 <class name="mt20"/>
@@ -94,7 +94,7 @@
                             <property name="halign">end</property>
                             <property name="margin_right">10</property>
                             <property name="hexpand">True</property>
-                            <property name="label" translatable="yes">chat name</property>
+                            <property name="label" translatable="yes">название чата</property>
                             <property name="justify">right</property>
                              <style>
                             <class name="label"/>
@@ -163,7 +163,7 @@
                     <property name="orientation">vertical</property>
                     <child>
                         <object class="GtkButton" id="add_chat">
-                        <property name="label" translatable="yes">Create new chat</property>
+                        <property name="label" translatable="yes">Создать новый чат</property>
                         <property name="width_request">420</property>
                         <property name="height_request">70</property>
                         <property name="visible">True</property>

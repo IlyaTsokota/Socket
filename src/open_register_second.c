@@ -6,7 +6,7 @@ void open_register_second(GtkWidget *window)
     *minSize = 4;
     int* maxSize = (int*)malloc(sizeof(int));
     *maxSize = 16;
-    GtkBuilder *builder = glade_file_to_interface("share/register_two.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.register_two);
     GtkWidget *grid = GTK_WIDGET(gtk_builder_get_object(builder, "registrationTwo"));
     GtkWidget *labelLogo = GTK_WIDGET(gtk_builder_get_object(builder, "loginTitle"));
     GtkWidget *labelText = GTK_WIDGET(gtk_builder_get_object(builder, "loginText"));

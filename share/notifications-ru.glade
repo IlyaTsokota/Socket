@@ -1,0 +1,146 @@
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+      <object class="GtkGrid" id="grid_setting_panel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <child>
+            <object class="GtkGrid" id="setting_form">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <child>
+                <object class="GtkGrid">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <child>
+                    <object class="GtkGrid">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                        <object class="GtkGrid">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
+                        <child>
+                            <object class="GtkLabel" id="text_info">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin_left">15</property>
+                            <property name="margin_bottom">15</property>
+                            <property name="hexpand">False</property>
+                            <property name="wrap">True</property>~
+                            <property name="max_width_chars">28</property>
+                            <property name="label" translatable="yes">Иногда своевременное уведомление может спасти вашу жизнь.</property>
+                            <style>
+                                <class name="best"/>
+                                <class name="mt20"/>
+                                <class name="ml40"/>
+                            </style>
+                            </object>
+                            <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                            </packing>
+                        </child>
+                        <child>
+                            <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                           <property name="halign">start</property>
+                            <property name="margin_left">50</property>
+                            <property name="margin_right">20</property>
+                            <property name="margin_top">25</property>
+                            <property name="hexpand">True</property>
+                            <property name="pixbuf">resources/img/bell_big.png</property>
+                            </object>
+                            <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                            </packing>
+                        </child>
+                        </object>
+                        <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                        </packing>
+                    </child>
+                    </object>
+                    <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                    </packing>
+                </child>
+                <child>
+                    <object class="GtkGrid">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="margin_top">80</property>
+                    <property name="hexpand">True</property>
+                    <child>
+                        <object class="GtkLabel" id="notificationsLable">
+                        <property name="width_request">50</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="valign">start</property>
+                        <property name="hexpand">True</property>
+                        <property name="label" translatable="yes">уведомления</property>
+                        <property name="justify">right</property>
+                        <style>
+                            <class name="label"/>
+                        </style>
+                        </object>
+                        <packing>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                        </packing>
+                    </child>
+                    <child>
+                        <object class="GtkSwitch" id="is_notification">
+                        <property name="width_request">60</property>
+                        <property name="height_request">30</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="valign">start</property>
+                        <property name="margin_right">30</property>
+                        <property name="margin_top">10</property>
+                        <property name="vexpand">False</property>
+                        </object>
+                        <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                        </packing>
+                    </child>
+                    </object>
+                    <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">1</property>
+                    </packing>
+                </child>
+                </object>
+                <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+                </packing>
+            </child>
+            <style>
+                <class name="setting_form"/>
+            </style>
+            </object>
+            <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            </packing>
+        </child>
+        <style>
+            <class name="message-panel"/>
+        </style>
+        </object>
+</interface>

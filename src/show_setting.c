@@ -9,7 +9,7 @@ void show_setting(GtkWidget *main_grid)
     do_once.bshow_setting = false;
 
 
-    GtkBuilder *builder = glade_file_to_interface("share/left_panel_setting.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.left_panel_setting);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_info"));
     GtkWidget *setting_info_panel = GTK_WIDGET(gtk_builder_get_object(builder, "setting_info_panel"));
 

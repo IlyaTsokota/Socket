@@ -5,7 +5,7 @@ void show_chats(GtkWidget *main_grid)
     if (!do_once.bshow_chats)
         return;
     do_once.bshow_chats = false;
-    GtkBuilder *builder = glade_file_to_interface("share/chats.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.chats);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_contacts"));
     GtkWidget *contacts_panel = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_panel"));
     main_form.chats_grid = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_container"));

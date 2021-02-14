@@ -24,7 +24,7 @@ void show_edit_profile(GtkWidget *main_grid)
     if (!do_once.bshow_edit_profile)
         return;
     do_once.bshow_edit_profile = false;
-    GtkBuilder *builder = glade_file_to_interface("share/edit_profile.glade");
+    GtkBuilder *builder = glade_file_to_interface( localization_s.edit_profile);
     int *minSize = (int *)malloc(sizeof(int));
     *minSize = 4;
     int *maxSize = (int *)malloc(sizeof(int));
@@ -87,7 +87,7 @@ void show_language(GtkWidget *main_grid)
         if (!do_once.bshow_language)
         return;
     do_once.bshow_language = false;
-    GtkBuilder *builder = glade_file_to_interface("share/language.glade");
+    GtkBuilder *builder = glade_file_to_interface( localization_s.language);
 
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
@@ -116,7 +116,7 @@ void show_privacy(GtkWidget *main_grid)
     if (!do_once.bshow_privacy)
         return;
     do_once.bshow_privacy = false;
-    GtkBuilder *builder = glade_file_to_interface("share/privacy.glade");
+    GtkBuilder *builder = glade_file_to_interface( localization_s.privacy);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
@@ -145,7 +145,7 @@ void show_double_bottom(GtkWidget *main_grid)
     if (!do_once.bshow_double_bottom)
         return;
     do_once.bshow_double_bottom = false;
-    GtkBuilder *builder = glade_file_to_interface("share/double_bottom.glade");
+    GtkBuilder *builder = glade_file_to_interface( localization_s.double_bottom);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
@@ -184,7 +184,7 @@ void show_notification(GtkWidget *main_grid)
     if (!do_once.bshow_notification)
         return;
     do_once.bshow_notification = false;
-    GtkBuilder *builder = glade_file_to_interface("share/notifications.glade");
+    GtkBuilder *builder = glade_file_to_interface( localization_s.notifications);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
@@ -214,7 +214,7 @@ void show_appereance(GtkWidget *main_grid)
     if (!do_once.bshow_appereance)
         return;
     do_once.bshow_appereance = false;
-    GtkBuilder *builder = glade_file_to_interface("share/appereance.glade");
+    GtkBuilder *builder = glade_file_to_interface( localization_s.appereance);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));

@@ -7,7 +7,6 @@ bool request_to_server(char *request){
         char answer[1024];
         size_t bytes_readed = read(data.socket_desc, answer, 1024);
         answer[bytes_readed] = '\0';
-        puts(answer);
         g_mutex_unlock(&main_form.mutex);
         return strcmp("1", answer) != 0 ? false : true;
     }

@@ -5,7 +5,7 @@ void show_open_contact(GtkWidget *main_grid, char *id)
     if (!do_once.bshow_open_contact)
         return;
     do_once.bshow_open_contact = false;
-    GtkBuilder *builder = glade_file_to_interface("share/contacts_right.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.contacts_right);
 
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_contact_info_panel")); // это грид который буду менять
     GtkWidget *contact_info_name_container = GTK_WIDGET(gtk_builder_get_object(builder, "contact_info_name_container"));
@@ -16,7 +16,7 @@ void show_open_contact(GtkWidget *main_grid, char *id)
     main_form.img_info_contact = GTK_WIDGET(gtk_builder_get_object(builder, "img_info_contact"));
     GtkWidget *send_message = GTK_WIDGET(gtk_builder_get_object(builder, "send_message"));
 
-    GtkWidget *add_contact = GTK_WIDGET(gtk_builder_get_object(builder, "add_contact"));
+    main_form.add_contact = GTK_WIDGET(gtk_builder_get_object(builder, "add_contact"));
 
     GtkWidget *blcok_contact = GTK_WIDGET(gtk_builder_get_object(builder, "blcok_contact"));
 
@@ -31,7 +31,7 @@ void show_open_contact(GtkWidget *main_grid, char *id)
     GtkWidget *is_admin = GTK_WIDGET(gtk_builder_get_object(builder, "is_admin"));
     GtkWidget *support_text = GTK_WIDGET(gtk_builder_get_object(builder, "support_text"));
 
-    GtkWidget *arr[] = {main_form.right_content[2], contact_info_name_container, main_form.contact_info_name, send_message, add_contact, blcok_contact, main_form.img_info_contact, quote,  main_form.quote_text , fullname, main_form.fullname_text, is_admin, support_text, NULL};
+    GtkWidget *arr[] = {main_form.right_content[2], contact_info_name_container, main_form.contact_info_name, send_message, main_form.add_contact, blcok_contact, main_form.img_info_contact, quote,  main_form.quote_text , fullname, main_form.fullname_text, is_admin, support_text, NULL};
     css_set(arr, data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[2]), child, 0, 0, 1, 1);
 

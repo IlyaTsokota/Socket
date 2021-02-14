@@ -2,7 +2,7 @@
 
 void open_register(GtkWidget *window)
 {
-    GtkBuilder *builder = glade_file_to_interface("share/register_one.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.register_one);
     GtkWidget *regOne = GTK_WIDGET(gtk_builder_get_object(builder, "registrationOne"));
 
     int *minSize = (int *)malloc(sizeof(int));
