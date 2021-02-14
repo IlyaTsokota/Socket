@@ -32,6 +32,7 @@ char *send_image(int socket, char *chat_id, char *message_id);
 char *receive_image(int socket, char *chat_id, char *message_id);
 
 //utilities
+
 void array_clear(array_t *a);
 int array_resize(array_t *a, size_t n);
 void array_strtok(array_t *a, char *s, const char *delim);
