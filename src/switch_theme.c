@@ -27,8 +27,12 @@ gboolean switch_theme(GtkSwitch *widget, gboolean state, gpointer info)
     free(settings_field);
 
     g_main_loop_quit(main_form.loop);
+    g_thread_join(main_form.update_thread);
     free_message_widgets(curr_chat.messages_g);
     free_chat_widgets(chats_f.chat_items);
+    free_contact_widgets(contacts_t.widgets);
+    free_user_widgets(users_in_chat.users);
+    
     clear_interface();
     gtk_widget_destroy(main_form.app_form);
     open_main_form(data.win);

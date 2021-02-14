@@ -8,9 +8,9 @@ char *request_on_server(int socket, char *request)
     size_t packet_size = 1024, packet_count = 0, read_index = 0;
     char buff[1024];
     char *str;
-    // puts("request = ");
-    // puts(request);
-    // puts("================");
+    puts("request = ");
+    puts(request);
+    puts("================");
     write(socket, request, strlen(request));
 
     stat = 1025;

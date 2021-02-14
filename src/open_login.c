@@ -6,7 +6,7 @@ void open_login(GtkWidget *window)
     *minSize = 4;
     int *maxSize = (int *)malloc(sizeof(int));
     *maxSize = 16;
-    GtkBuilder *builder = glade_file_to_interface("share/login.glade");
+    GtkBuilder *builder = glade_file_to_interface(localization_s.login);
     GtkWidget *grid = GTK_WIDGET(gtk_builder_get_object(builder, "loginForm"));
     GtkWidget *btn_container = GTK_WIDGET(gtk_builder_get_object(builder, "btn_container"));
     GtkWidget *labelLogo = GTK_WIDGET(gtk_builder_get_object(builder, "loginTitle"));

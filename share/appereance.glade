@@ -91,7 +91,7 @@
                         <property name="halign">end</property>
                         <property name="valign">start</property>
                         <property name="hexpand">True</property>
-                        <property name="label" translatable="yes">theme</property>
+                        <property name="label" translatable="yes">dark</property>
                         <property name="justify">right</property>
                         <style>
                             <class name="label"/>
@@ -118,6 +118,25 @@
                         </object>
                         <packing>
                         <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                        </packing>
+                    </child>
+                    <child>
+                        <object class="GtkLabel" id="themeLable1">
+                        <property name="width_request">50</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="valign">start</property>
+                        <property name="hexpand">True</property>
+                        <property name="label" translatable="yes">light</property>
+                        <property name="justify">right</property>
+                        <style>
+                            <class name="label"/>
+                        </style>
+                        </object>
+                        <packing>
+                        <property name="left_attach">2</property>
                         <property name="top_attach">0</property>
                         </packing>
                     </child>

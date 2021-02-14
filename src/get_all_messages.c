@@ -6,7 +6,7 @@ void get_all_messages(char *user_id, char *last_msg_id)
     char *arr[] = {user_id, last_msg_id, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
-    char *messages = request_on_server(data.socket_desc,json);
+    char *messages = request_on_server(data.socket_desc, json);
     json_object *jobj;
     jobj = json_tokener_parse(messages);
     if (jobj == NULL)
@@ -38,7 +38,7 @@ void get_all_messages(char *user_id, char *last_msg_id)
     }
     else
     {
-        remove("messages.json"); 
+        remove("messages.json");
         fp = fopen("messages.json", "w");
 
         size_t size_str_in_file = strlen(str_from_file) - 3;
@@ -57,7 +57,6 @@ void get_all_messages(char *user_id, char *last_msg_id)
         }
         free(str_from_file);
     }
- 
+
     free(messages);
 }
-

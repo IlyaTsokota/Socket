@@ -127,7 +127,13 @@ typedef struct
 } register_w;
 
 register_w registration;
-
+typedef struct
+{
+	GtkWidget *setting;
+	GtkWidget *contact;
+	GtkWidget *chat;
+	GtkWidget *lock;
+} left_panel_img_t;
 typedef struct pin_f
 {
 	GtkWidget *pin_form;
@@ -256,7 +262,7 @@ typedef struct
 	GtkWidget *setting_login;
 	GtkWidget *box_contact;
 	GtkWidget *add_contact;
-
+	left_panel_img_t *left_panel_img;
 } main_form_t;
 
 typedef struct
@@ -303,13 +309,7 @@ typedef struct
 	GtkWidget *img_contact;
 } contacts_widget_s;
 
-typedef struct
-{
-	GtkWidget *setting;
-	GtkWidget *contact;
-	GtkWidget *chat;
-	GtkWidget *lock;
-} left_panel_img_t;
+
 
 typedef struct
 {
@@ -405,10 +405,16 @@ setting_items setting_elements;
 chats_form chats_f;
 contacts_arr contacts_t;
 main_form_t main_form;
+
 edit_prof_s profile_s;
 current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
+
+void send_from_contact(GtkWidget *button);
+int get_chat_index(char *ch_id);
+void free_language_interface();
+gboolean switch_language(GtkSwitch *widget, gboolean state, gpointer info);
 void init_language_interface(char *language);
 void remove_from_contact(GtkWidget *button);
 void add_to_contact(GtkWidget *button);

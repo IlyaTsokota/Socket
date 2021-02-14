@@ -395,7 +395,7 @@
                                     <property name="valign">center</property>
                                     <property name="hexpand">True</property>
                                     <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Конфиденциальность и безопасность </property>
+                                    <property name="label" translatable="yes">Конфиденциальность </property>
                                     <style>
                                         <class name="settings-item_text"/>
                                     </style>

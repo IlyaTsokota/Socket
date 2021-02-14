@@ -2,8 +2,9 @@
 
 void init_language_interface(char *language)
 {
-    if (strcmp(language, "Englsih") == 0)
+    if (strcmp(language, "English") == 0)
     {
+        data.language = strdup("English");
         localization_s.add_chat = strdup("share/add_chat.glade");
         localization_s.add_contact = strdup("share/add_contact.glade");
         localization_s.add_participant = strdup("share/add_participant.glade");
@@ -29,6 +30,7 @@ void init_language_interface(char *language)
     }
     else
     {
+        data.language = strdup("Russian");
         localization_s.add_chat = strdup("share/add_chat-ru.glade");
         localization_s.add_contact = strdup("share/add_contact-ru.glade");
         localization_s.add_participant = strdup("share/add_participant-ru.glade");
@@ -52,6 +54,50 @@ void init_language_interface(char *language)
         localization_s.register_two = strdup("share/register_two-ru.glade");
         localization_s.remove_participant = strdup("share/remove_participant-ru.glade");
     }
+}
+
+gboolean switch_language(GtkSwitch *widget, gboolean state, gpointer info)
+{
+    gtk_switch_set_state(widget, state);
+    init_do_once(true);
+    if (chats_f.curr_chat != NULL)
+    {
+        free(chats_f.curr_chat);
+        chats_f.curr_chat = NULL;
+    }
+
+    if (main_form.last_ms_id != NULL)
+    {
+        free(main_form.last_ms_id);
+        main_form.last_ms_id = NULL;
+    }
+    main_form.current_panel_id = 2;
+    main_form.is_allow_access_next_panel = true;
+    char *settings = mx_file_to_str("settings.json");
+    settings_t *settings_field = get_settings(settings);
+    free_language_interface();
+    free(data.language);
+    data.language = NULL;
+    char *switch_lang = strcmp(settings_field->language, "English") == 0 ? strdup("Russian") : strdup("English");
+    init_language_interface(switch_lang);
+    free(switch_lang);
+
+    create_settings_json(settings_field->login, settings_field->theme, data.language, settings_field->is_in);
+    free(settings_field);
+
+    g_main_loop_quit(main_form.loop);
+    g_thread_join(main_form.update_thread);
+    free_message_widgets(curr_chat.messages_g);
+    free_chat_widgets(chats_f.chat_items);
+    free_contact_widgets(contacts_t.widgets);
+    free_user_widgets(users_in_chat.users);
+
+    clear_interface();
+    gtk_widget_destroy(main_form.app_form);
+    open_main_form(data.win);
+    // g_signal_emit_by_name( main_form.event_box_setting, "button-press-event",  main_form.event_box_setting);
+
+    return false;
 }
 
 void free_language_interface()

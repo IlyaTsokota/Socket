@@ -19,18 +19,18 @@ void open_main_form(GtkWidget *window)
     GtkWidget *left_panel = GTK_WIDGET(gtk_builder_get_object(builder, "left_panel"));
 
     //memory leak
-    left_panel_img_t *left_panel_img = malloc(sizeof(left_panel_img_t));
+    main_form.left_panel_img = malloc(sizeof(left_panel_img_t));
     GtkWidget *event_box_lock = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_lock"));
-    left_panel_img->lock = GTK_WIDGET(gtk_builder_get_object(builder, "lock_img"));
+    main_form.left_panel_img->lock = GTK_WIDGET(gtk_builder_get_object(builder, "lock_img"));
 
     GtkWidget *event_box_chats = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_chats"));
-    left_panel_img->chat = GTK_WIDGET(gtk_builder_get_object(builder, "chats_img"));
+    main_form.left_panel_img->chat = GTK_WIDGET(gtk_builder_get_object(builder, "chats_img"));
 
     GtkWidget *event_box_contact_view = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_contact_view"));
-    left_panel_img->contact = GTK_WIDGET(gtk_builder_get_object(builder, "contact_view_img"));
+    main_form.left_panel_img->contact = GTK_WIDGET(gtk_builder_get_object(builder, "contact_view_img"));
 
     GtkWidget *event_box_setting = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_setting"));
-    left_panel_img->setting = GTK_WIDGET(gtk_builder_get_object(builder, "setting_img"));
+    main_form.left_panel_img->setting = GTK_WIDGET(gtk_builder_get_object(builder, "setting_img"));
 
     GtkWidget *is_connection = GTK_WIDGET(gtk_builder_get_object(builder, "is_connection"));
     GtkWidget *con_img = GTK_WIDGET(gtk_builder_get_object(builder, "con_img"));
@@ -52,9 +52,9 @@ void open_main_form(GtkWidget *window)
     show_opened_chat(main_form.main_grid, chats_f.curr_chat);
 
     GtkWidget *arr[] = {box_contacts, main_form.app_form, left_panel, is_connection, con_img, top_panel, main_form.search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
-                        left_panel_img->contact, left_panel_img->chat, left_panel_img->setting, left_panel_img->lock, NULL};
+                        main_form.left_panel_img->contact, main_form.left_panel_img->chat, main_form.left_panel_img->setting, main_form.left_panel_img->lock, NULL};
     css_set(arr, data.main_theme_path);
-    edit_styles_for_widget(left_panel_img->chat, "* {background: #88c5ce;}");
+    edit_styles_for_widget(main_form.left_panel_img->chat, "* {background: #88c5ce;}");
     
     if (chats_f.chat_items != NULL)
     {
@@ -69,9 +69,9 @@ void open_main_form(GtkWidget *window)
 
     set_chat_name_top();
     //sort_by_chat_widget();
-    g_signal_connect(G_OBJECT(event_box_contact_view), "button-press-event", G_CALLBACK(open_contacts), left_panel_img);
-    g_signal_connect(G_OBJECT(event_box_setting), "button-press-event", G_CALLBACK(open_setting), left_panel_img);
-    g_signal_connect(G_OBJECT(event_box_chats), "button-press-event", G_CALLBACK(open_chats), left_panel_img);
+    g_signal_connect(G_OBJECT(event_box_contact_view), "button-press-event", G_CALLBACK(open_contacts), main_form.left_panel_img);
+    g_signal_connect(G_OBJECT(event_box_setting), "button-press-event", G_CALLBACK(open_setting), main_form.left_panel_img);
+    g_signal_connect(G_OBJECT(event_box_chats), "button-press-event", G_CALLBACK(open_chats), main_form.left_panel_img);
     g_signal_connect(G_OBJECT(event_box_lock), "button-press-event", G_CALLBACK(block_app), main_form.app_form);
 
     gtk_container_add(GTK_CONTAINER(window), main_form.app_form);

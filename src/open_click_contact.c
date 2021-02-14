@@ -44,9 +44,6 @@ gboolean open_click_contact(GtkWidget *widget)
     return false;
 }
 
-
-
-
 void remove_from_contact(GtkWidget *button)
 {
     char *num_f = strdup("5");
@@ -96,4 +93,47 @@ void add_to_contact(GtkWidget *button)
     g_signal_handlers_disconnect_by_func(main_form.add_contact, add_to_contact, NULL);
     gtk_button_set_label(GTK_BUTTON(main_form.add_contact), "Remove contact");
     g_signal_connect(G_OBJECT(main_form.add_contact), "clicked", G_CALLBACK(remove_from_contact), NULL);
+}
+
+void send_from_contact(GtkWidget *button)
+{
+    char *num_f = strdup("37");
+    char *arr[] = {data.user_id, contacts_t.curr_contact, NULL};
+    char *json = write_to_json(num_f, arr);
+    free(num_f);
+    char *response = request_on_server(data.socket_desc, json);
+    free(json);
+    chat_t **chats = request_get_chats(response);
+    free(response);
+    int chat_index = get_chat_index(chats[0]->ch_id);
+    if (chat_index == -1)
+    {
+        create_one_chat(chats_f.size, chats[0]);
+        gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[chats_f.size - 1]->event_box_contact, 0, (chats_f.size - 1), 1, 1);
+        gtk_widget_show_all(main_form.chats_grid);
+        open_click_chat(chats_f.chat_items[chats_f.size - 1]->event_box_contact, NULL);
+        open_chats(NULL, NULL, main_form.left_panel_img);
+    }
+    else
+    {
+        open_click_chat(chats_f.chat_items[chat_index]->event_box_contact, NULL);
+        open_chats(NULL, NULL, main_form.left_panel_img);
+    }
+    free_chats(chats);
+}
+
+int get_chat_index(char *ch_id)
+{
+    if (chats_f.chat_items != NULL && chats_f.chat_items[0] != NULL)
+    {
+        for (int i = 0; chats_f.chat_items[i]; i++)
+        {
+            char *item_chat = (char *)gtk_widget_get_name(chats_f.chat_items[i]->event_box_contact);
+            if (strcmp(item_chat, ch_id) == 0)
+            {
+                return i;
+            }
+        }
+    }
+    return -1;
 }

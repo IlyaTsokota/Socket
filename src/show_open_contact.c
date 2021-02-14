@@ -14,7 +14,10 @@ void show_open_contact(GtkWidget *main_grid, char *id)
     // GtkWidget *user_info_is_online = GTK_WIDGET(gtk_builder_get_object(builder, "user_info_is_online"));
     // GtkWidget *user_info_is_online_round = GTK_WIDGET(gtk_builder_get_object(builder, "user_info_is_online_round"));
     main_form.img_info_contact = GTK_WIDGET(gtk_builder_get_object(builder, "img_info_contact"));
+    
     GtkWidget *send_message = GTK_WIDGET(gtk_builder_get_object(builder, "send_message"));
+    g_signal_connect(G_OBJECT(send_message), "clicked", G_CALLBACK(send_from_contact), NULL);
+
 
     main_form.add_contact = GTK_WIDGET(gtk_builder_get_object(builder, "add_contact"));
 
@@ -30,6 +33,8 @@ void show_open_contact(GtkWidget *main_grid, char *id)
 
     GtkWidget *is_admin = GTK_WIDGET(gtk_builder_get_object(builder, "is_admin"));
     GtkWidget *support_text = GTK_WIDGET(gtk_builder_get_object(builder, "support_text"));
+
+
 
     GtkWidget *arr[] = {main_form.right_content[2], contact_info_name_container, main_form.contact_info_name, send_message, main_form.add_contact, blcok_contact, main_form.img_info_contact, quote,  main_form.quote_text , fullname, main_form.fullname_text, is_admin, support_text, NULL};
     css_set(arr, data.main_theme_path);

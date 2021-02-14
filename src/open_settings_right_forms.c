@@ -2,7 +2,7 @@
 
 gboolean open_edit_profile(GtkWidget *widget, GdkEventButton *event)
 {
-    
+
     set_active_setting_item(setting_elements.edit_profile_text, setting_elements.edit_profile_img,
                             "./share/resources/img/info_a.png", show_edit_profile, 8);
     return false;
@@ -24,7 +24,7 @@ void show_edit_profile(GtkWidget *main_grid)
     if (!do_once.bshow_edit_profile)
         return;
     do_once.bshow_edit_profile = false;
-    GtkBuilder *builder = glade_file_to_interface( localization_s.edit_profile);
+    GtkBuilder *builder = glade_file_to_interface(localization_s.edit_profile);
     int *minSize = (int *)malloc(sizeof(int));
     *minSize = 4;
     int *maxSize = (int *)malloc(sizeof(int));
@@ -63,14 +63,12 @@ void show_edit_profile(GtkWidget *main_grid)
                         select_img, login_edit, NULL};
 
     g_signal_connect(G_OBJECT(apply_btn), "clicked", G_CALLBACK(update_profile), NULL);
-    css_set(arr,  data.main_theme_path);
+    css_set(arr, data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[8]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[8], 1, 0, 1, 1);
     gtk_widget_show_all(main_form.right_content[8]);
 
     g_object_unref(builder);
-
-    
 }
 
 gboolean open_language(GtkWidget *widget, GdkEventButton *event)
@@ -84,18 +82,23 @@ gboolean open_language(GtkWidget *widget, GdkEventButton *event)
 void show_language(GtkWidget *main_grid)
 {
 
-        if (!do_once.bshow_language)
+    if (!do_once.bshow_language)
         return;
     do_once.bshow_language = false;
-    GtkBuilder *builder = glade_file_to_interface( localization_s.language);
+    GtkBuilder *builder = glade_file_to_interface(localization_s.language);
 
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
-    GtkWidget *languageLable = GTK_WIDGET(gtk_builder_get_object(builder, "languageLable"));
-    GtkWidget *language_combobox = GTK_WIDGET(gtk_builder_get_object(builder, "language_combobox"));
-    GtkWidget *arr[] = {main_form.right_content[7], setting_form, text_info, languageLable, language_combobox, NULL};
-    css_set(arr,  data.main_theme_path);
+    GtkWidget *themeLable = GTK_WIDGET(gtk_builder_get_object(builder, "themeLable"));
+    GtkWidget *themeLable1 = GTK_WIDGET(gtk_builder_get_object(builder, "themeLable1"));
+    GtkWidget *theme = GTK_WIDGET(gtk_builder_get_object(builder, "theme"));
+    bool is_active = strcmp(data.language, "English") != 0 ? true : false;
+    gtk_switch_set_active(GTK_SWITCH(theme), is_active);
+
+    g_signal_connect(G_OBJECT(theme), "state-set", G_CALLBACK(switch_language), NULL);
+    GtkWidget *arr[] = {main_form.right_content[7], setting_form, text_info, themeLable, themeLable1, theme, NULL};
+    css_set(arr, data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[7]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[7], 1, 0, 1, 1);
     gtk_widget_show_all(main_form.right_content[7]);
@@ -116,7 +119,7 @@ void show_privacy(GtkWidget *main_grid)
     if (!do_once.bshow_privacy)
         return;
     do_once.bshow_privacy = false;
-    GtkBuilder *builder = glade_file_to_interface( localization_s.privacy);
+    GtkBuilder *builder = glade_file_to_interface(localization_s.privacy);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
@@ -125,7 +128,7 @@ void show_privacy(GtkWidget *main_grid)
     GtkWidget *vpn_btn = GTK_WIDGET(gtk_builder_get_object(builder, "vpn_btn"));
 
     GtkWidget *arr[] = {main_form.right_content[6], setting_form, text_info, change_password, change_pin, vpn_btn, NULL};
-    css_set(arr,  data.main_theme_path);
+    css_set(arr, data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[6]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[6], 1, 0, 1, 1);
     gtk_widget_show_all(main_form.right_content[6]);
@@ -145,12 +148,12 @@ void show_double_bottom(GtkWidget *main_grid)
     if (!do_once.bshow_double_bottom)
         return;
     do_once.bshow_double_bottom = false;
-    GtkBuilder *builder = glade_file_to_interface( localization_s.double_bottom);
+    GtkBuilder *builder = glade_file_to_interface(localization_s.double_bottom);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
     GtkWidget *pinLable = GTK_WIDGET(gtk_builder_get_object(builder, "pinLable"));
-    db_data * data_pin = malloc(sizeof(db_data));
+    db_data *data_pin = malloc(sizeof(db_data));
     data_pin->fail_pin = GTK_WIDGET(gtk_builder_get_object(builder, "fail_pin"));
 
     int *maxSize = (int *)malloc(sizeof(int));
@@ -161,10 +164,9 @@ void show_double_bottom(GtkWidget *main_grid)
     GtkWidget *create_db = GTK_WIDGET(gtk_builder_get_object(builder, "create_db"));
     g_signal_connect(G_OBJECT(create_db), "clicked", G_CALLBACK(create_db_acc), data_pin);
     //free(maxSize);
-    GtkWidget *arr[] = {main_form.right_content[5], setting_form, data_pin->fail_pin, text_info, create_db,  pinLable, data_pin->pin, NULL};
-    css_set(arr,  data.main_theme_path);
+    GtkWidget *arr[] = {main_form.right_content[5], setting_form, data_pin->fail_pin, text_info, create_db, pinLable, data_pin->pin, NULL};
+    css_set(arr, data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[5]), child, 0, 0, 1, 1);
-
 
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[5], 1, 0, 1, 1);
     gtk_widget_show_all(main_form.right_content[5]);
@@ -184,7 +186,7 @@ void show_notification(GtkWidget *main_grid)
     if (!do_once.bshow_notification)
         return;
     do_once.bshow_notification = false;
-    GtkBuilder *builder = glade_file_to_interface( localization_s.notifications);
+    GtkBuilder *builder = glade_file_to_interface(localization_s.notifications);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
@@ -192,7 +194,7 @@ void show_notification(GtkWidget *main_grid)
     GtkWidget *is_notification = GTK_WIDGET(gtk_builder_get_object(builder, "is_notification"));
 
     GtkWidget *arr[] = {main_form.right_content[4], setting_form, text_info, notificationsLable, is_notification, NULL};
-    css_set(arr,  data.main_theme_path);
+    css_set(arr, data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[4]), child, 0, 0, 1, 1);
 
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[4], 1, 0, 1, 1);
@@ -214,19 +216,21 @@ void show_appereance(GtkWidget *main_grid)
     if (!do_once.bshow_appereance)
         return;
     do_once.bshow_appereance = false;
-    GtkBuilder *builder = glade_file_to_interface( localization_s.appereance);
+    GtkBuilder *builder = glade_file_to_interface(localization_s.appereance);
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *text_info = GTK_WIDGET(gtk_builder_get_object(builder, "text_info"));
     GtkWidget *themeLable = GTK_WIDGET(gtk_builder_get_object(builder, "themeLable"));
-    GtkWidget *theme = GTK_WIDGET(gtk_builder_get_object(builder, "theme")); 
-    bool is_active = strcmp(data.theme, "Dark") != 0 ? true : false;    
-    gtk_switch_set_active (GTK_SWITCH(theme), is_active);
+    GtkWidget *themeLable1 = GTK_WIDGET(gtk_builder_get_object(builder, "themeLable1"));
+
+    GtkWidget *theme = GTK_WIDGET(gtk_builder_get_object(builder, "theme"));
+    bool is_active = strcmp(data.theme, "Dark") != 0 ? true : false;
+    gtk_switch_set_active(GTK_SWITCH(theme), is_active);
 
     g_signal_connect(G_OBJECT(theme), "state-set", G_CALLBACK(switch_theme), NULL);
 
-    GtkWidget *arr[] = {main_form.right_content[3], setting_form, text_info, themeLable, theme, NULL};
-    css_set(arr,  data.main_theme_path);
+    GtkWidget *arr[] = {main_form.right_content[3], setting_form, themeLable1, text_info, themeLable, theme, NULL};
+    css_set(arr, data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[3]), child, 0, 0, 1, 1);
 
     gtk_grid_attach(GTK_GRID(main_grid), main_form.right_content[3], 1, 0, 1, 1);

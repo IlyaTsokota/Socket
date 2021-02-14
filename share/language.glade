@@ -78,7 +78,7 @@
                     <property name="top_attach">0</property>
                     </packing>
                 </child>
-                <child>
+                 <child>
                     <object class="GtkGrid">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -86,13 +86,14 @@
                     <property name="margin_top">80</property>
                     <property name="hexpand">True</property>
                     <child>
-                        <object class="GtkLabel" id="languageLable">
+                        <object class="GtkLabel" id="themeLable">
                         <property name="width_request">50</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">end</property>
+                        <property name="valign">start</property>
                         <property name="hexpand">True</property>
-                        <property name="label" translatable="yes">language</property>
+                        <property name="label" translatable="yes">english</property>
                         <property name="justify">right</property>
                         <style>
                             <class name="label"/>
@@ -104,29 +105,40 @@
                         </packing>
                     </child>
                     <child>
-                        <object class="GtkComboBoxText" id="language_combobox">
+                        <object class="GtkSwitch" id="theme">
+                        <property name="width_request">60</property>
+                        <property name="height_request">30</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="active">1</property>
-                        <property name="has_entry">True</property>
-                        <property name="active_id">1</property>
-                        <items>
-                            <item id="1" translatable="yes">Russian</item>
-                            <item id="2" translatable="yes">English</item>
-                        </items>
-                        <child internal-child="entry">
-                            <object class="GtkEntry">
-                            <property name="can_focus">False</property>
-                            <property name="text" translatable="yes">Russian</property>
-                            <style>
-                                <class name="input_edit"/>
-                                <class name="mt0"/>
-                            </style>
-                            </object>
-                        </child>
+                        <property name="can_focus">True</property>
+                        <property name="valign">start</property>
+                        <property name="margin_right">30</property>
+                        <property name="margin_top">10</property>
+                        <property name="vexpand">False</property>
+                        <style>
+                            <class name="switch_theme"/>
+                        </style>
                         </object>
                         <packing>
                         <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                        </packing>
+                    </child>
+                    <child>
+                        <object class="GtkLabel" id="themeLable1">
+                        <property name="width_request">50</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">end</property>
+                        <property name="valign">start</property>
+                        <property name="hexpand">True</property>
+                        <property name="label" translatable="yes">russian</property>
+                        <property name="justify">right</property>
+                        <style>
+                            <class name="label"/>
+                        </style>
+                        </object>
+                        <packing>
+                        <property name="left_attach">2</property>
                         <property name="top_attach">0</property>
                         </packing>
                     </child>
