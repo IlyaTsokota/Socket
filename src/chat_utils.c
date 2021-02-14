@@ -189,7 +189,13 @@ gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event)
     main_form.current_panel_id = -1;
     hide_gtk_widgets(main_form.right_content);
     show_remove_participant(main_form.main_grid);
-    free_user_widgets(users_in_chat.users);
+    refresh_users_by_chat();
+    gtk_widget_show_all(main_form.right_content[12]);
+    return false;
+}
+
+void refresh_users_by_chat(){
+      free_user_widgets(users_in_chat.users);
     user_curr_chat_t **users = take_users_by_chat(data.socket_desc);
     if (users != NULL)
     {
@@ -205,8 +211,6 @@ gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event)
         }
         gtk_widget_show_all(main_form.users_container);
     }
-    gtk_widget_show_all(main_form.right_content[12]);
-    return false;
 }
 
 void show_remove_participant(GtkWidget *main_grid)
@@ -304,19 +308,43 @@ void add_contact(GtkWidget *button, data_input_t *info)
         free(json);
         if (strcmp(request, "1") == 0)
         {
-            gtk_label_set_text(GTK_LABEL(info->fail_lable), "User doesn't exist");
+            gtk_label_set_text(GTK_LABEL(info->fail_lable), "User already in contacts ");
         }
         else if (strcmp(request, "2") == 0)
         {
-            gtk_label_set_text(GTK_LABEL(info->fail_lable), "User already in contacts ");
+            gtk_label_set_text(GTK_LABEL(info->fail_lable), "User doesn't exist");
         }
         else
         {
+            char *num_f = strdup("36");
+            char *arr[] = {login, NULL};
+            char *json = write_to_json(num_f, arr);
+            free(num_f);
+            char *response = request_on_server(data.socket_desc, json);
+            free(json);
+            contact_t **contacts = get_contacts(response);
+            free(response);
+            create_one_contact(contacts_t.size, contacts[0]);
+            free_contacts_s(contacts);
+            gtk_box_pack_start(GTK_BOX(main_form.box_contact), contacts_t.widgets[contacts_t.size - 1]->event_box_contact, false, true, 0);
+            gtk_widget_show_all(main_form.box_contact);
             edit_styles_for_widget(info->fail_lable, "* {color: green;}");
             gtk_label_set_text(GTK_LABEL(info->fail_lable), "User added successfully to contacts");
         }
         free(request);
-        
     }
     //g_mutex_unlock(&main_form.mutex);
+}
+
+gboolean remove_user_from_chat(GtkWidget *widget)
+{
+    char *num_f = strdup("31");
+    char *user_id = (char *)gtk_widget_get_name(widget);
+    char *arr[] = {user_id, chats_f.curr_chat, NULL};
+    char *json = write_to_json(num_f, arr);
+    free(num_f);
+    request_to_server (json);
+    free(json);
+    refresh_users_by_chat();
+    return false;
 }

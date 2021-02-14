@@ -28,10 +28,13 @@ void create_one_user_widget(int i, user_curr_chat_t *contact)
     gtk_widget_set_margin_end( users_in_chat.users[i]->user_name, 10);
     set_style_context( users_in_chat.users[i]->user_name, "contact-login");
     
+
     users_in_chat.users[i]->delete_event_box = gtk_event_box_new();
     gtk_widget_set_name(users_in_chat.users[i]->delete_event_box, contact->u_id);
     gtk_widget_set_hexpand(users_in_chat.users[i]->delete_event_box, false);
     gtk_widget_set_halign(users_in_chat.users[i]->delete_event_box, GTK_ALIGN_END);
+    g_signal_connect(G_OBJECT(users_in_chat.users[i]->delete_event_box), "button-press-event", G_CALLBACK(remove_user_from_chat), NULL);
+
 
     users_in_chat.users[i]->remove_img = gtk_image_new_from_file("share/resources/img/delete.png");
 

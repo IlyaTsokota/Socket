@@ -13,9 +13,9 @@ void logout(GtkWidget *button)
     init_do_once(true);
     free_message_widgets(curr_chat.messages_g);
     free_chat_widgets(chats_f.chat_items);
-   free_contact_widgets(contacts_t.widgets);
+    free_contact_widgets(contacts_t.widgets);
     free_user_widgets(users_in_chat.users);
-    
+
     if (chats_f.curr_chat != NULL)
     {
         free(chats_f.curr_chat);

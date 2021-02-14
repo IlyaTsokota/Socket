@@ -9,7 +9,7 @@ gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *tex
 
 void *sending(gpointer text_view)
 {
-    // g_mutex_lock(&main_form.mutex);
+    g_mutex_lock(&main_form.mutex);
     struct sockaddr_in client_addr;
     update_t *update = malloc(sizeof(update));
     update->socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -26,11 +26,13 @@ void *sending(gpointer text_view)
         char *arr[] = {chats_f.curr_chat, data.user_id, "0", "0", "0", message, NULL};
         char *json = write_to_json(num_f, arr);
         free(num_f);
+        g_mutex_unlock(&main_form.mutex);
+
         char *response = request_on_server(update->socket, json);
+
         free(json);
         free(response);
         clear_text__buffer(GTK_TEXT_VIEW(text_view));
-        // g_mutex_unlock(&main_form.mutex);
 
         refresh_chat(update);
         g_timeout_add(50, change_insert_to_message, main_form.message_scroll);
@@ -38,7 +40,6 @@ void *sending(gpointer text_view)
     }
     else
     {
-        // g_mutex_unlock(&main_form.mutex);
 
         puts("Data sent faild!\n");
     }

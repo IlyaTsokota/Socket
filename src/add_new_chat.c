@@ -20,11 +20,9 @@ void add_new_chat(GtkWidget *button, GtkWidget *widgets)
         free(json);
         chat_t **chats = request_get_chats(response);
         free(response);
-        
         create_one_chat(chats_f.size, chats[0]);
         free_chats(chats);
-
-        gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[chats_f.size - 1]->event_box_contact, 0, (chats_f.size - 1) , 1, 1);
+        gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[chats_f.size - 1]->event_box_contact, 0, (chats_f.size - 1), 1, 1);
         gtk_widget_show_all(main_form.left_content[0]);
     }
     //g_mutex_unlock(&main_form.mutex);

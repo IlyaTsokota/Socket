@@ -228,6 +228,7 @@ typedef struct
 	GtkWidget *img_info_contact;
 	GtkWidget *fullname_text;
 	GtkWidget *setting_login;
+	GtkWidget *box_contact;
 
 } main_form_t;
 
@@ -380,6 +381,10 @@ edit_prof_s profile_s;
 current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 
+
+void clear_style_all_contact_widgets();
+gboolean remove_user_from_chat(GtkWidget *widget);
+void refresh_users_by_chat();
 void create_one_user_widget(int i, user_curr_chat_t *contact);
 void free_user_widgets(user_in_chat_t **contacts);
 user_curr_chat_t **take_users_by_chat(int socket);

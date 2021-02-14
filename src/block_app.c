@@ -10,7 +10,6 @@ gboolean block_app(GtkWidget *widget, GdkEventButton *event, GtkWidget *form)
     free_contact_widgets(contacts_t.widgets);
     free_user_widgets(users_in_chat.users);
 
-    
     if (chats_f.curr_chat != NULL) {
     	free(chats_f.curr_chat);
     	chats_f.curr_chat = NULL;
