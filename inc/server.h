@@ -91,7 +91,7 @@ char *group_chat_create(MYSQL *con, char *my_id, char *chat_name, char *is_retur
 char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func, char *is_return_data, int sock); //08
 char *chat_remove(MYSQL *con, char *chat_id);                                                                                  //10
 
-char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id, int sock); //12
+char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id);
 char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name);              //29
 char *get_chat_users(MYSQL *con, char *ch_id, int sock);                      //30
 char *remove_user_from_chat(MYSQL *con, char *u_id, char *ch_id);             //31

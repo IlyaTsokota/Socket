@@ -45,7 +45,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return is_contact_exist(con, array[1], array[2], 1);
     case 12:
         puts("Query 12 -> add_user_to_group_chat");
-        return add_user_to_group_chat(con, array[1], array[2], sock);
+        return add_user_to_group_chat(con, array[1], array[2]);
     case 13:
         puts("Query 13 -> add_message_to_chat");
         return add_message_to_chat(con, array[1], array[2], array[3], array[4], array[5], array[6], sock, 1);

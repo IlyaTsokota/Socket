@@ -1,6 +1,6 @@
 #include "server.h"
 
-char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id, int sock)
+char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id)
 {
     char *answer;
     char *my_id = get_my_id_no_answer(con, login, 0);
