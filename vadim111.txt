@@ -1,0 +1,230 @@
+==8342== Memcheck, a memory error detector
+==8342== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==8342== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==8342== Command: ./server
+==8342== Parent PID: 3311
+==8342== 
+==8342== 
+==8342== Process terminating with default action of signal 2 (SIGINT)
+==8342==    at 0x509A49F: accept (accept.c:26)
+==8342==    by 0x407EBD: main (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342== 
+==8342== HEAP SUMMARY:
+==8342==     in use at exit: 235,984 bytes in 4,974 blocks
+==8342==   total heap usage: 6,920 allocs, 1,946 frees, 885,978 bytes allocated
+==8342== 
+==8342== 2 bytes in 1 blocks are definitely lost in loss record 1 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x52F950E: strdup (strdup.c:42)
+==8342==    by 0x409B8C: add_message_to_chat (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D845: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 56 bytes in 1 blocks are possibly lost in loss record 904 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x4A21B77: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x4A204D0: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x49BBE74: mysql_server_init (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x49C6808: mysql_init (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x407AF0: connection_try (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407C5A: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 114 bytes in 1 blocks are definitely lost in loss record 930 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x405F1F: mx_strnew (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x406C8D: strjoin (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40E63B: pin_check (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D599: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 157 bytes in 22 blocks are definitely lost in loss record 933 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x405F1F: mx_strnew (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x4071A1: json_to_data (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407C6D: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 168 bytes in 1 blocks are possibly lost in loss record 935 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x4A21B77: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x4A1F529: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x4A1F5B3: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x4A1F634: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x4A1FA74: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x49D01E0: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x49D043B: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x49D0D6D: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x49BBE79: mysql_server_init (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x49C6808: mysql_init (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x407AF0: connection_try (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342== 
+==8342== 331 bytes in 1 blocks are definitely lost in loss record 960 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x405F1F: mx_strnew (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x406C8D: strjoin (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40BD14: get_contacts (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D9E1: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 336 (48 direct, 288 indirect) bytes in 1 blocks are definitely lost in loss record 962 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40F594: json_object_new (json_object.c:353)
+==8342==    by 0x411CEB: json_object_new_array_ext (json_object.c:1439)
+==8342==    by 0x411CC4: json_object_new_array (json_object.c:1435)
+==8342==    by 0x40E6D0: write_validation_login_info_to_json2 (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40E5A9: pin_check (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D599: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 336 (48 direct, 288 indirect) bytes in 1 blocks are definitely lost in loss record 963 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40F594: json_object_new (json_object.c:353)
+==8342==    by 0x411CEB: json_object_new_array_ext (json_object.c:1439)
+==8342==    by 0x411CC4: json_object_new_array (json_object.c:1435)
+==8342==    by 0x40EC70: write_message_to_json (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40C018: get_messages (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D8DC: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 412 bytes in 6 blocks are definitely lost in loss record 967 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x405F1F: mx_strnew (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x406C8D: strjoin (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40C0AA: get_messages (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D8DC: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 640 bytes in 2 blocks are possibly lost in loss record 987 of 1,058
+==8342==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40149CA: allocate_dtv (dl-tls.c:286)
+==8342==    by 0x40149CA: _dl_allocate_tls (dl-tls.c:532)
+==8342==    by 0x5090322: allocate_stack (allocatestack.c:622)
+==8342==    by 0x5090322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+==8342==    by 0x407F01: main (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342== 
+==8342== 1,008 (144 direct, 864 indirect) bytes in 3 blocks are definitely lost in loss record 1,009 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40F594: json_object_new (json_object.c:353)
+==8342==    by 0x411CEB: json_object_new_array_ext (json_object.c:1439)
+==8342==    by 0x411CC4: json_object_new_array (json_object.c:1435)
+==8342==    by 0x40E900: write_contact_to_json (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40BC82: get_contacts (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D9E1: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 1,020 (48 direct, 972 indirect) bytes in 1 blocks are definitely lost in loss record 1,010 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40F594: json_object_new (json_object.c:353)
+==8342==    by 0x40FC9D: json_object_new_object (json_object.c:558)
+==8342==    by 0x40E6D9: write_validation_login_info_to_json2 (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40E5A9: pin_check (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D599: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 1,588 (48 direct, 1,540 indirect) bytes in 1 blocks are definitely lost in loss record 1,023 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40F594: json_object_new (json_object.c:353)
+==8342==    by 0x40FC9D: json_object_new_object (json_object.c:558)
+==8342==    by 0x40EC79: write_message_to_json (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40C018: get_messages (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D8DC: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 3,117 (144 direct, 2,973 indirect) bytes in 3 blocks are definitely lost in loss record 1,041 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40F594: json_object_new (json_object.c:353)
+==8342==    by 0x40FC9D: json_object_new_object (json_object.c:558)
+==8342==    by 0x40E909: write_contact_to_json (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40BC82: get_contacts (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D9E1: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 3,517 bytes in 1 blocks are definitely lost in loss record 1,043 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x405F1F: mx_strnew (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x406C8D: strjoin (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40B6B4: get_chats (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D90B: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 9,408 (1,344 direct, 8,064 indirect) bytes in 28 blocks are definitely lost in loss record 1,051 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40F594: json_object_new (json_object.c:353)
+==8342==    by 0x411CEB: json_object_new_array_ext (json_object.c:1439)
+==8342==    by 0x411CC4: json_object_new_array (json_object.c:1435)
+==8342==    by 0x40E7C0: write_chat_to_json (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40B622: get_chats (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D90B: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 10,493 (480 direct, 10,013 indirect) bytes in 10 blocks are definitely lost in loss record 1,053 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40F594: json_object_new (json_object.c:353)
+==8342==    by 0x40FC9D: json_object_new_object (json_object.c:558)
+==8342==    by 0x4133D6: json_tokener_parse_ex (json_tokener.c:349)
+==8342==    by 0x412EE0: json_tokener_parse_verbose (json_tokener.c:200)
+==8342==    by 0x412E7F: json_tokener_parse (json_tokener.c:188)
+==8342==    by 0x4070D4: json_to_data (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407C6D: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 16,896 (144 direct, 16,752 indirect) bytes in 1 blocks are definitely lost in loss record 1,056 of 1,058
+==8342==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x4A21B1E: ??? (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x49CA1C0: mysql_store_result (in /usr/lib/x86_64-linux-gnu/libmysqlclient.so.21.1.23)
+==8342==    by 0x40994E: add_message_to_chat (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D845: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== 32,539 (1,344 direct, 31,195 indirect) bytes in 28 blocks are definitely lost in loss record 1,058 of 1,058
+==8342==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8342==    by 0x40F594: json_object_new (json_object.c:353)
+==8342==    by 0x40FC9D: json_object_new_object (json_object.c:558)
+==8342==    by 0x40E7C9: write_chat_to_json (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40B622: get_chats (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x40D90B: queries_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x407CA6: connection_handler (in /home/itsokota/Desktop/uchatServer/aaaaaa/uchat/server)
+==8342==    by 0x508F608: start_thread (pthread_create.c:477)
+==8342==    by 0x5379292: clone (clone.S:95)
+==8342== 
+==8342== LEAK SUMMARY:
+==8342==    definitely lost: 8,325 bytes in 109 blocks
+==8342==    indirectly lost: 72,949 bytes in 662 blocks
+==8342==      possibly lost: 864 bytes in 4 blocks
+==8342==    still reachable: 153,846 bytes in 4,199 blocks
+==8342==         suppressed: 0 bytes in 0 blocks
+==8342== Reachable blocks (those to which a pointer was found) are not shown.
+==8342== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==8342== 
+==8342== For lists of detected and suppressed errors, rerun with: -s
+==8342== ERROR SUMMARY: 19 errors from 19 contexts (suppressed: 0 from 0)

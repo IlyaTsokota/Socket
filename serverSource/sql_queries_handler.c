@@ -8,10 +8,6 @@ int get_query_number(char *line)
 char *queries_handler(MYSQL *con, char **array, int sock)
 {
     int query_number = get_query_number(array[0]);
-    printf("%d -- index\n", query_number);
-    puts(array[0]);
-        puts(array[1]);
-    puts(array[2]);
 
     switch (query_number)
     {
