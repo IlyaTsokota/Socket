@@ -81,22 +81,22 @@ void finish_with_error(MYSQL *con);
 char *user_add(MYSQL *con, char *login, char *name, char *surname, char *password, char *pin, int sock); //03
 char *get_my_id_no_answer(MYSQL *con, char *login, int close_con_after_end_of_func);                     //no answer 03
 char *is_login_exist(MYSQL *con, char *login);                                                           //07
-char *create_double_bottom(MYSQL *con, char *u_id, char *pin);                                           //23
+char *create_double_bottom(MYSQL *con, char *u_id, char *pin, int sock);                                 //23
 char *delete_account(MYSQL *con, char *my_id);                                                           //24
 char *get_user_info(MYSQL *con, char *user_id, int sock);                                                //20
 char *get_user_info_by_login(MYSQL *con, char *login, int sock);                                         //36
 
 //sql-chats
-char *get_chats(MYSQL *con, char *user_id, int sock);                                                                          //17
-char *make_message_seen(MYSQL *con, char *ms_id);                                                                              //15
-char *group_chat_create(MYSQL *con, char *my_id, char *chat_name, char *is_return_data, int sock);                             //06
-char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func, char *is_return_data, int sock); //08
-char *chat_remove(MYSQL *con, char *chat_id);                                                                                  //10
+char *get_chats(MYSQL *con, char *user_id, int sock);                                                                                            //17
+char *make_message_seen(MYSQL *con, char *ms_id);                                                                                                //15
+char *group_chat_create(MYSQL *con, char *my_id, char *chat_name, char *is_return_data, int sock);                                               //06
+char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func, char *is_return_data, int message_type, int sock); //08
+char *chat_remove(MYSQL *con, char *chat_id);                                                                                                    //10
 
 char *add_user_to_group_chat(MYSQL *con, char *login, char *ch_id);
-char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name);              //29
-char *get_chat_users(MYSQL *con, char *ch_id, int sock);                      //30
-char *remove_user_from_chat(MYSQL *con, char *u_id, char *ch_id);             //31
+char *chat_rename(MYSQL *con, char *ch_id, char *new_chat_name);  //29
+char *get_chat_users(MYSQL *con, char *ch_id, int sock);          //30
+char *remove_user_from_chat(MYSQL *con, char *u_id, char *ch_id); //31
 char *is_user_chat_admin(MYSQL *con, char *ch_id, char *u_id);
 
 //sql-validations
@@ -122,7 +122,7 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock); 
 char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock, int is_send_answer); //13
 char *change_message(MYSQL *con, char *ch_id, char *ms_id, char *ms_text);                                                                                                   //33
 char *delete_message(MYSQL *con, char *ch_id, char *ms_id);                                                                                                                  //34
-char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock); //37
+char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock);                                                                                                      //37
 //sql-unsorte
 char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func, int sock); //18
 char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote);  //19

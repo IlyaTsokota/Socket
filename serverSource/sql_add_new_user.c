@@ -39,9 +39,10 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
     mysql_free_result(result);
     puts("LLL\n");
     puts(answer);
-    if (atoi(answer) == 1) {
+    if (atoi(answer) == 1)
+    {
         free(answer);
-       return strdup("0");
+        return strdup("0");
     }
     free(answer);
     //Добавить юзера
@@ -98,12 +99,12 @@ char *user_add(MYSQL *con, char *login, char *name, char *surname, char *passwor
         finish_with_error(con);
     }
     //Добавить юзеру Saved Messages в контакты
-    chat_create(con, answer, "1", 0, "0", sock);
-    
+    chat_create(con, answer, "1", 0, "0", 1, sock);
+
     mysql_close(con);
-    free(answer); //IR
+    free(answer);    //IR
     free(bdrequest); //IR
     free(datetime);  //IR
 
-   return strdup("1");
+    return strdup("1");
 }

@@ -34,7 +34,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return is_login_exist(con, array[1]);
     case 8:
         puts("Query 08 -> chat_create");
-        return chat_create(con, array[1], array[2], 1, "1", sock);
+        return chat_create(con, array[1], array[2], 1, "1", 0, sock);
     case 9:
         puts("Query 09 -> contact_block");
         return contact_block(con, array[1], array[2]);
@@ -79,7 +79,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return get_contact_info(con, array[1], array[2], sock);
     case 23:
         puts("Query 23 -> create_double_bottom");
-        return create_double_bottom(con, array[1], array[2]);
+        return create_double_bottom(con, array[1], array[2], sock);
     case 24:
         puts("Query 24 -> delete_account");
         return delete_account(con, array[1]);

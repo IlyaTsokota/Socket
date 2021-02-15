@@ -1,6 +1,6 @@
 #include "server.h"
 //Создать чат
-char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func, char *is_return_data, int sock)
+char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after_end_of_func, char *is_return_data, int message_type, int sock)
 {
     char *answer;
 
@@ -126,10 +126,10 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
         //
         mysql_free_result(result);
         if (close_con_after_end_of_func == 1)
-    {
+        {
 
-        mysql_close(con);
-    }
+            mysql_close(con);
+        }
 
         if (socket_send_data(str, sock))
         {
@@ -144,7 +144,16 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
     else
     {
         puts("Here111");
-        add_message_to_chat(con, chat_id, "1", "0", "0", "0", "Добро пожаловать в Socket!\nЧувствуйте себя в безопасности.\nКаждое сообщение в Socket, как и это, надёжно зашифровано.\nSaved Messages необходим для файло-помойки, можешь отправлять мне всякий хлам ;)\n", sock, 0);
+        if (message_type == 1)
+        {
+            add_message_to_chat(con, chat_id, "1", "0", "0", "0", "Добро пожаловать в Socket!\nЧувствуйте себя в безопасности.\nКаждое сообщение в Socket, как и это, надёжно зашифровано.\nSaved Messages необходим для файло-помойки, можешь отправлять мне всякий хлам ;)", sock, 0);
+        }
+        if (message_type == 2)
+        {
+            add_message_to_chat(con, chat_id, "1", "0", "0", "0", "Добро пожаловать в Socket!\nЧувствуйте себя в безопасности.\nКаждое сообщение в Socket, как и это, надёжно зашифровано.\nSaved Messages необходим для файло-помойки, можешь отправлять мне всякий хлам ;)", sock, 0);
+            add_message_to_chat(con, chat_id, "1", "0", "0", "0", "Это твой Double Bottom аккаунт. Он полностью анонимен. По твоему Double Bottom аккаунту невозможно найти настоящий. Ты под защитой Socket ;3)", sock, 0);
+        }
+
         free(chat_id);
         //отправить сообщение
     }
@@ -155,5 +164,5 @@ char *chat_create(MYSQL *con, char *my_id, char *contact_id, int close_con_after
         mysql_close(con);
     }
 
- return strdup("1");
+    return strdup("1");
 }

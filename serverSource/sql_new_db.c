@@ -1,6 +1,6 @@
 #include "server.h"
 
-char *create_double_bottom(MYSQL *con, char *u_id, char *pin)
+char *create_double_bottom(MYSQL *con, char *u_id, char *pin, int sock)
 {
     //Проверить нет ли у юзера даблботтома
     char *answer;
@@ -147,6 +147,9 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin)
     {
         finish_with_error(con);
     }
+    //Добавить юзеру Saved Messages в контакты
+    chat_create(con, answer, "1", 0, "0", 2, sock);
+
     mysql_close(con);
 
     free(bdrequest); //IR
