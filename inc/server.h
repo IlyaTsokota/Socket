@@ -23,7 +23,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-
 //macros defines
 #define array_init(a) (a).arr = NULL, (a).cnt = 0
 char *get_filename_extension(char *filename);
@@ -34,7 +33,7 @@ bool socket_send_data(char *data, int socket);
 char *send_image(int socket, char *chat_id, char *message_id);
 //images
 
-char *receive_img_to_profile(int socket, char *u_id, char *filename); //, char *chat_id, char *message_id)
+char *receive_img_to_profile(MYSQL con, int socket, char *u_id, char *filename); //, char *chat_id, char *message_id)
 //utilities
 
 void array_clear(array_t *a);
