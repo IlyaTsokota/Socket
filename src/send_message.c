@@ -32,14 +32,16 @@ void *sending(gpointer text_view)
 
         char *response = request_on_server(update->socket, json);
 
-        free(json);
-        free(response);
+     
         refresh_chat(update);
         clear_text__buffer(GTK_TEXT_VIEW(text_view));
         g_timeout_add(50, change_insert_to_message, main_form.message_scroll);
+           free(json);
+        free(response);
     }
     else
     {
+        g_mutex_unlock(&main_form.mutex);
 
         puts("Data sent faild!\n");
     }
@@ -47,7 +49,7 @@ void *sending(gpointer text_view)
     close(update->socket);
     free(update);
 
-    g_thread_exit(NULL);
+    // g_thread_exit(NULL);
     // g_mutex_lock(&main_form.mutex_seding_msg);
     //puts("Lock");
 

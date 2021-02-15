@@ -8,6 +8,7 @@ void open_main_form(GtkWidget *window)
     free(main_form.last_ms_id);
     main_form.last_ms_id = get_last_mesage_id("messages.json");
     is_fullscreen(window);
+
     create_widget_messages();
     create_chat_widgets(data.user_id);
     create_widget_contacts(data.user_id);
@@ -49,13 +50,14 @@ void open_main_form(GtkWidget *window)
     GtkWidget *box_contacts = GTK_WIDGET(gtk_builder_get_object(builder, "box_contacts"));
 
     show_chats(main_form.main_grid);
+
     show_opened_chat(main_form.main_grid, chats_f.curr_chat);
 
     GtkWidget *arr[] = {box_contacts, main_form.app_form, left_panel, is_connection, con_img, top_panel, main_form.search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
                         main_form.left_panel_img->contact, main_form.left_panel_img->chat, main_form.left_panel_img->setting, main_form.left_panel_img->lock, NULL};
     css_set(arr, data.main_theme_path);
     edit_styles_for_widget(main_form.left_panel_img->chat, "* {background: #88c5ce;}");
-    
+
     if (chats_f.chat_items != NULL)
     {
         char *color = strcmp(data.theme, "Dark") == 0 ? strdup("* { background-color: #3c3c3c;}")

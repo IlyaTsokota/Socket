@@ -263,6 +263,8 @@ typedef struct
 	GtkWidget *box_contact;
 	GtkWidget *add_contact;
 	left_panel_img_t *left_panel_img;
+	bool is_admin_by_chat;
+	GtkWidget *delete_chat;
 } main_form_t;
 
 typedef struct
@@ -411,6 +413,9 @@ current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
 
+gboolean remove_chat(GtkWidget *widget);
+void update_chats_after_delete();
+gboolean exit_from_chat(GtkWidget *widget);
 void send_from_contact(GtkWidget *button);
 int get_chat_index(char *ch_id);
 void free_language_interface();

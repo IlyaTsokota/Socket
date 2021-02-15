@@ -54,9 +54,29 @@ gboolean open_chat_info(GtkWidget *widget, GdkEventButton *event)
 {
     main_form.is_allow_access_next_panel = true;
     main_form.current_panel_id = -1;
+    char *num_f = strdup("32");
+    char *arr[] = {chats_f.curr_chat, data.user_id, NULL};
+    char *json = write_to_json(num_f, arr);
+    free(num_f);
+    main_form.is_admin_by_chat = request_to_server(json);
     hide_gtk_widgets(main_form.right_content);
     show_chat_info(main_form.main_grid);
     set_chat_name_in_info_chat();
+    if (main_form.is_admin_by_chat)
+    {
+        g_signal_handlers_disconnect_by_func(main_form.delete_chat, remove_chat, NULL);
+        g_signal_handlers_disconnect_by_func(main_form.delete_chat, exit_from_chat, NULL);
+        gtk_button_set_label(GTK_BUTTON(main_form.delete_chat), "Remove chat");
+        g_signal_connect(G_OBJECT(main_form.delete_chat), "clicked", G_CALLBACK(remove_chat), NULL);
+    }
+    else
+    {
+        g_signal_handlers_disconnect_by_func(main_form.delete_chat, remove_chat, NULL);
+        g_signal_handlers_disconnect_by_func(main_form.delete_chat, exit_from_chat, NULL);
+        gtk_button_set_label(GTK_BUTTON(main_form.delete_chat), "Leave from chat");
+        g_signal_connect(G_OBJECT(main_form.delete_chat), "clicked", G_CALLBACK(exit_from_chat), NULL);
+    }
+
     gtk_widget_show_all(main_form.right_content[10]);
     return false;
 }
@@ -83,12 +103,12 @@ void show_chat_info(GtkWidget *main_grid)
     GtkWidget *apply_btn = GTK_WIDGET(gtk_builder_get_object(builder, "apply_btn"));
     GtkWidget *add_participants = GTK_WIDGET(gtk_builder_get_object(builder, "add_participants"));
     GtkWidget *delete_participants = GTK_WIDGET(gtk_builder_get_object(builder, "delete_participants"));
-    GtkWidget *delete_chat = GTK_WIDGET(gtk_builder_get_object(builder, "delete_chat"));
+    main_form.delete_chat = GTK_WIDGET(gtk_builder_get_object(builder, "delete_chat"));
     set_chat_name_in_info_chat();
 
     //free(maxSize);
     GtkWidget *arr[] = {main_form.right_content[10], child, setting_form, apply_btn, add_participants, delete_participants,
-                        nameLable, select_img, delete_chat, main_form.chat_name_title, main_form.chat_name_input, NULL};
+                        nameLable, select_img, main_form.delete_chat, main_form.chat_name_title, main_form.chat_name_input, NULL};
 
     css_set(arr, data.main_theme_path);
     g_signal_connect(G_OBJECT(main_form.chat_name_input), "changed", G_CALLBACK(change_event_login_or_password), minSize);
@@ -194,8 +214,9 @@ gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event)
     return false;
 }
 
-void refresh_users_by_chat(){
-      free_user_widgets(users_in_chat.users);
+void refresh_users_by_chat()
+{
+    free_user_widgets(users_in_chat.users);
     user_curr_chat_t **users = take_users_by_chat(data.socket_desc);
     if (users != NULL)
     {
@@ -343,8 +364,105 @@ gboolean remove_user_from_chat(GtkWidget *widget)
     char *arr[] = {user_id, chats_f.curr_chat, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
-    request_to_server (json);
+    request_to_server(json);
     free(json);
     refresh_users_by_chat();
+
     return false;
+}
+
+gboolean remove_chat(GtkWidget *widget)
+{
+    char *num_f = strdup("10");
+    char *arr[] = {chats_f.curr_chat, NULL};
+    char *json = write_to_json(num_f, arr);
+    free(num_f);
+    request_to_server(json);
+    free(json);
+    free_chat_widgets(chats_f.chat_items);
+    create_chat_widgets(data.user_id);
+    for (int i = 0; i < chats_f.size; i++)
+    {
+        gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
+    }
+    gtk_widget_show_all(main_form.chats_grid);
+    show_right_panel_is_clear(main_form.main_grid);
+    hide_gtk_widgets(main_form.right_content);
+    gtk_widget_show_all(main_form.right_content[1]);
+    // update_chats_after_delete();
+    return false;
+}
+
+gboolean exit_from_chat(GtkWidget *widget)
+{
+    char *num_f = strdup("31");
+    char *arr[] = {data.user_id, chats_f.curr_chat, NULL};
+    char *json = write_to_json(num_f, arr);
+    free(num_f);
+    request_to_server(json);
+    free(json);
+    free_chat_widgets(chats_f.chat_items);
+    create_chat_widgets(data.user_id);
+    for (int i = 0; i < chats_f.size; i++)
+    {
+        gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
+    }
+    gtk_widget_show_all(main_form.chats_grid);
+    show_right_panel_is_clear(main_form.main_grid);
+    hide_gtk_widgets(main_form.right_content);
+    gtk_widget_show_all(main_form.right_content[1]);
+    return false;
+}
+
+void update_chats_after_delete()
+{
+
+    g_print("%d -- prev\n", chats_f.size);
+
+    chat_item_t **temp_arr = malloc(sizeof(chat_item_t) * chats_f.size);
+    temp_arr[chats_f.size - 1] = NULL;
+    int j = 0;
+    for (size_t i = 0; chats_f.chat_items[i]; i++)
+    {
+        char *curr_id = (char *)gtk_widget_get_name(chats_f.chat_items[i]->event_box_contact);
+        if (strcmp(curr_id, chats_f.curr_chat) != 0)
+        {
+            temp_arr[j] = malloc(sizeof(chat_item_t));
+            temp_arr[j] = chats_f.chat_items[i];
+            j++;
+        }
+    }
+    puts("Fuck");
+    free_chat_widgets(chats_f.chat_items);
+
+    chats_f.size = j;
+    g_print("%d -- next\n", chats_f.size);
+    chats_f.chat_items = malloc(sizeof(chat_item_t) * (chats_f.size + 1));
+    chats_f.chat_items[chats_f.size] = NULL;
+
+    for (size_t i = 0; i < chats_f.size; i++)
+    {
+        chats_f.chat_items[i] = malloc(sizeof(chat_item_t));
+        chats_f.chat_items[i] = temp_arr[i];
+    }
+    puts("Fuck1");
+    for (size_t i = 0; i < chats_f.size; i++)
+    {
+        if (temp_arr[i] != NULL)
+        {
+            free(temp_arr[i]);
+            temp_arr[i] = NULL;
+        }
+    }
+    if (temp_arr != NULL)
+    {
+        free(temp_arr);
+        temp_arr = NULL;
+    }
+
+    for (int i = 0; i < chats_f.size; i++)
+    {
+        gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
+    }
+    gtk_widget_show_all(main_form.chats_grid);
 }

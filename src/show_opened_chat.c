@@ -16,7 +16,9 @@ void show_opened_chat(GtkWidget *main_grid, char *chat_id)
         int j = 0;
         for (int i = 0; curr_chat.messages_g[i]; i++)
         {
-            if (strcmp(chat_id, (char *)gtk_widget_get_name(curr_chat.messages_g[i]->message)) == 0)
+            char *curr_id = (char *)gtk_widget_get_name(curr_chat.messages_g[i]->message);
+          
+            if (strcmp(chat_id, curr_id) == 0)
             {
                 gtk_grid_attach(GTK_GRID(main_form.message_line), curr_chat.messages_g[i]->event_box_message, 0, j++, 1, 1);
             }
@@ -50,6 +52,7 @@ void show_opened_chat(GtkWidget *main_grid, char *chat_id)
 
     GtkWidget *arr[] = {main_form.right_content[0], message_panel, messages_container, main_form.message_line, message_size_body,
                         msg_entry->text_view, msg_entry->container, main_form.message_scroll, emoji_container, event_box_emoji, pin_container, send_container, event_box_send, NULL};
+    
     g_timeout_add(50, change_insert_to_message, main_form.message_scroll);
     css_set(arr, data.main_theme_path);
 
