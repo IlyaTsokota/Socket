@@ -1,11 +1,11 @@
 #include "server.h"
 
-char *receive_image(int socket, char *chat_id, char *message_id)
-{ // Start function
-
+char *receive_img_to_profile(int socket, char *u_id, char *filename) //, char *chat_id, char *message_id)
+{
+   
     int buffersize = 0, recv_size = 0, size = 0, read_size, write_size, packet_index = 1, stat;
     char imagearray[10241], verify = '1';
-    FILE *image;
+
     //Find the size of the image
     do
     {
@@ -25,17 +25,27 @@ char *receive_image(int socket, char *chat_id, char *message_id)
         stat = write(socket, &buffer, sizeof(int));
     } while (stat < 0);
 
-    printf("Reply sent\n");
-    printf(" \n");
-    const char *path_parts[] = {"./", chat_id, "/", message_id, ".png", NULL};
-    char *path = strjoins_arr(path_parts);
-    puts(path);
-    image = fopen("path", "w");
+
+    const char *path_parts[] = {"./user_info/", u_id, NULL};
+    char *path_folder = strjoins_arr(path_parts);
+  
+
+    int status = mkdir("./user_info", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    status = mkdir(path_folder, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+ 
+    char *file_extension = get_filename_extension(filename);
+ 
+    char *path_resource = strjoin(3,  path_folder, "/icon", file_extension);
+    remove(path_resource);
+    FILE *image = fopen(path_resource, "w");
+    free(path_folder);
+    free(file_extension);
+    free(path_resource);
 
     if (image == NULL)
     {
         printf("Error has occurred. Image file could not be opened\n");
-         return strdup("0");
+        return strdup("0");
     }
 
     //Loop while we have not received the entire file yet
@@ -90,6 +100,8 @@ char *receive_image(int socket, char *chat_id, char *message_id)
     }
 
     fclose(image);
+    
+
     printf("Image successfully Received!\n");
-  return strdup("1");
+    return strdup("1");
 }

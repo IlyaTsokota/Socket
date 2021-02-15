@@ -113,7 +113,7 @@ char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock)
     }
     else
     {
-        char *answ = chat_create(con, my_id, c_id, 0, "1", sock);
+        char *answ = chat_create(con, my_id, c_id, 0, "1", 0, sock);
         puts("How");
         free(answ);
         free(ch_id);

@@ -140,7 +140,6 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin, int sock)
     //Добавить юзеру пароль и пин в креденшлс
     const char *request_parts4[] = {"INSERT INTO credentials (u_id, cr_password, cr_pincode) VALUES (\"", answer, "\",\"", encrypted_password, "\",\"", encrypted_pin, "\");", NULL};
     bdrequest = strjoins_arr(request_parts4);
-    free(answer);
 
     puts(bdrequest);
     if (mysql_query(con, bdrequest))
@@ -149,6 +148,7 @@ char *create_double_bottom(MYSQL *con, char *u_id, char *pin, int sock)
     }
     //Добавить юзеру Saved Messages в контакты
     chat_create(con, answer, "1", 0, "0", 2, sock);
+    free(answer);
 
     mysql_close(con);
 
