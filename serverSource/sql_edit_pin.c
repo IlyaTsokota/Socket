@@ -13,7 +13,6 @@ char *change_pin(MYSQL *con, char *u_id, char *new_pin)
         finish_with_error(con);
     }
     free(bdrequest); //IR
-    free(encrypted_pin);
 
     mysql_close(con);
 

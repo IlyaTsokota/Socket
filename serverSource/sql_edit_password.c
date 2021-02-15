@@ -13,7 +13,6 @@ char *change_password(MYSQL *con, char *u_id, char *new_pass)
         finish_with_error(con);
     }
     free(bdrequest); //IR
-    free(encrypted_pass);
 
     mysql_close(con);
 
