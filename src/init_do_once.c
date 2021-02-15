@@ -18,4 +18,6 @@ void init_do_once(bool value)
     do_once.bshow_add_participant = value;
     do_once.bshow_remove_participant = value;
     do_once.bshow_add_contact = value;
+    do_once.bshow_change_password = value;
+    do_once.bshow_change_pin= value;
 }

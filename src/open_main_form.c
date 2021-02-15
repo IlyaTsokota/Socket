@@ -33,7 +33,7 @@ void open_main_form(GtkWidget *window)
     GtkWidget *event_box_setting = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_setting"));
     main_form.left_panel_img->setting = GTK_WIDGET(gtk_builder_get_object(builder, "setting_img"));
 
-    GtkWidget *is_connection = GTK_WIDGET(gtk_builder_get_object(builder, "is_connection"));
+    main_form.is_connection = GTK_WIDGET(gtk_builder_get_object(builder, "is_connection"));
     GtkWidget *con_img = GTK_WIDGET(gtk_builder_get_object(builder, "con_img"));
 
     GtkWidget *event_box_profile = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_profile"));
@@ -53,7 +53,7 @@ void open_main_form(GtkWidget *window)
 
     show_opened_chat(main_form.main_grid, chats_f.curr_chat);
 
-    GtkWidget *arr[] = {box_contacts, main_form.app_form, left_panel, is_connection, con_img, top_panel, main_form.search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
+    GtkWidget *arr[] = {box_contacts, main_form.app_form, left_panel,  main_form.is_connection , con_img, top_panel, main_form.search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
                         main_form.left_panel_img->contact, main_form.left_panel_img->chat, main_form.left_panel_img->setting, main_form.left_panel_img->lock, NULL};
     css_set(arr, data.main_theme_path);
     edit_styles_for_widget(main_form.left_panel_img->chat, "* {background: #88c5ce;}");

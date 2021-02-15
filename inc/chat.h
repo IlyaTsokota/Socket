@@ -45,7 +45,8 @@ typedef struct
 	bool bshow_add_participant;
 	bool bshow_remove_participant;
 	bool bshow_add_contact;
-
+	bool bshow_change_password;
+	bool bshow_change_pin;
 } do_once_t;
 
 do_once_t do_once;
@@ -201,6 +202,8 @@ typedef struct
 	char *register_three;
 	char *register_two;
 	char *remove_participant;
+	char *change_password;
+	char *change_pin;
 
 } localization_t;
 
@@ -265,6 +268,7 @@ typedef struct
 	left_panel_img_t *left_panel_img;
 	bool is_admin_by_chat;
 	GtkWidget *delete_chat;
+	GtkWidget *is_connection;
 } main_form_t;
 
 typedef struct
@@ -413,6 +417,13 @@ current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
 
+gboolean switch_vpn(GtkWidget *widget);
+void change_pin(GtkWidget *button, data_input_t *info);
+void show_change_pin(GtkWidget *main_grid);
+gboolean open_change_pin(GtkWidget *widget, GdkEventButton *event);
+void change_password(GtkWidget *button, data_input_t *info);
+void show_change_password(GtkWidget *main_grid);
+gboolean open_change_password(GtkWidget *widget, GdkEventButton *event);
 gboolean remove_chat(GtkWidget *widget);
 void update_chats_after_delete();
 gboolean exit_from_chat(GtkWidget *widget);

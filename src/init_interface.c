@@ -2,9 +2,9 @@
 
 void init_interface()
 {
-    main_form.right_content = malloc(sizeof(GtkWidget *) * 15);
-    main_form.right_content[14] = NULL;
-    for (size_t i = 0; i < 14; i++)
+    main_form.right_content = malloc(sizeof(GtkWidget *) * 17);
+    main_form.right_content[16] = NULL;
+    for (size_t i = 0; i < 16; i++)
     {
         main_form.right_content[i] = gtk_grid_new();
         gtk_widget_set_hexpand(main_form.right_content[i], true);
@@ -24,19 +24,17 @@ void init_interface()
     }
 }
 
-
-
 void clear_interface()
 {
     for (size_t i = 0; main_form.right_content[i]; i++)
     {
-        gtk_widget_destroy(main_form.right_content[i]) ;
+        gtk_widget_destroy(main_form.right_content[i]);
     }
     free(main_form.right_content);
 
     for (size_t i = 0; main_form.left_content[i]; i++)
     {
-        gtk_widget_destroy(main_form.left_content[i]) ;
+        gtk_widget_destroy(main_form.left_content[i]);
     }
     free(main_form.left_content);
 }

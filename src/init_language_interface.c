@@ -27,6 +27,8 @@ void init_language_interface(char *language)
         localization_s.register_three = strdup("share/register_three.glade");
         localization_s.register_two = strdup("share/register_two.glade");
         localization_s.remove_participant = strdup("share/remove_participant.glade");
+        localization_s.change_password = strdup("share/change_password.glade");
+        localization_s.change_pin = strdup("share/change_pin.glade");
     }
     else
     {
@@ -53,6 +55,8 @@ void init_language_interface(char *language)
         localization_s.register_three = strdup("share/register_three-ru.glade");
         localization_s.register_two = strdup("share/register_two-ru.glade");
         localization_s.remove_participant = strdup("share/remove_participant-ru.glade");
+        localization_s.change_password = strdup("share/change_password-ru.glade");
+        localization_s.change_pin = strdup("share/change_pin-ru.glade");
     }
 }
 
@@ -124,4 +128,6 @@ void free_language_interface()
     free(localization_s.register_three);
     free(localization_s.register_two);
     free(localization_s.remove_participant);
+    free(localization_s.change_password);
+    free(localization_s.change_pin);
 }

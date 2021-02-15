@@ -127,6 +127,10 @@ void show_privacy(GtkWidget *main_grid)
     GtkWidget *change_pin = GTK_WIDGET(gtk_builder_get_object(builder, "change_pin"));
     GtkWidget *vpn_btn = GTK_WIDGET(gtk_builder_get_object(builder, "vpn_btn"));
 
+    g_signal_connect(G_OBJECT(change_password), "clicked", G_CALLBACK(open_change_password), NULL);
+    g_signal_connect(G_OBJECT(change_pin), "clicked", G_CALLBACK(open_change_pin), NULL);
+    g_signal_connect(G_OBJECT(vpn_btn), "clicked", G_CALLBACK(switch_vpn), NULL);
+
     GtkWidget *arr[] = {main_form.right_content[6], setting_form, text_info, change_password, change_pin, vpn_btn, NULL};
     css_set(arr, data.main_theme_path);
     gtk_grid_attach(GTK_GRID(main_form.right_content[6]), child, 0, 0, 1, 1);
@@ -134,6 +138,23 @@ void show_privacy(GtkWidget *main_grid)
     gtk_widget_show_all(main_form.right_content[6]);
 
     g_object_unref(builder);
+}
+
+gboolean switch_vpn(GtkWidget *widget)
+{
+    static int i = 0;
+    if ((i & 1) == 0)
+    {
+        gtk_button_set_label(GTK_BUTTON(widget), "VPN configurations OFF");
+        edit_styles_for_widget(main_form.is_connection, "*{background: green;}");
+    }
+    else
+    {
+        gtk_button_set_label(GTK_BUTTON(widget), "VPN configurations ON");
+        edit_styles_for_widget(main_form.is_connection, "*{background: #88c5ce;}");
+    }
+    i++;
+    return false;
 }
 
 gboolean open_double_bottom(GtkWidget *widget, GdkEventButton *event)

@@ -139,11 +139,15 @@ void create_one_chat(int index, chat_t *chat)
     {
         // здесь ch_avatar
         chats_f.chat_items[index]->img_contact = gtk_image_new_from_file("share/resources/img/aa.png");
+           gtk_image_set_pixel_size(GTK_IMAGE(chats_f.chat_items[index]->img_contact),  75);
+
     }
     else
     {
         // здесь u_avatar
         chats_f.chat_items[index]->img_contact = gtk_image_new_from_file("share/resources/img/aa.png");
+        gtk_image_set_pixel_size(GTK_IMAGE(chats_f.chat_items[index]->img_contact),  150);
+
     }
 
     gtk_widget_set_hexpand(chats_f.chat_items[index]->img_contact, true);
