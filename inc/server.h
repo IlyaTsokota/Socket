@@ -23,6 +23,7 @@
 //macros defines
 #define array_init(a) (a).arr = NULL, (a).cnt = 0
 
+char *sql_is_pin_equal_to_db_acc(MYSQL *con, char *my_id, char *pincode); //38
 //socket_send_data
 bool socket_send_data(char *data, int socket);
 

@@ -122,6 +122,9 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 37:
         puts("Query 37 -> add_first_message");
         return add_first_message(con, array[1], array[2], sock);
+    case 38:
+        puts("Query 38 -> sql_is_pin_equal_to_db_acc");
+        return sql_is_pin_equal_to_db_acc(con, array[1], array[2]);
     default:
         puts("Server queries_handler default error");
         return "Server queries_handler default error";
