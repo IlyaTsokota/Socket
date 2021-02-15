@@ -3,7 +3,7 @@ char *is_user_chat_admin(MYSQL *con, char *ch_id, char *u_id)
 {
     char *answer;
 
-    const char *request_parts[] = {"select ch_isadmin from chatusers where u_id = ", u_id, "\" and ch_id =  \"", ch_id, "\" limit 1;", NULL};
+    const char *request_parts[] = {"select ch_isadmin from chatusers where u_id = \"", u_id, "\" and ch_id = \"", ch_id, "\" limit 1;", NULL};
     char *bdrequest = strjoins_arr(request_parts);
 
     puts(bdrequest); //Вывод запроса в консоль
@@ -30,11 +30,11 @@ char *is_user_chat_admin(MYSQL *con, char *ch_id, char *u_id)
     {
         for (int i = 0; i < num_fields; i++)
         {
-            answer = row[i];
+            answer = strdup(row[i]);
         }
     }
     mysql_free_result(result);
     mysql_close(con);
 
-     return strdup(answer);
+     return answer;
 }

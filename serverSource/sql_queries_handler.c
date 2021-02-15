@@ -115,14 +115,13 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return delete_message(con, array[1], array[2]);
     case 35:
         puts("Query 35 -> contact_add_by_login");
-        return contact_add_by_login(con, array[1], array[2], 1 ,sock);
-   case 36:
+        return contact_add_by_login(con, array[1], array[2], 1, sock);
+    case 36:
         puts("Query 36 -> get_user_info_by_login");
-        return get_user_info_by_login(con, array[1],sock);
-   case 37:
+        return get_user_info_by_login(con, array[1], sock);
+    case 37:
         puts("Query 37 -> add_first_message");
-        return add_first_message(con, array[1],array[2],sock);
-
+        return add_first_message(con, array[1], array[2], sock);
     default:
         puts("Server queries_handler default error");
         return "Server queries_handler default error";

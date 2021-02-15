@@ -10,7 +10,7 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
                                    user_id, "\" and a.ch_id = ch.ch_id)) from chat ch join chatusers cu on ch.ch_id = cu.ch_id where cu.u_id = \"", user_id, "\" ;", NULL};
     char *bdrequest = strjoins_arr(request_parts);
 
-    //puts(bdrequest); //Вывод запроса в консоль
+    puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))
     {
@@ -35,13 +35,30 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     str = strdup("{\"chats\": [");
     while ((row = mysql_fetch_row(result)))
     {
+        puts("row[2]");
+
+        puts(row[2]);
+
+
         chat = (chat_t *)malloc(sizeof(chat_t));
         chat->ch_id = strdup(row[0]);
+                puts("SUKA");
+
         chat->ch_name = strdup(row[1]);
+                puts("SUKA1");
+
         chat->ch_avatar = strdup(row[2]);
+                puts("SUKA2");
+
         chat->u_login = strdup(row[3]);
+                puts("SUKA3");
+
         chat->u_lastSeen = strdup(row[4]);
+                puts("SUKA4");
+
         chat->u_avatar = strdup(row[5]);
+                puts("SUKA5");
+
         tmp_str = write_chat_to_json(chat);
         //
         tmp_str1 = strjoin(3, str, tmp_str, coma_str);
