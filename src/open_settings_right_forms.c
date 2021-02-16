@@ -55,6 +55,9 @@ void show_edit_profile(GtkWidget *main_grid)
     GtkWidget *delete_acc = GTK_WIDGET(gtk_builder_get_object(builder, "delete_acc"));
     GtkWidget *just = GTK_WIDGET(gtk_builder_get_object(builder, "just"));
     GtkWidget *curr_img = GTK_WIDGET(gtk_builder_get_object(builder, "curr_img"));
+    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(data.picture_name, 110, 110, TRUE, NULL);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(curr_img), pixbuf);
+    
     GtkWidget *select_img = GTK_WIDGET(gtk_builder_get_object(builder, "select_img"));
     gtk_file_chooser_set_local_only(GTK_FILE_CHOOSER(select_img), false);
     GtkFileFilter *filter = gtk_file_filter_new();
@@ -64,7 +67,6 @@ void show_edit_profile(GtkWidget *main_grid)
     gtk_file_filter_add_pattern(filter, "*.webp");
     gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(select_img), filter);
     g_signal_connect(G_OBJECT(select_img), "selection-changed", G_CALLBACK(update_img_in_profile), curr_img);
-
     GtkWidget *login_edit = GTK_WIDGET(gtk_builder_get_object(builder, "login_edit"));
 
     gtk_label_set_text(GTK_LABEL(login_edit), data.user_login);

@@ -15,7 +15,9 @@ void show_setting(GtkWidget *main_grid)
 
     GtkWidget *info_container = GTK_WIDGET(gtk_builder_get_object(builder, "info_container"));
     main_form.setting_img = GTK_WIDGET(gtk_builder_get_object(builder, "info_img"));
-
+    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(data.picture_name, 55, 55, TRUE, NULL);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(main_form.setting_img), pixbuf);
+  
     main_form.setting_login = GTK_WIDGET(gtk_builder_get_object(builder, "info_login"));
     GtkWidget *info_status = GTK_WIDGET(gtk_builder_get_object(builder, "info_status"));
     GtkWidget *socket_version = GTK_WIDGET(gtk_builder_get_object(builder, "socket_version"));

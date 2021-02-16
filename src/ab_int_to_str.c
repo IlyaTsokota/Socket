@@ -62,3 +62,25 @@ char* int_to_str(int n)
        return NULL;
     }
 }
+
+
+char *strjoins_arr(const char **str_arr)
+{
+    if (str_arr == NULL) return NULL;
+    const char **tmp = str_arr;
+    char *endstr = NULL;
+    ssize_t endlen = 0, i = 0;
+    while ((*tmp)) {
+        endlen+= strlen(*tmp);
+        tmp++;
+    }
+    endstr = mx_strnew(endlen);
+    tmp = str_arr;
+
+    while ((*tmp)) {
+         strcpy(&endstr[i], *tmp);
+         i+=strlen(*tmp);
+         tmp++;
+    }
+    return endstr;
+}

@@ -3,7 +3,8 @@
 
 #define _XOPEN_SOURCE 700
 #include <time.h>
-
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <gtk/gtk.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <stdio.h>
@@ -417,6 +418,11 @@ current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
 
+char *strjoins_arr(const char **str_arr);
+char *get_filename_extension(char *filename);
+char *get_profile_img(int socket, char *filename);
+void recieve_image(int socket, char *path);
+void send_image(int sock, char *filename);
 void update_img_in_profile(GtkFileChooser *chooser, GtkImage *img);
 gboolean switch_vpn(GtkWidget *widget);
 void change_pin(GtkWidget *button, data_input_t *info);
