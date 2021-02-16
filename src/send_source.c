@@ -2,19 +2,19 @@
 
 void send_source(int socket, char *filename)
 {
+    g_mutex_lock(&main_form.mutex);
+
     char *num_f = strdup("25");
-    char *arr[] = {"0" , NULL};
+    puts(filename);
+    char *arr[] = {data.user_id, filename, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
-    write(data.socket_desc, json, strlen(json));
-    
+    write(socket, json, strlen(json));
+    free(json);
     FILE *picture;
-    int size, read_size, stat, packet_index;
-    char send_buffer[10240], read_buffer[256];
-    packet_index = 1;
+    ssize_t size;
 
     picture = fopen(filename, "r");
-    printf("Getting Picture Size\n");
 
     if (picture == NULL)
     {
@@ -24,47 +24,20 @@ void send_source(int socket, char *filename)
     fseek(picture, 0, SEEK_END);
     size = ftell(picture);
     fseek(picture, 0, SEEK_SET);
-    printf("Total Picture size: %i\n", size);
+    printf("Total Picture size: %zu\n", size);
+    write(socket, &size, sizeof(size));
 
-    //Send Picture Size
-    printf("Sending Picture Size\n");
-    write(socket, (void *)&size, sizeof(int));
-
-    //Send Picture as Byte Array
     printf("Sending Picture as Byte Array\n");
-
-    do
-    { //Read while we get errors that are due to signals.
-        stat = read(socket, &read_buffer, 255);
-        printf("Bytes read: %i\n", stat);
-    } while (stat < 0);
-
-    printf("Received data in socket\n");
-    printf("Socket data: %s\n", read_buffer);
-
-    while (!feof(picture))
+    char send_buffer[1024];
+    while (size > 0)
     {
-        //while(packet_index = 1){
-        //Read from the file into our send buffer
-        read_size = fread(send_buffer, 1, sizeof(send_buffer) - 1, picture);
-
-        //Send data through our socket
-        do
-        {
-            stat = write(socket, send_buffer, read_size);
-        } while (stat < 0);
-
-        printf("Packet Number: %i\n", packet_index);
-        printf("Packet Size Sent: %i\n", read_size);
-        printf(" \n");
-        printf(" \n");
-
-        packet_index++;
-
-        //Zero out our send buffer
-        memset(send_buffer, 0, sizeof(send_buffer));
-        // bzero(send_buffer, sizeof(send_buffer));
+        fread(send_buffer, 1, 1024, picture);
+        write(socket, send_buffer, sizeof(send_buffer));
+        size -= 1024;
+        // memset(send_buffer, 0, sizeof(send_buffer));
     }
+    fclose(picture);
     char buf[1];
-    read(socket, buf, 1); //ах ты ёбаный ублюдок...
+    read(socket, buf, 1);
+    g_mutex_unlock(&main_form.mutex);
 }

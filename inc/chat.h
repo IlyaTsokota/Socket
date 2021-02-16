@@ -11,7 +11,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
-#include <strings.h>
+     #include <strings.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -269,6 +269,8 @@ typedef struct
 	bool is_admin_by_chat;
 	GtkWidget *delete_chat;
 	GtkWidget *is_connection;
+	GtkWidget *setting_img;
+	GtkWidget *profile_img;
 } main_form_t;
 
 typedef struct
@@ -314,8 +316,6 @@ typedef struct
 	GtkWidget *grid_list_contact_img;
 	GtkWidget *img_contact;
 } contacts_widget_s;
-
-
 
 typedef struct
 {
@@ -417,6 +417,7 @@ current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
 
+void update_img_in_profile(GtkFileChooser *chooser, GtkImage *img);
 gboolean switch_vpn(GtkWidget *widget);
 void change_pin(GtkWidget *button, data_input_t *info);
 void show_change_pin(GtkWidget *main_grid);

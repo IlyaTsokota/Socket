@@ -37,10 +37,10 @@ void application_activate(GtkApplication *application, gpointer user_data)
 
     settings = mx_file_to_str("settings.json");
     settings_t *settings_field = get_settings(settings);
-    GtkBuilder *builder = glade_file_to_interface("share/window_auth.glade"); 
+    GtkBuilder *builder = glade_file_to_interface("share/window_auth.glade");
     data.win = GTK_WIDGET(gtk_builder_get_object(builder, "windowAuth"));
     what_theme_select(settings_field->theme);
-    css_set_for_one(data.win, data.auth_theme_path); 
+    css_set_for_one(data.win, data.auth_theme_path);
     init_language_interface(settings_field->language);
     g_object_unref(builder);
 
@@ -74,6 +74,11 @@ void application_shutdown(GtkApplication *application, gpointer user_data)
 
     if (main_form.main_grid != NULL && data.user_id != NULL)
     {
+        if (main_form.last_ms_id != NULL)
+        {
+            free(main_form.last_ms_id);
+            main_form.last_ms_id = NULL;
+        }
         main_form.last_ms_id = get_last_mesage_id("messages.json");
         get_all_messages(data.user_id, main_form.last_ms_id);
     }

@@ -56,8 +56,20 @@ void show_edit_profile(GtkWidget *main_grid)
     GtkWidget *just = GTK_WIDGET(gtk_builder_get_object(builder, "just"));
     GtkWidget *curr_img = GTK_WIDGET(gtk_builder_get_object(builder, "curr_img"));
     GtkWidget *select_img = GTK_WIDGET(gtk_builder_get_object(builder, "select_img"));
+    gtk_file_chooser_set_local_only(GTK_FILE_CHOOSER(select_img), false);
+    GtkFileFilter *filter = gtk_file_filter_new();
+    gtk_file_filter_add_pattern(filter, "*.jpeg");
+    gtk_file_filter_add_pattern(filter, "*.jpg");
+    gtk_file_filter_add_pattern(filter, "*.png");
+    gtk_file_filter_add_pattern(filter, "*.webp");
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(select_img), filter);
+    g_signal_connect(G_OBJECT(select_img), "selection-changed", G_CALLBACK(update_img_in_profile), curr_img);
+
     GtkWidget *login_edit = GTK_WIDGET(gtk_builder_get_object(builder, "login_edit"));
+
+    gtk_label_set_text(GTK_LABEL(login_edit), data.user_login);
     free_user_s(user);
+
     GtkWidget *arr[] = {main_form.right_content[8], setting_form, nameLable, profile_s.name,
                         surnameLable, profile_s.surname, quoteLable, profile_s.quote, apply_btn, delete_acc, just, curr_img,
                         select_img, login_edit, NULL};
@@ -69,6 +81,18 @@ void show_edit_profile(GtkWidget *main_grid)
     gtk_widget_show_all(main_form.right_content[8]);
 
     g_object_unref(builder);
+}
+
+void update_img_in_profile(GtkFileChooser *chooser, GtkImage *img)
+{
+    char *filename = gtk_file_chooser_get_filename(chooser);
+    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, 110, 110, TRUE, NULL);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(img), pixbuf);
+    GdkPixbuf *pixbuf1 = gdk_pixbuf_new_from_file_at_scale(filename, 55, 55, TRUE, NULL);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(main_form.setting_img), pixbuf1);
+    GdkPixbuf *pixbuf2 = gdk_pixbuf_new_from_file_at_scale(filename, 40, 40, TRUE, NULL);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(main_form.profile_img), pixbuf2);
+    send_source(data.socket_desc, filename);
 }
 
 gboolean open_language(GtkWidget *widget, GdkEventButton *event)

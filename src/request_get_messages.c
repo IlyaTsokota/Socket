@@ -45,3 +45,5 @@ char *request_on_server(int socket, char *request)
     g_mutex_unlock(&main_form.mutex);
     return str;
 }
+
+

@@ -14,7 +14,7 @@ void show_setting(GtkWidget *main_grid)
     GtkWidget *setting_info_panel = GTK_WIDGET(gtk_builder_get_object(builder, "setting_info_panel"));
 
     GtkWidget *info_container = GTK_WIDGET(gtk_builder_get_object(builder, "info_container"));
-    GtkWidget *info_img = GTK_WIDGET(gtk_builder_get_object(builder, "info_img"));
+    main_form.setting_img = GTK_WIDGET(gtk_builder_get_object(builder, "info_img"));
 
     main_form.setting_login = GTK_WIDGET(gtk_builder_get_object(builder, "info_login"));
     GtkWidget *info_status = GTK_WIDGET(gtk_builder_get_object(builder, "info_status"));
@@ -69,7 +69,7 @@ void show_setting(GtkWidget *main_grid)
     g_signal_connect(G_OBJECT(event_double_bottom), "button-press-event", G_CALLBACK(open_double_bottom), NULL);
     g_signal_connect(G_OBJECT(event_logout), "button-press-event", G_CALLBACK(logout), NULL);
 
-    GtkWidget *arr[] = {main_form.left_content[2], setting_info_panel, info_container, info_img, main_form.setting_login, info_status,
+    GtkWidget *arr[] = {main_form.left_content[2], setting_info_panel, info_container, main_form.setting_img , main_form.setting_login, info_status,
                         socket_version, socket_platform, event_edit_profile, setting_elements.edit_profile_img, setting_elements.edit_profile_text, event_notifications,
                         setting_elements.notifications_img, setting_elements.notifications_text, event_privacy, setting_elements.privacy_img, setting_elements.privacy_text, event_language, setting_elements.language_img,
                         setting_elements.language_text, event_logout, logout_img, logout_text, event_double_bottom, setting_elements.double_bottom_img, setting_elements.double_bottom_text, event_theme, setting_elements.theme_img, setting_elements.theme_text, NULL};

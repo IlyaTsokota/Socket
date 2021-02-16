@@ -28,9 +28,7 @@ void *sending(gpointer text_view)
         char *arr[] = {chats_f.curr_chat, data.user_id, "0", "0", "0", message, NULL};
         char *json = write_to_json(num_f, arr);
         free(num_f);
-        // g_mutex_unlock(&main_form.mutex);
         char *response = request_on_server(update->socket, json);
-        g_mutex_unlock(&main_form.mutex_seding_msg);
         refresh_chat(update);
         clear_text__buffer(GTK_TEXT_VIEW(text_view));
         g_timeout_add(50, change_insert_to_message, main_form.message_scroll);
@@ -39,13 +37,13 @@ void *sending(gpointer text_view)
     }
     else
     {
-        g_mutex_unlock(&main_form.mutex_seding_msg);
 
         puts("Data sent faild!\n");
     }
 
     close(update->socket);
     free(update);
+    g_mutex_unlock(&main_form.mutex_seding_msg);
 
     // g_thread_exit(NULL);
     // g_mutex_lock(&main_form.mutex_seding_msg);

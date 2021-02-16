@@ -132,21 +132,34 @@ void change_pin(GtkWidget *button, data_input_t *info)
     free(minSize);
     if (flag == 1)
     {
-        char *num_f = strdup("28");
-        char *arr[] = {data.user_id, password, NULL};
-        char *json = write_to_json(num_f, arr);
+        char *num_f = strdup("38");
+        char *arr1[] = {data.user_id, password, NULL};
+        char *json = write_to_json(num_f, arr1);
         free(num_f);
-        if (request_to_server(json))
+        if (!request_to_server(json))
         {
-            edit_styles_for_widget(info->fail_lable, "* {color: green;}");
-            gtk_label_set_text(GTK_LABEL(info->fail_lable), "Successfully");
+            free(json);
+            num_f = strdup("28");
+            char *arr[] = {data.user_id, password, NULL};
+            json = write_to_json(num_f, arr);
+            free(num_f);
+            if (request_to_server(json))
+            {
+                edit_styles_for_widget(info->fail_lable, "* {color: green;}");
+                gtk_label_set_text(GTK_LABEL(info->fail_lable), "Successfully");
+            }
+            else
+            {
+                edit_styles_for_widget(info->fail_lable, "* {color: red;}");
+                gtk_label_set_text(GTK_LABEL(info->fail_lable), "Fail");
+            }
+            free(json);
         }
         else
         {
             edit_styles_for_widget(info->fail_lable, "* {color: red;}");
-            gtk_label_set_text(GTK_LABEL(info->fail_lable), "Fail");
+            gtk_label_set_text(GTK_LABEL(info->fail_lable), "You can't use this pin");
         }
-        free(json);
     }
     //g_mutex_unlock(&main_form.mutex);
 }
