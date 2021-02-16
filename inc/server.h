@@ -25,6 +25,8 @@
 
 //macros defines
 #define array_init(a) (a).arr = NULL, (a).cnt = 0
+
+void write_file(int sockfd, FILE *file);
 char *get_filename_extension(char *filename);
 char *sql_is_pin_equal_to_db_acc(MYSQL *con, char *my_id, char *pincode); //38
 //socket_send_data
@@ -33,7 +35,7 @@ bool socket_send_data(char *data, int socket);
 char *send_image(int socket, char *chat_id, char *message_id);
 //images
 
-char *receive_img_to_profile(MYSQL con, int socket, char *u_id, char *filename); //, char *chat_id, char *message_id)
+char *receive_img_to_profile(MYSQL *con, int socket, char *u_id, char *filename); //, char *chat_id, char *message_id)
 //utilities
 
 void array_clear(array_t *a);

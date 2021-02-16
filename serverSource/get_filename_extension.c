@@ -8,6 +8,7 @@ char *get_filename_extension(char *filename){
     {
         if(filename[i] == '.'){
             index = i;
+            break;
         }
     }
    char *result = strdup(&filename[index]);

@@ -9,10 +9,10 @@ MYSQL *connection_try()
         fprintf(stderr, "%s\n", mysql_error(con));
         exit(1);
     }
-    if (mysql_real_connect(con, "159.224.0.212", "root", "Dhtvtybdfujydhjlt032",
-                           "socket_db", 0, NULL, 0) == NULL)
-    // if (mysql_real_connect(con, "178.165.30.151", "root", "3030",
+    // if (mysql_real_connect(con, "159.224.0.212", "root", "Dhtvtybdfujydhjlt032",
     //                        "socket_db", 0, NULL, 0) == NULL)
+    if (mysql_real_connect(con, "178.165.30.151", "root", "3030",
+                           "socket_db", 0, NULL, 0) == NULL)
     {
         fprintf(stderr, "%s\n", mysql_error(con));
         mysql_close(con);
@@ -48,24 +48,28 @@ void *connection_handler(void *socket_desc)
 
         // server_answer_message= password_check(handler_con, "1111", "itsokota");
 
+
         array_t query = json_to_data(client_message);
         puts("<-------------[Processing the request]------------->");
-        
         server_answer_message = queries_handler(handler_con, query.arr, sock);
         puts("<-------------[Waiting for next query]------------->");
-         puts("qqqqq");
+        puts("qqqqq");
         array_clear(&query);
         //password_check(handler_con, "1111", "itsokota");
- puts("wwww");
+        puts("wwww");
 
         write(sock, server_answer_message, strlen(server_answer_message));
-               puts("PZDC");
+        puts("PZDC");
 
         puts(server_answer_message);
 
-        free(server_answer_message);
-        memset(client_message, 0, 2000);
-
+        if (server_answer_message != NULL)
+        {
+            free(server_answer_message);
+            server_answer_message = NULL;
+        }
+        memset(&client_message, 0, sizeof(client_message));
+        puts("AAAAA");
         if (read_size == 0)
         {
             puts("Client off");

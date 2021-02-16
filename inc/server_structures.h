@@ -10,7 +10,7 @@ struct public_key_class
 typedef struct
 {
   char **arr;
-  size_t cnt;
+  int cnt;
 } array_t;
 
 typedef struct
