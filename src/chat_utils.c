@@ -9,8 +9,8 @@ void set_chat_name_in_info_chat()
 
 gboolean open_add_chat(GtkWidget *widget, GdkEventButton *event)
 {
-    main_form.is_allow_access_next_panel = true;
-    main_form.current_panel_id = -1;
+     // = true;
+     // = -1;
     hide_gtk_widgets(main_form.right_content);
     show_add_chat(main_form.main_grid);
     gtk_widget_show_all(main_form.right_content[9]);
@@ -52,8 +52,7 @@ void show_add_chat(GtkWidget *main_grid)
 
 gboolean open_chat_info(GtkWidget *widget, GdkEventButton *event)
 {
-    main_form.is_allow_access_next_panel = true;
-    main_form.current_panel_id = -1;
+    
     char *num_f = strdup("32");
     char *arr[] = {chats_f.curr_chat, data.user_id, NULL};
     char *json = write_to_json(num_f, arr);
@@ -91,8 +90,20 @@ void show_chat_info(GtkWidget *main_grid)
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_setting_panel")); // это грид который буду менять
     GtkWidget *setting_form = GTK_WIDGET(gtk_builder_get_object(builder, "setting_form"));
     GtkWidget *nameLable = GTK_WIDGET(gtk_builder_get_object(builder, "nameLable"));
+
     main_form.chat_name_title = GTK_WIDGET(gtk_builder_get_object(builder, "login_edit"));
+    main_form.curr_chat_img = GTK_WIDGET(gtk_builder_get_object(builder, "curr_img"));
+    
     GtkWidget *select_img = GTK_WIDGET(gtk_builder_get_object(builder, "select_img"));
+    gtk_file_chooser_set_local_only(GTK_FILE_CHOOSER(select_img), false);
+    GtkFileFilter *filter = gtk_file_filter_new();
+    gtk_file_filter_add_pattern(filter, "*.jpeg");
+    gtk_file_filter_add_pattern(filter, "*.jpg");
+    gtk_file_filter_add_pattern(filter, "*.png");
+    gtk_file_filter_add_pattern(filter, "*.webp");
+
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(select_img), filter);
+    g_signal_connect(G_OBJECT(select_img), "selection-changed", G_CALLBACK(update_img_in_chat), main_form.curr_chat_img);
 
     int *maxSize = (int *)malloc(sizeof(int));
     *maxSize = 16;
@@ -111,7 +122,7 @@ void show_chat_info(GtkWidget *main_grid)
                         nameLable, select_img, main_form.delete_chat, main_form.chat_name_title, main_form.chat_name_input, NULL};
 
     css_set(arr, data.main_theme_path);
-    g_signal_connect(G_OBJECT(main_form.chat_name_input), "changed", G_CALLBACK(change_event_login_or_password), minSize);
+    g_signal_connect(G_OBJECT(main_form.chat_name_input), "changed", G_CALLBACK(change_event_entry_only_aplha), minSize);
 
     g_signal_connect(G_OBJECT(apply_btn), "clicked", G_CALLBACK(edit_name_chat), NULL);
     g_signal_connect(G_OBJECT(add_participants), "clicked", G_CALLBACK(open_add_participant), NULL);
@@ -126,8 +137,6 @@ void show_chat_info(GtkWidget *main_grid)
 
 gboolean open_add_participant(GtkWidget *widget, GdkEventButton *event)
 {
-    main_form.is_allow_access_next_panel = true;
-    main_form.current_panel_id = -1;
     hide_gtk_widgets(main_form.right_content);
     show_add_participant(main_form.main_grid);
     gtk_widget_show_all(main_form.right_content[11]);
@@ -205,8 +214,6 @@ void add_participant(GtkWidget *button, data_input_t *info)
 
 gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event)
 {
-    main_form.is_allow_access_next_panel = true;
-    main_form.current_panel_id = -1;
     hide_gtk_widgets(main_form.right_content);
     show_remove_participant(main_form.main_grid);
     refresh_users_by_chat();
@@ -265,8 +272,8 @@ void show_remove_participant(GtkWidget *main_grid)
 
 gboolean open_add_contact(GtkWidget *widget, GdkEventButton *event)
 {
-    main_form.is_allow_access_next_panel = true;
-    main_form.current_panel_id = -1;
+     // = true;
+     // = -1;
     hide_gtk_widgets(main_form.right_content);
     show_add_contact(main_form.main_grid);
     gtk_widget_show_all(main_form.right_content[13]);
@@ -445,7 +452,6 @@ void update_chats_after_delete()
         chats_f.chat_items[i] = malloc(sizeof(chat_item_t));
         chats_f.chat_items[i] = temp_arr[i];
     }
-    puts("Fuck1");
     for (size_t i = 0; i < chats_f.size; i++)
     {
         if (temp_arr[i] != NULL)

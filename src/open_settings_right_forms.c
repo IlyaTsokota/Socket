@@ -57,7 +57,7 @@ void show_edit_profile(GtkWidget *main_grid)
     GtkWidget *curr_img = GTK_WIDGET(gtk_builder_get_object(builder, "curr_img"));
     GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(data.picture_name, 110, 110, TRUE, NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(curr_img), pixbuf);
-    
+
     GtkWidget *select_img = GTK_WIDGET(gtk_builder_get_object(builder, "select_img"));
     gtk_file_chooser_set_local_only(GTK_FILE_CHOOSER(select_img), false);
     GtkFileFilter *filter = gtk_file_filter_new();
@@ -94,8 +94,17 @@ void update_img_in_profile(GtkFileChooser *chooser, GtkImage *img)
     gtk_image_set_from_pixbuf(GTK_IMAGE(main_form.setting_img), pixbuf1);
     GdkPixbuf *pixbuf2 = gdk_pixbuf_new_from_file_at_scale(filename, 40, 40, TRUE, NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(main_form.profile_img), pixbuf2);
-    send_source(data.socket_desc, filename);
+    send_source(data.socket_desc, "25", data.user_id, filename);
 }
+
+void update_img_in_chat(GtkFileChooser *chooser, GtkImage *img)
+{
+    char *filename = gtk_file_chooser_get_filename(chooser);
+    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, 110, 110, TRUE, NULL);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(img), pixbuf);
+    send_source(data.socket_desc, "39", chats_f.curr_chat, filename);
+}
+
 
 gboolean open_language(GtkWidget *widget, GdkEventButton *event)
 {
@@ -285,3 +294,4 @@ void show_appereance(GtkWidget *main_grid)
 
     g_object_unref(builder);
 }
+

@@ -75,8 +75,8 @@ gboolean switch_language(GtkSwitch *widget, gboolean state, gpointer info)
         free(main_form.last_ms_id);
         main_form.last_ms_id = NULL;
     }
-    main_form.current_panel_id = 2;
-    main_form.is_allow_access_next_panel = true;
+     // = 2;
+     // = true;
     char *settings = mx_file_to_str("settings.json");
     settings_t *settings_field = get_settings(settings);
     free_language_interface();

@@ -11,7 +11,7 @@ gboolean refresh_chat(update_t *update)
 {
     ////puts("Lock");
     message_arr *messages = take_messages(update->socket, data.user_id, main_form.last_ms_id);
-        g_mutex_lock(&main_form.mutex);
+    g_mutex_lock(&main_form.mutex);
 
     if (messages != NULL)
     {
@@ -57,19 +57,17 @@ gboolean refresh_chat(update_t *update)
         free(main_form.last_ms_id);
         main_form.last_ms_id = strdup(messages->messages[messages_length - 1]->ms_id);
 
-        if (main_form.current_panel_id == 2)
+        j = length;
+        for (int i = j; i < length + messages_length; i++)
         {
-            j = length;
-            for (int i = j; i < length + messages_length; i++)
-            {
 
-                if (strcmp(chats_f.curr_chat, (char *)gtk_widget_get_name(curr_chat.messages_g[i]->message)) == 0)
-                {
-                    gtk_grid_attach(GTK_GRID(main_form.message_line), curr_chat.messages_g[i]->event_box_message, 0, i, 1, 1);
-                }
+            if (strcmp(chats_f.curr_chat, (char *)gtk_widget_get_name(curr_chat.messages_g[i]->message)) == 0)
+            {
+                gtk_grid_attach(GTK_GRID(main_form.message_line), curr_chat.messages_g[i]->event_box_message, 0, i, 1, 1);
             }
-            gtk_widget_show_all(main_form.message_line);
         }
+        gtk_widget_show_all(main_form.message_line);
+
         free_messages(messages);
     }
     ////puts("Unlock");

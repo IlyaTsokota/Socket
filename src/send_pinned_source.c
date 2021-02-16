@@ -14,7 +14,7 @@ if (res == GTK_RESPONSE_ACCEPT)
   {
     GtkFileChooser *chooser = GTK_FILE_CHOOSER (dialog);
     char *filename = gtk_file_chooser_get_filename (chooser);
-    send_source(data.socket_desc, filename);
+    // send_source(data.socket_desc, filename);
     g_free (filename);
   }
 

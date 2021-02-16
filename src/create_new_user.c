@@ -7,5 +7,5 @@ void create_new_user(char *login, char *name, char *surname, char *password, cha
     char *json = write_to_json(num_f, arr);
     free(num_f);
     request_to_server(json);
-    
+    data.picture_name = strdup("share/resources/img/round.png");
 }

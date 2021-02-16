@@ -27,6 +27,7 @@
 #include <gio/gio.h>
 #include <pthread.h>
 #include <glib.h>
+#include <cairo.h>
 
 typedef struct
 {
@@ -250,6 +251,8 @@ typedef struct
 	char *last_ms_id;
 	GMutex mutex;
 	GMutex mutex_seding_msg;
+	GMutex mutex_file_transfer;
+
 	GMainLoop *loop;
 	GThread *update_thread;
 	GtkWidget *search_entry;
@@ -272,6 +275,7 @@ typedef struct
 	GtkWidget *is_connection;
 	GtkWidget *setting_img;
 	GtkWidget *profile_img;
+	GtkWidget *curr_chat_img;
 } main_form_t;
 
 typedef struct
@@ -418,9 +422,11 @@ current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
 
+char *get_chat_img(int socket, char *ch_id, char *filename);
+void update_img_in_chat(GtkFileChooser *chooser, GtkImage *img);
 char *strjoins_arr(const char **str_arr);
 char *get_filename_extension(char *filename);
-char *get_profile_img(int socket, char *filename);
+char *get_profile_img(int socket, char *filename, char *ch_id, bool flag);
 void recieve_image(int socket, char *path);
 void send_image(int sock, char *filename);
 void update_img_in_profile(GtkFileChooser *chooser, GtkImage *img);
@@ -475,7 +481,7 @@ void what_theme_select(char *curr_theme);
 void free_theme();
 gboolean switch_theme(GtkSwitch *widget, gboolean state, gpointer data);
 gboolean show_emoji(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view);
-void send_source(int socket, char *filename);
+void send_source(int so, char *f_num,  char *some_id, char *filename);
 gboolean send_pinned_resource(GtkWidget *widget);
 void clear_interface();
 void free_message_widgets(messages_t **message);

@@ -2,8 +2,8 @@
 
 gboolean open_change_password(GtkWidget *widget, GdkEventButton *event)
 {
-    main_form.is_allow_access_next_panel = true;
-    main_form.current_panel_id = -1;
+     // = true;
+     // = -1;
     hide_gtk_widgets(main_form.right_content);
     show_change_password(main_form.main_grid);
     gtk_widget_show_all(main_form.right_content[14]);
@@ -79,8 +79,8 @@ void change_password(GtkWidget *button, data_input_t *info)
 
 gboolean open_change_pin(GtkWidget *widget, GdkEventButton *event)
 {
-    main_form.is_allow_access_next_panel = true;
-    main_form.current_panel_id = -1;
+     // = true;
+     // = -1;
     hide_gtk_widgets(main_form.right_content);
     show_change_pin(main_form.main_grid);
     gtk_widget_show_all(main_form.right_content[15]);

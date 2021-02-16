@@ -27,6 +27,8 @@ void application_activate(GtkApplication *application, gpointer user_data)
 
     g_mutex_init(&main_form.mutex);
     g_mutex_init(&main_form.mutex_seding_msg);
+    g_mutex_init(&main_form.mutex_file_transfer);
+
     server_set_connection();
 
     char *settings = mx_file_to_str("settings.json");

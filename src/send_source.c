@@ -1,6 +1,6 @@
 #include "chat.h"
 
-void send_source(int so, char *filename)
+void send_source(int so, char *f_num,  char *some_id, char *filename)
 {
     g_mutex_lock(&main_form.mutex);
     struct sockaddr_in client_addr;
@@ -12,9 +12,9 @@ void send_source(int so, char *filename)
 
     if (connect(sock, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
-        char *num_f = strdup("25");
+        char *num_f = strdup(f_num);
         puts(filename);
-        char *arr[] = {data.user_id, filename, NULL};
+        char *arr[] = {some_id, filename, NULL};
         char *json = write_to_json(num_f, arr);
         free(num_f);
         write(sock, json, strlen(json));
@@ -25,6 +25,9 @@ void send_source(int so, char *filename)
     close(sock);
     g_mutex_unlock(&main_form.mutex);
 }
+
+
+
 
 void send_image(int sock, char *filename)
 {

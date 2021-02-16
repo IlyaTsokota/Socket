@@ -38,7 +38,8 @@ void open_main_form(GtkWidget *window)
 
     GtkWidget *event_box_profile = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_profile"));
     main_form.profile_img = GTK_WIDGET(gtk_builder_get_object(builder, "profile_img"));
-GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(data.picture_name, 40, 40, TRUE, NULL);
+    
+    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(data.picture_name, 40, 40, TRUE, NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(main_form.profile_img), pixbuf);
     GtkWidget *top_panel = GTK_WIDGET(gtk_builder_get_object(builder, "top_panel"));
 
