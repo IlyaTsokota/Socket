@@ -53,15 +53,10 @@ void *connection_handler(void *socket_desc)
         puts("<-------------[Processing the request]------------->");
         server_answer_message = queries_handler(handler_con, query.arr, sock);
         puts("<-------------[Waiting for next query]------------->");
-        puts("qqqqq");
         array_clear(&query);
         //password_check(handler_con, "1111", "itsokota");
-        puts("wwww");
 
         write(sock, server_answer_message, strlen(server_answer_message));
-        puts("PZDC");
-
-        puts(server_answer_message);
 
         if (server_answer_message != NULL)
         {
@@ -69,7 +64,7 @@ void *connection_handler(void *socket_desc)
             server_answer_message = NULL;
         }
         memset(&client_message, 0, sizeof(client_message));
-        puts("AAAAA");
+
         if (read_size == 0)
         {
             puts("Client off");

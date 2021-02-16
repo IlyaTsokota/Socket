@@ -13,32 +13,10 @@ char *receive_img_to_profile(MYSQL *con, int socket, char *u_id, char *filename)
 
     char *path_resource = strjoin(3, path_folder, "/icon", file_extension);
     remove(path_resource);
-
-    FILE *image = fopen(path_resource, "w");
     free(path_folder);
     free(file_extension);
-    if (image == NULL)
-    {
-        printf("Error has occurred. Image file could not be opened\n");
-        return strdup("0");
-    }
 
-    printf("Reading Picture Size\n");
-    int size;
-    read(socket, &size, sizeof(size));
-
-    //Read Picture Byte Array
-    printf("Reading Picture Byte Array\n");
-    char p_array[1024];
-    while (size > 0)
-    {
-        read(socket, p_array, 1024);
-        fwrite(p_array, 1, sizeof(p_array), image);
-        size -= 1024;
-    }
-
-    fclose(image);
-
+    recieve_image(socket, path_resource);
     //update
     const char *request_parts[] = {"update user set u_avatar = \"", path_resource, "\" where u_id = \"", u_id, "\";", NULL};
     char *bdrequest = strjoins_arr(request_parts);
@@ -53,5 +31,37 @@ char *receive_img_to_profile(MYSQL *con, int socket, char *u_id, char *filename)
     mysql_close(con);
 
     printf("Image successfully Received!\n");
+
     return strdup("1");
 }
+
+void recieve_image(int socket, char *path)
+{
+    size_t recv_size = 0;
+    long long size;
+    write(socket, &recv_size, sizeof(size_t));
+    recv(socket, &size, sizeof(long long), 0);
+    write(socket, &recv_size, sizeof(size_t));
+
+    printf("Reading Picture Byte Array\n");
+    char p_array[1025];
+    FILE *image = fopen(path, "w");
+    printf("Sending %lld\n", size);
+    long long nb = 0;
+    long long packet_size = 1024;
+    do
+    {
+        if (packet_size > size)
+        {
+            packet_size = size;
+        }
+        printf("PS %lld\n", packet_size);
+        nb = recv(socket, p_array, packet_size, 0);
+        fwrite(p_array, 1, nb, image);
+        size -= nb;
+        printf("Sending %lld\n", size);
+    } while (size > 0);
+    printf("Sending PGG\n");
+    fclose(image);
+}
+

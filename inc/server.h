@@ -32,11 +32,11 @@ char *sql_is_pin_equal_to_db_acc(MYSQL *con, char *my_id, char *pincode); //38
 //socket_send_data
 bool socket_send_data(char *data, int socket);
 
-char *send_image(int socket, char *chat_id, char *message_id);
-//images
+char *send_image(int sock, char *filename);
 
 char *receive_img_to_profile(MYSQL *con, int socket, char *u_id, char *filename); //, char *chat_id, char *message_id)
 //utilities
+void recieve_image(int socket , char *path);
 
 void array_clear(array_t *a);
 int array_resize(array_t *a, size_t n);

@@ -7,11 +7,8 @@ array_t json_to_data(char *json_str)
 	struct json_object *func_number;
 	struct json_object *data;
 	struct json_object *data_item;
-			puts("PZDC aAaw");
-			puts(json_str);
 
 	jobj = json_tokener_parse(json_str);
-			puts("PZDC aAaw");
 
 	json_object_object_get_ex(jobj, "func-number", &func_number);
 	json_object_object_get_ex(jobj, "data", &data);

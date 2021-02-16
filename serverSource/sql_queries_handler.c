@@ -88,7 +88,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return receive_img_to_profile(con, sock, array[1], array[2]);
     case 26:
         puts("Query 26 -> send_image");
-        return send_image(sock, array[1], array[2]);
+        return send_image(sock, array[1]);
     case 27:
         puts("Query 27 -> change_password");
         return change_password(con, array[1], array[2]);
