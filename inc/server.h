@@ -130,6 +130,7 @@ char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock);         
 //sql-unsorte
 char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func, int sock); //18
 char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote);  //19
+char *sql_update_chat_image(MYSQL *con, int socket, char *ch_id, char *filename); //39
 
 //db-login-generator
 char *pass_gen();

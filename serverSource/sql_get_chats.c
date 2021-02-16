@@ -85,7 +85,7 @@ char *get_chats(MYSQL *con, char *user_id, int sock)
     }
     else
     {
-        return strdup("1");;
+        return strdup("1");
     }
-    return strdup("1");; //0 or >0
+    return strdup("1"); //0 or >0
 }

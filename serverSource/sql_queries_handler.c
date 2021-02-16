@@ -125,6 +125,10 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 38:
         puts("Query 38 -> sql_is_pin_equal_to_db_acc");
         return sql_is_pin_equal_to_db_acc(con, array[1], array[2]);
+   case 39:
+        puts("Query 39 -> sql_update_chat_image");
+        return sql_update_chat_image(con, sock,array[1], array[2]);
+
     default:
         puts("Server queries_handler default error");
         return "Server queries_handler default error";
