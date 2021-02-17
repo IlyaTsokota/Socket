@@ -33,31 +33,37 @@ void *connection_handler(void *socket_desc)
     int read_size;
     char client_message[2000];
     char *server_answer_message;
+    puts("<-------------[Processing the pizdec2111]------------->");
 
     // message = "Hi! I am your conection handlerr\n";
     //write(sock, message, strlen(message));
 
     while ((read_size = recv(sock, client_message, 2000, 0)) > 0)
     {
+        puts("<-------------[Processing the pizdec]------------->");
+
         client_message[read_size] = '\0';
         // write(sock, client_message, strlen(client_message));
         // memset(client_message,0,2000);
+        puts("<-------------[Processing the hueta]------------->");
 
         MYSQL *handler_con = connection_try();
         //Тут нужно получить номер запроса и вызвать по нему нужную функцию
+        puts("<-------------[Processing the blyat]------------->");
 
         // server_answer_message= password_check(handler_con, "1111", "itsokota");
 
+        if (strlen(client_message) > 2)
+        {
+            array_t query = json_to_data(client_message);
+            puts("<-------------[Processing the request]------------->");
+            server_answer_message = queries_handler(handler_con, query.arr, sock);
+            puts("<-------------[Waiting for next query]------------->");
+            array_clear(&query);
+            //password_check(handler_con, "1111", "itsokota");
 
-        array_t query = json_to_data(client_message);
-        puts("<-------------[Processing the request]------------->");
-        server_answer_message = queries_handler(handler_con, query.arr, sock);
-        puts("<-------------[Waiting for next query]------------->");
-        array_clear(&query);
-        //password_check(handler_con, "1111", "itsokota");
-
-        write(sock, server_answer_message, strlen(server_answer_message));
-
+            write(sock, server_answer_message, strlen(server_answer_message));
+        }
         if (server_answer_message != NULL)
         {
             free(server_answer_message);
@@ -105,7 +111,7 @@ int main()
     puts("bind sucess");
 
     //Listening
-    listen(socket_desc, 3); //second parametr set max_clients;
+    listen(socket_desc, 128); //second parametr set max_clients;
 
     puts("Waiting for new connections...");
     c = sizeof(struct sockaddr_in);

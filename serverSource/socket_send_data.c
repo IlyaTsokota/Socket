@@ -11,7 +11,6 @@ bool socket_send_data(char *data, int socket)
     write(socket, (void *)&size, sizeof(long));
     size = ntohl(size);
 
-    //puts(data);
     do
     {
         if (size < packet_size)
