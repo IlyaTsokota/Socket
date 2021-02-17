@@ -9,11 +9,11 @@ gboolean change_insert_to_message(gpointer widget)
 
 gboolean refresh_chat(update_t *update)
 {
-    puts("IN");
     message_arr *messages = take_messages(update->socket, data.user_id, main_form.last_ms_id);
-    g_mutex_lock(&main_form.mutex);
+    g_mutex_lock(&main_form.mutex_update);
     if (messages != NULL)
     {
+
         int messages_length = *(messages->length);
         int length = *(curr_chat.length);
         int j = length;
@@ -22,7 +22,6 @@ gboolean refresh_chat(update_t *update)
         {
             create_one_messages(j++, messages->messages[i]);
         }
-
         char *time = NULL;
         char *last_msg = NULL;
         char *last_login = NULL;
@@ -68,8 +67,7 @@ gboolean refresh_chat(update_t *update)
         free_messages(messages);
     }
 
-    g_mutex_unlock(&main_form.mutex);
-    puts("OUT");
+    g_mutex_unlock(&main_form.mutex_update);
 
     return true;
 }

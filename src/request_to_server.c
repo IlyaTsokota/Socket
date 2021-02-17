@@ -13,7 +13,7 @@ bool request_to_server(char *request){
     else {
         g_mutex_unlock(&main_form.mutex);
 
-        //g_print("Request to server error!\n");
+        // //g_print("Request to server error!\n");
         return false;
     }
 }
@@ -29,7 +29,7 @@ char* request_get_str_from_server(char *request){
         return  strdup(answer);
     }
     else {
-        //g_print("Request to server error!\n");
+        // //g_print("Request to server error!\n");
         return NULL;
     }
 }

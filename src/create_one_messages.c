@@ -42,6 +42,7 @@ void create_one_messages(int index, message_t *message)
     set_style_context(curr_chat.messages_g[index]->message_login, "contact-login");
     set_style_context(curr_chat.messages_g[index]->message_login, "message-from");
 
+
     if (strcmp(message->ms_ismedia, "0") == 0)
     {
         curr_chat.messages_g[index]->message_text = gtk_label_new(message->ms_text);
@@ -59,7 +60,7 @@ void create_one_messages(int index, message_t *message)
     {
         curr_chat.messages_g[index]->message_text = gtk_image_new();
         char *filename = get_msg_img(data.socket_desc, message->ch_id, message->ms_id, message->ms_text);
-        GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, -1, -1, TRUE, NULL);
+        GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, 500, -1, TRUE, NULL);
         gtk_image_set_from_pixbuf(GTK_IMAGE(curr_chat.messages_g[index]->message_text), pixbuf);
     }
 

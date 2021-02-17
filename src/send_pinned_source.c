@@ -4,14 +4,25 @@ gboolean send_pinned_resource(GtkWidget *widget)
 {
   GtkWidget *dialog = gtk_file_chooser_dialog_new("Open File",
                                                   GTK_WINDOW(data.win),
-                                                  GTK_RESPONSE_ACCEPT,
-                                                  "OPEN",
-                                                  GTK_RESPONSE_CANCEL,
-                                                  "CLOSE",
-                                                  //    GTK_RESPONSE_ACCEPT,
+                                                  // GTK_RESPONSE_ACCEPT,
+                                                  // "OPEN",
+                                                  // GTK_RESPONSE_CANCEL,
+                                                  // "CLOSE",
+                                                  // NULL);
+                                                  GTK_FILE_CHOOSER_ACTION_OPEN,
+                                                  "Cancel",
+                                                  GTK_RESPONSE_CLOSE,
+                                                  "Open",
                                                   NULL);
   gint res = gtk_dialog_run(GTK_DIALOG(dialog));
-  if (res == GTK_RESPONSE_ACCEPT)
+  puts("IN Send");
+  g_print("RES %d\n", res);
+  g_print("Actio %d\n", GTK_FILE_CHOOSER_ACTION_OPEN);
+  g_print("Accc %d\n", GTK_RESPONSE_ACCEPT);
+
+  g_print("Can %d\n", GTK_RESPONSE_CANCEL);
+
+  if (res == GTK_FILE_CHOOSER_ACTION_OPEN)
   {
     puts("AAAAAAAA");
     GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
@@ -23,7 +34,7 @@ gboolean send_pinned_resource(GtkWidget *widget)
     write(data.socket_desc, json, sizeof(json));
     send_image(data.socket_desc, filename);
     int stat;
-     puts("AAAAAAAA");
+    puts("AAAAAAAA1");
     long size = 0;
     size_t packet_size = 1024, packet_count = 0, read_index = 0;
     char buff[1024];
@@ -32,7 +43,7 @@ gboolean send_pinned_resource(GtkWidget *widget)
     read(data.socket_desc, (void *)&size, sizeof(long));
     size = ntohl(size);
     str = mx_strnew(size);
-     puts("AAAAAAAA");
+    puts("AAAAAAAA2");
     do
     {
       if (size < packet_size)
@@ -50,11 +61,11 @@ gboolean send_pinned_resource(GtkWidget *widget)
       str[read_index] = '\0';
 
     } while (size > 0);
-     puts("AAAAAAAA");
+    puts("AAAAAAAA4");
     free(str);
     stat = read(data.socket_desc, buff, 1);
     g_free(filename);
-     puts("AAAAAAAA");
+    puts("AAAAAAAA5");
   }
 
   gtk_widget_destroy(dialog);

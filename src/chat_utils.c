@@ -332,7 +332,7 @@ void add_contact(GtkWidget *button, data_input_t *info)
         char *json = write_to_json(num_f, arr);
         free(num_f);
         char *request = request_on_server(data.socket_desc, json);
-        puts(request);
+         //puts(request);
         free(json);
         if (strcmp(request, "1") == 0)
         {
@@ -416,7 +416,7 @@ gboolean exit_from_chat(GtkWidget *widget)
 
 void update_chats_after_delete()
 {
-    g_print("%d -- prev\n", chats_f.size);
+     //g_print("%d -- prev\n", chats_f.size);
 
     chat_item_t **temp_arr = malloc(sizeof(chat_item_t) * chats_f.size);
     temp_arr[chats_f.size - 1] = NULL;
@@ -431,11 +431,11 @@ void update_chats_after_delete()
             j++;
         }
     }
-    puts("Fuck");
+     //puts("Fuck");
     free_chat_widgets(chats_f.chat_items);
 
     chats_f.size = j;
-    g_print("%d -- next\n", chats_f.size);
+     //g_print("%d -- next\n", chats_f.size);
     chats_f.chat_items = malloc(sizeof(chat_item_t) * (chats_f.size + 1));
     chats_f.chat_items[chats_f.size] = NULL;
 

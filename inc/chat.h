@@ -252,6 +252,7 @@ typedef struct
 	GMutex mutex;
 	GMutex mutex_seding_msg;
 	GMutex mutex_file_transfer;
+	GMutex mutex_update;
 
 	GMainLoop *loop;
 	GThread *update_thread;

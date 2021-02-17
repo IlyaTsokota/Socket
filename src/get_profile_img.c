@@ -3,7 +3,7 @@
 char *get_profile_img(int socket, char *filename, char *ch_id, bool flag)
 {
     char *num_f = strdup("26");
-    puts(filename);
+     //puts(filename);
     char *arr[] = {filename, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);

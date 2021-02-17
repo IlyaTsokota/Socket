@@ -4,11 +4,13 @@ char *get_text_of_textview(GtkTextView *text_view)
 {
   GtkTextIter start, end;
   GtkTextBuffer *buffer = gtk_text_view_get_buffer(text_view);
-  if (buffer == NULL) {puts("buff==null"); return NULL;}
+  if (buffer == NULL)
+  {
+    return NULL;
+  }
   gtk_text_buffer_get_bounds(buffer, &start, &end);
- // gtk_text_buffer_get_start_iter();
- // gtk_text_buffer_get_end_iter(buffer, );
-
+  // gtk_text_buffer_get_start_iter();
+  // gtk_text_buffer_get_end_iter(buffer, );
   char *text = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
   return text;
 }
@@ -30,7 +32,7 @@ void insert_text(GtkTextBuffer *buffer, GtkTextIter *location, gchar *text, gint
     GtkTextIter offset, end;
     gtk_text_buffer_get_iter_at_offset(buffer, &offset, 300);
     gtk_text_buffer_get_end_iter(buffer, &end);
-    //g_print("Remove Range %i %i\n", gtk_text_iter_get_offset(&offset), gtk_text_iter_get_offset(&end));
+    // //g_print("Remove Range %i %i\n", gtk_text_iter_get_offset(&offset), gtk_text_iter_get_offset(&end));
     gtk_text_buffer_delete(buffer, &offset, &end);
     gtk_text_iter_assign(location, &offset);
   }

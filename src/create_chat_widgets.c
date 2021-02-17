@@ -5,7 +5,7 @@ void create_chat_widgets(char *user_id, int sock)
     chat_t **chats = take_chats(user_id, sock);
     if (chats != NULL)
     {
-        //puts("Ne veselo");
+        // //puts("Ne veselo");
 
         chats_f.was_free = false;
         int size = 0;

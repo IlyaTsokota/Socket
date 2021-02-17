@@ -12,7 +12,7 @@ void send_source(int so, char *f_num, char *some_id, char *filename)
     if (connect(sock, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
         char *num_f = strdup(f_num);
-        puts(filename);
+         //puts(filename);
         char *arr[] = {some_id, filename, NULL};
         char *json = write_to_json(num_f, arr);
         free(num_f);

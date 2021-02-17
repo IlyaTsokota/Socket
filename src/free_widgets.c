@@ -4,7 +4,7 @@ void free_contact_widgets(contacts_widget_s **contacts)
     if (contacts != NULL && !contacts_t.was_free)
     {
 
-        ////puts("To e pizda");
+        //// //puts("To e pizda");
         for (size_t i = 0; contacts[i]; i++)
         {
             gtk_widget_destroy(contacts[i]->contact_name_lable);
@@ -19,7 +19,7 @@ void free_contact_widgets(contacts_widget_s **contacts)
             free(contacts[i]);
         }
         free(contacts);
-        ////puts("Tochno pizda");
+        //// //puts("Tochno pizda");
         contacts_t.widgets = NULL;
         contacts_t.was_free = true;
         contacts_t.size = 0;
@@ -49,7 +49,7 @@ void free_chat_widgets(chat_item_t **contacts)
             free(contacts[i]);
         }
         free(contacts);
-        ////puts("Tochno pizda");
+        //// //puts("Tochno pizda");
         contacts = NULL;
         chats_f.was_free = true;
         chats_f.size = 0;
@@ -83,7 +83,7 @@ void free_user_widgets(user_in_chat_t **contacts)
 {
     if (contacts != NULL)
     {
-        ////puts("To e pizda");
+        //// //puts("To e pizda");
         for (size_t i = 0; contacts[i]; i++)
         {
             gtk_widget_destroy(contacts[i]->user_img);
@@ -98,7 +98,7 @@ void free_user_widgets(user_in_chat_t **contacts)
             free(contacts[i]);
         }
         free(contacts);
-        ////puts("Tochno pizda");
+        //// //puts("Tochno pizda");
         users_in_chat.users = NULL;
         users_in_chat.size = 0;
     }

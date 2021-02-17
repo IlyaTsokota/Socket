@@ -28,6 +28,8 @@ void application_activate(GtkApplication *application, gpointer user_data)
     g_mutex_init(&main_form.mutex);
     g_mutex_init(&main_form.mutex_seding_msg);
     g_mutex_init(&main_form.mutex_file_transfer);
+    g_mutex_init(&main_form.mutex_update);
+
 
     server_set_connection();
 
@@ -81,7 +83,8 @@ void application_shutdown(GtkApplication *application, gpointer user_data)
             free(main_form.last_ms_id);
             main_form.last_ms_id = NULL;
         }
-        main_form.last_ms_id = get_last_mesage_id("messages.json");
+        main_form.last_ms_id = strdup("0");
+         remove("messages.json");
         get_all_messages(data.user_id, main_form.last_ms_id);
     }
     close(data.socket_desc);
