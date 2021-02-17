@@ -11,7 +11,9 @@ gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *tex
 
 void *sending(gpointer text_view)
 {
+    puts("LOCK_prev");
     g_mutex_lock(&main_form.mutex_seding_msg);
+    puts("LOCK");
     struct sockaddr_in client_addr;
     update_t *update = malloc(sizeof(update));
     update->socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -43,7 +45,9 @@ void *sending(gpointer text_view)
 
     close(update->socket);
     free(update);
+    puts("UNLOCK_prev");
     g_mutex_unlock(&main_form.mutex_seding_msg);
+    puts("UNLOCK");
 
     // g_thread_exit(NULL);
     // g_mutex_lock(&main_form.mutex_seding_msg);

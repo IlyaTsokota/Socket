@@ -255,6 +255,10 @@ typedef struct
 
 	GMainLoop *loop;
 	GThread *update_thread;
+
+	GMainLoop *loop_chat;
+	GThread *update_thread_chat;
+
 	GtkWidget *search_entry;
 	GtkWidget *create_chat_event_box;
 	GtkWidget *chat_info_event_box;
@@ -330,6 +334,8 @@ typedef struct
 	char *u_login;
 	char *u_lastSeen;
 	char *u_avatar;
+	char *u_time;
+
 } chat_t;
 
 typedef struct
@@ -422,6 +428,13 @@ current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
 
+char *get_msg_img(int socket, char *ch_id, char*ms_id, char *filename);
+void show_chats_widgets();
+void sort_chats(chat_t **chats, int size);
+gboolean update_chat(update_t *update);
+void start_timer_for_update_chat();
+gpointer thread_by_refresh_chat(gpointer dat);
+void end_of_timer_chat(gpointer dat);
 char *get_chat_img(int socket, char *ch_id, char *filename);
 void update_img_in_chat(GtkFileChooser *chooser, GtkImage *img);
 char *strjoins_arr(const char **str_arr);
@@ -496,9 +509,10 @@ void insert_text(GtkTextBuffer *buffer, GtkTextIter *location, gchar *text, gint
 void end_of_timer(gpointer data);
 gpointer thread_by_refresh_data(gpointer data);
 void start_timer_in_other_thread();
+chat_t **take_chats(char *user_id, int sock);
 void init_interface();
 void hide_gtk_widgets(GtkWidget **widgets);
-void create_chat_widgets(char *user_id);
+void create_chat_widgets(char *user_id, int sock);
 message_arr *take_messages(int socket, char *user_id, char *last_msg_id);
 message_arr *messages_to_json(char *str);
 void clear_text__buffer(GtkTextView *text_view);

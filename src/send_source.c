@@ -1,8 +1,7 @@
 #include "chat.h"
 
-void send_source(int so, char *f_num,  char *some_id, char *filename)
+void send_source(int so, char *f_num, char *some_id, char *filename)
 {
-    g_mutex_lock(&main_form.mutex);
     struct sockaddr_in client_addr;
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     int port = 3762;
@@ -23,49 +22,59 @@ void send_source(int so, char *f_num,  char *some_id, char *filename)
     }
 
     close(sock);
-    g_mutex_unlock(&main_form.mutex);
 }
-
-
-
 
 void send_image(int sock, char *filename)
 {
+    g_mutex_lock(&main_form.mutex);
     size_t lol;
     FILE *picture = fopen(filename, "r");
     fseek(picture, 0, SEEK_END);
-    long long size = ftell(picture);
+    uint32_t size = ftell(picture);
+
     fseek(picture, 0, SEEK_SET);
     read(sock, &lol, sizeof(size_t));
-    send(sock, &size, sizeof(long long), 0);
+    size = htonl(size);
+    write(sock, &size, sizeof(uint32_t));
+    size = ntohl(size);
     read(sock, &lol, sizeof(size_t));
     printf("Sending Picture as Byte Array\n");
     char send_buffer[1025]; // no link between BUFSIZE and the file size
     int nb = 0, nb1 = 0;
+
     do
     {
         nb1 = fread(send_buffer, 1, 1024, picture);
         nb = send(sock, send_buffer, nb1, 0);
         size -= nb;
     } while (size > 0);
+
     printf("Sending PGG\n");
     fclose(picture);
     char b[1];
     read(sock, &b, 1);
+    g_mutex_unlock(&main_form.mutex);
 }
 
 void recieve_image(int socket, char *path)
 {
+    g_mutex_lock(&main_form.mutex);
+
     size_t recv_size = 0;
-    long long size;
-    write(socket, &recv_size, sizeof(size_t));
-    recv(socket, &size, sizeof(long long), 0);
-    write(socket, &recv_size, sizeof(size_t));
+    uint32_t size = 0;
+    int rs = -1;
+    //write(socket, &recv_size, sizeof(size_t));
+    do
+    {
+        rs = read(socket, &size, sizeof(uint32_t));
+    } while (rs < 0);
+    size = ntohl(size);
+    printf("%u -- total size\n", size);
+    //write(socket, &recv_size, sizeof(size_t));
 
     printf("Reading Picture Byte Array\n");
     char p_array[1025];
     FILE *image = fopen(path, "w");
-    printf("Sending %lld\n", size);
     long long nb = 0;
     long long packet_size = 1024;
     do
@@ -74,30 +83,29 @@ void recieve_image(int socket, char *path)
         {
             packet_size = size;
         }
-        printf("PS %lld\n", packet_size);
         nb = recv(socket, p_array, packet_size, 0);
         fwrite(p_array, 1, nb, image);
         size -= nb;
-        printf("Sending %lld\n", size);
+        printf("%u -- lenght\n", size);
     } while (size > 0);
-    printf("Sending PGG\n");
     fclose(image);
     char b[1];
     read(socket, &b, 1);
+    g_mutex_unlock(&main_form.mutex);
 }
 
+char *get_filename_extension(char *filename)
+{
 
-
-char *get_filename_extension(char *filename){
- 
     int index = 0;
     for (int i = strlen(filename) - 1; i >= 0; i--)
     {
-        if(filename[i] == '.'){
+        if (filename[i] == '.')
+        {
             index = i;
             break;
         }
     }
-   char *result = strdup(&filename[index]);
-   return result;
+    char *result = strdup(&filename[index]);
+    return result;
 }

@@ -386,13 +386,10 @@ gboolean remove_chat(GtkWidget *widget)
     free(num_f);
     request_to_server(json);
     free(json);
+
     free_chat_widgets(chats_f.chat_items);
-    create_chat_widgets(data.user_id);
-    for (int i = 0; i < chats_f.size; i++)
-    {
-        gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
-    }
-    gtk_widget_show_all(main_form.chats_grid);
+    create_chat_widgets(data.user_id, data.socket_desc);
+    show_chats_widgets();
     show_right_panel_is_clear(main_form.main_grid);
     hide_gtk_widgets(main_form.right_content);
     gtk_widget_show_all(main_form.right_content[1]);
@@ -409,12 +406,8 @@ gboolean exit_from_chat(GtkWidget *widget)
     request_to_server(json);
     free(json);
     free_chat_widgets(chats_f.chat_items);
-    create_chat_widgets(data.user_id);
-    for (int i = 0; i < chats_f.size; i++)
-    {
-        gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
-    }
-    gtk_widget_show_all(main_form.chats_grid);
+    create_chat_widgets(data.user_id, data.socket_desc);
+    show_chats_widgets();
     show_right_panel_is_clear(main_form.main_grid);
     hide_gtk_widgets(main_form.right_content);
     gtk_widget_show_all(main_form.right_content[1]);
@@ -423,7 +416,6 @@ gboolean exit_from_chat(GtkWidget *widget)
 
 void update_chats_after_delete()
 {
-
     g_print("%d -- prev\n", chats_f.size);
 
     chat_item_t **temp_arr = malloc(sizeof(chat_item_t) * chats_f.size);

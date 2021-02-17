@@ -12,6 +12,7 @@ void free_chats(chat_t **chats)
             free(chats[i]->u_avatar);
             free(chats[i]->u_lastSeen);
             free(chats[i]->u_login);
+            free(chats[i]->u_time);
             free(chats[i]);
         }
         free(chats);

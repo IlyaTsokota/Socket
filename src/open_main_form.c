@@ -10,7 +10,7 @@ void open_main_form(GtkWidget *window)
     is_fullscreen(window);
 
     create_widget_messages();
-    create_chat_widgets(data.user_id);
+    create_chat_widgets(data.user_id, data.socket_desc);
     create_widget_contacts(data.user_id);
 
     GtkBuilder *builder = glade_file_to_interface(localization_s.main);
@@ -72,7 +72,6 @@ void open_main_form(GtkWidget *window)
     g_signal_connect(G_OBJECT(main_form.chat_info_event_box), "button-press-event", G_CALLBACK(open_chat_info), NULL);
 
     set_chat_name_top();
-    //sort_by_chat_widget();
     g_signal_connect(G_OBJECT(event_box_contact_view), "button-press-event", G_CALLBACK(open_contacts), main_form.left_panel_img);
     g_signal_connect(G_OBJECT(event_box_setting), "button-press-event", G_CALLBACK(open_setting), main_form.left_panel_img);
     g_signal_connect(G_OBJECT(event_box_chats), "button-press-event", G_CALLBACK(open_chats), main_form.left_panel_img);
@@ -81,4 +80,5 @@ void open_main_form(GtkWidget *window)
     gtk_container_add(GTK_CONTAINER(window), main_form.app_form);
     g_object_unref(builder);
     start_timer_in_other_thread();
+    start_timer_for_update_chat();
 }

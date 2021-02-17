@@ -11,11 +11,14 @@ char *request_on_server(int socket, char *request)
     puts("request = ");
     puts(request);
     puts("================");
+
     write(socket, request, strlen(request));
 
     stat = 1025;
-
+    
     read(socket, (void *)&size, sizeof(long));
+    size = ntohl(size);
+
     str = mx_strnew(size);
 
     do

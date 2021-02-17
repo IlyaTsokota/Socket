@@ -130,30 +130,27 @@ void create_one_chat(int index, chat_t *chat)
     gtk_widget_set_vexpand(chats_f.chat_items[index]->contact_img_container, false);
     set_style_context(chats_f.chat_items[index]->contact_img_container, "contact-img");
 
-    // char *filename;
+    char *filename;
     chats_f.chat_items[index]->img_contact = gtk_image_new();
-    // puts("FILENAME");
-    // puts(chat->ch_avatar);
-    // if (strcmp(chat->ch_avatar, "no_avatar") == 0)
-    // {
-    //     puts("UAVATAR");
-    //     // g_print("%s --- --aa-a--a-\n", chat->u_avatar);
-    //     // if (strcmp(chat->u_avatar, "1234") == 0)
-    //     // {
-    //         filename = strdup("share/resources/img/ava2SavedMessages.png");
-    //     // }
-    //     // else
-    //     // {
-    //     //     filename = get_profile_img(data.socket_desc, chat->u_avatar, chat->ch_id , true);
-    //     // }
-    // }
-    // else
-    // {
-    //     filename = get_chat_img(data.socket_desc, chat->ch_id, chat->ch_avatar);
-    // }
-    // GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, 55, 55, TRUE, NULL);
-    // gtk_image_set_from_pixbuf(GTK_IMAGE(chats_f.chat_items[index]->img_contact), pixbuf);
-    // free(filename);
+
+    if (strcmp(chat->ch_avatar, "no_avatar") == 0 || strcmp(chat->ch_avatar, "1234") == 0)
+    {
+        if (strcmp(chat->u_avatar, "0") == 0 || strcmp(chat->u_avatar, "1234") == 0)
+        {
+            filename = strdup("share/resources/img/ava2SavedMessages.png");
+        }
+        else
+        {
+            filename = get_profile_img(data.socket_desc, chat->u_avatar, chat->ch_id, true);
+        }
+    }
+    else
+    {
+        filename = get_chat_img(data.socket_desc, chat->ch_id, chat->ch_avatar);
+    }
+    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, 55, 55, TRUE, NULL);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(chats_f.chat_items[index]->img_contact), pixbuf);
+    free(filename);
 
     gtk_widget_set_hexpand(chats_f.chat_items[index]->img_contact, true);
     gtk_widget_set_vexpand(chats_f.chat_items[index]->img_contact, true);

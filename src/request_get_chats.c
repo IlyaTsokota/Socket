@@ -9,7 +9,7 @@ chat_t **request_get_chats(char *str)
     int length = json_object_array_length(values_obj);
     if (length > 0)
     {
-        
+        int last_msg_index = 0;
         chat_t **chats = malloc(sizeof(chat_t *) * (length + 1));
         chats[length] = NULL;
         for (ssize_t i = 0; i < length; i++)
@@ -35,10 +35,31 @@ chat_t **request_get_chats(char *str)
             chats[i]->u_avatar = strdup((char *)json_object_get_string(values_name));
             free(values_name);
             free(tmp_values);
+            last_msg_index = -1;
+            if (curr_chat.messages_g != NULL)
+            {
+                for (ssize_t j = *(curr_chat.length) - 1; j >= 0; j--)
+                {
+                    char *ms_id = (char *)gtk_widget_get_name(curr_chat.messages_g[j]->message);
+                    if (strcmp(ms_id,  chats[i]->ch_id) == 0)
+                    {
+                        last_msg_index = j;
+                        break;
+                    }
+                }
+            }
+            if (last_msg_index != -1)
+            {
+                chats[i]->u_time = strdup(gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[last_msg_index]->message_time)));
+            }
+            else
+            {
+                chats[i]->u_time  = strdup("");
+            }
         }
         free(values_obj);
         free(jobj);
-        
+
         return chats;
     }
     free(values_obj);

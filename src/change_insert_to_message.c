@@ -9,10 +9,9 @@ gboolean change_insert_to_message(gpointer widget)
 
 gboolean refresh_chat(update_t *update)
 {
-    ////puts("Lock");
+    puts("IN");
     message_arr *messages = take_messages(update->socket, data.user_id, main_form.last_ms_id);
     g_mutex_lock(&main_form.mutex);
-
     if (messages != NULL)
     {
         int messages_length = *(messages->length);
@@ -53,10 +52,8 @@ gboolean refresh_chat(update_t *update)
                 }
             }
         }
-
         free(main_form.last_ms_id);
         main_form.last_ms_id = strdup(messages->messages[messages_length - 1]->ms_id);
-
         j = length;
         for (int i = j; i < length + messages_length; i++)
         {
@@ -70,9 +67,18 @@ gboolean refresh_chat(update_t *update)
 
         free_messages(messages);
     }
-    ////puts("Unlock");
-    //sort_by_chat_widget();
-    g_mutex_unlock(&main_form.mutex);
 
+    g_mutex_unlock(&main_form.mutex);
+    puts("OUT");
+
+    return true;
+}
+
+gboolean update_chat(update_t *update)
+{
+    // sort_by_chat_widget();
+    // free_chat_widgets(chats_f.chat_items);
+    // create_chat_widgets(data.user_id, update->socket);
+    // show_chats_widgets();
     return true;
 }
