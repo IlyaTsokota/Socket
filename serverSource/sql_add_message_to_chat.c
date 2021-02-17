@@ -2,6 +2,27 @@
 
 char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock, int is_send_answer)
 {
+
+    char *data;
+    if (strcmp(ms_is_media, "1") == 0)
+    {
+        const char *path_parts[] = {"./messages/", ch_id, NULL};
+        char *path_folder = strjoins_arr(path_parts);
+        int status = mkdir("./messages", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+        status = mkdir(path_folder, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+        char *file_extension = get_filename_extension(ms_data);
+        char *path_resource = strjoin(3, path_folder, "/icon", file_extension);
+        remove(path_resource);
+        free(path_folder);
+        free(file_extension);
+        recieve_image(sock, path_resource);
+        data = strdup(path_resource);
+        free(path_resource);
+    }
+    else
+    {
+        data = strdup(ms_data);
+    }
     char *answer;
 
     const char *request_parts[] = {"select ch_name from chat ch join chatusers chu on ch.ch_id = chu.ch_id where chu.ch_id =\"", ch_id, "\" limit 1;", NULL};
@@ -36,16 +57,17 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
     }
     puts("\nis_send_answer:");
     printf("%d\n", is_send_answer);
-    if (is_send_answer == 0) {
+    if (is_send_answer == 0)
+    {
         free(answer);
         answer = strdup("SavedMessages");
-    } 
+    }
     if (strcmp(answer, "personal_chat") != 0)
     {
         free(answer);
         char *date_time = set_date();
         const char *request_parts0[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
-                                        ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};
+                                        ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", data, "\");", NULL};
         bdrequest = strjoins_arr(request_parts0);
 
         puts(bdrequest); //Вывод запроса в консоль
@@ -54,24 +76,28 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         {
             finish_with_error(con);
         }
-        if (is_send_answer != 0) {
+        if (is_send_answer != 0)
+        {
             mysql_close(con);
         }
         free(date_time); //IR
         free(bdrequest); //IR
+        free(data);
         char *str = strdup("1");
-       if (is_send_answer == 1) {
+        if (is_send_answer == 1)
+        {
             if (socket_send_data(str, sock))
             {
                 return strdup("0");
             }
             else
             {
-                return strdup("1");;
+                return strdup("1");
+                ;
             }
-       }
-       else
-       return str;
+        }
+        else
+            return str;
     }
     else
     {
@@ -175,13 +201,16 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         if (strcmp(answer3, "0") != 0)
         {
             char *string = strdup("1");
-            if (is_send_answer == 1) {
+            if (is_send_answer == 1)
+            {
                 puts("ssd2");
+                free(data);
+
                 socket_send_data(string, sock);
             }
             free(string);
             free(answer3);
-            return strdup("1");;
+            return strdup("1");
         }
         else
         {
@@ -189,7 +218,7 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
 
             char *date_time = set_date();
             const char *request_parts7[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) VALUES (\"",
-                                            ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", ms_data, "\");", NULL};
+                                            ch_id, "\",\"", user_id, "\",\"", date_time, "\",\"", ms_is_forwarded, "\",\"", ms_is_reply, "\",\"0\",\"0\",\"", ms_is_media, "\",\"", data, "\");", NULL};
             bdrequest = strjoins_arr(request_parts7);
 
             puts(bdrequest); //Вывод запроса в консоль
@@ -204,22 +233,26 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
             free(date_time); //IR
             free(bdrequest); //IR
             char *str = strdup("1");
-            if (is_send_answer == 1) {
+            if (is_send_answer == 1)
+            {
+                free(data);
                 puts("ssd3");
                 if (socket_send_data(str, sock))
                 {
-                   return strdup("0");
+                    return strdup("0");
                 }
                 else
                 {
                     return strdup("1");
                 }
             }
-            else {
+            else
+            {
+                free(data);
                 return str;
             }
         }
     }
 
-   return strdup("1");
+    return strdup("1");
 }

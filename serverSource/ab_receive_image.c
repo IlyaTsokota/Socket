@@ -38,28 +38,32 @@ char *receive_img_to_profile(MYSQL *con, int socket, char *u_id, char *filename)
 void recieve_image(int socket, char *path)
 {
     size_t recv_size = 0;
-    long long size;
+    uint32_t size ;
+    int rc = -1;
     write(socket, &recv_size, sizeof(size_t));
-    recv(socket, &size, sizeof(long long), 0);
+    do {
+        rc = read(socket, &size, sizeof(uint32_t));
+    } while (rc < 0);
+    size = ntohl(size);
     write(socket, &recv_size, sizeof(size_t));
-
+    printf("%u -- total size\n", size);
     printf("Reading Picture Byte Array\n");
     char p_array[1025];
     FILE *image = fopen(path, "w");
-    printf("Sending %lld\n", size);
-    long long nb = 0;
-    long long packet_size = 1024;
+    printf("Sending %u\n", size);
+    int  nb = 0;
+    uint32_t  packet_size = 1024;
     do
     {
         if (packet_size > size)
         {
             packet_size = size;
         }
-        printf("PS %lld\n", packet_size);
+        printf("PS %u\n", packet_size);
         nb = recv(socket, p_array, packet_size, 0);
         fwrite(p_array, 1, nb, image);
         size -= nb;
-        printf("Sending %lld\n", size);
+        printf("Sending %u\n", size);
     } while (size > 0);
     printf("Sending PGG\n");
     fclose(image);
