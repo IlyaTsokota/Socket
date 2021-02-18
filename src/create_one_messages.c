@@ -73,15 +73,18 @@ void create_one_messages(int index, message_t *message)
     }
     g_signal_connect(G_OBJECT(curr_chat.messages_g[index]->event_box_message), "button-press-event", G_CALLBACK(click_on_msg), curr_chat.messages_g[index]->message_text);
 
-    char *edited_text = atoi(message->ms_isedited) == 1 ? strdup("[Edited]") : strdup("");
+    char *edited_text = strcmp(message->ms_isedited, "1") == 0 ? strdup("[Edited]") : strdup("");
     curr_chat.messages_g[index]->edited = gtk_label_new(edited_text);
     gtk_widget_set_hexpand(curr_chat.messages_g[index]->edited, true);
     gtk_widget_set_halign(curr_chat.messages_g[index]->edited, GTK_ALIGN_END);
     gtk_widget_set_valign(curr_chat.messages_g[index]->edited, GTK_ALIGN_END);
+    if(strcmp(message->ms_isedited, "1") == 0){
+    gtk_widget_set_margin_bottom(curr_chat.messages_g[index]->edited, 10);
+    gtk_widget_set_margin_end(curr_chat.messages_g[index]->edited, 10);
+    }
     free(edited_text);
 
     set_style_context(curr_chat.messages_g[index]->message_time, "message-time");
-
     set_style_context(curr_chat.messages_g[index]->message_text, "message-text");
 
     css_set_for_one(curr_chat.messages_g[index]->event_box_message, data.main_theme_path);
@@ -103,4 +106,22 @@ void create_one_messages(int index, message_t *message)
 
     curr_chat.messages_g[index + 1] = NULL;
     *(curr_chat.length) = index + 1;
+}
+
+int get_curr_msg_index(char *id)
+{
+    int index = 0;
+    if (curr_chat.messages_g != NULL)
+    {
+        for (ssize_t j = *(curr_chat.length) - 1; j >= 0; j--)
+        {
+            char *ms_id = (char *)gtk_widget_get_name(curr_chat.messages_g[j]->event_box_message);
+            if (strcmp(ms_id, id) == 0)
+            {
+                index = j;
+                break;
+            }
+        }
+    }
+    return index;
 }

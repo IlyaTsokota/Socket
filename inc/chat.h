@@ -442,6 +442,9 @@ edit_prof_s profile_s;
 current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
+
+
+int get_curr_msg_index(char *id);
 gpointer limit_size_msg_text(gpointer msg);
 char *trim_white_space_unicode(char *str);
 bool is_string_spaceless(char *str);

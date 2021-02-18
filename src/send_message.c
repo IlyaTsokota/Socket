@@ -45,11 +45,13 @@ void *sending(gpointer text_view)
             {
                 //edit
                 num_f = strdup("33");
-                char *edit_text = strjoin(2, "[Edited]\n", text);
                 char *arr[] = {main_form.curr_ms_id, text, NULL};
                 json = write_to_json(num_f, arr);
-                gtk_label_set_text(GTK_LABEL(main_form.cur_msg), edit_text);
-                free(edit_text);
+                gtk_label_set_text(GTK_LABEL(main_form.cur_msg), text);
+                int index = get_curr_msg_index(main_form.curr_ms_id);
+                gtk_label_set_text(GTK_LABEL(curr_chat.messages_g[index]->edited), "[Edited]");
+                gtk_widget_set_margin_bottom(curr_chat.messages_g[index]->edited, 10);
+                gtk_widget_set_margin_end(curr_chat.messages_g[index]->edited, 10);
                 request_to_server(json);
             }
             else if (main_form.msg_event == 2)

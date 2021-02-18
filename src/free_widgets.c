@@ -68,6 +68,7 @@ void free_message_widgets(messages_t **message)
             gtk_widget_destroy(message[i]->message_time);
             gtk_widget_destroy(message[i]->message_text);
             gtk_widget_destroy(message[i]->message_info);
+            gtk_widget_destroy(message[i]->edited);
             gtk_widget_destroy(message[i]->message);
             gtk_widget_destroy(message[i]->event_box_message);
             free(message[i]);

@@ -49,6 +49,7 @@ void create_one_chat(int index, chat_t *chat)
     gtk_widget_set_hexpand(chats_f.chat_items[index]->time_last_message, false);
     gtk_widget_set_vexpand(chats_f.chat_items[index]->time_last_message, true);
     gtk_widget_set_margin_top(chats_f.chat_items[index]->time_last_message, 10);
+    
     free(time);
     set_style_context(chats_f.chat_items[index]->time_last_message, "contact-time");
 
@@ -205,3 +206,4 @@ void create_one_chat(int index, chat_t *chat)
         chats_f.curr_chat = strdup(chat->ch_id);
     }
 }
+
