@@ -11,6 +11,7 @@ void create_one_chat(int index, chat_t *chat)
     gtk_widget_set_vexpand(chats_f.chat_items[index]->event_box_contact, false);
     gtk_widget_set_name(chats_f.chat_items[index]->event_box_contact, chat->ch_id);
     g_signal_connect(G_OBJECT(chats_f.chat_items[index]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
+
     gtk_widget_set_valign(chats_f.chat_items[index]->event_box_contact, GTK_ALIGN_START);
 
     int last_msg_index = -1;
@@ -64,7 +65,14 @@ void create_one_chat(int index, chat_t *chat)
     char *last_msg;
     if (last_msg_index != -1)
     {
-        last_msg = cut_str((char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[last_msg_index]->message_text)), 10);
+        if (GTK_IS_LABEL(curr_chat.messages_g[last_msg_index]->message_text))
+        {
+            last_msg = cut_str((char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[last_msg_index]->message_text)), 10);
+        }
+        else
+        {
+            last_msg = strdup("Image");
+        }
     }
     else
     {
@@ -137,7 +145,14 @@ void create_one_chat(int index, chat_t *chat)
     {
         if (strcmp(chat->u_avatar, "0") == 0 || strcmp(chat->u_avatar, "1234") == 0)
         {
-            filename = strdup("share/resources/img/ava2SavedMessages.png");
+            if (strcmp(chat->u_login, "Saved Messages") == 0)
+            {
+                filename = strdup("share/resources/img/ava2SavedMessages.png");
+            }
+            else
+            {
+                filename = strdup("share/resources/img/ava2.png");
+            }
         }
         else
         {

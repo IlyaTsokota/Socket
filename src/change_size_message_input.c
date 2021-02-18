@@ -26,16 +26,23 @@ void clear_text__buffer(GtkTextView *text_view)
 }
 void insert_text(GtkTextBuffer *buffer, GtkTextIter *location, gchar *text, gint len, gpointer user_data)
 {
+
+  GThread *thread = g_thread_new("max_size", limit_size_msg_text, location);
+}
+
+gpointer limit_size_msg_text(gpointer location)
+{
+  GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(main_form.text_view));
   gint count = gtk_text_buffer_get_char_count(buffer);
   if (count > 300)
   {
     GtkTextIter offset, end;
     gtk_text_buffer_get_iter_at_offset(buffer, &offset, 300);
     gtk_text_buffer_get_end_iter(buffer, &end);
-    // //g_print("Remove Range %i %i\n", gtk_text_iter_get_offset(&offset), gtk_text_iter_get_offset(&end));
     gtk_text_buffer_delete(buffer, &offset, &end);
-    gtk_text_iter_assign(location, &offset);
+    // gtk_text_iter_assign((GtkTextIter *)location, &offset);
   }
+  return NULL;
 }
 
 void change_size_message_input(GtkWidget *widget, msg_t *msg_entry)

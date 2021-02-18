@@ -2,8 +2,10 @@
 
 gboolean change_insert_to_message(gpointer widget)
 {
+
     GtkAdjustment *adjustment = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW((GtkWidget *)widget));
-    gtk_adjustment_set_value(adjustment, gtk_adjustment_get_upper(adjustment));
+    gtk_adjustment_set_value(adjustment, gtk_adjustment_get_upper(adjustment) + 100);
+
     return false;
 }
 
@@ -38,7 +40,15 @@ gboolean refresh_chat(update_t *update)
                     time_temp = (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_time));
                     time = strdup(&time_temp[11]);
                     gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->time_last_message), time);
-                    last_msg_temp = (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_text));
+                    if (GTK_IS_LABEL(curr_chat.messages_g[j]->message_text))
+                    {
+                        last_msg_temp = (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_text));
+                    }
+                    else
+                    {
+                        last_msg_temp = "Image";
+                    }
+
                     last_msg = cut_str(last_msg_temp, 10);
                     gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->text_last_message), last_msg);
                     last_login_temp = (char *)gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[j]->message_login));
@@ -60,6 +70,8 @@ gboolean refresh_chat(update_t *update)
             if (strcmp(chats_f.curr_chat, (char *)gtk_widget_get_name(curr_chat.messages_g[i]->message)) == 0)
             {
                 gtk_grid_attach(GTK_GRID(main_form.message_line), curr_chat.messages_g[i]->event_box_message, 0, i, 1, 1);
+                g_timeout_add(100, change_insert_to_message, main_form.message_scroll);
+
             }
         }
         gtk_widget_show_all(main_form.message_line);

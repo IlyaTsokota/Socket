@@ -42,7 +42,6 @@ void create_one_messages(int index, message_t *message)
     set_style_context(curr_chat.messages_g[index]->message_login, "contact-login");
     set_style_context(curr_chat.messages_g[index]->message_login, "message-from");
 
-
     if (strcmp(message->ms_ismedia, "0") == 0)
     {
         curr_chat.messages_g[index]->message_text = gtk_label_new(message->ms_text);
@@ -58,15 +57,35 @@ void create_one_messages(int index, message_t *message)
     }
     else
     {
+
         curr_chat.messages_g[index]->message_text = gtk_image_new();
+
         char *filename = get_msg_img(data.socket_desc, message->ch_id, message->ms_id, message->ms_text);
-        GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, 500, -1, TRUE, NULL);
+        gint width, height;
+        cairo_surface_t *image = cairo_image_surface_create_from_png(filename);
+        width = cairo_image_surface_get_width(image);
+        if (width > 500)
+            width = 500;
+
+        GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, width, -1, TRUE, NULL);
         gtk_image_set_from_pixbuf(GTK_IMAGE(curr_chat.messages_g[index]->message_text), pixbuf);
+        cairo_surface_destroy(image);
     }
+    g_signal_connect(G_OBJECT(curr_chat.messages_g[index]->event_box_message), "button-press-event", G_CALLBACK(click_on_msg), curr_chat.messages_g[index]->message_text);
+
+    char *edited_text = atoi(message->ms_isedited) == 1 ? strdup("[Edited]") : strdup("");
+    curr_chat.messages_g[index]->edited = gtk_label_new(edited_text);
+    gtk_widget_set_hexpand(curr_chat.messages_g[index]->edited, true);
+    gtk_widget_set_halign(curr_chat.messages_g[index]->edited, GTK_ALIGN_END);
+    gtk_widget_set_valign(curr_chat.messages_g[index]->edited, GTK_ALIGN_END);
+    free(edited_text);
+
+    set_style_context(curr_chat.messages_g[index]->message_time, "message-time");
 
     set_style_context(curr_chat.messages_g[index]->message_text, "message-text");
 
     css_set_for_one(curr_chat.messages_g[index]->event_box_message, data.main_theme_path);
+    css_set_for_one(curr_chat.messages_g[index]->edited, data.main_theme_path);
     css_set_for_one(curr_chat.messages_g[index]->message, data.main_theme_path);
     css_set_for_one(curr_chat.messages_g[index]->message_info, data.main_theme_path);
     css_set_for_one(curr_chat.messages_g[index]->message_time, data.main_theme_path);
@@ -77,6 +96,7 @@ void create_one_messages(int index, message_t *message)
     gtk_grid_attach(GTK_GRID(curr_chat.messages_g[index]->message_info), curr_chat.messages_g[index]->message_time, 1, 0, 1, 1);
 
     gtk_grid_attach(GTK_GRID(curr_chat.messages_g[index]->message), curr_chat.messages_g[index]->message_text, 0, 1, 1, 1);
+    gtk_grid_attach(GTK_GRID(curr_chat.messages_g[index]->message), curr_chat.messages_g[index]->edited, 0, 2, 1, 1);
     gtk_grid_attach(GTK_GRID(curr_chat.messages_g[index]->message), curr_chat.messages_g[index]->message_info, 0, 0, 1, 1);
 
     gtk_container_add(GTK_CONTAINER(curr_chat.messages_g[index]->event_box_message), curr_chat.messages_g[index]->message);

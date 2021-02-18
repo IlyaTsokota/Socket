@@ -2,6 +2,7 @@
 
 gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event)
 {
+
     char *id = (char *)gtk_widget_get_name(widget);
     // if (strcmp(id, chats_f.curr_chat) != 0)
     // {
@@ -31,9 +32,19 @@ gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event)
     }
 
     clear_text__buffer(GTK_TEXT_VIEW(main_form.text_view));
+    g_timeout_add(60, change_insert_to_message, main_form.message_scroll);
 
     gtk_widget_show_all(main_form.message_line);
 
     // }
     return false;
+}
+
+gboolean click_on_msg(GtkWidget *widget, GdkEventButton *event, GtkWidget *userdata)
+{
+    if (event->type == GDK_BUTTON_PRESS && event->button == 3)
+    {
+        view_popup_menu(widget, event, userdata);
+    }
+    return FALSE;
 }

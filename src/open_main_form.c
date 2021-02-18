@@ -38,7 +38,7 @@ void open_main_form(GtkWidget *window)
 
     GtkWidget *event_box_profile = GTK_WIDGET(gtk_builder_get_object(builder, "event_box_profile"));
     main_form.profile_img = GTK_WIDGET(gtk_builder_get_object(builder, "profile_img"));
-    
+
     GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(data.picture_name, 40, 40, TRUE, NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(main_form.profile_img), pixbuf);
     GtkWidget *top_panel = GTK_WIDGET(gtk_builder_get_object(builder, "top_panel"));
@@ -67,7 +67,7 @@ void open_main_form(GtkWidget *window)
         edit_styles_for_widget(chats_f.chat_items[0]->event_box_contact, color);
         free(color);
     }
-
+    
     g_signal_connect(G_OBJECT(main_form.create_chat_event_box), "button-press-event", G_CALLBACK(open_add_chat), NULL);
     g_signal_connect(G_OBJECT(main_form.chat_info_event_box), "button-press-event", G_CALLBACK(open_chat_info), NULL);
 

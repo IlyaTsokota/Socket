@@ -11,9 +11,9 @@ gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *tex
 
 void *sending(gpointer text_view)
 {
-     //puts("LOCK_prev");
+    //puts("LOCK_prev");
     g_mutex_lock(&main_form.mutex_seding_msg);
-     //puts("LOCK");
+    //puts("LOCK");
     struct sockaddr_in client_addr;
     update_t *update = malloc(sizeof(update));
     update->socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -24,33 +24,87 @@ void *sending(gpointer text_view)
 
     if (connect(update->socket, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
-         //puts("Send message\n");
+        //puts("Send message\n");
         char *message = get_text_of_textview(GTK_TEXT_VIEW(text_view));
-        char *num_f = strdup("13");
-        char *arr[] = {chats_f.curr_chat, data.user_id, "0", "0", "0", message, NULL};
-        char *json = write_to_json(num_f, arr);
-        free(num_f);
-        char *response = request_on_server(update->socket, json);
-        clear_text__buffer(GTK_TEXT_VIEW(text_view));
-        g_timeout_add(50, change_insert_to_message, main_form.message_scroll);
-        free(json);
-        free(response);
+
+        if (is_string_spaceless(message))
+        {
+            char *num_f;
+            char *json;
+            char *response;
+            char *text = trim_white_space_unicode(message);
+            if (main_form.msg_event == 0)
+            {
+                //sending
+                num_f = strdup("13");
+                char *arr[] = {chats_f.curr_chat, data.user_id, "0", "0", "0", text, NULL};
+                json = write_to_json(num_f, arr);
+                response = request_on_server(update->socket, json);
+            }
+            else if (main_form.msg_event == 1)
+            {
+                //edit
+                num_f = strdup("33");
+                char *edit_text = strjoin(2, "[Edited]\n", text);
+                char *arr[] = {main_form.curr_ms_id, text, NULL};
+                json = write_to_json(num_f, arr);
+                gtk_label_set_text(GTK_LABEL(main_form.cur_msg), edit_text);
+                free(edit_text);
+                request_to_server(json);
+            }
+            else if (main_form.msg_event == 2)
+            {
+                // reply
+            }
+            clear_text__buffer(GTK_TEXT_VIEW(text_view));
+            free(json);
+            free(num_f);
+            free(response);
+            edit_styles_for_widget(text_view, "* {border: none;}");
+        }
+        else
+        {
+            edit_styles_for_widget(text_view, "* {border-top: 2px solid red;border-bottom: 2px solid red;}");
+        }
     }
     else
     {
 
-         //puts("Data sent faild!\n");
+        //puts("Data sent faild!\n");
     }
-
+    main_form.msg_event = 0;
     close(update->socket);
     free(update);
-     //puts("UNLOCK_prev");
+    //puts("UNLOCK_prev");
     g_mutex_unlock(&main_form.mutex_seding_msg);
-     //puts("UNLOCK");
+
+    //puts("UNLOCK");
 
     // g_thread_exit(NULL);
     // g_mutex_lock(&main_form.mutex_seding_msg);
     // //puts("Lock");
 
     return NULL;
+}
+
+void edit_message(GtkMenuItem *menuitem, GtkWidget *ms_info)
+{
+    main_form.msg_event = 1;
+    clear_text__buffer(GTK_TEXT_VIEW(main_form.text_view));
+    GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(main_form.text_view));
+    char *text = (char *)gtk_label_get_text(GTK_LABEL(main_form.cur_msg));
+    gtk_text_buffer_set_text(buffer, text, strlen(text));
+    gtk_text_view_set_buffer(GTK_TEXT_VIEW(main_form.text_view), buffer);
+}
+
+bool is_string_spaceless(char *str)
+{
+    for (size_t i = 0; i < strlen(str); i++)
+    {
+        if (!mx_isspace(str[i]))
+        {
+            return true;
+        }
+    }
+    return false;
 }

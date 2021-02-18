@@ -12,7 +12,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <string.h>
-     #include <strings.h>
+#include <strings.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -67,6 +67,8 @@ typedef struct
 	GtkWidget *message_info;
 	GtkWidget *message_text;
 	GtkWidget *message_login;
+	GtkWidget *edited;
+
 
 } messages_t;
 
@@ -77,6 +79,12 @@ typedef struct
 	GtkWidget *btn;
 	GtkWidget *spinner;
 } cur_grid_t;
+
+typedef struct
+{
+GtkTextBuffer *buffer; 
+GtkTextIter *location;
+} max_size_msg_t;
 
 typedef struct
 {
@@ -137,6 +145,9 @@ typedef struct
 	GtkWidget *chat;
 	GtkWidget *lock;
 } left_panel_img_t;
+
+
+
 typedef struct pin_f
 {
 	GtkWidget *pin_form;
@@ -281,6 +292,9 @@ typedef struct
 	GtkWidget *setting_img;
 	GtkWidget *profile_img;
 	GtkWidget *curr_chat_img;
+	char *curr_ms_id;
+	GtkWidget *cur_msg;
+	int msg_event;
 } main_form_t;
 
 typedef struct
@@ -428,8 +442,14 @@ edit_prof_s profile_s;
 current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
-
-char *get_msg_img(int socket, char *ch_id, char*ms_id, char *filename);
+gpointer limit_size_msg_text(gpointer msg);
+char *trim_white_space_unicode(char *str);
+bool is_string_spaceless(char *str);
+void edit_message(GtkMenuItem *menuitem, GtkWidget *text);
+gboolean click_on_msg(GtkWidget *widget, GdkEventButton *event,GtkWidget *userdata);
+gboolean send_msg_on_press_enter(GtkWidget *widget, GdkEventKey *event, GtkTextView *text_view);
+void view_popup_menu(GtkWidget *treeview, GdkEventButton *event, GtkWidget *userdata);
+char *get_msg_img(int socket, char *ch_id, char *ms_id, char *filename);
 void show_chats_widgets();
 void sort_chats(chat_t **chats, int size);
 gboolean update_chat(update_t *update);
@@ -495,8 +515,8 @@ void what_theme_select(char *curr_theme);
 void free_theme();
 gboolean switch_theme(GtkSwitch *widget, gboolean state, gpointer data);
 gboolean show_emoji(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view);
-void send_source(int so, char *f_num,  char *some_id, char *filename);
-gboolean send_pinned_resource(GtkWidget *widget);
+void send_source(int so, char *f_num, char *some_id, char *filename);
+gboolean send_pinned_resource(GtkWidget *widget, GdkEventButton *event, gpointer user_data);
 void clear_interface();
 void free_message_widgets(messages_t **message);
 void free_chat_widgets(chat_item_t **contacts);

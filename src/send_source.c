@@ -12,7 +12,7 @@ void send_source(int so, char *f_num, char *some_id, char *filename)
     if (connect(sock, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
         char *num_f = strdup(f_num);
-         //puts(filename);
+        //puts(filename);
         char *arr[] = {some_id, filename, NULL};
         char *json = write_to_json(num_f, arr);
         free(num_f);
@@ -63,14 +63,14 @@ void recieve_image(int socket, char *path)
     size_t recv_size = 0;
     uint32_t size = 0;
     int rs = -1;
-    //write(socket, &recv_size, sizeof(size_t));
+    // write(socket, &recv_size, sizeof(size_t));
     do
     {
         rs = read(socket, &size, sizeof(uint32_t));
     } while (rs < 0);
     size = ntohl(size);
     printf("%u -- total size\n", size);
-    //write(socket, &recv_size, sizeof(size_t));
+    // write(socket, &recv_size, sizeof(size_t));
 
     printf("Reading Picture Byte Array\n");
     char p_array[1025];
