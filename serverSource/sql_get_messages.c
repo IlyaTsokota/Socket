@@ -8,10 +8,11 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
     FROM chatusers cu \
     join message ms on cu.ch_id = ms.ch_id \
     join user u on ms.u_id = u.u_id \
-    WHERE cu.u_id = \"", user_id, "\" AND ms.ms_id > \"", last_message_id, "\" order by ms.ms_id;", NULL};
+    WHERE cu.u_id = \"",
+                                   user_id, "\" AND ms.ms_id > \"", last_message_id, "\" order by ms.ms_id;", NULL};
 
     bdrequest = strjoins_arr(request_parts);
-    
+
     puts(bdrequest); //Вывод запроса в консоль
 
     if (mysql_query(con, bdrequest))
@@ -27,16 +28,15 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
     }
 
     free(bdrequest); //IR
-    
+
     int num_fields = mysql_num_fields(result);
 
     MYSQL_ROW row;
 
     message_t *message = NULL;
-    
-    
+
     str = strdup("{\"messages\": [");
-    
+
     while ((row = mysql_fetch_row(result)))
     {
         message = (message_t *)malloc(sizeof(message_t));
@@ -68,12 +68,14 @@ char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock)
     mysql_free_result(result);
     mysql_close(con);
     //
-    if (socket_send_data(str, sock)) {
-       return strdup("0");
+    if (socket_send_data(str, sock))
+    {
+        return strdup("0");
     }
-    else {
+    else
+    {
         return strdup("1");
     }
-    
-    return strdup("1");; //0 or >0
+
+    return strdup("1"); //0 or >0
 }

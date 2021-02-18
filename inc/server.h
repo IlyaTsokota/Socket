@@ -37,7 +37,7 @@ char *send_image(int sock, char *filename);
 
 char *receive_img_to_profile(MYSQL *con, int socket, char *u_id, char *filename); //, char *chat_id, char *message_id)
 //utilities
-void recieve_image(int socket , char *path);
+void recieve_image(int socket, char *path);
 
 void array_clear(array_t *a);
 int array_resize(array_t *a, size_t n);
@@ -124,14 +124,17 @@ char *change_pin(MYSQL *con, char *u_id, char *new_pin);       //28
 
 //sql-message
 char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                                              //16
+char *get_edited_messages(MYSQL *con, char *user_id, int sock);                                                                                                              //41
 char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock, int is_send_answer); //13
-char *change_message(MYSQL *con, char *ms_id, char *ms_text);                                                                                               //33
+char *change_message(MYSQL *con, char *ms_id, char *ms_text);                                                                                                                //33
 char *delete_message(MYSQL *con, char *ch_id, char *ms_id);                                                                                                                  //34
 char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock);                                                                                                      //37
+char *forward_message(MYSQL *con, char *ms_id, char *forward_to_ch_id);                                                                                                      //40
+char *reply_message(MYSQL *con, char *ms_id, char *reply_to_ch_id);                                                                                                          //42
 //sql-unsorte
 char *get_my_id(MYSQL *con, char *login, int close_con_after_end_of_func, int sock); //18
 char *edit_profile(MYSQL *con, char *u_id, char *name, char *surname, char *quote);  //19
-char *sql_update_chat_image(MYSQL *con, int socket, char *ch_id, char *filename); //39
+char *sql_update_chat_image(MYSQL *con, int socket, char *ch_id, char *filename);    //39
 
 //db-login-generator
 char *pass_gen();
