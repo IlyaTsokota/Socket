@@ -17,7 +17,7 @@ gboolean open_click_contact(GtkWidget *widget)
         contacts_t.curr_contact = NULL;
     }
     contacts_t.curr_contact = strdup(id);
-     //puts(contacts_t.curr_contact);
+     ////puts(contacts_t.curr_contact);
     gtk_label_set_text(GTK_LABEL(main_form.contact_info_name), current_info->u_login);
     // main.form.img_info_contact
     char *tmp_quote = strjoin(3, "\" ", current_info->u_status, " \"");

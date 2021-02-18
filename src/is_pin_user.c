@@ -7,7 +7,7 @@ bool is_pin_user(char *pin)
     char *json = write_to_json(num_f, arr);
     free(num_f);
     char *response = request_on_server(data.socket_desc, json);
-    //puts(response);
+    ////puts(response);
     json_object *jobj;
     jobj = json_tokener_parse(response);
 

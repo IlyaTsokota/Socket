@@ -35,7 +35,7 @@ void *auth_check_f(void *auth_s)
 }
 // void fun()
 // {
-//     printf("This line may be printed"
+//     //printf("This line may be printed"
 //            " before thread terminates\n");
 
 //     // The following line terminates
@@ -44,9 +44,9 @@ void *auth_check_f(void *auth_s)
 
 //     // Compare the two threads created
 //     if(pthread_equal(ptid, pthread_self())
-//         printf("Threads are equal\n");
+//         //printf("Threads are equal\n");
 //     else
-//         printf("Threads are not equal\n");
+//         //printf("Threads are not equal\n");
 
 //     // Waiting for the created thread to terminate
 //     pthread_join(ptid, NULL);

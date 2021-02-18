@@ -8,9 +8,9 @@ char *request_on_server(int socket, char *request)
     size_t packet_size = 1024, packet_count = 0, read_index = 0;
     char buff[1024];
     char *str;
-    //  //puts("request = ");
-    //  //puts(request);
-    //  //puts("================");
+    //  ////puts("request = ");
+    //  ////puts(request);
+    //  ////puts("================");
 
     write(socket, request, strlen(request));
 
@@ -38,9 +38,9 @@ char *request_on_server(int socket, char *request)
         str[read_index] = '\0';
     } while (size > 0);
 
-    //  //puts("answer = ");
-    //  //puts(str);
-    //  //puts("================");
+    //  ////puts("answer = ");
+    //  ////puts(str);
+    //  ////puts("================");
 
     stat = read(socket, buff, 1); //ах ты ёбаный ублюдок...
     g_mutex_unlock(&main_form.mutex);

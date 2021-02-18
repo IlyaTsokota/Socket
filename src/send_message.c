@@ -11,20 +11,20 @@ gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *tex
 
 void *sending(gpointer text_view)
 {
-    //puts("LOCK_prev");
+    ////puts("LOCK_prev");
     g_mutex_lock(&main_form.mutex_seding_msg);
-    //puts("LOCK");
+    ////puts("LOCK");
     struct sockaddr_in client_addr;
     update_t *update = malloc(sizeof(update));
     update->socket = socket(AF_INET, SOCK_STREAM, 0);
-    int port = 3762;
+    int port = data.port;
     client_addr.sin_family = AF_INET;
-    client_addr.sin_addr.s_addr = INADDR_ANY; // inet_addr("159.224.0.212"); //inet_addr("178.165.30.151");
+    client_addr.sin_addr.s_addr = inet_addr(data.ipv4); // inet_addr("159.224.0.212"); //inet_addr("178.165.30.151");
     client_addr.sin_port = htons(port);
 
     if (connect(update->socket, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
-        //puts("Send message\n");
+        ////puts("Send message\n");
         char *message = get_text_of_textview(GTK_TEXT_VIEW(text_view));
 
         if (is_string_spaceless(message))
@@ -41,7 +41,6 @@ void *sending(gpointer text_view)
                 json = write_to_json(num_f, arr);
                 response = request_on_server(update->socket, json);
                 free(response);
-
             }
             else if (main_form.msg_event == 1)
             {
@@ -54,11 +53,8 @@ void *sending(gpointer text_view)
                 gtk_label_set_text(GTK_LABEL(curr_chat.messages_g[index]->edited), "[Edited]");
                 gtk_widget_set_margin_bottom(curr_chat.messages_g[index]->edited, 10);
                 gtk_widget_set_margin_end(curr_chat.messages_g[index]->edited, 10);
+                gtk_widget_show_all(curr_chat.messages_g[index]->edited);
                 request_to_server(json);
-            }
-            else if (main_form.msg_event == 2)
-            {
-                // reply
             }
             clear_text__buffer(GTK_TEXT_VIEW(text_view));
             free(json);
@@ -73,19 +69,19 @@ void *sending(gpointer text_view)
     else
     {
 
-        //puts("Data sent faild!\n");
+        ////puts("Data sent faild!\n");
     }
     main_form.msg_event = 0;
     close(update->socket);
     free(update);
-    //puts("UNLOCK_prev");
+    ////puts("UNLOCK_prev");
     g_mutex_unlock(&main_form.mutex_seding_msg);
 
-    //puts("UNLOCK");
+    ////puts("UNLOCK");
 
     // g_thread_exit(NULL);
     // g_mutex_lock(&main_form.mutex_seding_msg);
-    // //puts("Lock");
+    // ////puts("Lock");
 
     return NULL;
 }
@@ -110,4 +106,15 @@ bool is_string_spaceless(char *str)
         }
     }
     return false;
+}
+
+void reply_message(GtkMenuItem *menuitem, GtkWidget *ms_info)
+{
+    main_form.msg_event = 0;
+    char *num_f = strdup("42");
+    char *arr[] = {main_form.curr_ms_id, chats_f.curr_chat, NULL};
+    char *json = write_to_json(num_f, arr);
+    free(num_f);
+    request_to_server(json);
+    free(json);
 }

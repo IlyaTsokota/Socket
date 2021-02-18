@@ -16,12 +16,12 @@ gboolean send_pinned_resource(GtkWidget *widget, GdkEventButton *event, gpointer
 
     GtkFileChooser *chooser = GTK_FILE_CHOOSER(dialog);
     char *filename = gtk_file_chooser_get_filename(chooser);
-    puts(filename);
+    //puts(filename);
     char *num_f = strdup("13");
     char *arr[] = {chats_f.curr_chat, data.user_id, "0", "0", "1", filename, NULL};
     char *json = write_to_json(num_f, arr);
     free(num_f);
-    puts(json);
+    //puts(json);
     write(data.socket_desc, json, strlen(json));
     free(json);
     g_mutex_unlock(&main_form.mutex);

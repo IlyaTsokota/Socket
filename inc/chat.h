@@ -238,6 +238,8 @@ typedef struct
 	char *theme;
 	bool isBottomed;
 	char *language;
+	int port;
+	char *ipv4;
 } appdata;
 
 appdata data;
@@ -452,6 +454,8 @@ current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
 
+void reply_message(GtkMenuItem *menuitem, GtkWidget *ms_info);
+void free_chat_widgets_sec(chat_item_t **contacts);
 gboolean forward_message(GtkWidget *widget, GdkEventButton *event);
 void create_one_forward_chat(int index, chat_t *chat);
 gboolean on_popup_focus_out(GtkWidget *widget, GdkEventFocus *event, gpointer data);
@@ -460,7 +464,7 @@ void free_one_chat_widgets(chat_item_t *contacts);
 message_back_info_t **edit_messages_to_json(char *str);
 message_back_info_t **take_edit_messages(int socket);
 void free_message_back_info_s(message_back_info_t **user);
-gboolean update_edit_msgs(update_t *update);
+gboolean update_edit_msgs(gpointer d);
 void start_timer_for_edit_messages();
 gpointer thread_by_edit_messages(gpointer dat);
 void end_of_timer_edit_messages(gpointer dat);
@@ -475,7 +479,7 @@ void view_popup_menu(GtkWidget *treeview, GdkEventButton *event, GtkWidget *user
 char *get_msg_img(int socket, char *ch_id, char *ms_id, char *filename);
 void show_chats_widgets();
 void sort_chats(chat_t **chats, int size);
-gboolean update_chat(update_t *update);
+gboolean update_chat(gpointer d);
 void start_timer_for_update_chat();
 gpointer thread_by_refresh_chat(gpointer dat);
 void end_of_timer_chat(gpointer dat);
@@ -560,7 +564,7 @@ void create_chat_widgets(char *user_id, int sock);
 message_arr *take_messages(int socket, char *user_id, char *last_msg_id);
 message_arr *messages_to_json(char *str);
 void clear_text__buffer(GtkTextView *text_view);
-gboolean refresh_chat(update_t *update);
+gboolean refresh_chat(gpointer d);
 void create_one_messages(int index, message_t *message);
 char *get_text_of_textview(GtkTextView *text_view);
 gboolean send_message(GtkWidget *widget, GdkEventButton *event, GtkTextView *text_view);

@@ -4,15 +4,15 @@ void send_source(int so, char *f_num, char *some_id, char *filename)
 {
     struct sockaddr_in client_addr;
     int sock = socket(AF_INET, SOCK_STREAM, 0);
-    int port = 3762;
+    int port = data.port;
     client_addr.sin_family = AF_INET;
-    client_addr.sin_addr.s_addr = INADDR_ANY; // inet_addr("159.224.0.212"); //inet_addr("178.165.30.151");
+    client_addr.sin_addr.s_addr = inet_addr(data.ipv4); // inet_addr("159.224.0.212"); //inet_addr("178.165.30.151");
     client_addr.sin_port = htons(port);
 
     if (connect(sock, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
         char *num_f = strdup(f_num);
-        //puts(filename);
+        ////puts(filename);
         char *arr[] = {some_id, filename, NULL};
         char *json = write_to_json(num_f, arr);
         free(num_f);
@@ -38,7 +38,7 @@ void send_image(int sock, char *filename)
     write(sock, &size, sizeof(uint32_t));
     size = ntohl(size);
     read(sock, &lol, sizeof(size_t));
-    printf("Sending Picture as Byte Array\n");
+    //printf("Sending Picture as Byte Array\n");
     char send_buffer[1025]; // no link between BUFSIZE and the file size
     int nb = 0, nb1 = 0;
 
@@ -49,7 +49,7 @@ void send_image(int sock, char *filename)
         size -= nb;
     } while (size > 0);
 
-    printf("Sending PGG\n");
+    //printf("Sending PGG\n");
     fclose(picture);
     char b[1];
     read(sock, &b, 1);
@@ -69,10 +69,10 @@ void recieve_image(int socket, char *path)
         rs = read(socket, &size, sizeof(uint32_t));
     } while (rs < 0);
     size = ntohl(size);
-    printf("%u -- total size\n", size);
+    //printf("%u -- total size\n", size);
     // write(socket, &recv_size, sizeof(size_t));
 
-    printf("Reading Picture Byte Array\n");
+    //printf("Reading Picture Byte Array\n");
     char p_array[1025];
     FILE *image = fopen(path, "w");
     long long nb = 0;
@@ -86,7 +86,7 @@ void recieve_image(int socket, char *path)
         nb = recv(socket, p_array, packet_size, 0);
         fwrite(p_array, 1, nb, image);
         size -= nb;
-        printf("%u -- lenght\n", size);
+        //printf("%u -- lenght\n", size);
     } while (size > 0);
     fclose(image);
     char b[1];

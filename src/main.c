@@ -4,20 +4,20 @@ void server_set_connection()
 {
     struct sockaddr_in client_addr;
     data.socket_desc = socket(AF_INET, SOCK_STREAM, 0);
-    int port = 3762;
+    int port = data.port;
     client_addr.sin_family = AF_INET;
-    client_addr.sin_addr.s_addr = INADDR_ANY; //inet_addr("159.224.0.212");
+    client_addr.sin_addr.s_addr = inet_addr(data.ipv4);
     client_addr.sin_port = htons(port);
 
     if (connect(data.socket_desc, (struct sockaddr *)&client_addr, sizeof(client_addr)) == 0)
     {
-        printf("Connected to server, port is %d\n", port);
+        //printf("Connected to server, port is %d\n", port);
     }
     else
     {
         // сверстать окно об ошибке и вызывать здесь и вызывать функцию которая будет каждые 60 секунд вызывать повторное соединение с сервером рекурсией
         // server_set_connection();
-        printf("Something wrong!\n");
+        //printf("Something wrong!\n");
         exit(1);
     }
 }
@@ -29,7 +29,6 @@ void application_activate(GtkApplication *application, gpointer user_data)
     g_mutex_init(&main_form.mutex_seding_msg);
     g_mutex_init(&main_form.mutex_file_transfer);
     g_mutex_init(&main_form.mutex_update);
-
 
     server_set_connection();
 
@@ -84,7 +83,7 @@ void application_shutdown(GtkApplication *application, gpointer user_data)
             main_form.last_ms_id = NULL;
         }
         main_form.last_ms_id = strdup("0");
-         remove("messages.json");
+        remove("messages.json");
         get_all_messages(data.user_id, main_form.last_ms_id);
     }
     close(data.socket_desc);
@@ -94,6 +93,14 @@ void application_shutdown(GtkApplication *application, gpointer user_data)
 int main(int argc, char *argv[])
 {
     // setlocale(LC_ALL, "");
+    if (argc != 3)
+    {
+        puts("Usage: ./uchat [ipv4][port]");
+        return 1;
+    }
+    data.port = atoi(argv[2]);
+        data.ipv4 = strdup(argv[1]);
+
     gtk_init(&argc, &argv);
     data.app = gtk_application_new("gtk.org", G_APPLICATION_FLAGS_NONE);
     g_signal_connect(data.app, "activate", G_CALLBACK(application_activate), NULL);

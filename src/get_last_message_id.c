@@ -12,7 +12,7 @@ char* get_last_mesage_id(char* filename) {
         int exist = 0;
         exist = json_object_object_get_ex(jobj, "messages", &values_obj);
         int length = json_object_array_length(values_obj) - 1;
-        //// //puts(int_to_str(length));
+        //// ////puts(int_to_str(length));
         tmp_values = json_object_array_get_idx(values_obj, length);
         json_object_object_get_ex(tmp_values, "ms_id", &values_name);
         char *tmp = strdup((char *)json_object_get_string(values_name));

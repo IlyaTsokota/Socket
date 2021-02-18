@@ -7,7 +7,7 @@ message_arr *take_messages(int socket, char *user_id, char *last_msg_id)
     char *json = write_to_json(num_f, arr);
     free(num_f);
     char *messages = request_on_server(socket, json);
-    //// //puts(messages);
+    //// ////puts(messages);
     free(json);
     message_arr *messages_s = messages_to_json(messages);
 
@@ -19,7 +19,7 @@ message_arr *take_messages(int socket, char *user_id, char *last_msg_id)
 
 message_arr *messages_to_json(char *str)
 {
-    // //puts(str);
+    // ////puts(str);
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);
     if (jobj == NULL)
@@ -95,7 +95,7 @@ user_curr_chat_t **take_users_by_chat(int socket)
     char *json = write_to_json(num_f, arr);
     free(num_f);
     char *messages = request_on_server(socket, json);
-    //// //puts(messages);
+    //// ////puts(messages);
     free(json);
     user_curr_chat_t **messages_s = users_by_chat_to_json(messages);
 
@@ -107,7 +107,7 @@ user_curr_chat_t **take_users_by_chat(int socket)
 
 user_curr_chat_t **users_by_chat_to_json(char *str)
 {
-    // //puts(str);
+    // ////puts(str);
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);
     if (jobj == NULL)
@@ -124,7 +124,7 @@ user_curr_chat_t **users_by_chat_to_json(char *str)
         char *tmp;
         for (size_t j = 0; j < length; j++)
         {
-             //puts("a");
+             ////puts("a");
             tmp_values = json_object_array_get_idx(values_obj, j);
 
             arr_msgs[j] = malloc(sizeof(user_curr_chat_t));
@@ -172,7 +172,7 @@ message_back_info_t **take_edit_messages(int socket)
     char *json = write_to_json(num_f, arr);
     free(num_f);
     char *messages = request_on_server(socket, json);
-    //// //puts(messages);
+    //// ////puts(messages);
     free(json);
     message_back_info_t **messages_s = edit_messages_to_json(messages);
 
@@ -184,7 +184,7 @@ message_back_info_t **take_edit_messages(int socket)
 
 message_back_info_t **edit_messages_to_json(char *str)
 {
-    // //puts(str);
+    // ////puts(str);
     json_object *jobj, *values_obj, *tmp_values, *values_name;
     jobj = json_tokener_parse(str);
     if (jobj == NULL)
@@ -201,7 +201,7 @@ message_back_info_t **edit_messages_to_json(char *str)
         char *tmp;
         for (size_t j = 0; j < length; j++)
         {
-             //puts("a");
+             ////puts("a");
             tmp_values = json_object_array_get_idx(values_obj, j);
 
             arr_msgs[j] = malloc(sizeof(message_back_info_t));

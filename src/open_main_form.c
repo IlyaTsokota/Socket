@@ -81,6 +81,6 @@ void open_main_form(GtkWidget *window)
     gtk_container_add(GTK_CONTAINER(window), main_form.app_form);
     g_object_unref(builder);
     start_timer_in_other_thread();
-    // start_timer_for_edit_messages();
-    //start_timer_for_update_chat();
+    start_timer_for_edit_messages();
+    // start_timer_for_update_chat();
 }

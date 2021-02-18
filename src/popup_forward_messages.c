@@ -2,18 +2,19 @@
 
 gboolean on_popup_focus_out(GtkWidget *widget, GdkEventFocus *event, gpointer data)
 {
-    free_chat_widgets(chats_form_sec.chat_items);
+    free_chat_widgets_sec(chats_form_sec.chat_items);
 
-    gtk_widget_destroy(widget);
+    if(widget != NULL){
+        gtk_widget_destroy(widget);
+        widget = NULL;
+    }
     return TRUE;
 }
 
 void on_popup_clicked(GtkMenuItem *menuitem, gpointer user_data)
 {
-
     main_form.popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(main_form.popup_window), "Pop Up window");
-    gtk_container_set_border_width(GTK_CONTAINER(main_form.popup_window), 10);
     gtk_window_set_resizable(GTK_WINDOW(main_form.popup_window), FALSE);
     gtk_window_set_decorated(GTK_WINDOW(main_form.popup_window), FALSE);
     gtk_window_set_skip_taskbar_hint(GTK_WINDOW(main_form.popup_window), TRUE);

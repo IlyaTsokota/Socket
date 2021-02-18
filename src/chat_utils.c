@@ -216,7 +216,7 @@ gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event)
 {
     hide_gtk_widgets(main_form.right_content);
     show_remove_participant(main_form.main_grid);
-    // refresh_users_by_chat();
+    refresh_users_by_chat();
     gtk_widget_show_all(main_form.right_content[12]);
     return false;
 }
@@ -332,7 +332,7 @@ void add_contact(GtkWidget *button, data_input_t *info)
         char *json = write_to_json(num_f, arr);
         free(num_f);
         char *request = request_on_server(data.socket_desc, json);
-         //puts(request);
+         ////puts(request);
         free(json);
         if (strcmp(request, "1") == 0)
         {
@@ -431,7 +431,7 @@ void update_chats_after_delete()
             j++;
         }
     }
-     //puts("Fuck");
+     ////puts("Fuck");
     free_chat_widgets(chats_f.chat_items);
 
     chats_f.size = j;

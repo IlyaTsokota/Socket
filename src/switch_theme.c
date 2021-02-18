@@ -22,7 +22,7 @@ gboolean switch_theme(GtkSwitch *widget, gboolean state, gpointer info)
     settings_t *settings_field = get_settings(settings);
     free_theme();
     switch_current_theme(settings_field->theme);
-     //puts(settings_field->login);
+     ////puts(settings_field->login);
     create_settings_json(settings_field->login, data.theme, settings_field->language, settings_field->is_in);
     free(settings_field);
 

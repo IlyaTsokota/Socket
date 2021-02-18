@@ -10,9 +10,9 @@ void open_main_form_after_register(GtkWidget *button, GtkWidget *widget)
     data.user_login = strdup(registration.login_text);
     data.isBottomed = false;
 
-     //puts(data.user_id);
+     ////puts(data.user_id);
 
-     //puts(data.user_login);
+     ////puts(data.user_login);
     
 
     gtk_widget_destroy(widget);

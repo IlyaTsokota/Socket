@@ -25,6 +25,7 @@ void view_popup_menu(GtkWidget *widget, GdkEventButton *event, GtkWidget *userda
     }
 
     gtk_menu_shell_append(GTK_MENU_SHELL(menu), reply);
+    g_signal_connect(G_OBJECT(reply), "activate", G_CALLBACK(reply_message), NULL);
 
     // g_signal_connect(G_OBJECT(signInLabel), "clicked", G_CALLBACK(open_login_form), regOne);
 

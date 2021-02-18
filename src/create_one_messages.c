@@ -9,13 +9,20 @@ void create_one_messages(int index, message_t *message)
     // g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
     gtk_widget_set_hexpand(curr_chat.messages_g[index]->event_box_message, true);
 
-    if (strcmp(message->u_id, data.user_id) == 0)
+    if (strcmp(message->ms_isforwarded, "1") == 0 || strcmp(message->ms_isreply, "1") == 0)
     {
-        gtk_widget_set_halign(curr_chat.messages_g[index]->event_box_message, GTK_ALIGN_END);
+        gtk_widget_set_halign(curr_chat.messages_g[index]->event_box_message, GTK_ALIGN_CENTER);
     }
     else
     {
-        gtk_widget_set_halign(curr_chat.messages_g[index]->event_box_message, GTK_ALIGN_START);
+        if (strcmp(message->u_id, data.user_id) == 0)
+        {
+            gtk_widget_set_halign(curr_chat.messages_g[index]->event_box_message, GTK_ALIGN_END);
+        }
+        else
+        {
+            gtk_widget_set_halign(curr_chat.messages_g[index]->event_box_message, GTK_ALIGN_START);
+        }
     }
 
     gtk_widget_set_vexpand(curr_chat.messages_g[index]->event_box_message, true);
@@ -40,6 +47,10 @@ void create_one_messages(int index, message_t *message)
     if (strcmp(message->ms_isforwarded, "1") == 0)
     {
         login = strjoin(2, "Message forward from\n", message->u_name);
+    }
+    else if (strcmp(message->ms_isreply, "1") == 0)
+    {
+        login = strjoin(2, "Message reply from\n", message->u_name);
     }
     else
     {
@@ -94,7 +105,7 @@ void create_one_messages(int index, message_t *message)
     }
     free(edited_text);
 
-    set_style_context(curr_chat.messages_g[index]->message_time, "message-time");
+    set_style_context(curr_chat.messages_g[index]->edited, "message-time");
     set_style_context(curr_chat.messages_g[index]->message_text, "message-text");
 
     css_set_for_one(curr_chat.messages_g[index]->event_box_message, data.main_theme_path);
