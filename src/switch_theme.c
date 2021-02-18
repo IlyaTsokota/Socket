@@ -26,7 +26,11 @@ gboolean switch_theme(GtkSwitch *widget, gboolean state, gpointer info)
     create_settings_json(settings_field->login, data.theme, settings_field->language, settings_field->is_in);
     free(settings_field);
 
-    g_main_loop_quit(main_form.loop);
+  g_main_loop_quit( main_form.loop_edit_msgs );
+    g_thread_join(main_form.update_edit_msgs);
+    g_main_loop_quit( main_form.loop_chat );
+    g_thread_join(main_form.update_thread_chat);
+    g_main_loop_quit( main_form.loop );
     g_thread_join(main_form.update_thread);
     free_message_widgets(curr_chat.messages_g);
     free_chat_widgets(chats_f.chat_items);
