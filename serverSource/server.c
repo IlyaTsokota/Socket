@@ -84,14 +84,24 @@ void *connection_handler(void *socket_desc)
     return 0;
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+    pid_t pid;
+
+    pid = fork();
+    if(pid < 0){
+        exit(EXIT_FAILURE);
+    }
+    if(pid>0)
+    {
+        exit(EXIT_SUCCESS);
+    }
     //char *locale;
     //locale = setlocale(LC_ALL, "");
 
     int socket_desc, client_sock, c;
     struct sockaddr_in server, client;
-
+    
     //Creating socket
     socket_desc = socket(AF_INET, SOCK_STREAM, 0);
     if (socket_desc == -1)
@@ -100,8 +110,12 @@ int main()
 
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = htons(3762);
-
+    if(argc != 2)
+    {
+        perror("Usage: ./server [port]");
+        return 1;
+    }
+    server.sin_port = htons(atoi(argv[1]));
     //Bind
     if (bind(socket_desc, (struct sockaddr *)&server, sizeof(server)) < 0)
     {
@@ -111,7 +125,7 @@ int main()
     puts("bind sucess");
 
     //Listening
-    listen(socket_desc, 1280); //second parametr set max_clients;
+    listen(socket_desc, 3); //second parametr set max_clients;
 
     puts("Waiting for new connections...");
     c = sizeof(struct sockaddr_in);
