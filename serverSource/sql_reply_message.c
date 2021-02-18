@@ -7,7 +7,7 @@ char *reply_message(MYSQL *con, char *ms_id, char *reply_to_ch_id)
     const char *request_parts[] = {"INSERT INTO message (ch_id, u_id, ms_datetime, ms_isforwarded, ms_isreply, ms_isseen, ms_isedited, ms_ismedia, ms_text) select \"", reply_to_ch_id, "\", u_id,(select c.ms_datetime from message c where \
     c.ms_id = \"",
                                    ms_id, "\"), \"0\", \"1\", \"0\", \"0\",(select b.ms_ismedia from message b where b.ms_id = \"", ms_id, "\"),(select h.ms_text from message h where h.ms_id = \"", ms_id, "\") from message where ms_id = \"", ms_id, "\");", NULL};
-    bdrequest = strjoins_arr(request_parts);
+    char *bdrequest = strjoins_arr(request_parts);
 
     puts(bdrequest); //Вывод запроса в консоль
 

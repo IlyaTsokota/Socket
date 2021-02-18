@@ -128,9 +128,9 @@ char *queries_handler(MYSQL *con, char **array, int sock)
     case 39:
         puts("Query 39 -> sql_update_chat_image");
         return sql_update_chat_image(con, sock, array[1], array[2]);
-    case 40:
-        puts("Query 40 -> forward_message");
-        return forward_message(con, array[1], array[2]);
+    // case 40:
+    //     puts("Query 40 -> forward_message");
+    //     return forward_message(con, array[1], array[2]);
     case 41:
         puts("Query 41 -> get_edited_messages");
         return get_edited_messages(con, array[1], sock);

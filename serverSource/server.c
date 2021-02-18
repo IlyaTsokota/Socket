@@ -9,10 +9,10 @@ MYSQL *connection_try()
         fprintf(stderr, "%s\n", mysql_error(con));
         exit(1);
     }
-    if (mysql_real_connect(con, "159.224.0.212", "root", "Dhtvtybdfujydhjlt032",
-                           "socket_db", 0, NULL, 0) == NULL)
-    // if (mysql_real_connect(con, "178.165.30.151", "root", "3030",
+    // if (mysql_real_connect(con, "159.224.0.212", "root", "Dhtvtybdfujydhjlt032",
     //                        "socket_db", 0, NULL, 0) == NULL)
+    if (mysql_real_connect(con, "178.165.30.151", "root", "3030",
+                           "socket_db", 0, NULL, 0) == NULL)
     {
         fprintf(stderr, "%s\n", mysql_error(con));
         mysql_close(con);
@@ -111,7 +111,7 @@ int main()
     puts("bind sucess");
 
     //Listening
-    listen(socket_desc, 128); //second parametr set max_clients;
+    listen(socket_desc, 1280); //second parametr set max_clients;
 
     puts("Waiting for new connections...");
     c = sizeof(struct sockaddr_in);
