@@ -109,7 +109,7 @@ char *queries_handler(MYSQL *con, char **array, int sock)
         return is_user_chat_admin(con, array[1], array[2]);
     case 33:
         puts("Query 33 -> change_message");
-        return change_message(con, array[1], array[2], array[3]);
+        return change_message(con, array[1], array[2]);
     case 34:
         puts("Query 34 -> delete_message");
         return delete_message(con, array[1], array[2]);

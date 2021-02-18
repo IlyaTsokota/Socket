@@ -11,11 +11,27 @@ char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_fo
         int status = mkdir("./messages", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
         status = mkdir(path_folder, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
         char *file_extension = get_filename_extension(ms_data);
-        char *path_resource = strjoin(3, path_folder, "/icon", file_extension);
+        int file_count = 0;
+        DIR *dirp;
+        struct dirent *entry;
+
+        dirp = opendir(path_folder); /* There should be error handling after this */
+        while ((entry = readdir(dirp)) != NULL)
+        {
+            if (entry->d_type == DT_REG)
+            { /* If the entry is a regular file */
+                file_count++;
+            }
+        }
+        closedir(dirp);
+        char *filename = int_to_str(file_count + 1);
+        char *path_resource = strjoin(4, path_folder, "/", filename, file_extension);
+        free(filename);
         remove(path_resource);
         free(path_folder);
         free(file_extension);
         recieve_image(sock, path_resource);
+        write(sock, "1", 1);
         data = strdup(path_resource);
         free(path_resource);
     }

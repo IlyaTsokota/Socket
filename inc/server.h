@@ -2,6 +2,7 @@
 #define CHAT_H
 
 //std headers
+#include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -124,7 +125,7 @@ char *change_pin(MYSQL *con, char *u_id, char *new_pin);       //28
 //sql-message
 char *get_messages(MYSQL *con, char *user_id, char *last_message_id, int sock);                                                                                              //16
 char *add_message_to_chat(MYSQL *con, char *ch_id, char *user_id, char *ms_is_forwarded, char *ms_is_reply, char *ms_is_media, char *ms_data, int sock, int is_send_answer); //13
-char *change_message(MYSQL *con, char *ch_id, char *ms_id, char *ms_text);                                                                                                   //33
+char *change_message(MYSQL *con, char *ms_id, char *ms_text);                                                                                               //33
 char *delete_message(MYSQL *con, char *ch_id, char *ms_id);                                                                                                                  //34
 char *add_first_message(MYSQL *con, char *my_id, char *c_id, int sock);                                                                                                      //37
 //sql-unsorte
