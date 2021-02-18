@@ -69,7 +69,6 @@ typedef struct
 	GtkWidget *message_login;
 	GtkWidget *edited;
 
-
 } messages_t;
 
 typedef struct
@@ -82,8 +81,8 @@ typedef struct
 
 typedef struct
 {
-GtkTextBuffer *buffer; 
-GtkTextIter *location;
+	GtkTextBuffer *buffer;
+	GtkTextIter *location;
 } max_size_msg_t;
 
 typedef struct
@@ -145,8 +144,6 @@ typedef struct
 	GtkWidget *chat;
 	GtkWidget *lock;
 } left_panel_img_t;
-
-
 
 typedef struct pin_f
 {
@@ -269,7 +266,10 @@ typedef struct
 	GThread *update_thread;
 
 	GMainLoop *loop_chat;
+	GMainLoop *loop_edit_msgs;
+
 	GThread *update_thread_chat;
+	GThread *update_edit_msgs;
 
 	GtkWidget *search_entry;
 	GtkWidget *create_chat_event_box;
@@ -429,12 +429,20 @@ typedef struct
 
 typedef struct
 {
+	char *ms_id;
+	char *ms_text;
+} message_back_info_t;
+
+typedef struct
+{
 	GtkWidget *input;
 	GtkWidget *fail_lable;
 } data_input_t;
 
 setting_items setting_elements;
 chats_form chats_f;
+chats_form chats_form_sec;
+
 contacts_arr contacts_t;
 main_form_t main_form;
 
@@ -443,13 +451,23 @@ current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
 
-
+void create_one_forward_chat(int index, chat_t *chat);
+gboolean on_popup_focus_out(GtkWidget *widget, GdkEventFocus *event, gpointer data);
+void on_popup_clicked(GtkMenuItem *menuitem, gpointer user_data);
+void free_one_chat_widgets(chat_item_t *contacts);
+message_back_info_t **edit_messages_to_json(char *str);
+message_back_info_t **take_edit_messages(int socket);
+void free_message_back_info_s(message_back_info_t **user);
+gboolean update_edit_msgs(update_t *update);
+void start_timer_for_edit_messages();
+gpointer thread_by_edit_messages(gpointer dat);
+void end_of_timer_edit_messages(gpointer dat);
 int get_curr_msg_index(char *id);
 gpointer limit_size_msg_text(gpointer msg);
 char *trim_white_space_unicode(char *str);
 bool is_string_spaceless(char *str);
 void edit_message(GtkMenuItem *menuitem, GtkWidget *text);
-gboolean click_on_msg(GtkWidget *widget, GdkEventButton *event,GtkWidget *userdata);
+gboolean click_on_msg(GtkWidget *widget, GdkEventButton *event, GtkWidget *userdata);
 gboolean send_msg_on_press_enter(GtkWidget *widget, GdkEventKey *event, GtkTextView *text_view);
 void view_popup_menu(GtkWidget *treeview, GdkEventButton *event, GtkWidget *userdata);
 char *get_msg_img(int socket, char *ch_id, char *ms_id, char *filename);

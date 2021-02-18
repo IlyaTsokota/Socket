@@ -8,7 +8,9 @@ void open_login_form(GtkWidget *button, GtkWidget *widget)
 
 void logout(GtkWidget *button)
 {
-      g_main_loop_quit( main_form.loop_chat );
+    g_main_loop_quit( main_form.loop_edit_msgs );
+    g_thread_join(main_form.update_edit_msgs);
+    g_main_loop_quit( main_form.loop_chat );
     g_thread_join(main_form.update_thread_chat);
     g_main_loop_quit( main_form.loop );
     g_thread_join(main_form.update_thread);

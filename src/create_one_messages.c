@@ -78,9 +78,10 @@ void create_one_messages(int index, message_t *message)
     gtk_widget_set_hexpand(curr_chat.messages_g[index]->edited, true);
     gtk_widget_set_halign(curr_chat.messages_g[index]->edited, GTK_ALIGN_END);
     gtk_widget_set_valign(curr_chat.messages_g[index]->edited, GTK_ALIGN_END);
-    if(strcmp(message->ms_isedited, "1") == 0){
-    gtk_widget_set_margin_bottom(curr_chat.messages_g[index]->edited, 10);
-    gtk_widget_set_margin_end(curr_chat.messages_g[index]->edited, 10);
+    if (strcmp(message->ms_isedited, "0") != 0)
+    {
+        gtk_widget_set_margin_bottom(curr_chat.messages_g[index]->edited, 10);
+        gtk_widget_set_margin_end(curr_chat.messages_g[index]->edited, 10);
     }
     free(edited_text);
 

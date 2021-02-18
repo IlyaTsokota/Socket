@@ -47,6 +47,20 @@ void free_messages(message_arr *message_container)
     }
 }
 
+void free_message_back_info_s(message_back_info_t **user)
+{
+    if (user != NULL)
+    {
+        for (size_t i = 0;user[i]; i++)
+        {
+            free(user[i]->ms_text);
+            free(user[i]->ms_id);
+        }
+        free(user);
+        user = NULL;
+    }
+}
+
 void free_chat_items(chat_item_t **chats)
 {
     if (chats != NULL && !chats_f.was_free)
@@ -71,6 +85,5 @@ void free_chat_items(chat_item_t **chats)
         free(chats);
         chats = NULL;
         chats_f.was_free = true;
-
     }
 }

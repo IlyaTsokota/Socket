@@ -9,19 +9,19 @@ void show_chats(GtkWidget *main_grid)
     GtkWidget *child = GTK_WIDGET(gtk_builder_get_object(builder, "grid_contacts"));
     GtkWidget *contacts_panel = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_panel"));
     main_form.chats_grid = GTK_WIDGET(gtk_builder_get_object(builder, "contacts_container"));
-  
- show_chats_widgets();
-    
+
+    show_chats_widgets();
 
     gtk_grid_attach(GTK_GRID(main_form.left_content[0]), child, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(main_grid), main_form.left_content[0], 0, 0, 1, 1);
     GtkWidget *arr[] = {main_form.left_content[0], contacts_panel, main_form.chats_grid, NULL};
-    css_set(arr,  data.main_theme_path);
+    css_set(arr, data.main_theme_path);
     gtk_widget_show_all(main_form.left_content[0]);
     g_object_unref(builder);
 }
 
-void show_chats_widgets(){
+void show_chats_widgets()
+{
     if (chats_f.chat_items != NULL && chats_f.chat_items[0] != NULL)
     {
         for (int i = 0; chats_f.chat_items[i]; i++)
@@ -29,5 +29,5 @@ void show_chats_widgets(){
             gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
         }
     }
-    gtk_widget_show_all(main_form.chats_grid );
+    gtk_widget_show_all(main_form.chats_grid);
 }

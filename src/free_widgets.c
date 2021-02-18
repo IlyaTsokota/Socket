@@ -57,6 +57,28 @@ void free_chat_widgets(chat_item_t **contacts)
     }
 }
 
+void free_one_chat_widgets(chat_item_t *contacts)
+{
+    if (contacts != NULL && !chats_f.was_free)
+    {
+        gtk_widget_destroy(contacts->login_last_message);
+        gtk_widget_destroy(contacts->text_last_message);
+        gtk_widget_destroy(contacts->contact_name_lable);
+        gtk_widget_destroy(contacts->user_is_online_round);
+        gtk_widget_destroy(contacts->user_is_online);
+        gtk_widget_destroy(contacts->contact_last_msg);
+        gtk_widget_destroy(contacts->img_contact);
+        gtk_widget_destroy(contacts->contact_img_container);
+        gtk_widget_destroy(contacts->contact_name_container);
+        gtk_widget_destroy(contacts->contact_info);
+        gtk_widget_destroy(contacts->time_last_message);
+        gtk_widget_destroy(contacts->contact_container);
+        gtk_widget_destroy(contacts->event_box_contact);
+    }
+    free(contacts);
+    contacts = NULL;
+}
+
 void free_message_widgets(messages_t **message)
 {
     if (message != NULL)

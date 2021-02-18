@@ -216,7 +216,7 @@ gboolean open_remove_participant(GtkWidget *widget, GdkEventButton *event)
 {
     hide_gtk_widgets(main_form.right_content);
     show_remove_participant(main_form.main_grid);
-    refresh_users_by_chat();
+    // refresh_users_by_chat();
     gtk_widget_show_all(main_form.right_content[12]);
     return false;
 }

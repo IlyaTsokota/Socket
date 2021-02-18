@@ -35,7 +35,6 @@ gboolean open_click_chat(GtkWidget *widget, GdkEventButton *event)
     g_timeout_add(60, change_insert_to_message, main_form.message_scroll);
 
     gtk_widget_show_all(main_form.message_line);
-
     // }
     return false;
 }

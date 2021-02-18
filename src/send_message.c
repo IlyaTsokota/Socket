@@ -40,6 +40,8 @@ void *sending(gpointer text_view)
                 char *arr[] = {chats_f.curr_chat, data.user_id, "0", "0", "0", text, NULL};
                 json = write_to_json(num_f, arr);
                 response = request_on_server(update->socket, json);
+                free(response);
+
             }
             else if (main_form.msg_event == 1)
             {
@@ -61,7 +63,6 @@ void *sending(gpointer text_view)
             clear_text__buffer(GTK_TEXT_VIEW(text_view));
             free(json);
             free(num_f);
-            free(response);
             edit_styles_for_widget(text_view, "* {border: none;}");
         }
         else

@@ -9,7 +9,6 @@ gboolean open_chats(GtkWidget *widget, GdkEventButton *event, left_panel_img_t *
     gtk_widget_show_all(main_form.left_content[0]);
     gtk_widget_show_all(main_form.right_content[0]);
     set_chat_name_top();
-
   
   return false;
 }

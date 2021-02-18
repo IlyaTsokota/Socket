@@ -57,6 +57,7 @@ void open_main_form(GtkWidget *window)
 
     GtkWidget *arr[] = {box_contacts, main_form.app_form, left_panel, main_form.is_connection, con_img, top_panel, main_form.search_entry, main_form.top_panel_top_text, main_form.top_panel_bottom_text,
                         main_form.left_panel_img->contact, main_form.left_panel_img->chat, main_form.left_panel_img->setting, main_form.left_panel_img->lock, NULL};
+    
     css_set(arr, data.main_theme_path);
     edit_styles_for_widget(main_form.left_panel_img->chat, "* {background: #88c5ce;}");
 
@@ -67,7 +68,7 @@ void open_main_form(GtkWidget *window)
         edit_styles_for_widget(chats_f.chat_items[0]->event_box_contact, color);
         free(color);
     }
-    
+
     g_signal_connect(G_OBJECT(main_form.create_chat_event_box), "button-press-event", G_CALLBACK(open_add_chat), NULL);
     g_signal_connect(G_OBJECT(main_form.chat_info_event_box), "button-press-event", G_CALLBACK(open_chat_info), NULL);
 
@@ -80,5 +81,6 @@ void open_main_form(GtkWidget *window)
     gtk_container_add(GTK_CONTAINER(window), main_form.app_form);
     g_object_unref(builder);
     start_timer_in_other_thread();
+    // start_timer_for_edit_messages();
     //start_timer_for_update_chat();
 }

@@ -163,3 +163,61 @@ void free_user_curr_chat_t_s(user_curr_chat_t **message)
         message = NULL;
     }
 }
+
+
+message_back_info_t **take_edit_messages(int socket)
+{
+    char *num_f = strdup("41");
+    char *arr[] = {data.user_id, NULL};
+    char *json = write_to_json(num_f, arr);
+    free(num_f);
+    char *messages = request_on_server(socket, json);
+    //// //puts(messages);
+    free(json);
+    message_back_info_t **messages_s = edit_messages_to_json(messages);
+
+    free(messages);
+    if (messages_s == NULL)
+        return NULL;
+    return messages_s;
+}
+
+message_back_info_t **edit_messages_to_json(char *str)
+{
+    // //puts(str);
+    json_object *jobj, *values_obj, *tmp_values, *values_name;
+    jobj = json_tokener_parse(str);
+    if (jobj == NULL)
+    {
+        return NULL;
+    }
+    int exist = json_object_object_get_ex(jobj, "edited_messages", &values_obj);
+    int length = json_object_array_length(values_obj);
+    if (length > 0)
+    {
+        message_back_info_t **arr_msgs = malloc(sizeof(message_back_info_t *) * (length + 1));
+        arr_msgs[length] = NULL;
+         //g_print("%d -- length\n", length);
+        char *tmp;
+        for (size_t j = 0; j < length; j++)
+        {
+             //puts("a");
+            tmp_values = json_object_array_get_idx(values_obj, j);
+
+            arr_msgs[j] = malloc(sizeof(message_back_info_t));
+            json_object_object_get_ex(tmp_values, "ms_id", &values_name);
+            arr_msgs[j]->ms_id = strdup((char *)json_object_get_string(values_name));
+            free(values_name);
+            json_object_object_get_ex(tmp_values, "ms_text", &values_name);
+            arr_msgs[j]->ms_text = strdup((char *)json_object_get_string(values_name));
+            free(values_name);
+            free(tmp_values);
+        }
+        free(values_obj);
+        free(jobj);
+        return arr_msgs;
+    }
+    free(values_obj);
+    free(jobj);
+    return NULL;
+}

@@ -129,7 +129,7 @@ void create_one_chat(int index, chat_t *chat)
 
     css_set_for_one(chats_f.chat_items[index]->user_is_online, data.main_theme_path);
 
-    // }
+    //}
 
     chats_f.chat_items[index]->contact_img_container = gtk_grid_new();
     gtk_widget_set_size_request(chats_f.chat_items[index]->contact_img_container, 57, 57);
