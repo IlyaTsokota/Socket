@@ -9,6 +9,12 @@ void view_popup_menu(GtkWidget *widget, GdkEventButton *event, GtkWidget *userda
     reply = gtk_menu_item_new_with_label("Reply");
     forward = gtk_menu_item_new_with_label("Forward");
     char *ms_id = (char *)gtk_widget_get_name(widget);
+    if (main_form.curr_ms_id != NULL)
+    {
+        free( main_form.curr_ms_id );
+        main_form.curr_ms_id = NULL;
+    }
+    
     main_form.curr_ms_id = strdup(ms_id);
     main_form.cur_msg = userdata;
     if (GTK_IS_LABEL(userdata) && gtk_widget_get_halign(widget) == GTK_ALIGN_END)

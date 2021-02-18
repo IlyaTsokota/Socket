@@ -295,6 +295,7 @@ typedef struct
 	char *curr_ms_id;
 	GtkWidget *cur_msg;
 	int msg_event;
+	GtkWidget *popup_window;
 } main_form_t;
 
 typedef struct
@@ -451,6 +452,7 @@ current_chat_s curr_chat;
 user_by_chat_t users_in_chat;
 localization_t localization_s;
 
+gboolean forward_message(GtkWidget *widget, GdkEventButton *event);
 void create_one_forward_chat(int index, chat_t *chat);
 gboolean on_popup_focus_out(GtkWidget *widget, GdkEventFocus *event, gpointer data);
 void on_popup_clicked(GtkMenuItem *menuitem, gpointer user_data);

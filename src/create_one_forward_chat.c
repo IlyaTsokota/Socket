@@ -10,7 +10,7 @@ void create_one_forward_chat(int index, chat_t *chat)
     gtk_widget_set_hexpand(chats_form_sec.chat_items[index]->event_box_contact, true);
     gtk_widget_set_vexpand(chats_form_sec.chat_items[index]->event_box_contact, false);
     gtk_widget_set_name(chats_form_sec.chat_items[index]->event_box_contact, chat->ch_id);
-    g_signal_connect(G_OBJECT(chats_form_sec.chat_items[index]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
+    g_signal_connect(G_OBJECT(chats_form_sec.chat_items[index]->event_box_contact), "button-press-event", G_CALLBACK(forward_message), NULL);
 
     gtk_widget_set_valign(chats_form_sec.chat_items[index]->event_box_contact, GTK_ALIGN_START);
 

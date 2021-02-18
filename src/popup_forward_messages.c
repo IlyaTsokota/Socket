@@ -10,21 +10,20 @@ gboolean on_popup_focus_out(GtkWidget *widget, GdkEventFocus *event, gpointer da
 
 void on_popup_clicked(GtkMenuItem *menuitem, gpointer user_data)
 {
-    GtkWidget *popup_window;
 
-    popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(popup_window), "Pop Up window");
-    gtk_container_set_border_width(GTK_CONTAINER(popup_window), 10);
-    gtk_window_set_resizable(GTK_WINDOW(popup_window), FALSE);
-    gtk_window_set_decorated(GTK_WINDOW(popup_window), FALSE);
-    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(popup_window), TRUE);
-    gtk_window_set_skip_pager_hint(GTK_WINDOW(popup_window), TRUE);
-    gtk_widget_set_size_request(popup_window, -1, 600);
-    gtk_window_set_transient_for(GTK_WINDOW(popup_window), GTK_WINDOW(data.win));
-    gtk_window_set_position(GTK_WINDOW(popup_window), GTK_WIN_POS_CENTER);
+    main_form.popup_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_title(GTK_WINDOW(main_form.popup_window), "Pop Up window");
+    gtk_container_set_border_width(GTK_CONTAINER(main_form.popup_window), 10);
+    gtk_window_set_resizable(GTK_WINDOW(main_form.popup_window), FALSE);
+    gtk_window_set_decorated(GTK_WINDOW(main_form.popup_window), FALSE);
+    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(main_form.popup_window), TRUE);
+    gtk_window_set_skip_pager_hint(GTK_WINDOW(main_form.popup_window), TRUE);
+    gtk_widget_set_size_request(main_form.popup_window, -1, 600);
+    gtk_window_set_transient_for(GTK_WINDOW(main_form.popup_window), GTK_WINDOW(data.win));
+    gtk_window_set_position(GTK_WINDOW(main_form.popup_window), GTK_WIN_POS_CENTER);
 
-    gtk_widget_set_events(popup_window, GDK_FOCUS_CHANGE_MASK);
-    g_signal_connect(G_OBJECT(popup_window),
+    gtk_widget_set_events(main_form.popup_window, GDK_FOCUS_CHANGE_MASK);
+    g_signal_connect(G_OBJECT(main_form.popup_window),
                      "focus-out-event",
                      G_CALLBACK(on_popup_focus_out),
                      NULL);
@@ -60,12 +59,12 @@ void on_popup_clicked(GtkMenuItem *menuitem, gpointer user_data)
     }
     gtk_widget_show_all(chats_grid);
 
-    gtk_container_add(GTK_CONTAINER(popup_window), child);
+    gtk_container_add(GTK_CONTAINER(main_form.popup_window), child);
 
     GtkWidget *arr[] = {child, contacts_panel, chats_grid, NULL};
     css_set(arr, data.main_theme_path);
     g_object_unref(builder);
 
-    gtk_widget_show_all(popup_window);
-    gtk_widget_grab_focus(popup_window);
+    gtk_widget_show_all(main_form.popup_window);
+    gtk_widget_grab_focus(main_form.popup_window);
 }

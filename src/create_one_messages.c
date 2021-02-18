@@ -36,12 +36,21 @@ void create_one_messages(int index, message_t *message)
     gtk_widget_set_halign(curr_chat.messages_g[index]->message_time, GTK_ALIGN_END);
     set_style_context(curr_chat.messages_g[index]->message_time, "message-time");
 
-    curr_chat.messages_g[index]->message_login = gtk_label_new(message->u_name);
+    char *login;
+    if (strcmp(message->ms_isforwarded, "1") == 0)
+    {
+        login = strjoin(2, "Message forward from\n", message->u_name);
+    }
+    else
+    {
+        login = strdup(message->u_name);
+    }
+    curr_chat.messages_g[index]->message_login = gtk_label_new(login);
     gtk_widget_set_hexpand(curr_chat.messages_g[index]->message_login, true);
     gtk_widget_set_halign(curr_chat.messages_g[index]->message_login, GTK_ALIGN_START);
     set_style_context(curr_chat.messages_g[index]->message_login, "contact-login");
     set_style_context(curr_chat.messages_g[index]->message_login, "message-from");
-
+    free(login);
     if (strcmp(message->ms_ismedia, "0") == 0)
     {
         curr_chat.messages_g[index]->message_text = gtk_label_new(message->ms_text);
