@@ -125,79 +125,79 @@ gboolean update_chat(gpointer d)
             for (int i = 0; i < size; i++)
             {
                 //puts("In3");
+                // if (chats_f.chat_items[i] != NULL && chats[i] == NULL)
+                // {
+                //     //puts("In4");
 
-                if (chats_f.chat_items[i] != NULL && chats[i] == NULL)
-                {
-                    //puts("In4");
+                //     free_one_chat_widgets(chats_f.chat_items[i]);
+                // }
+                // else if (chats_f.chat_items[i] != NULL && chats[i] != NULL)
+                // {
 
-                    free_one_chat_widgets(chats_f.chat_items[i]);
-                }
-                else if (chats_f.chat_items[i] != NULL && chats[i] != NULL)
-                {
+                //     if (strcmp(chats[i]->u_login, "0") == 0)
+                //     {
+                //         gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->contact_name_lable), chats[i]->ch_name);
+                //     }
+                //     else
+                //     {
+                //         gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->contact_name_lable), chats[i]->u_login);
+                //     }
 
-                    if (strcmp(chats[i]->u_login, "0") == 0)
-                    {
-                        gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->contact_name_lable), chats[i]->ch_name);
-                    }
-                    else
-                    {
-                        gtk_label_set_text(GTK_LABEL(chats_f.chat_items[i]->contact_name_lable), chats[i]->u_login);
-                    }
+                //     gtk_widget_set_name(chats_f.chat_items[i]->event_box_contact, chats[i]->ch_id);
+                //     g_signal_handlers_disconnect_by_func(chats_f.chat_items[i]->event_box_contact, open_click_chat, NULL);
+                //     g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
 
-                    gtk_widget_set_name(chats_f.chat_items[i]->event_box_contact, chats[i]->ch_id);
-                    g_signal_handlers_disconnect_by_func(chats_f.chat_items[i]->event_box_contact, open_click_chat, NULL);
-                    g_signal_connect(G_OBJECT(chats_f.chat_items[i]->event_box_contact), "button-press-event", G_CALLBACK(open_click_chat), NULL);
+                //     char *filename;
+                //     if (strcmp(chats[i]->ch_avatar, "no_avatar") == 0 || strcmp(chats[i]->ch_avatar, "1234") == 0)
+                //     {
+                //         if (strcmp(chats[i]->u_avatar, "0") == 0 || strcmp(chats[i]->u_avatar, "1234") == 0)
+                //         {
+                //             if (strcmp(chats[i]->u_login, "Saved Messages") == 0)
+                //             {
+                //                 filename = strdup("share/resources/img/ava2SavedMessages.png");
+                //             }
+                //             else
+                //             {
+                //                 filename = strdup("share/resources/img/ava2.png");
+                //             }
+                //         }
+                //         else
+                //         {
+                //             filename = get_profile_img(data.socket_desc, chats[i]->u_avatar, chats[i]->ch_id, true);
+                //         }
+                //     }
+                //     else
+                //     {
+                //         filename = get_chat_img(data.socket_desc, chats[i]->ch_id, chats[i]->ch_avatar);
+                //     }
 
-                    char *filename;
-                    if (strcmp(chats[i]->ch_avatar, "no_avatar") == 0 || strcmp(chats[i]->ch_avatar, "1234") == 0)
-                    {
-                        if (strcmp(chats[i]->u_avatar, "0") == 0 || strcmp(chats[i]->u_avatar, "1234") == 0)
-                        {
-                            if (strcmp(chats[i]->u_login, "Saved Messages") == 0)
-                            {
-                                filename = strdup("share/resources/img/ava2SavedMessages.png");
-                            }
-                            else
-                            {
-                                filename = strdup("share/resources/img/ava2.png");
-                            }
-                        }
-                        else
-                        {
-                            filename = get_profile_img(data.socket_desc, chats[i]->u_avatar, chats[i]->ch_id, true);
-                        }
-                    }
-                    else
-                    {
-                        filename = get_chat_img(data.socket_desc, chats[i]->ch_id, chats[i]->ch_avatar);
-                    }
-
-                    GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, 55, 55, TRUE, NULL);
-                    gtk_image_set_from_pixbuf(GTK_IMAGE(chats_f.chat_items[i]->img_contact), pixbuf);
-                    free(filename);
-                }
-                else
+                //     GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_scale(filename, 55, 55, TRUE, NULL);
+                //     gtk_image_set_from_pixbuf(GTK_IMAGE(chats_f.chat_items[i]->img_contact), pixbuf);
+                //     free(filename);
+                // }
+                // else
+                if (chats_f.chat_items[i] == NULL && chats[i] != NULL)
                 {
                     create_one_chat(i, chats[i]);
                     gtk_grid_attach(GTK_GRID(main_form.chats_grid), chats_f.chat_items[i]->event_box_contact, 0, i, 1, 1);
-                    gtk_widget_show_all(main_form.left_content[0]);
                 }
             }
+            gtk_widget_show_all(main_form.left_content[0]);
 
-            int curr_index = 0;
-            for (int i = 0; i < size; i++)
-            {
-                if (strcmp(chats_f.curr_chat, (char *)gtk_widget_get_name(chats_f.chat_items[i]->event_box_contact)))
-                {
-                    curr_index = i;
-                }
-            }
-            clear_style_all_chat_widgets();
-            char *color = strcmp(data.theme, "Dark") == 0 ? strdup("* { background-color: #3c3c3c;}")
-                                                          : strdup("* { background-color: #ebf3f7;}");
-            edit_styles_for_widget(chats_f.chat_items[curr_index]->event_box_contact, color);
-            free(color);
-            free_chats(chats);
+            // int curr_index = 0;
+            // for (int i = 0; i < size; i++)
+            // {
+            //     if (strcmp(chats_f.curr_chat, (char *)gtk_widget_get_name(chats_f.chat_items[i]->event_box_contact)))
+            //     {
+            //         curr_index = i;
+            //     }
+            // }
+            // clear_style_all_chat_widgets();
+            // char *color = strcmp(data.theme, "Dark") == 0 ? strdup("* { background-color: #3c3c3c;}")
+            //                                               : strdup("* { background-color: #ebf3f7;}");
+            // edit_styles_for_widget(chats_f.chat_items[curr_index]->event_box_contact, color);
+            // free(color);
+            // free_chats(chats);
         }
         g_mutex_unlock(&main_form.mutex_file_transfer);
     }
@@ -229,15 +229,22 @@ gboolean update_edit_msgs(gpointer d)
                 int j = 0;
                 for (int i = 0; curr_chat.messages_g[i]; i++)
                 {
-                    if ((strcmp(messages[j]->ms_id, (char *)gtk_widget_get_name(curr_chat.messages_g[i]->event_box_message)) == 0) && GTK_IS_LABEL(curr_chat.messages_g[i]->message_text) && !(strcmp(gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[i]->edited)), "") != 0))
+                    if (messages[j] == NULL)
                     {
-                        gtk_label_set_text(GTK_LABEL(curr_chat.messages_g[i]->edited), "[Edited]");
-                        gtk_label_set_text(GTK_LABEL(curr_chat.messages_g[i]->message_text), messages[j]->ms_text);
-                        j++;
+                        break;
+                    }
+                    if (strcmp(messages[j]->ms_id, (char *)gtk_widget_get_name(curr_chat.messages_g[i]->event_box_message)) == 0)
+                    {
+                        if (strcmp(gtk_label_get_text(GTK_LABEL(curr_chat.messages_g[i]->edited)), "[Edited]") != 0)
+                        {
+                            gtk_label_set_text(GTK_LABEL(curr_chat.messages_g[i]->edited), "[Edited]");
+                            gtk_label_set_text(GTK_LABEL(curr_chat.messages_g[i]->message_text), messages[j]->ms_text);
+                            j++;
+                        }
                     }
                 }
-                free_message_back_info_s(messages);
             }
+            free_message_back_info_s(messages);
         }
     }
     g_mutex_unlock(&main_form.mutex_update);
