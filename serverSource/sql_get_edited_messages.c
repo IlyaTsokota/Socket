@@ -4,7 +4,7 @@ char *get_edited_messages(MYSQL *con, char *user_id, int sock)
 {
     const char *tmp_str, *coma_str = ",";
     char *str, *bdrequest, *tmp_str1;
-    const char *request_parts[] = {"SELECT ms_id, ms_text FROM message WHERE u_id = \"", user_id, "\" ;", NULL};
+    const char *request_parts[] = {"SELECT ms_id, ms_text FROM message WHERE u_id = \"", user_id, "\" and ms_isedited = \"1\";", NULL};
 
     bdrequest = strjoins_arr(request_parts);
 
