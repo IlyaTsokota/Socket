@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "malloc.h": "c",
-        "chat.h": "c",
-        "typeinfo": "c"
-    }
-}
